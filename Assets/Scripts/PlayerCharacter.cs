@@ -9,11 +9,14 @@ using UnityEngine.Rendering;
 public class PlayerCharacter : MonoBehaviour, IDamageAble<float>
 {
     public float speed = 5f;
+    float hp;
     Rigidbody characterRigidbody;
     Animator animator;
 
+
     private void Awake()
     {
+        hp = 50f;
         characterRigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
@@ -25,8 +28,7 @@ public class PlayerCharacter : MonoBehaviour, IDamageAble<float>
 
     public void Damage(float damageTaken)
     {
-
-
+        animator.SetTrigger("hit");
     }
 
     public void Dead()
@@ -45,7 +47,7 @@ public class PlayerCharacter : MonoBehaviour, IDamageAble<float>
         float inputZ = Input.GetAxisRaw("Vertical"); 
 
         Vector3 velocity = new Vector3(inputX, 0, inputZ);
-        // animator.SetFloat();
+        animator.SetFloat("moveSpeed", velocity.magnitude);
         velocity *= speed;
         characterRigidbody.velocity = velocity;
 
