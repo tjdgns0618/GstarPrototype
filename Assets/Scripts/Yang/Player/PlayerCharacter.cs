@@ -15,6 +15,9 @@ public class PlayerCharacter : MonoBehaviour, IDamageAble<float>
     Animator animator;
     PlayerAttack playerAttack;
 
+    [SerializeField]
+    GameObject bullet;
+
     private void Awake()
     {
         playerAttack = FindAnyObjectByType<PlayerAttack>();
@@ -32,6 +35,10 @@ public class PlayerCharacter : MonoBehaviour, IDamageAble<float>
         {
             playerAttack.MouseButtonDown();
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Shot();
+        }
     }
 
     public void Damage(float damageTaken)
@@ -41,6 +48,12 @@ public class PlayerCharacter : MonoBehaviour, IDamageAble<float>
         Debug.Log("남은 체력 = " + hp);
     }
 
+    public void Shot()
+    {
+        GameObject temp = Instantiate(bullet, Vector3.zero, Quaternion.identity);
+        animator.SetTrigger("shot");
+    }
+
     public void Dead()
     {
         
@@ -48,16 +61,23 @@ public class PlayerCharacter : MonoBehaviour, IDamageAble<float>
 
     public void Attack(object sender, EventArgs e)
     {
-        if(!animator.GetCurrentAnimatorStateInfo(0).IsName("attack01"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("attack01"))
+        {
+            animator.SetLayerWeight(1, 1);
             animator.SetTrigger("attack");
+        }
     }
-
     public void Move()
     {
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical"); 
 
         Vector3 velocity = new Vector3(inputX, 0, inputZ);
+
+        if(animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.5f)
+        {
+            animator.SetLayerWeight(1, 0);
+        }
         animator.SetFloat("moveSpeed", velocity.magnitude);
         velocity *= speed;
         characterRigidbody.velocity = velocity;
@@ -83,4 +103,5 @@ public class PlayerCharacter : MonoBehaviour, IDamageAble<float>
             !playerAttack.gameObject.GetComponent<MeshCollider>().enabled;
     }
 
+    
 }

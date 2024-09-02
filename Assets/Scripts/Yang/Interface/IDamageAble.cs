@@ -6,4 +6,5 @@ public interface IDamageAble<T> {
     void Dead();
     void Move();
     void Attack(object sender, EventArgs e);
+    void Shot();
 }

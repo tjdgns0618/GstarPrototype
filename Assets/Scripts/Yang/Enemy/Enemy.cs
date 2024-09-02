@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
     float _movementSpeed = 10f;
 
     Rigidbody rigid;
-    PlayerAttack playerAttack;
+    EnemyAttack enemyAttack;
     BehaviorTreeRunner _BTRunner = null;
     Transform _detectedPlayer = null;
     Vector3 _originPos;
@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        playerAttack = FindAnyObjectByType<PlayerAttack>();
+        enemyAttack = FindAnyObjectByType<EnemyAttack>();
         animator = GetComponent<Animator>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _originPos = transform.position;
@@ -187,7 +187,7 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
 
     public void Dead()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public void Move()
@@ -198,8 +198,8 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
 
     public void AttackStateCollider()
     {
-        playerAttack.gameObject.GetComponent<MeshCollider>().enabled =
-            !playerAttack.gameObject.GetComponent<MeshCollider>().enabled;
+        enemyAttack.gameObject.GetComponent<MeshCollider>().enabled =
+            !enemyAttack.gameObject.GetComponent<MeshCollider>().enabled;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -209,5 +209,10 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
         {
             damageAble.Damage(20);
         }
+    }
+
+    public void Shot()
+    {
+        throw new NotImplementedException();
     }
 }
