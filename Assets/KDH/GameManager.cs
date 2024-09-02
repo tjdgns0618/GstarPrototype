@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public PoolManager pools;
+
     public int _hp = 100;
     public int _gold = 0;
 
