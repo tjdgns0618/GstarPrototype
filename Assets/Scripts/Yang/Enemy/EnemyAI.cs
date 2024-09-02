@@ -5,32 +5,46 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
-public class Enemy : MonoBehaviour, IDamageAble<float>
+public enum EnemyType
 {
+    melee,
+    range
+};
+
+public class EnemyAI : MonoBehaviour, IDamageAble<float>
+{    
+    public EnemyType enemyType;
     [Header("Range")]
     [SerializeField]
     float _detectRange = 10f;
     [SerializeField]
-    float _meleeAttackRange = 5f;
+    float _attackRange = 5f;
 
     [SerializeField]
     float _movementSpeed = 10f;
+    [SerializeField]
+    EnemyAttack enemyAttack;
+
+    public GameObject bullet;
+    public Transform shotPosition;
 
     Rigidbody rigid;
-    EnemyAttack enemyAttack;
     BehaviorTreeRunner _BTRunner = null;
     Transform _detectedPlayer = null;
     Vector3 _originPos;
     Animator animator;
     float hp = 50;
-
-    const string _ATTACK_ANIM_STATE_NAME = "attack01";
-    const string _ATTACK_ANIM_TRIGGER_NAME = "attack";
+    bool isDead = false;
+    
+    const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
+    const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
+    const string _MELEE_ATTACK_ANIM_TRIGGER_NAME = "attack";
+    const string _RANGE_ATTACK_ANIM_TRIGGER_NAME = "shot";
     
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        enemyAttack = FindAnyObjectByType<EnemyAttack>();
+        enemyAttack = GetComponentInChildren<EnemyAttack>();
         animator = GetComponent<Animator>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _originPos = transform.position;
@@ -38,6 +52,7 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
 
     private void Update()
     {
+        if (isDead) return;
         _BTRunner.Operate();
     }
 
@@ -52,8 +67,8 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
                         new List<INode>()
                         {
                             new ActionNode(CheckMeleeAttacking),
-                            new ActionNode(CheckEnemyWithinMeleeAttackRange),
-                            new ActionNode(DoMeleeAttack),
+                            new ActionNode(CheckEnemyWithinAttackRange),
+                            new ActionNode(DoAttack),
                         }
                     ),
                     new SequenceNode
@@ -73,7 +88,7 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
     {
         if (animator != null)
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+            if (animator.GetCurrentAnimatorStateInfo(1).IsName(stateName))
             {
                 var normalizedTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 return normalizedTime != 0 && normalizedTime < 1f;
@@ -85,19 +100,19 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
     #region Attack Node
     INode.ENodeState CheckMeleeAttacking()
     {
-        if (IsAniamtionRunning(_ATTACK_ANIM_STATE_NAME))
+        if (IsAniamtionRunning(_MELEE_ATTACK_ANIM_STATE_NAME))
         {
             return INode.ENodeState.ENS_Running;
         }
         return INode.ENodeState.ENS_Success;
     }
 
-    INode.ENodeState CheckEnemyWithinMeleeAttackRange()
+    INode.ENodeState CheckEnemyWithinAttackRange()
     {
         if(_detectedPlayer != null)
         {
             if(Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) 
-                < (_meleeAttackRange * _meleeAttackRange))
+                < (_attackRange * _attackRange))
             {
                 return INode.ENodeState.ENS_Success;
             }
@@ -105,11 +120,17 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
         return INode.ENodeState.ENS_Failure;
     }
 
-    INode.ENodeState DoMeleeAttack()
+    INode.ENodeState DoAttack()
     {
-        if (_detectedPlayer != null)
+        if (_detectedPlayer != null && !isDead)
         {
-            animator.SetTrigger(_ATTACK_ANIM_TRIGGER_NAME);
+            if (enemyType == EnemyType.melee)
+                Attack();
+            else if (enemyType == EnemyType.range)
+            {
+                Rotate();
+                Shot();
+            }
             return INode.ENodeState.ENS_Success;
         }
 
@@ -125,6 +146,7 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
         if (overlapColliders != null && overlapColliders.Length > 0)
         {
             _detectedPlayer = overlapColliders[0].transform;
+            Rotate();
             animator.SetFloat("moveSpeed", 1);
             return INode.ENodeState.ENS_Success;
         }
@@ -136,14 +158,14 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
 
     INode.ENodeState MoveToDetectEnemy()
     {
-        if (_detectedPlayer != null)
+        if (_detectedPlayer != null && !isDead)
         {
-            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_meleeAttackRange * _meleeAttackRange))
+            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_attackRange * _attackRange))
             {
                 return INode.ENodeState.ENS_Success;
             }
+            Rotate();
             Move();
-
             return INode.ENodeState.ENS_Running;
         }
         return INode.ENodeState.ENS_Failure;
@@ -171,35 +193,65 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
         Gizmos.DrawWireSphere(this.transform.position, _detectRange);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(this.transform.position, _meleeAttackRange);
+        Gizmos.DrawWireSphere(this.transform.position, _attackRange);
     }
 
-    public void Attack(object sender, EventArgs e)
+    public void Attack()
     {
-        
+        animator.SetTrigger(_MELEE_ATTACK_ANIM_TRIGGER_NAME);
+
     }
 
     public void Damage(float damageTaken)
     {
         animator.SetTrigger("hit");
+        Knockback();
         hp -= damageTaken;
+        if(hp <= 0)
+        {
+            hp = 0;
+            Dead();
+        }
+    }
+
+    public void Knockback()
+    {
+        rigid.AddForce(Vector3.back * -5f, ForceMode.Impulse);
     }
 
     public void Dead()
     {
+        isDead = true;
+        enemyAttack.gameObject.GetComponent<BoxCollider>().enabled = false;
+        animator.StopPlayback();
+        // animator.SetTrigger("dead");
 
+        animator.ResetTrigger("attack");
+        animator.ResetTrigger("hit");
+
+        // 사망 애니메이션을 강제로 재생
+        animator.Play("dead");
+
+        // 사망 애니메이션을 부드럽게 전환
+        animator.CrossFade("dead", 0.2f);
+
+        Destroy(this.gameObject,5f);
     }
 
     public void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _detectedPlayer.position, Time.deltaTime * _movementSpeed);        
+        transform.position = Vector3.MoveTowards(transform.position, _detectedPlayer.position, Time.deltaTime * _movementSpeed);                
+    }
+
+    public void Rotate()
+    {
         transform.LookAt(_detectedPlayer);
     }
 
     public void AttackStateCollider()
     {
-        enemyAttack.gameObject.GetComponent<MeshCollider>().enabled =
-            !enemyAttack.gameObject.GetComponent<MeshCollider>().enabled;
+        enemyAttack.gameObject.GetComponent<BoxCollider>().enabled =
+            !enemyAttack.gameObject.GetComponent<BoxCollider>().enabled;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -213,6 +265,14 @@ public class Enemy : MonoBehaviour, IDamageAble<float>
 
     public void Shot()
     {
-        throw new NotImplementedException();
+        animator.SetTrigger("shot");
+    }
+
+    public void Fire()
+    {
+        bullet.GetComponent<Bullet>().targetname = "Player";
+        GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
+        temp.transform.forward = transform.forward;
+        //temp.transform.Rotate(new Vector3(90f, transform.rotation.y, 0f));
     }
 }
