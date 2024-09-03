@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -20,6 +21,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     Transform shotPosition;
     [SerializeField]
     Transform cam;
+    [SerializeField]
+    VisualEffect slash;
 
     private void Awake()
     {
@@ -59,7 +62,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public void Fire()
     {
         bullet.GetComponent<Bullet>().targetname = "Enemy";
-        GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.Euler(new Vector3(90f, GetMousePosition(), 0f)));
+        GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.Euler(new Vector3(0f, GetMousePosition(), 0f)));
     }
 
     public void Dead()
@@ -73,6 +76,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         {
             animator.SetLayerWeight(1, 1);
             animator.SetTrigger("attack");
+            slash.Play();
         }
     }
     public void Move()
