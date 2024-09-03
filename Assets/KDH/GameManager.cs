@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour
     float _attackspeed = 1;
     float _maxhp;
 
-
-
     private void Awake()
     {
         if(instance != null)
