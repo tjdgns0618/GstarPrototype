@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     Transform _detectedPlayer = null;
     Vector3 _originPos;
     Animator animator;
-    float hp = 50;
+    float hp = 5000;
     bool isDead = false;
     
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
@@ -205,7 +205,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Damage(float damageTaken)
     {
         animator.SetTrigger("hit");
-        Knockback();
+        StartCoroutine(Knockback(transform.forward * -1f , 0.2f, 1f));
         hp -= damageTaken;
         if(hp <= 0)
         {
@@ -214,9 +214,17 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         }
     }
 
-    public void Knockback()
+    IEnumerator Knockback(Vector3 direction, float duration, float strength)
     {
-        rigid.AddForce(Vector3.back * -5f, ForceMode.Impulse);
+        float time = 0;
+        Vector3 originalPosition = transform.position;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            transform.position = Vector3.Lerp(originalPosition, originalPosition + direction * strength, time / duration);
+            yield return null;
+        }
     }
 
     public void Dead()
@@ -257,7 +265,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     private void OnCollisionEnter(Collision collision)
     {
         IDamageAble<float> damageAble = collision.gameObject.GetComponent<IDamageAble<float>>();
-        if(damageAble != null)
+        if(damageAble != null && collision.gameObject.tag == "Player")
         {
             damageAble.Damage(20);
         }
