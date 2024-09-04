@@ -41,17 +41,17 @@ public class TotemRandomList : MonoBehaviour    // 석상이 스폰될 때 가중치를 받�
         return 0;
     }
 
-    public void RandomSpawn() // 조건에 따른 토템 랜덤 스폰
+    public void RandomSpawn() // 조건에 따른 토템 랜덤 스폰 (스테이지 종료 시 호출)
     {
         Dictionary<int, float> weightMap = new Dictionary<int, float>();
 
-        if (GameManager.instance._hp == 100)
+        if (!GameManager.instance.isHit)
         {
             weightMap[0] = totem._devilWeight;
             weightMap[1] = totem._angelWeight;
 
             int index = TotemWeightRandom(weightMap);
-            Totem.RareTotemType rareTotemType = index == 0 ? Totem.RareTotemType.Devil : Totem.RareTotemType.Angel;
+            Totem.RareTotemType rareTotemType = index == 0 ? Totem.RareTotemType.DevilT : Totem.RareTotemType.AngelT;
             GameObject totemObj = totem.GetRareTotemObject(rareTotemType);
             totemObj.SetActive(true);
             Debug.Log(totemObj);
@@ -59,30 +59,30 @@ public class TotemRandomList : MonoBehaviour    // 석상이 스폰될 때 가중치를 받�
         else
         {
             weightMap[0] = totem._bloodWeight;
-            weightMap[1] = totem._test1Weight;
-            weightMap[2] = totem._test2Weight;
+            weightMap[1] = totem._healWeight;
+            weightMap[2] = totem._diceWeight;
 
 
             if(!isPrevBloodTotem)   // 확률 보정
             {
                 weightMap[1] += 0.1f;
-                weightMap[2] += 0.1f;
+                weightMap[2] += 0.05f;
             }
             int index = TotemWeightRandom(weightMap);
-            Totem.TotemType totemType = index == 0 ? Totem.TotemType.Blood : (index == 1 ? Totem.TotemType.test1 : Totem.TotemType.test2);
+            Totem.TotemType totemType = index == 0 ? Totem.TotemType.BloodT : (index == 1 ? Totem.TotemType.HealT : Totem.TotemType.DiceT);
             GameObject totemObj = totem.GetTotemObject(totemType);
             totemObj.SetActive(true);
             Debug.Log(totemObj);
-            isPrevBloodTotem = (totemType == Totem.TotemType.Blood);
+            isPrevBloodTotem = (totemType == Totem.TotemType.BloodT);
         }
         if(isPrevBloodTotem)    // 희생방이 떴을 경우 확률 복구
         {
             weightMap[1] -= 0.1f;
-            weightMap[2] -= 0.1f;
+            weightMap[2] -= 0.05f;
         }
     }
 
-    public void DeactiveAllTotems() // 스폰된 토템 제거
+    public void DeactiveAllTotems() // 스폰된 토템 제거 (토템 효과 활성화 시 호출 및 다음 스테이지 시작)
     {
         foreach (var rareTotemType in System.Enum.GetValues(typeof(Totem.RareTotemType)))
         {

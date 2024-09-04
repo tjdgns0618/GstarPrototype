@@ -7,28 +7,28 @@ public class Totem : MonoBehaviour                                  // 토템에 상
 {
     public enum TotemType
     {
-        Blood,
-        test1,
-        test2
+        BloodT,
+        HealT,
+        DiceT
     }
 
     public enum RareTotemType
     {
-        Devil,
-        Angel
+        DevilT,
+        AngelT
     }
 
     public GameObject _devilTotem;
     public GameObject _angelTotem;
     public GameObject _bloodTotem;
-    public GameObject _testTotem1;
-    public GameObject _testTotem2;
+    public GameObject _healTotem;
+    public GameObject _diceTotem;
 
     public float _devilWeight = 0.5f;
     public float _angelWeight = 0.5f;
-    public float _bloodWeight = 0.5f;
-    public float _test1Weight = 0.3f;
-    public float _test2Weight = 0.2f;
+    public float _bloodWeight = 0.4f;
+    public float _healWeight = 0.5f;
+    public float _diceWeight = 0.1f;
 
     public void BloodTotem(int _costHp)
     {
@@ -36,35 +36,66 @@ public class Totem : MonoBehaviour                                  // 토템에 상
         {
             GameManager.instance._hp -= _costHp;
             GameManager.instance._gold += 2000;
-            //_bloodTotem.SetActive(false);
         }
         else
         {
             Debug.Log("피없어");
-
          }
     }
 
-    public void TestTotem1()
+    public void HealTotem()
     {
-        // 추후 추가될 토템
+        GameManager.instance._hp = 100;
     }
 
-    public void TestTotem2()
+    public void DiceTotem()
     {
-        // 추후 추가될 토템
+        int rollNum = UnityEngine.Random.Range(1, 7);
+        switch(rollNum)
+        {
+            case 1:
+                GameManager.instance._damage -= 4f;
+                Debug.Log("무기의 날이 무뎌진 느낌이 든다.");
+                return;
+            case 2:
+                GameManager.instance._attackspeed -= 0.2f;
+                GameManager.instance._cooldown -= 2f;
+                Debug.Log("몸이 둔해진 것 같다.");
+                 return;
+                case 3:
+                Debug.Log("아무 일도 일어나지 않았다.");
+                return;
+            case 4:
+                GameManager.instance._attackspeed += 0.3f;
+                GameManager.instance._cooldown += 4f;
+                Debug.Log("몸이 가벼워졌다.");
+                return;
+            case 5:
+                GameManager.instance._damage += 6f;
+                Debug.Log("힘이 강해졌다.");
+                return;
+            case 6:
+                GameManager.instance._attackspeed += 0.5f;
+                GameManager.instance._cooldown += 6f;
+                GameManager.instance._damage += 10f;
+                Debug.Log("신의 힘에 가까워진 기분이 든다.");
+                return;
+            default:
+                return;
+
+        }
     }
 
     public GameObject GetTotemObject(TotemType type)
     {
         switch(type)
         {
-            case TotemType.Blood:
+            case TotemType.BloodT:
                 return _bloodTotem;
-            case TotemType.test1:
-                return _testTotem1;
-            case TotemType.test2:
-                return _testTotem2;
+            case TotemType.HealT:
+                return _healTotem;
+            case TotemType.DiceT:
+                return _diceTotem;
             default:
                 return null;
         }
@@ -73,9 +104,9 @@ public class Totem : MonoBehaviour                                  // 토템에 상
     {
         switch (type)
         {
-            case RareTotemType.Devil:
+            case RareTotemType.DevilT:
                 return _devilTotem;
-            case RareTotemType.Angel:
+            case RareTotemType.AngelT:
                 return _angelTotem;
             default:
                 return null;
