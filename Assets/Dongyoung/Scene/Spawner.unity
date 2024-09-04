@@ -415,10 +415,11 @@ MonoBehaviour:
   enemyprefab: {fileID: 5783409933715935772, guid: 47c69102c8dbf454998317da6ec89268, type: 3}
   player: {fileID: 126433657}
   spawnRadius: 10
-  minDistancefromPlayer: 2
-  numberOfMonster: 30
-  spawntime: 1
-  mostersperspawn: 5
+  minDistancefromPlayer: 5
+  firstWaveEnemy: 5
+  spawnInterval: 3
+  waveInterval: 1
+  maxWaves: 5
 --- !u!1 &1059230894
 GameObject:
   m_ObjectHideFlags: 0
