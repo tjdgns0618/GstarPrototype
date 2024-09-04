@@ -5,28 +5,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    private static UIManager instance;
-
     [SerializeField] private List<GameObject> openPopups = new List<GameObject>();
 
     [SerializeField] private GameObject statWindow;
     [SerializeField] private GameObject pauseWindow;
-
-    public static UIManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<UIManager>();
-
-                if (instance == null)
-                    Debug.LogError("UIManager가 씬에 존재하지 않습니다.");
-            }
-
-            return instance;
-        }
-    }
 
     void Update()
     {
