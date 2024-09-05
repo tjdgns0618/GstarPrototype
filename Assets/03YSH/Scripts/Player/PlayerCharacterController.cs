@@ -96,8 +96,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
         // YÃà È¸Àü
         this.transform.rotation = Quaternion.Euler(new Vector3(0f, GetMousePosition(), 0f));
-        cam.transform.position = new Vector3(
-            transform.position.x, transform.position.y + 4, transform.position.z - 5);
+        // cam.transform.position = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z - 5);
     }
 
     float GetMousePosition()
