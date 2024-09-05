@@ -25,6 +25,11 @@ public class spawner1 : MonoBehaviour
         StartCoroutine(WaveSystem());
     }
 
+    void StartWave()
+    {
+        StartCoroutine(WaveSystem());
+    }
+
     IEnumerator WaveSystem() //웨이브 시스템
     {
         while (currentWave < maxWaves)
@@ -33,6 +38,7 @@ public class spawner1 : MonoBehaviour
             SetupWave(); //웨이브 설정
             yield return StartCoroutine(SpawnEnemy()); //몬스터 생성
             yield return new WaitForSeconds(waveInterval); //웨이브 간 대기 시간
+        
         }
 
         Debug.Log("All waves completed");
