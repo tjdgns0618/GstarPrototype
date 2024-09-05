@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public float _attackspeed = 1;
     public float _maxhp;
 
-    public bool isHit = false;  // ÇÃ·¹ÀÌ¾î°¡ ÇÇ°İÇß´ÂÁö È®ÀÎÇÏ´Â º¯¼ö
+    public bool isHit = false;  // í”Œë ˆì´ì–´ê°€ í”¼ê²©í–ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
 
     private void Awake()
     {
