@@ -1,70 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    private static UIManager instance;
+    [SerializeField] private List<GameObject> openPopups = new List<GameObject>();
 
-    public static UIManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<UIManager>();
-
-                if (instance == null)
-                    Debug.LogError("UIManager∞° æ¿ø° ¡∏¿Á«œ¡ˆ æ Ω¿¥œ¥Ÿ.");
-            }
-
-            return instance;
-        }
-    }
-
-    private Stack<UIPopup> openPopups = new Stack<UIPopup>();
-    private Queue<UIPopup> pendingPopups = new Queue<UIPopup>();
-
+    [SerializeField] private GameObject statWindow;
+    [SerializeField] private GameObject pauseWindow;
 
     void Update()
     {
+        //∆Àæ˜√¢ ¥›±‚
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            CloseLastOpenedPopup();
+            if (openPopups.Count > 0)
+                CloseLastOpenedPopup();
+            else
+                OpenPopup(pauseWindow);
+        }
+
+        //«√∑π¿ÃæÓ ¡§∫∏ ø≠∞Ì ¥›±‚
+        if (Input.GetKey(KeyCode.Tab))
+        {
+            SetUIActive(statWindow, true);
+        }
+        else if(Input.GetKeyUp(KeyCode.Tab))
+        {
+            SetUIActive(statWindow, false);
         }
     }
 
-    public void OpenPopup(UIPopup popup)
+    //UI∆Àæ˜√¢ ø≠±‚
+    public void OpenPopup(GameObject popup) 
     {
         if(popup != null)
         {
-            //ªı∑ŒøÓ ∆Àæ˜ ø≠±‚
-            openPopups.Push(popup);
+            SetUIActive(popup, true);
+            openPopups.Add(popup);
         }
     }
 
-    public void ClosePopup(UIPopup popup)
+    //UI∆Àæ˜√¢ ¥›±‚
+    public void ClosePopup(GameObject popup)
     {
         if(popup != null && openPopups.Contains(popup))
         {
-            //∆Àæ˜ ¥›±‚
-            openPopups.Pop();
+            SetUIActive(popup, false);
+            openPopups.Remove(popup);
         }
     }
 
+    //∞°¿Â √÷±Ÿø° ø≠∏∞ ∆Àæ˜√¢ ¥›±‚
     public void CloseLastOpenedPopup()
     {
         if(openPopups.Count > 0)
         {
-            ClosePopup(openPopups.Peek());
+            ClosePopup(openPopups.Last());
         }
     }
 
+    //∏µÁ ∆Àæ˜√¢ ¥›±‚
     public void CloseAllOpenPopups()
     {
         while (openPopups.Count > 0)
         {
-            ClosePopup(openPopups.Peek());
+            ClosePopup(openPopups.Last());
+        }
+    }
+
+    //UI Active º≥¡§
+    public void SetUIActive(GameObject uiObject, bool isActive)
+    {
+        if (uiObject != null)
+        {
+            uiObject.SetActive(isActive);
         }
     }
 }
