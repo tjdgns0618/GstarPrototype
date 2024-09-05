@@ -259,6 +259,12 @@ MonoBehaviour:
   pools: {fileID: 0}
   _hp: 100
   _gold: 0
+  _damage: 10
+  _range: 1
+  _cooldown: 0
+  _attackspeed: 1
+  _maxhp: 0
+  isHit: 0
 --- !u!4 &475789939
 Transform:
   m_ObjectHideFlags: 0
@@ -284,6 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541658549}
   - component: {fileID: 541658548}
+  - component: {fileID: 541658550}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -368,6 +375,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &541658550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541658547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &907144236
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314b09864c803b9428417a38cc7038bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyprefab: {fileID: 5783409933715935772, guid: 47c69102c8dbf454998317da6ec89268, type: 3}
+  enemyprefab: {fileID: 4166752092908897032, guid: 68d88f8a2fa2f2e48a15bcb0168e818e, type: 3}
   player: {fileID: 126433657}
   spawnRadius: 10
   minDistancefromPlayer: 5

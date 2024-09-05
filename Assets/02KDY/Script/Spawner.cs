@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class Spawner : MonoBehaviour
 {
     public Wave[] waves;
-    public Enemy enemy;
+    public EnemyAI enemy;
     public GameObject rangeSpawn;
     private BoxCollider area;
     public Vector3 spawnAreaMin;
@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour
             enemiesRemainingToSpawn--;
             nextSpawnTime = Time.time - currentWave.timeBetweenSpawn;
 
-            Enemy spawnedEnemy = Instantiate(enemy, Vector3.zero, Quaternion.identity);
+            EnemyAI spawnedEnemy = Instantiate(enemy, Vector3.zero, Quaternion.identity);
             //spawnedEnemy.OnDeath +=  OnEnemyDeath;
         }
     }
