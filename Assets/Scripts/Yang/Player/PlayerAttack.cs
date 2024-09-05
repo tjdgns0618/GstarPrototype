@@ -4,22 +4,21 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshCollider))]
+[RequireComponent(typeof(BoxCollider))]
 public class PlayerAttack : MonoBehaviour
 {
     public event EventHandler Click;
-    MeshCollider MeshCollider;
+    BoxCollider boxCollider;
 
     private void Awake()
     {
-        MeshCollider = GetComponent<MeshCollider>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     private void Start()
     {
-        MeshCollider.convex = true;
-        MeshCollider.isTrigger = true;
-        MeshCollider.enabled = false;
+        boxCollider.isTrigger = true;
+        boxCollider.enabled = false;
     }
 
     public void MouseButtonDown()
@@ -33,6 +32,10 @@ public class PlayerAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
-        damageAble?.Damage(20);
+        if (other.tag == "Enemy")
+        {
+            damageAble?.Damage(20);
+            Debug.Log("Hit Enemy");
+        }
     }
 }

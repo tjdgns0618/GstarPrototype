@@ -3,26 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshCollider))]
+[RequireComponent(typeof(BoxCollider))]
 public class EnemyAttack : MonoBehaviour
 {
-    MeshCollider MeshCollider;
+    BoxCollider boxCollider;
 
     private void Awake()
     {
-        MeshCollider = GetComponent<MeshCollider>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     private void Start()
     {
-        MeshCollider.convex = true;
-        MeshCollider.isTrigger = true;
-        MeshCollider.enabled = false;
+        boxCollider.isTrigger = true;
+        boxCollider.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
-        damageAble?.Damage(20);
+        if (other.tag == "Player")
+            damageAble?.Damage(20);
     }
 }
