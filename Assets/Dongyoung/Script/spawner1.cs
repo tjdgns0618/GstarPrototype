@@ -41,7 +41,7 @@ public class spawner1 : MonoBehaviour
     void SetupWave()
     {
         enemyPerSpawn = firstWaveEnemy + (currentWave - 1) * 2; //웨이브마다 생성할 몬스터 수 증가
-        totalEnemiesInWave = enemyPerSpawn * 2; //웨이브마다 총 생성할 몬스터의 수(지금은 한 주기당 2배)
+        totalEnemiesInWave = enemyPerSpawn * 2; //웨이브마다 총 생성할 몬스터의 수(지금은 웨이브 당 4마리씩 증가 ex.10->14->18)
         spawnedCount = 0;
         Debug.Log($"{currentWave}웨이브 시작! 적 {totalEnemiesInWave}개 생성");
     }
