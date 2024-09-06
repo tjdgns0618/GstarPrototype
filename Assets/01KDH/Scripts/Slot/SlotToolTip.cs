@@ -11,7 +11,7 @@ public class SlotToolTip : MonoBehaviour
     public Text txt_Itemeffect;
     public Text txt_Iteminfo;
 
-    public void ShowToolTip(ItemManager _item, Vector3 _pos)
+    public void ShowToolTip(Item _item, Vector3 _pos)
     {
         tBox.SetActive(true);
         _pos += new Vector3(tBox.GetComponent<RectTransform>().rect.width * 0.5f,

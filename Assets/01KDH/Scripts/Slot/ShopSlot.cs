@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public ItemManager _item;
+    public Item _item;
     public SlotToolTip _slotToolTip;
 
     public void OnPointerEnter(PointerEventData eventData)
