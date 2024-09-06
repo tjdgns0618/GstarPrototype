@@ -19,20 +19,40 @@ public class spawner1 : MonoBehaviour
     private int enemyPerSpawn; //한 번의 주기에 생성할 enemy 수
     private int spawnedCount = 0; //생성된 enemy 카운트
     private int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
-    // Start is called before the first frame update
+
+    public delegate void Action();
+    public Action enemyDead;
+
     void Start()
+    {
+        StartWave();
+        enemyDead += OnEnemyDeath;     // 이벤트 등록
+    }
+
+    void StartWave()
     {
         StartCoroutine(WaveSystem());
     }
 
+    void OnEnemyDeath()                     //살아있는 적의 수가 0이 되면 NextWave 함수 호출
+    {
+        spawnedCount--;
+        Debug.LogError(spawnedCount);
+
+        if (spawnedCount == 0)
+        {
+            StartWave();
+        }
+    }
+
     IEnumerator WaveSystem() //웨이브 시스템
     {
-        while (currentWave < maxWaves)
+        if (currentWave < maxWaves)
         {
             currentWave++; //다음 웨이브로 넘어감
             SetupWave(); //웨이브 설정
+            yield return new WaitForSeconds(spawnInterval);
             yield return StartCoroutine(SpawnEnemy()); //몬스터 생성
-            yield return new WaitForSeconds(waveInterval); //웨이브 간 대기 시간
         }
 
         Debug.Log("All waves completed");
@@ -56,15 +76,14 @@ public class spawner1 : MonoBehaviour
 
                 Vector3 randomPosition = GetRandomPosition(); //플레이어 주변 랜덤 위치 생성
 
-                if(Vector3.Distance(randomPosition, player.position) >= minDistancefromPlayer) //플레이어가 최소 거리보다 멀리 떨어진 경우 생성
+                if (Vector3.Distance(randomPosition, player.position) >= minDistancefromPlayer) //플레이어가 최소 거리보다 멀리 떨어진 경우 생성
                 {
                     Instantiate(enemyprefab, randomPosition, Quaternion.identity);
                     spawnedCount++;
                 }
             }
-            
-            yield return new WaitForSeconds(spawnInterval); //지정된 시간 만큼 대기
         }
+        yield return null;
     }
 
     //플레이어 주변의 랜덤한 위치를 반환하는 함수
@@ -84,7 +103,7 @@ public class spawner1 : MonoBehaviour
     void OnDrawGizmosSelected() //디버그용 코드(스폰 범위 시각화)
     {
         Gizmos.color = Color.green;
-        if(player != null)
+        if (player != null)
         {
             //플레이어 위치를 중심해서 스폰 반경 표시
             Gizmos.DrawWireSphere(player.position, spawnRadius);

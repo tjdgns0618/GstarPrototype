@@ -12,7 +12,7 @@ public enum EnemyType
 };
 
 public class EnemyAI : MonoBehaviour, IDamageAble<float>
-{    
+{
     public EnemyType enemyType;
     [Header("Range")]
     [SerializeField]
@@ -28,19 +28,20 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public GameObject bullet;
     public Transform shotPosition;
 
+    spawner1 spawner;
     Rigidbody rigid;
     BehaviorTreeRunner _BTRunner = null;
     Transform _detectedPlayer = null;
     Vector3 _originPos;
     Animator animator;
-    float hp = 5000;
+    float hp = 20;
     bool isDead = false;
-    
+
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
     const string _MELEE_ATTACK_ANIM_TRIGGER_NAME = "attack";
     const string _RANGE_ATTACK_ANIM_TRIGGER_NAME = "shot";
-    
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -48,6 +49,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         animator = GetComponent<Animator>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _originPos = transform.position;
+        spawner = FindAnyObjectByType<spawner1>();
     }
 
     private void Update()
@@ -109,9 +111,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     INode.ENodeState CheckEnemyWithinAttackRange()
     {
-        if(_detectedPlayer != null)
+        if (_detectedPlayer != null)
         {
-            if(Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) 
+            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position)
                 < (_attackRange * _attackRange))
             {
                 return INode.ENodeState.ENS_Success;
@@ -205,9 +207,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Damage(float damageTaken)
     {
         animator.SetTrigger("hit");
-        StartCoroutine(Knockback(transform.forward * -1f , 0.2f, 1f));
+        StartCoroutine(Knockback(transform.forward * -1f, 0.2f, 1f));
         hp -= damageTaken;
-        if(hp <= 0)
+        if (hp <= 0)
         {
             hp = 0;
             Dead();
@@ -243,12 +245,14 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         // 사망 애니메이션을 부드럽게 전환
         animator.CrossFade("dead", 0.2f);
 
-        Destroy(this.gameObject,5f);
+        spawner.enemyDead();           // 스포너에 적 사망시 호출 함수
+
+        Destroy(this.gameObject, 5f);
     }
 
     public void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _detectedPlayer.position, Time.deltaTime * _movementSpeed);                
+        transform.position = Vector3.MoveTowards(transform.position, _detectedPlayer.position, Time.deltaTime * _movementSpeed);
     }
 
     public void Rotate()
@@ -265,7 +269,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     private void OnCollisionEnter(Collision collision)
     {
         IDamageAble<float> damageAble = collision.gameObject.GetComponent<IDamageAble<float>>();
-        if(damageAble != null && collision.gameObject.tag == "Player")
+        if (damageAble != null && collision.gameObject.tag == "Player")
         {
             damageAble.Damage(20);
         }
