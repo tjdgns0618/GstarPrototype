@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using Unity.VisualScripting;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.VFX;
 
@@ -14,15 +16,17 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     Animator animator;
     PlayerAttack playerAttack;
     PlayerCharacter player;
+    public Vector3 direction { get; private set; }
+    public Vector2 mousePosition { get; private set; }
 
     [SerializeField]
     GameObject bullet;
     [SerializeField]
     Transform shotPosition;
     [SerializeField]
-    Transform cam;
-    [SerializeField]
     VisualEffect slash;
+    [SerializeField]
+    Camera cam;
 
     private void Awake()
     {
@@ -41,17 +45,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private void Update()
     {
         Move();
-        if (Input.GetMouseButtonDown(0) && !animator.GetCurrentAnimatorStateInfo(1).IsName("attack01"))
-            Attack();
-        if (Input.GetKeyDown(KeyCode.Q) && !animator.GetCurrentAnimatorStateInfo(1).IsName("shot"))
-            animator.SetTrigger("shot");
+        GetMousePosition();
+        // if (Input.GetMouseButtonDown(0) && !animator.GetCurrentAnimatorStateInfo(1).IsName("attack01"))
+        //    Attack();
+        // if (Input.GetKeyDown(KeyCode.Q) && !animator.GetCurrentAnimatorStateInfo(1).IsName("shot"))
+        //    animator.SetTrigger("shot");
     }
 
     public void Damage(float damageTaken)
     {
         animator.SetTrigger("hit");
         player.hp -= damageTaken;
-        Debug.Log("남은 체력 = " + player.hp);
+        // Debug.Log("남은 체력 = " + player.hp);
     }
 
     public void Shot()
@@ -62,7 +67,23 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public void Fire()
     {
         bullet.GetComponent<Bullet>().targetname = "Enemy";
-        GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.Euler(new Vector3(0f, GetMousePosition(), 0f)));
+        GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
+    }
+
+    public void OnMoveInput(InputAction.CallbackContext context)
+    {
+        Vector3 input = context.ReadValue<Vector3>();
+        direction = new Vector3(input.x, 0f, input.z);
+    }
+
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        mousePosition = context.ReadValue<Vector2>();
+    }
+
+    public void OnClickLeftMouse(InputAction.CallbackContext context)
+    {
+        Attack();
     }
 
     public void Dead()
@@ -72,47 +93,37 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void Attack()
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("attack01"))
+        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("attack01"))
         {
             animator.SetLayerWeight(1, 1);
             animator.SetTrigger("attack");
             slash.Play();
         }
     }
+
     public void Move()
     {
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputZ = Input.GetAxisRaw("Vertical");
+        animator.SetFloat("moveSpeed", direction.magnitude);
 
-        Vector3 velocity = new Vector3(inputX, 0, inputZ);
-
-        // if(animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.5f)
-        // {
-        //     animator.SetLayerWeight(1, 0);
-        // }
-        animator.SetFloat("moveSpeed", velocity.magnitude);
-        velocity *= player.speed;
-        characterRigidbody.velocity = velocity;
-
-        // Y축 회전
-        this.transform.rotation = Quaternion.Euler(new Vector3(0f, GetMousePosition(), 0f));
-        // cam.transform.position = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z - 5);
+        characterRigidbody.velocity = direction * player.speed;        
     }
-
-    float GetMousePosition()
+    
+    void GetMousePosition()
     {
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 10f);
+        Vector3 mouseWorldPosition =
+            Camera.main.ScreenToWorldPoint(
+                new Vector3(
+                mousePosition.x,
+                mousePosition.y,
+                Camera.main.transform.position.y));
 
-        // Atan2를 이용하면 높이와 밑변(tan)으로 라디안(Radian)을 구할 수 있음
-        // Mathf.Rad2Deg를 곱해서 라디안(Radian)값을 도수법(Degree)으로 변환
-        float angle = Mathf.Atan2(
-            this.transform.position.y - mouseWorldPosition.y,
-            this.transform.position.x - mouseWorldPosition.x) * Mathf.Rad2Deg;
+        // 캐릭터와 마우스 사이의 방향 계산
+        Vector3 direction = mouseWorldPosition - transform.position;
+        direction.y = 0f;  // 캐릭터의 Y축은 변경하지 않음 (수평 회전만 적용)
+                           // 마우스 방향으로의 회전 계산
 
-        // angle이 0~180의 각도라서 보정
-        float final = -(angle + 90f);
-
-        return final;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = targetRotation;
     }
 
     public void AttackStateCollider()
