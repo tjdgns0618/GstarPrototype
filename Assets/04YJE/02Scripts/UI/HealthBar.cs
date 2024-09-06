@@ -25,10 +25,11 @@ public class HealthBar : MonoBehaviour
         UpdateHealthSlider(curHealth);
         UpdateEaseHealthSlider(healthSlider.value);
 
+        /*
         if (Input.GetKeyUp(KeyCode.UpArrow))
             IncreaseHP(100);
         if (Input.GetKeyUp(KeyCode.DownArrow))
-            DecreaseHP(100);
+            DecreaseHP(100);*/
 
     }
 
