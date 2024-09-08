@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PassiveItem : MonoBehaviour
 {
-    public Item _item;
+    public Item _pitem;
 }
