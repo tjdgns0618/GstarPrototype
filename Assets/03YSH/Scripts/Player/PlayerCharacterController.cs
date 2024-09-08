@@ -1,23 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Sockets;
-using Unity.VisualScripting;
-using UnityEditor.ShaderKeywordFilter;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.VFX;
+using CharacterController;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 {
-    Rigidbody characterRigidbody;
-    Animator animator;
+    public PlayerCharacter player { get; private set; }
+    public Vector3 direction { get; private set; }  // 키보드 입력 방향
+    public Vector2 mousePosition { get; private set; }  // 입력받은 마우스 방향
+    public Vector3 calculatedDirection { get; private set; }
     PlayerAttack playerAttack;
-    PlayerCharacter player;
-    public Vector3 direction { get; private set; }
-    public Vector2 mousePosition { get; private set; }
 
     [SerializeField]
     GameObject bullet;
@@ -28,48 +26,59 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     [SerializeField]
     Camera cam;
 
-    private void Awake()
+    public enum PlayerState
     {
-        playerAttack = FindAnyObjectByType<PlayerAttack>();
-        // playerAttack.Click += new EventHandler(Attack);
-
-        characterRigidbody = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        MOVE,
+        DASH,
+        NDASH,
     }
+    protected PlayerState playerState;
+
+    [Header("대시 옵션")]
+    [SerializeField, Tooltip("대쉬의 힘을 나타내는 값")]
+    protected float dashPower;
+    [SerializeField, Tooltip("대시 모션 시간")]
+    protected float dashAnimTime;
+    [SerializeField, Tooltip("대시 시작 후, 재입력 받을 수 있는 시간")]
+    protected float dashReInputTime;
+    [SerializeField, Tooltip("대시 후, 경직 시간")]
+    protected float dashTetanyTime;
+    [SerializeField, Tooltip("대시 재사용 대기시간")]
+    protected float dashCoolTime;
+
+    private WaitForSeconds DASH_ANIM_TIME;
+    private WaitForSeconds DASH_RE_INPUT_TIME;
+    private WaitForSeconds DASH_TETANY_TIME;
+    private Coroutine dashCoroutine;
+    private Coroutine dashCoolTimeCoroutine;
+    private int currentDashCount;
+
+
 
     private void Start()
     {
-        player = PlayerCharacter.Instance;
+        player = GetComponent<PlayerCharacter>();
+
+        DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);
+        DASH_RE_INPUT_TIME = new WaitForSeconds(dashReInputTime);
+        DASH_TETANY_TIME = new WaitForSeconds(dashTetanyTime);
     }
 
     private void Update()
     {
-        Move();
+        // Move();
         GetMousePosition();
-        // if (Input.GetMouseButtonDown(0) && !animator.GetCurrentAnimatorStateInfo(1).IsName("attack01"))
-        //    Attack();
-        // if (Input.GetKeyDown(KeyCode.Q) && !animator.GetCurrentAnimatorStateInfo(1).IsName("shot"))
-        //    animator.SetTrigger("shot");
     }
 
     public void Damage(float damageTaken)
     {
-        animator.SetTrigger("hit");
-        player.hp -= damageTaken;
+        float currentHp = player.CurrentHp;
+        player.animator.SetTrigger("hit");
+        currentHp -= damageTaken;
+        
         // Debug.Log("남은 체력 = " + player.hp);
     }
-
-    public void Shot()
-    {
-        Fire();
-    }
-
-    public void Fire()
-    {
-        bullet.GetComponent<Bullet>().targetname = "Enemy";
-        GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
-    }
-
+    
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         Vector3 input = context.ReadValue<Vector3>();
@@ -81,32 +90,76 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         mousePosition = context.ReadValue<Vector2>();
     }
 
-    public void OnClickLeftMouse(InputAction.CallbackContext context)
+    
+
+    public void OnDashInput(InputAction.CallbackContext context)
     {
-        Attack();
+        if (context.performed)
+        {
+            int dashCount = player.DashCount;
+            bool isAvailableDash =
+            playerState != PlayerState.DASH && currentDashCount < dashCount;
+
+            if (isAvailableDash)
+            {
+                playerState = PlayerState.DASH;
+                currentDashCount++;
+
+                if(dashCoroutine != null && dashCoolTimeCoroutine != null)
+                {
+                    StopCoroutine(dashCoroutine);
+                    StopCoroutine(dashCoolTimeCoroutine);
+                }
+
+                dashCoroutine = StartCoroutine(DashCoroutine());
+            }
+        }
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        Vector3 dashDirection = direction;
+        int dashCount = player.DashCount;
+
+        player.animator.SetFloat("moveSpeed", 0f);
+        player.animator.SetBool("IsDashing", true);
+        player.animator.SetTrigger("Dash");
+        player.rigidbody.velocity = dashDirection * dashPower;
+
+        yield return DASH_ANIM_TIME;
+        playerState = (dashCount > 1 && currentDashCount < dashCount) ? PlayerState.NDASH : PlayerState.DASH;
+
+        yield return DASH_RE_INPUT_TIME;
+        player.animator.SetBool("IsDashing", false);
+        player.rigidbody.velocity = Vector3.zero;
+
+        yield return DASH_TETANY_TIME;
+        playerState = PlayerState.MOVE;
+
+        dashCoolTimeCoroutine = StartCoroutine(DashCoolTimeCoroutine());
+    }
+
+    private IEnumerator DashCoolTimeCoroutine()
+    {
+        float currentTime = 0f;
+        int dashCount = player.DashCount;
+        while (true)
+        {
+            currentTime += Time.deltaTime;
+            if (currentTime >= dashCoolTime)
+                break;
+            yield return null;
+        }
+
+        if (currentDashCount == dashCount)
+            currentDashCount = 0;
     }
 
     public void Dead()
     {
 
-    }
-
-    public void Attack()
-    {
-        if (!animator.GetCurrentAnimatorStateInfo(1).IsName("attack01"))
-        {
-            animator.SetLayerWeight(1, 1);
-            animator.SetTrigger("attack");
-            slash.Play();
-        }
-    }
-
-    public void Move()
-    {
-        animator.SetFloat("moveSpeed", direction.magnitude);
-
-        characterRigidbody.velocity = direction * player.speed;        
-    }
+    }    
+    
     
     void GetMousePosition()
     {
@@ -132,5 +185,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             !playerAttack.gameObject.GetComponent<BoxCollider>().enabled;
     }
 
+    public void Attack()
+    {
+        throw new NotImplementedException();
+    }
 
+    public void Shot()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Move()
+    {
+        throw new NotImplementedException();
+    }
 }

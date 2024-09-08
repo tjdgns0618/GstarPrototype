@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "8aba5d09-572d-412f-b48d-f1221bc6aa29",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -130,6 +139,17 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "LeftMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c2a6717-d044-44f0-9447-38cc4ee8139b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
