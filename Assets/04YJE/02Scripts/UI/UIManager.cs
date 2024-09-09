@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> openPopups = new List<GameObject>();
 
-    [SerializeField] private GameObject statWindow;
-    [SerializeField] private GameObject pauseWindow;
+    public GameObject statWindow;
+    public GameObject pauseWindow;
+    public GameObject waveUI;
+    public TMP_Text waveUI_Txt;
 
     void Update()
     {
@@ -35,7 +38,7 @@ public class UIManager : MonoBehaviour
     //UIÆË¾÷Ã¢ ¿­±â
     public void OpenPopup(GameObject popup) 
     {
-        if(popup != null)
+        if(popup != null && !openPopups.Contains(popup))
         {
             SetUIActive(popup, true);
             openPopups.Add(popup);
@@ -77,5 +80,10 @@ public class UIManager : MonoBehaviour
         {
             uiObject.SetActive(isActive);
         }
+    }
+
+    public void SetWaveText(int num)
+    {
+        waveUI_Txt.text = string.Format("WAVE {0}", num);
     }
 }
