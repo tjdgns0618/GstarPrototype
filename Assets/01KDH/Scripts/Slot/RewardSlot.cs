@@ -19,6 +19,4 @@ public class RewardSlot : InvenSlot
     {
         AddItemNoCount(item, 1); // 아이템 개수는 항상 1로 설정
     }
-
-
 }

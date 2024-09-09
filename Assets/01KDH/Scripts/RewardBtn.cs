@@ -16,7 +16,7 @@ public class RewardBtn : MonoBehaviour
 
     public void NextWave()
     {
-        _inventory.AcquireItem(_rewardslot.item, _rewardslot.itemCount);    // 리워드 슬롯에 있는 아이템 획득 (아이템 개수 최신화)
+        // _inventory.AcquireItem(_rewardslot.item, _rewardslot.itemCount);    // 리워드 슬롯에 있는 아이템 획득 (아이템 개수 최신화)
         //if (_spawn.currentWave < _spawn.maxWaves)   // 아직 스테이지가 진행 중 이라면
         //{
         //    rewardUI.SetActive(false);    // 보상 창을 닫고
