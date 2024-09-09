@@ -2,17 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : MonoBehaviour
+namespace CharacterController
 {
-    // Start is called before the first frame update
-    void Start()
+    public class AttackState : BaseState
     {
+        public static bool IsAttack = false;
+        public const float CanReInputTime = 1f;
         
-    }
+        public AttackState(PlayerCharacterController controller) : base(controller) { }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void OnEnterState()
+        {
+            IsAttack = true;
+            // PlayerCharacter.Instance.
+            PlayerCharacter.Instance.weaponManager.Weapon.Attack(this);
+        }
+
+        public override void OnUpdateState()
+        {
+
+        }
+
+        public override void OnFixedUpdateState()
+        {
+
+        }
+
+        public override void OnExitState()
+        {
+
+        }
     }
 }

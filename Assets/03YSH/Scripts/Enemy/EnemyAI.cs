@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     Transform _detectedPlayer = null;
     Vector3 _originPos;
     Animator animator;
-    float hp = 20;
+    float hp = 80;
     bool isDead = false;
 
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
@@ -90,7 +90,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     {
         if (animator != null)
         {
-            if (animator.GetCurrentAnimatorStateInfo(1).IsName(stateName))
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
             {
                 var normalizedTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 return normalizedTime != 0 && normalizedTime < 1f;
@@ -201,11 +201,12 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Attack()
     {
         animator.SetTrigger(_MELEE_ATTACK_ANIM_TRIGGER_NAME);
-
     }
 
     public void Damage(float damageTaken)
     {
+        if(isDead) return;
+
         animator.SetTrigger("hit");
         StartCoroutine(Knockback(transform.forward * -1f, 0.2f, 1f));
         hp -= damageTaken;
@@ -244,6 +245,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         // 사망 애니메이션을 부드럽게 전환
         animator.CrossFade("dead", 0.2f);
+        gameObject.layer = 7;
 
         spawner.enemyDead();           // 스포너에 적 사망시 호출 함수
 

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.VFX;
 using CharacterController;
+using System.Data;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -53,12 +54,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private Coroutine dashCoolTimeCoroutine;
     private int currentDashCount;
 
-
-
     private void Start()
     {
         player = GetComponent<PlayerCharacter>();
-
+        
         DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);
         DASH_RE_INPUT_TIME = new WaitForSeconds(dashReInputTime);
         DASH_TETANY_TIME = new WaitForSeconds(dashTetanyTime);
@@ -66,21 +65,21 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     private void Update()
     {
-        // Move();
         GetMousePosition();
     }
 
     public void Damage(float damageTaken)
-    {
-        float currentHp = player.CurrentHp;
+    { 
+        player.animator.ResetTrigger("hit");
         player.animator.SetTrigger("hit");
-        currentHp -= damageTaken;
-        
-        // Debug.Log("남은 체력 = " + player.hp);
+        player.OnUpdateStat(player.MaxHp, player.CurrentHp - damageTaken, player.MoveSpeed, player.DashCount);
+
+        Debug.Log("남은 체력 = " + player.CurrentHp);
     }
     
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        player.stateMachine.ChangeState(StateName.MOVE);
         Vector3 input = context.ReadValue<Vector3>();
         direction = new Vector3(input.x, 0f, input.z);
     }
@@ -90,8 +89,27 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         mousePosition = context.ReadValue<Vector2>();
     }
 
-    
+    public void OnClickLeftMouse(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (context.interaction is HoldInteraction)
+            {
 
+            }
+            else if(context.interaction is PressInteraction)
+            {
+
+                bool isAvailableAttack = !AttackState.IsAttack &&
+                   (player.weaponManager.Weapon.ComboCount < 3);
+
+                if (isAvailableAttack)
+                {
+                    player.stateMachine.ChangeState(StateName.ATTACK);
+                }
+            }
+        }
+    }
     public void OnDashInput(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -160,7 +178,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     }    
     
-    
     void GetMousePosition()
     {
         Vector3 mouseWorldPosition =
@@ -172,31 +189,21 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
         // 캐릭터와 마우스 사이의 방향 계산
         Vector3 direction = mouseWorldPosition - transform.position;
+        player.targetDirection = direction;
         direction.y = 0f;  // 캐릭터의 Y축은 변경하지 않음 (수평 회전만 적용)
                            // 마우스 방향으로의 회전 계산
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = targetRotation;
     }
-
-    public void AttackStateCollider()
-    {
-        playerAttack.gameObject.GetComponent<BoxCollider>().enabled =
-            !playerAttack.gameObject.GetComponent<BoxCollider>().enabled;
-    }
-
+    
     public void Attack()
     {
-        throw new NotImplementedException();
+
     }
 
     public void Shot()
     {
-        throw new NotImplementedException();
-    }
 
-    public void Move()
-    {
-        throw new NotImplementedException();
     }
 }

@@ -8,9 +8,12 @@ using CharacterController;
 public class PlayerCharacter : MonoBehaviour
 {
     public static PlayerCharacter Instance { get { return instance; } }
+    public WeaponManager weaponManager { get; private set; }
     public StateMachine stateMachine { get; private set; }
     public Rigidbody rigidbody { get; private set; }
     public Animator animator { get; private set; }
+    public GameObject effectGenerator;
+    public Vector3 targetDirection;
 
     private static PlayerCharacter instance;
 
@@ -24,7 +27,6 @@ public class PlayerCharacter : MonoBehaviour
     [Header("Ä³¸¯ÅÍ ½ºÅÈ")]
     [SerializeField] protected float maxHp;
     [SerializeField] protected float currentHp;
-    [SerializeField] protected float armor;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected int dashCount;
     #endregion
@@ -33,7 +35,8 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(instance == null)
         {
-            instance = this; 
+            instance = this;
+            weaponManager = new WeaponManager();
             rigidbody = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
             DontDestroyOnLoad(gameObject);
@@ -69,5 +72,6 @@ public class PlayerCharacter : MonoBehaviour
     {
         PlayerCharacterController controller = GetComponent<PlayerCharacterController>();
         stateMachine = new StateMachine(StateName.MOVE, new MoveState(controller));
+        stateMachine.AddState(StateName.ATTACK, new AttackState(controller));
     }
 }
