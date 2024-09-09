@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class spawner1 : MonoBehaviour
 {
-    public GameObject enemyprefab; //enemy프리팹
+    public List<GameObject> enemyprefab; //enemy프리팹
     public Transform player; // 플레이어의 위치
 
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
@@ -78,7 +78,9 @@ public class spawner1 : MonoBehaviour
 
                 if (Vector3.Distance(randomPosition, player.position) >= minDistancefromPlayer) //플레이어가 최소 거리보다 멀리 떨어진 경우 생성
                 {
-                    Instantiate(enemyprefab, randomPosition, Quaternion.identity);
+                    GameObject randomEnemyPrefab = enemyprefab[Random.Range(0, enemyprefab.Count)]; //랜덤한 enemy프리팹 선택
+
+                    Instantiate(randomEnemyPrefab, randomPosition, Quaternion.identity);
                     spawnedCount++;
                 }
             }
