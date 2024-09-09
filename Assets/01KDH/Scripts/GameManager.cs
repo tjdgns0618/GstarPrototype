@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public PoolManager pools;
+
+    public TMP_Text txt_gold;
 
     public float _maxhp = 100;
     public float _hp = 100;
@@ -30,5 +33,10 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    private void Update()
+    {
+        //txt_gold = _gold;
     }
 }
