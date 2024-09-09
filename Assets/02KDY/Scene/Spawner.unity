@@ -122,111 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &126433653
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 126433657}
-  - component: {fileID: 126433656}
-  - component: {fileID: 126433655}
-  - component: {fileID: 126433654}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!65 &126433654
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126433653}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &126433655
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126433653}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &126433656
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126433653}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &126433657
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126433653}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &374996731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,8 +206,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1293491881183770582, guid: bbee76956597ca143ae06c016e59a1d9, type: 3}
   shotPosition: {fileID: 374996733}
-  cam: {fileID: 1801791292}
   slash: {fileID: 0}
+  cam: {fileID: 1801791292}
+  dashPower: 0
+  dashAnimTime: 0
+  dashReInputTime: 0
+  dashTetanyTime: 0
+  dashCoolTime: 0
+--- !u!4 &374996735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8016344783704966715, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+  m_PrefabInstance: {fileID: 374996731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &475789937
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,13 +248,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools: {fileID: 0}
+  txt_gold: {fileID: 0}
+  _maxhp: 0
   _hp: 100
   _gold: 0
   _damage: 10
   _range: 1
   _cooldown: 0
   _attackspeed: 1
-  _maxhp: 0
   isHit: 0
 --- !u!4 &475789939
 Transform:
@@ -529,11 +435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyprefab:
-  - {fileID: 7570483335008578340, guid: dc4703fc36a59cf4aa932010a9639dfa, type: 3}
-  - {fileID: 5167233425974560788, guid: c507d6d0a2cfc5b44988625d298d9c33, type: 3}
-  - {fileID: 4507974924317632948, guid: 602fb169281622b449fbc1ea614d9b8b, type: 3}
-  - {fileID: 6357461142508639897, guid: 3431cb83d38e05846ad0b632b0de8f6a, type: 3}
-  player: {fileID: 126433657}
+  - {fileID: 4166752092908897032, guid: 68d88f8a2fa2f2e48a15bcb0168e818e, type: 3}
+  player: {fileID: 374996735}
   spawnRadius: 10
   minDistancefromPlayer: 5
   firstWaveEnemy: 5
@@ -801,5 +704,4 @@ SceneRoots:
   - {fileID: 1059230898}
   - {fileID: 475789939}
   - {fileID: 907144238}
-  - {fileID: 126433657}
   - {fileID: 374996731}
