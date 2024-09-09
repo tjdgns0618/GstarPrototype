@@ -20,7 +20,6 @@ public class StageManager : MonoBehaviour
         // 플레이어가 마을에서 포탈을 탔을 때
         if (collision.gameObject.tag == "portal")
         {
-            // StageCount+1
             NextStage();
         }
     }
