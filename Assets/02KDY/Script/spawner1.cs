@@ -12,6 +12,8 @@ public class spawner1 : MonoBehaviour
     public Transform player; // 플레이어의 위치
     public GameObject portal;
     public GameObject rewardUI;
+    public GameObject playerPrefab;
+
 
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
@@ -48,6 +50,7 @@ public class spawner1 : MonoBehaviour
         if (spawnedCount == 0)
         {
             Time.timeScale = 0;
+            //rewardUI.AddRewardRandomItems(rewardUI.allItems);
             rewardUI.SetActive(true);
         }
     }
