@@ -7,10 +7,11 @@ using UnityEngine.UI;
 
 public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public Inventory _inventory;
     public Item item;
+    public Item[] items;
     public SlotToolTip _slotToolTip;
     public Image itemImage;
-
     public Text textCount;
 
     public int itemCount;
