@@ -12,7 +12,6 @@ public class spawner1 : MonoBehaviour
     public Transform player; // 플레이어의 위치
     public GameObject portal;
     public GameObject rewardUI;
-    public TMP_Text waveUI;
 
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
@@ -80,11 +79,6 @@ public class spawner1 : MonoBehaviour
         totalEnemiesInWave = enemyPerSpawn * 2; //웨이브마다 총 생성할 몬스터의 수(지금은 웨이브 당 4마리씩 증가 ex.10->14->18)
         spawnedCount = 0;
         Debug.Log($"{currentWave}웨이브 시작! 적 {totalEnemiesInWave}개 생성");
-    }
-
-    public void WaveCount(int num)
-    {
-        waveUI.text = string.Format("Wave{0}", num);
     }
 
     IEnumerator SpawnEnemy() //일정 시간 간격으로 몬스터 생성
