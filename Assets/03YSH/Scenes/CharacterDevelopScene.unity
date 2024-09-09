@@ -548,30 +548,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 947037605309533447, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: armor
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 947037605309533447, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: maxHp
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 947037605309533447, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: speed
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 947037605309533447, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: currentHp
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 947037605309533447, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: dashCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 947037605309533447, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: moveSpeed
-      value: 1500
-      objectReference: {fileID: 0}
     - target: {fileID: 1703823214107560759, guid: 17c25086ce14e754aacdae636139a306, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -620,82 +596,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 6732998744332725832, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: dashPower
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732998744332725832, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: dashAnimTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732998744332725832, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: dashCoolTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732998744332725832, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: dashTetanyTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6732998744332725832, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: dashReInputTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
-      value: 8aba5d09-572d-412f-b48d-f1221bc6aa29
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
-      value: Player/Dash[/Mouse/rightButton]
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1619595872}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnDashInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerCharacterController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17c25086ce14e754aacdae636139a306, type: 3}
---- !u!114 &1619595872 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6732998744332725832, guid: 17c25086ce14e754aacdae636139a306, type: 3}
-  m_PrefabInstance: {fileID: 1526302591}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eed4856b073bef4bb66adbc774f35f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2260148148323343455
 PrefabInstance:
   m_ObjectHideFlags: 0

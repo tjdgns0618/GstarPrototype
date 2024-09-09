@@ -2792,6 +2792,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2732171614104986436, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: dashPower
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732171614104986436, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: dashAnimTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732171614104986436, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: dashCoolTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732171614104986436, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: dashTetanyTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732171614104986436, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: dashReInputTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4170311055210683457, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_Avatar
       value: 
@@ -2839,6 +2859,26 @@ PrefabInstance:
     - target: {fileID: 8016344783704966715, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484351355468709899, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: armor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484351355468709899, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: maxHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484351355468709899, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: currentHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484351355468709899, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: dashCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484351355468709899, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: moveSpeed
+      value: 1500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -2939,6 +2979,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ed2180c9-6134-4f87-a241-b85a4aae9c55
     m_ActionName: Player/LeftMouse[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6732998744332725832}
+        m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
+        m_MethodName: OnDashInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8aba5d09-572d-412f-b48d-f1221bc6aa29
+    m_ActionName: Player/Dash[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player
