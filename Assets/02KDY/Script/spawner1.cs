@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class spawner1 : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class spawner1 : MonoBehaviour
     public Transform player; // 플레이어의 위치
     public GameObject portal;
     public GameObject rewardUI;
+    public TextMeshProUGUI waveUI;
 
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
@@ -34,6 +37,7 @@ public class spawner1 : MonoBehaviour
 
     void StartWave()
     {
+        waveUI.text = "wave " + (currentWave + 1);
         Time.timeScale = 1;
         StartCoroutine(WaveSystem());
     }
@@ -50,11 +54,12 @@ public class spawner1 : MonoBehaviour
         }
     }
 
-    //void NextStage()
+    //void EndStage()
     //{
-    //    if(currentWave == maxWaves && spawnedCount == 0)
+    //    if (currentWave == maxWaves && spawnedCount == 0)
     //    {
     //        // 포탈 활성화
+    //        // 토템 활성화
     //    }
     //}
     IEnumerator WaveSystem() //웨이브 시스템
