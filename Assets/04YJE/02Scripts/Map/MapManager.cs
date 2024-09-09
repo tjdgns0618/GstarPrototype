@@ -10,9 +10,20 @@ public class MapManager : MonoBehaviour
 
     public CameraManager cameraManager; 
     public UIManager uiManager;
+    public spawner1 waveManager;
+
+    public Map currentMap;
+
+    public enum Map
+    {
+        Village,
+        Field,
+    }
 
     public void OnVillage()
     {
+        //현재 맵으로
+        currentMap = Map.Village;
         //텀
 
         //캐릭터 위치 이동
@@ -21,11 +32,15 @@ public class MapManager : MonoBehaviour
         cameraManager.ShowVillageView();
         //WAVE UI 끄기
         uiManager.SetUIActive(uiManager.waveUI, false);
+        //WaveManager 끄기
+        waveManager.gameObject.SetActive(false);
         //사운드
     }
 
     public void OnField()
     {
+        //현재 맵으로
+        currentMap = Map.Field;
         //텀
 
         //캐릭터 위치 이동
@@ -34,6 +49,8 @@ public class MapManager : MonoBehaviour
         cameraManager.ShowFieldView();
         //WAVE UI 켜기
         uiManager.SetUIActive(uiManager.waveUI, true);
+        //WaveManager 켜기
+        waveManager.gameObject.SetActive(true);
         //사운드
     }
 }

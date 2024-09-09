@@ -7,41 +7,47 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthSlider;
     public Slider easeHealthSlider;
-    public float maxHealth;
-    public float curHealth;
+    public float maxHP;
+    public float curHP;
 
     private float lerpSpeed = 0.01f;
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = GameManager.instance;
+    }
 
     void Start()
     {
         if (healthSlider != null)
-            healthSlider.maxValue = maxHealth;
+            healthSlider.maxValue = gameManager._maxhp;
         if (easeHealthSlider != null)
-            easeHealthSlider.maxValue = maxHealth;
+            easeHealthSlider.maxValue = gameManager._maxhp;
     }
 
     void Update()
     {
-        UpdateHealthSlider(curHealth);
-        UpdateEaseHealthSlider(healthSlider.value);
+        UpdateHealthSlider(gameManager._hp);
+        UpdateEaseHealthSlider(gameManager._hp);
 
-        /*
+        
         if (Input.GetKeyUp(KeyCode.UpArrow))
-            IncreaseHP(100);
+            IncreaseHP(10);
         if (Input.GetKeyUp(KeyCode.DownArrow))
-            DecreaseHP(100);*/
+            DecreaseHP(10);
 
     }
 
     //테스트용--시작
     private void IncreaseHP(float health)
     {
-        curHealth += health;
+        gameManager._hp += health;
     }
 
     private void DecreaseHP(float health)
     {
-        curHealth -= health;
+        gameManager._hp -= health;
     }
     //테스트용--끝
 
