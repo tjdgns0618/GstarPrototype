@@ -11,15 +11,12 @@ public class HealthBar : MonoBehaviour
     public float curHP;
 
     private float lerpSpeed = 0.01f;
-    private GameManager gameManager;
-
-    private void Awake()
-    {
-        gameManager = GameManager.instance;
-    }
+    public GameManager gameManager;
 
     void Start()
     {
+        gameManager = GameManager.instance;
+
         if (healthSlider != null)
             healthSlider.maxValue = gameManager._maxhp;
         if (easeHealthSlider != null)
