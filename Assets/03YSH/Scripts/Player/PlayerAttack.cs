@@ -70,13 +70,13 @@ public class PlayerAttack : BaseWeapon, IEffect
     {
         int comboCount = Mathf.Clamp(ComboCount - 1, 0, 3);
         GameObject effect = Instantiate(defaultAttackEffs[comboCount]);
-        Vector3 targetDirection = PlayerCharacter.Instance.targetDirection;
+        effect.transform.SetParent(effectGenerator.transform);
 
-        effect.transform.position = PlayerCharacter.Instance.effectGenerator.transform.position +
-                                    adjustTransform;
-
+        effect.transform.position = PlayerCharacter.Instance.effectGenerator.transform.position + adjustTransform;
         // Vector3 secondAttackAdjustAngle = ComboCount == 2 ? new Vector3(0, -90f, 0f) : Vector3.zero;
-        effect.transform.rotation = Quaternion.Euler(targetDirection);
+        effect.transform.rotation = PlayerCharacter.Instance.targetRotation;
+        effect.transform.Rotate(new Vector3(0f, 150f, 0f));
+
         // effect.transform.eulerAngles += secondAttackAdjustAngle;
         effect.GetComponent<ParticleSystem>().Play();
     }

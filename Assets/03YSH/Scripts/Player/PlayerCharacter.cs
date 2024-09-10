@@ -13,7 +13,7 @@ public class PlayerCharacter : MonoBehaviour
     public Rigidbody rigidbody { get; private set; }
     public Animator animator { get; private set; }
     public GameObject effectGenerator;
-    public Vector3 targetDirection;
+    public Quaternion targetRotation;
 
     private static PlayerCharacter instance;
 

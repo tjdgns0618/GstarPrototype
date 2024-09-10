@@ -189,11 +189,11 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
         // 캐릭터와 마우스 사이의 방향 계산
         Vector3 direction = mouseWorldPosition - transform.position;
-        player.targetDirection = direction;
         direction.y = 0f;  // 캐릭터의 Y축은 변경하지 않음 (수평 회전만 적용)
                            // 마우스 방향으로의 회전 계산
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
+        player.targetRotation = targetRotation;
         transform.rotation = targetRotation;
     }
     
