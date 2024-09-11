@@ -250,6 +250,11 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         spawner.enemyDead();           // 스포너에 적 사망시 호출 함수
 
         Destroy(this.gameObject, 5f);
+
+        if(spawner != null)             // enemy를 카운트 하기 위해 넣은 조건문 (문제 발생 시 삭제)
+        {
+            spawner.OnEnemyDestroyed();
+        }
     }
 
     public void Move()

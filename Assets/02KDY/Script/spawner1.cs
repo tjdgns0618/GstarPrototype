@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class spawner1 : MonoBehaviour
 {
     public List<GameObject> enemyprefab; //enemy프리팹
     public Transform player; // 플레이어의 위치
+    //public GameObject portal;
+    public GameObject rewardUI;
+    //public GameObject playerPrefab;
+    public TMP_Text waveInfoText;
 
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
@@ -14,11 +21,12 @@ public class spawner1 : MonoBehaviour
     public float spawnInterval = 3f; //enemy 생성 주기
     public float waveInterval = 5f; //웨이브 간 대기 시간
     public int maxWaves = 5; //최대 웨이브 수
+    public int currentWave = 0; //현재 웨이브
 
-    private int currentWave = 0; //현재 웨이브
     private int enemyPerSpawn; //한 번의 주기에 생성할 enemy 수
     private int spawnedCount = 0; //생성된 enemy 카운트
     private int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
+    private int enemiesLeft;
 
     public delegate void Action();
     public Action enemyDead;
@@ -31,6 +39,7 @@ public class spawner1 : MonoBehaviour
 
     void StartWave()
     {
+        Time.timeScale = 1;
         StartCoroutine(WaveSystem());
     }
 
@@ -41,10 +50,20 @@ public class spawner1 : MonoBehaviour
 
         if (spawnedCount == 0)
         {
-            StartWave();
+            Time.timeScale = 0;
+            //rewardUI.AddRewardRandomItems(rewardUI.allItems);
+            rewardUI.SetActive(true);
         }
     }
 
+    //void EndStage()
+    //{
+    //    if (currentWave == maxWaves && spawnedCount == 0)
+    //    {
+    //        // 포탈 활성화
+    //        // 토템 활성화
+    //    }
+    //}
     IEnumerator WaveSystem() //웨이브 시스템
     {
         if (currentWave < maxWaves)
@@ -63,6 +82,8 @@ public class spawner1 : MonoBehaviour
         enemyPerSpawn = firstWaveEnemy + (currentWave - 1) * 2; //웨이브마다 생성할 몬스터 수 증가
         totalEnemiesInWave = enemyPerSpawn * 2; //웨이브마다 총 생성할 몬스터의 수(지금은 웨이브 당 4마리씩 증가 ex.10->14->18)
         spawnedCount = 0;
+        enemiesLeft = totalEnemiesInWave;
+        UpdateWaveInfoUI();
         Debug.Log($"{currentWave}웨이브 시작! 적 {totalEnemiesInWave}개 생성");
     }
 
@@ -110,5 +131,14 @@ public class spawner1 : MonoBehaviour
             //플레이어 위치를 중심해서 스폰 반경 표시
             Gizmos.DrawWireSphere(player.position, spawnRadius);
         }
+    }
+    public void OnEnemyDestroyed()
+    {
+        enemiesLeft--;
+        UpdateWaveInfoUI();
+    }
+    void UpdateWaveInfoUI()
+    {
+        waveInfoText.text = $" Enemies Left : {enemiesLeft}";
     }
 }
