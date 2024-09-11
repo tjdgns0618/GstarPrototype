@@ -5,8 +5,8 @@ using UnityEngine;
 public class RewardUI : MonoBehaviour
 {
     public spawner1 _spawn;
-    public RewardSlot _rewardslot;
-    public Inventory _inventory;
+    //public RewardSlot _rewardslot;
+    //public Inventory _inventory;
 
     public RewardSlot[] rewardSlots;
     public Item[] allItems;
@@ -52,7 +52,7 @@ public class RewardUI : MonoBehaviour
 
     public void NextWave()
     {
-        //_inventory.AcquireItem(_rewardslot.item, _rewardslot.itemCount);    // 리워드 슬롯에 있는 아이템 획득 (아이템 개수 최신화)
+        // _inventory.AcquireItem(_rewardslot.item, _rewardslot.itemCount);    // 리워드 슬롯에 있는 아이템 획득 (아이템 개수 최신화)
         //if (_spawn.currentWave < _spawn.maxWaves)   // 아직 스테이지가 진행 중 이라면
         //{
         //    rewardUI.SetActive(false);    // 보상 창을 닫고
@@ -60,7 +60,7 @@ public class RewardUI : MonoBehaviour
         //}
         //else  // 스테이지가 끝났다면,
         //    rewardUI.SetActive(false);    // 창만 닫기
-        _rewardslot.ClearSlot();    // 다음 웨이브 보상 때 새로운 랜덤 보상으로 바꿔야 하기에 슬롯 초기화
+        // _rewardslot.ClearSlot();    // 다음 웨이브 보상 때 새로운 랜덤 보상으로 바꿔야 하기에 슬롯 초기화
     }
 
 

@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     public spawner1 spawner;
     private GameManager gameManager;
 
-    private void Awake()
+    private void Start()
     {
         gameManager = GameManager.instance;
     }

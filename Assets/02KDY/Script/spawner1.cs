@@ -46,7 +46,6 @@ public class spawner1 : MonoBehaviour
     void OnEnemyDeath()                     //살아있는 적의 수가 0이 되면 NextWave 함수 호출
     {
         spawnedCount--;
-        Debug.LogError(spawnedCount);
 
         if (spawnedCount == 0)
         {
