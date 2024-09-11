@@ -24,17 +24,23 @@ namespace CharacterController
                 return -DEFAULT_ANIMATION_PLAYSPEED;
             }
 
-            return (changedMoveSpeed - DEFAULT_CONVERT_MOVESPEED) * 0.4f;
+            return (changedMoveSpeed - DEFAULT_CONVERT_MOVESPEED) * 0.5f;
         }
 
         public override void OnEnterState()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public override void OnExitState()
         {
-            throw new System.NotImplementedException();
+            PlayerCharacter.Instance.animator.SetFloat(hasMoveAnimation, 0f);
+            PlayerCharacter.Instance.rigidbody.velocity = Vector3.zero;
+        }
+
+        public override void OnUpdateState()
+        {
+
         }
 
         public override void OnFixedUpdateState()
@@ -42,16 +48,14 @@ namespace CharacterController
             float curretnMoveSpeed = Controller.player.MoveSpeed * CONVERT_UNIT_VALUE;
             float animationPlaySpeed = DEFAULT_ANIMATION_PLAYSPEED *
                                         GetAnimationSyncWithMovement(curretnMoveSpeed);
+
             PlayerCharacter.Instance.rigidbody.velocity = 
                 Controller.direction * curretnMoveSpeed + 
-                Vector3.up * PlayerCharacter.Instance.rigidbody.velocity.y; ;
-            PlayerCharacter.Instance.animator.SetFloat(hasMoveAnimation, animationPlaySpeed);
-        }
+                Vector3.up * PlayerCharacter.Instance.rigidbody.velocity.y;
 
-        public override void OnUpdateState()
-        {
-            PlayerCharacter.Instance.animator.SetFloat(hasMoveAnimation, 0f);
-            PlayerCharacter.Instance.rigidbody.velocity = Vector3.zero;
-        }
+            if(animationPlaySpeed < 0f) animationPlaySpeed = 0f;
+
+            PlayerCharacter.Instance.animator.SetFloat("moveSpeed", animationPlaySpeed);
+        }        
     }
 }
