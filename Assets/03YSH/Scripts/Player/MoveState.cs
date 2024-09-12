@@ -45,6 +45,7 @@ namespace CharacterController
 
         public override void OnFixedUpdateState()
         {
+            #region #캐릭터 움직임 구현
             float curretnMoveSpeed = Controller.player.MoveSpeed * CONVERT_UNIT_VALUE;
             float animationPlaySpeed = DEFAULT_ANIMATION_PLAYSPEED *
                                         GetAnimationSyncWithMovement(curretnMoveSpeed);
@@ -56,6 +57,7 @@ namespace CharacterController
             if(animationPlaySpeed < 0f) animationPlaySpeed = 0f;
 
             PlayerCharacter.Instance.animator.SetFloat("moveSpeed", animationPlaySpeed);
-        }        
+            #endregion
+        }
     }
 }

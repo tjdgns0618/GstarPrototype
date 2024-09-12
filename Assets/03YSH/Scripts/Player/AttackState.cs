@@ -13,8 +13,8 @@ namespace CharacterController
 
         public override void OnEnterState()
         {
+            // 공격 실행
             IsAttack = true;
-            // PlayerCharacter.Instance.
             PlayerCharacter.Instance.weaponManager.Weapon.Attack(this);
         }
 
