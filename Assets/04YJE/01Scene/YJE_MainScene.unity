@@ -735,12 +735,15 @@ MonoBehaviour:
   - {fileID: 4507974924317632948, guid: 602fb169281622b449fbc1ea614d9b8b, type: 3}
   - {fileID: 6357461142508639897, guid: 3431cb83d38e05846ad0b632b0de8f6a, type: 3}
   player: {fileID: 651798946}
+  rewardUI: {fileID: 0}
+  waveInfoText: {fileID: 0}
   spawnRadius: 10
   minDistancefromPlayer: 5
   firstWaveEnemy: 5
   spawnInterval: 3
   waveInterval: 1
   maxWaves: 5
+  currentWave: 0
 --- !u!1 &1048597717 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8683291362727331980, guid: add75599f085be44fbad0333ed024fc7, type: 3}
@@ -1782,6 +1785,10 @@ PrefabInstance:
     - target: {fileID: 1771152541504925944, guid: 1ea19851dd1d3464ca45a98180679d1c, type: 3}
       propertyPath: m_Name
       value: FieldCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771152541504925944, guid: 1ea19851dd1d3464ca45a98180679d1c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3974542306176696497, guid: 1ea19851dd1d3464ca45a98180679d1c, type: 3}
       propertyPath: m_LocalPosition.x
