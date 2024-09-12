@@ -74,7 +74,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         player.animator.SetTrigger("hit");
         player.OnUpdateStat(player.MaxHp, player.CurrentHp - damageTaken, player.MoveSpeed, player.DashCount);
 
-        Debug.Log("남은 체력 = " + player.CurrentHp);
+        //Debug.Log("남은 체력 = " + player.CurrentHp);
     }
     
     public void OnMoveInput(InputAction.CallbackContext context)

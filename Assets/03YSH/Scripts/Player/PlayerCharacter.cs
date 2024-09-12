@@ -10,7 +10,7 @@ public class PlayerCharacter : MonoBehaviour
     public static PlayerCharacter Instance { get { return instance; } }
     public WeaponManager weaponManager { get; private set; }
     public StateMachine stateMachine { get; private set; }
-    public Rigidbody rigidbody { get; private set; }
+    public new Rigidbody rigidbody { get; private set; }
     public Animator animator { get; private set; }
     public GameObject effectGenerator;
     public Quaternion targetRotation;

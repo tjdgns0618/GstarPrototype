@@ -50,7 +50,7 @@ public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         itemImage.sprite = null;
         SetColor(0);
 
-        textCount.text = "0";
+        //textCount.text = "0";
     }
 
 
