@@ -15,12 +15,12 @@ public class Item_13 : MonoBehaviour
         TargetEnemies(enemies);
     }
 
-    List<EnemyAI> FindEnemiesInRange()      //LINQ를 이용해 연쇄 번개 효과
+    List<EnemyAI> FindEnemiesInRange()                                                                                                      //LINQ를 이용해 연쇄 번개 효과
     {
         return FindObjectsOfType<EnemyAI>()
            .Where(enemy => Vector3.Distance(player.position, enemy.transform.position) <= targetRange)  // 플레이어와 각 적의 거리 계산 및 최대 사거리 내 적 선택
-           .OrderBy(enemy => Vector3.Distance(player.position, enemy.transform.position))   // 플레이어와 각 적의 거리를 계산해 가까운 적 부터 먼 적 순서로 정렬
-           .Take(maxTargets)    // 정렬된 적 리스트에서 최대 타겟 수 만큼 적 선택
+           .OrderBy(enemy => Vector3.Distance(player.position, enemy.transform.position))                          // 플레이어와 각 적의 거리를 계산해 가까운 적 부터 먼 적 순서로 정렬
+           .Take(maxTargets)                                                                                                                               // 정렬된 적 리스트에서 최대 타겟 수 만큼 적 선택
            .ToList();   
     }
 

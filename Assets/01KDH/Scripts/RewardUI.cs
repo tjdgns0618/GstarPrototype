@@ -18,7 +18,7 @@ public class RewardUI : MonoBehaviour
 
     public void AddRewardRandomItems(Item[] items)      // RewardUI가 열릴 때 실행(wave가 끝날 때)
     {
-        List<Item> selectedItems = GetRewardRandomItems(items, 5);        // 중복되지 않는 아이템 5개를 담을 리스트
+        List<Item> selectedItems = GetRewardRandomItems(items, rewardSlots.Length);        // 중복되지 않는 아이템 5개를 담을 리스트
 
         for (int i = 0; i < rewardSlots.Length; i++)
         {
