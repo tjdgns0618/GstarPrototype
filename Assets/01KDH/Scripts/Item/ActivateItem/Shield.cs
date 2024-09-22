@@ -30,8 +30,6 @@ public class Shield : MonoBehaviour
         }
     }
 
-
-
     void Batch()
     {
         shields = new Transform[shieldCount];
