@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public PoolManager pools;
+    public ItemPoolManager itempools;
 
     public TMP_Text txt_gold;
 
