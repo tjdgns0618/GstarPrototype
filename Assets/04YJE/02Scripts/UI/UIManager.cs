@@ -11,9 +11,11 @@ public class UIManager : MonoBehaviour
     public GameObject statWindow;
     public GameObject pauseWindow;
     public GameObject waveUI;
+    private GameObject prevShowImage;
     public TMP_Text wave_Txt;
     public TMP_Text health_Txt;
     public TMP_Text coin_Txt;
+
 
     public spawner1 spawner;
     private GameManager gameManager;
