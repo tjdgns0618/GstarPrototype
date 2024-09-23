@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ActiveItem : MonoBehaviour
 {
     public Item _aitem;
+
+    public LayerMask enemyM;
 
     WaitForSeconds _08item;
     WaitForSeconds _09item;
@@ -12,7 +15,7 @@ public class ActiveItem : MonoBehaviour
     WaitForSeconds _11item;
     WaitForSeconds _12item;
 
-    public GameObject _08obj;
+    public GameObject _maneulObj;
 
     private void Start()
     {
@@ -45,7 +48,9 @@ public class ActiveItem : MonoBehaviour
     }    
     void _06Item()
     {
-        
+        Transform firework = GameManager.instance.itempools.Get(1).transform;
+        firework.parent = transform;
+        firework.transform.position = PlayerCharacter.Instance.transform.position + new Vector3(0, 3, 0);
     }    
     void _07Item()
     {
@@ -53,7 +58,7 @@ public class ActiveItem : MonoBehaviour
     }    
     void _08Item()
     {
-
+        _maneulObj.SetActive(true);
     }    
     void _09Item()
     {
@@ -69,11 +74,10 @@ public class ActiveItem : MonoBehaviour
     }  
     void _12Item()
     {
-        
     }  
     void _13Item()
     {
-        
+
     }    
     void _14Item()
     {

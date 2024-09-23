@@ -25,7 +25,6 @@ public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void AddItem(Item _item, int _count = 1)         // 없던 아이템이 들어오는 경우
     {
-        Debug.Log("13121");
         item = _item;
         itemCount = _count;
         itemImage.sprite = item.itemImage;
@@ -37,7 +36,6 @@ public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void SetSlotCount(int _count)                            // 아이템 개수 업데이트
     {
-        Debug.Log("setcount");
         itemCount += _count;
         textCount.text = itemCount.ToString();
 
@@ -51,8 +49,6 @@ public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         itemCount = 0;
         itemImage.sprite = null;
         SetColor(0);
-
-        //textCount.text = "0";
     }
 
 

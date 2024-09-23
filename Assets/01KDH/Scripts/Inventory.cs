@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
             {
                 if (slots[i].item != null)
                 {
-                    if (slots[i].item.itemName == _item.itemName)
+                    if (slots[i].item.itemID == _item.itemID)
                     {
                         slots[i].SetSlotCount(_count);
                         return;
