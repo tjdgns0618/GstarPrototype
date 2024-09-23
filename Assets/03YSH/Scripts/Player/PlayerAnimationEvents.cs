@@ -8,6 +8,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 {
     [SerializeField]
     public PlayerAttack effect;
+    public BoxCollider baseAttackRange;
 
     public Dictionary<string, IEffect> myWeaponEffects { get; private set; }
     public Dictionary<string, ISound> mySounds {  get; private set; }
@@ -27,9 +28,15 @@ public class PlayerAnimationEvents : MonoBehaviour
         PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
 
+    public void OnFinishedDash()
+    {
+        DashState.IsDash = false;
+        PlayerCharacter.Instance.animator.SetBool("IsDashing", false);
+        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+    }
+
     public void AttackColliderChange()
     {
-        PlayerCharacter.Instance.weaponManager.Weapon.GetComponent<MeshCollider>().enabled = 
-            !PlayerCharacter.Instance.weaponManager.Weapon.GetComponent<MeshCollider>().enabled;
+        baseAttackRange.enabled = !baseAttackRange.enabled;
     }
 }

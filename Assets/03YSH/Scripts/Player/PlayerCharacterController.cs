@@ -99,7 +99,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             }
             else if(context.interaction is PressInteraction)
             {
-
                 bool isAvailableAttack = !AttackState.IsAttack &&
                    (player.weaponManager.Weapon.ComboCount < 3);
 
@@ -115,23 +114,27 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         if (context.performed)
         {
             int dashCount = player.DashCount;
-            bool isAvailableDash =
-            playerState != PlayerState.DASH && currentDashCount < dashCount;
+            bool isAvailableDash = playerState != PlayerState.DASH && currentDashCount < dashCount;
 
             if (isAvailableDash)
             {
-                playerState = PlayerState.DASH;
-                currentDashCount++;
-
-                if(dashCoroutine != null && dashCoolTimeCoroutine != null)
-                {
-                    StopCoroutine(dashCoroutine);
-                    StopCoroutine(dashCoolTimeCoroutine);
-                }
-
-                dashCoroutine = StartCoroutine(DashCoroutine());
+                player.stateMachine.ChangeState(StateName.DASH);
             }
         }
+    }
+
+    public void Dash()
+    {
+        Debug.Log("Dashing");
+        currentDashCount++;
+
+        if (dashCoroutine != null && dashCoolTimeCoroutine != null)
+        {
+            StopCoroutine(dashCoroutine);
+            StopCoroutine(dashCoolTimeCoroutine);
+        }
+
+        dashCoroutine = StartCoroutine(DashCoroutine());
     }
 
     private IEnumerator DashCoroutine()
@@ -142,7 +145,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         player.animator.SetFloat("moveSpeed", 0f);
         player.animator.SetBool("IsDashing", true);
         player.animator.SetTrigger("Dash");
-        player.rigidbody.velocity = dashDirection * dashPower;
+        player.rigidbody.velocity = transform.forward * dashPower;
 
         yield return DASH_ANIM_TIME;
         playerState = (dashCount > 1 && currentDashCount < dashCount) ? PlayerState.NDASH : PlayerState.DASH;

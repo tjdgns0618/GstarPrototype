@@ -73,5 +73,6 @@ public class PlayerCharacter : MonoBehaviour
         PlayerCharacterController controller = GetComponent<PlayerCharacterController>();
         stateMachine = new StateMachine(StateName.MOVE, new MoveState(controller));
         stateMachine.AddState(StateName.ATTACK, new AttackState(controller));
+        stateMachine.AddState(StateName.DASH, new DashState(controller));
     }
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ParticleCollisionCheck : MonoBehaviour
+public class AttackColliderCheck : MonoBehaviour
 {
-    private void OnParticleCollision(GameObject other)
+    private void OnTriggerEnter(Collider other)
     {
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
-        damageAble?.Damage(20f);
+        damageAble?.Damage(PlayerCharacter.Instance.weaponManager.Weapon.AttackDamage);
     }
 
 }

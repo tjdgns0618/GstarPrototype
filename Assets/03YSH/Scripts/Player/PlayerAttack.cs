@@ -60,12 +60,6 @@ public class PlayerAttack : BaseWeapon, IEffect
         PlayerCharacter.Instance.animator.SetInteger(hashAttackAnimation, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
-        damageAble?.Damage(attackDamage);
-    }
-
     public void PlayComboAttackEffects()
     {
         int comboCount = Mathf.Clamp(ComboCount - 1, 0, 3);
