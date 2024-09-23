@@ -24,8 +24,8 @@ public class spawner1 : MonoBehaviour
     public int maxWaves = 5; //최대 웨이브 수
     public int currentWave = 0; //현재 웨이브
 
-    public int currentStage = 1;
-    public int stagePerEnemy = 3;
+    public int currentStage = 1; //현재 스테이지
+    public int stagePerEnemy = 3; //스테이지마다 늘어나는 enemy의 배수
 
     private int enemyPerSpawn; //한 번의 주기에 생성할 enemy 수
     private int spawnedCount = 0; //생성된 enemy 카운트
@@ -85,8 +85,8 @@ public class spawner1 : MonoBehaviour
 
     public void SetupWave()
     {
-        enemyPerSpawn = firstWaveEnemy + (currentWave - 1) * 2 + (currentStage - 1) * stagePerEnemy; //웨이브마다 생성할 몬스터 수 증가
-        totalEnemiesInWave = enemyPerSpawn * 2; //웨이브마다 총 생성할 몬스터의 수(지금은 웨이브 당 4마리씩 증가 ex.10->14->18)
+        enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가
+        totalEnemiesInWave = enemyPerSpawn; //웨이브마다 총 생성할 몬스터의 수(지금은 웨이브 당 4마리씩 증가 ex.10->14->18)
         spawnedCount = 0;
         enemiesLeft = totalEnemiesInWave;
         UpdateWaveInfoUI();
