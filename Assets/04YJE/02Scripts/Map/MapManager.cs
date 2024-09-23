@@ -20,6 +20,14 @@ public class MapManager : MonoBehaviour
         Field,
     }
 
+    private void Start()
+    {
+        if (currentMap == Map.Village)
+            uiManager.SetUIActive(uiManager.fieldUI, false);
+        else if (currentMap == Map.Field)
+            uiManager.SetUIActive(uiManager.fieldUI, true);
+    }
+
     public void OnVillage()
     {
         //현재 맵으로
@@ -31,7 +39,7 @@ public class MapManager : MonoBehaviour
         //카메라 전환
         cameraManager.ShowVillageView();
         //WAVE UI 끄기
-        uiManager.SetUIActive(uiManager.waveUI, false);
+        uiManager.SetUIActive(uiManager.fieldUI, false);
         //WaveManager 끄기
         waveManager.gameObject.SetActive(false);
         //사운드
@@ -48,7 +56,7 @@ public class MapManager : MonoBehaviour
         //카메라 전환
         cameraManager.ShowFieldView();
         //WAVE UI 켜기
-        uiManager.SetUIActive(uiManager.waveUI, true);
+        uiManager.SetUIActive(uiManager.fieldUI, true);
         //WaveManager 켜기
         waveManager.gameObject.SetActive(true);
         //사운드
