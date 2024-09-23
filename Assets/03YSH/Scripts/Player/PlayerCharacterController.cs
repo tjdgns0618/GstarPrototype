@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.Interactions;
 using UnityEngine.VFX;
 using CharacterController;
 using System.Data;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -88,22 +89,25 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         mousePosition = context.ReadValue<Vector2>();
     }
-
+    float timer;
     public void OnClickLeftMouse(InputAction.CallbackContext context)
     {
+        
         if (context.performed)
         {
+                
             if (context.interaction is HoldInteraction)
             {
-
             }
-            else if(context.interaction is PressInteraction)
+            else if (context.interaction is PressInteraction)
             {
-                bool isAvailableAttack = !AttackState.IsAttack &&
+                Debug.Log(AttackState.IsAttack);
+                bool isAvailableAttack = !AttackState.IsBaseAttack &&
                    (player.weaponManager.Weapon.ComboCount < 3);
 
                 if (isAvailableAttack)
                 {
+                    AttackState.IsBaseAttack = true;
                     player.stateMachine.ChangeState(StateName.ATTACK);
                 }
             }
@@ -122,6 +126,53 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             }
         }
     }
+    public void OnClickQ(InputAction.CallbackContext context)
+    {
+        // && !AttackState.IsBaseAttack
+        if (context.performed && !AttackState.IsBaseAttack)
+        {
+            if (context.interaction is PressInteraction)
+            {
+                // Debug.Log("Q" + AttackState.IsSkill_Q);
+                bool isAvailableSkill = !AttackState.IsSkill_Q;
+                // 스킬 쿨타임 다 찼을때 isAvailableSkill true로 초기화
+
+                if (isAvailableSkill)
+                {
+                    AttackState.IsSkill_Q = true;
+                    player.stateMachine.ChangeState(StateName.ATTACK);
+                }
+            }
+        }
+        
+    }
+    public void OnClickE(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            bool isAvailableAttack = !AttackState.IsSkill_E;
+
+            if (isAvailableAttack)
+            {
+                AttackState.IsSkill_E = true;
+                player.stateMachine.ChangeState(StateName.ATTACK);
+            }
+        }
+    }
+    public void OnClickR(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            bool isAvailableAttack = !AttackState.IsSkill_R;
+
+            if (isAvailableAttack)
+            {
+                AttackState.IsSkill_R = true;
+                player.stateMachine.ChangeState(StateName.ATTACK);
+            }
+        }
+    }
+
 
     public void Dash()
     {

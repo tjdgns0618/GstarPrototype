@@ -21,6 +21,9 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField] protected float attackSpeed;
     [SerializeField] protected float attackRange;
 
+    public delegate void Action();
+    public Action ItemChance;
+
     public void SetWeaponData(string name, float attackDamage, float attackSpeed, float attackRange)
     {
         this._name = name;

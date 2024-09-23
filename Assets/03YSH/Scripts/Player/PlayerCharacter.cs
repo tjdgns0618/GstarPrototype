@@ -31,6 +31,11 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] protected int dashCount;
     #endregion
 
+    [Header("공격 콜라이더")]
+    [SerializeField] public BoxCollider attackRange;
+
+    public PlayerCharacterController PCC;
+
     private void Awake()
     {
         if(instance == null)

@@ -40,6 +40,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Skill1",
+                    "type": "Button",
+                    "id": "e7db5c32-6c37-45f3-a33d-43967dbf4830",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Skill2",
+                    "type": "Button",
+                    "id": "277d92a8-d58e-445b-9b62-f945a06802af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Skill3",
+                    "type": "Button",
+                    "id": "6ced7fe3-79b8-43db-aa70-bc31d17aeb04",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -135,7 +162,7 @@
                     "name": "",
                     "id": "1e50c3f9-82e3-41ef-b32e-d348afcbad93",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold,Press",
+                    "interactions": "Hold(duration=0.4,pressPoint=0.5),Press(pressPoint=0.1)",
                     "processors": "",
                     "groups": "PC",
                     "action": "LeftMouse",
@@ -150,6 +177,39 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cdd11e2-299b-4252-a7be-d897f646df70",
+                    "path": "<Keyboard>/q",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Skill1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31f041fc-9237-40d9-ba81-8ced90bdf865",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Skill2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "341df743-daf7-4a2f-a1a5-dc9de2dd6131",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Skill3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

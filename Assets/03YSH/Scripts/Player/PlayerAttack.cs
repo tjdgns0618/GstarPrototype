@@ -10,12 +10,13 @@ using UnityEngine;
 public class PlayerAttack : BaseWeapon, IEffect
 {
     public readonly int hashIsAttackAnimation = Animator.StringToHash("IsAttack");
+    public readonly int hashIsSkill_Q_Animation = Animator.StringToHash("IsSkill_Q");
     public readonly int hashAttackAnimation = Animator.StringToHash("AttackCombo");
     public readonly int hashAttackSpeedAnimation = Animator.StringToHash("AttackSpeed");
     private Coroutine checkAttackReInputCor;
     public GameObject[] defaultAttackEffs;
     public Vector3 adjustTransform;
-
+        
     [SerializeField]
     GameObject effectGenerator;
 
@@ -30,12 +31,16 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public override void Skill(BaseState state)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Q,E");
+        PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
+        PlayerCharacter.Instance.animator.SetBool(hashIsSkill_Q_Animation, true);
     }
 
     public override void UltimateSkill(BaseState state)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("R");
+
+        PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
     }
 
     public void CheckAttackReInput(float reInputTime)
