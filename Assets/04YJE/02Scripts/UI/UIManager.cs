@@ -11,10 +11,16 @@ public class UIManager : MonoBehaviour
     public GameObject statWindow;
     public GameObject pauseWindow;
     public GameObject waveUI;
+    public GameObject[] characterSelectionUI;
+    public GameObject[] charactersUltimateUI;
     private GameObject prevShowImage;
+
+    [Header("Text_UI")]
     public TMP_Text wave_Txt;
     public TMP_Text health_Txt;
     public TMP_Text coin_Txt;
+
+
 
 
     public spawner1 spawner;
@@ -48,6 +54,19 @@ public class UIManager : MonoBehaviour
         else if(Input.GetKeyUp(KeyCode.Tab))
         {
             SetUIActive(statWindow, false);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeCharacterUI(0);
+        }
+        else if( Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            ChangeCharacterUI(1);
+        }
+        else if( Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            ChangeCharacterUI(2);
         }
     }
 
@@ -111,5 +130,21 @@ public class UIManager : MonoBehaviour
     public void SetCoinText()
     {
         coin_Txt.text = string.Format("{0} Gold", gameManager._gold);
+    }
+
+    //선택된 캐릭터 UI 표시
+    public void ChangeCharacterUI(int num)
+    {
+        SetUIActive(characterSelectionUI[num], true);
+        SetUIActive(charactersUltimateUI[num], false);
+
+        for(int index = 0; index < characterSelectionUI.Length; index++)  //선택 가능한 캐릭터 개수로 변경할 것
+        {
+            if (index == num)
+                continue;
+
+            SetUIActive(characterSelectionUI[index], false);
+            SetUIActive(charactersUltimateUI[index], true);
+        }
     }
 }
