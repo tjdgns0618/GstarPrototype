@@ -14,6 +14,7 @@ public class spawner1 : MonoBehaviour
     public GameObject rewardUI;
     //public GameObject playerPrefab;
     public TMP_Text waveInfoText;
+    public TMP_Text stageInfoText;
 
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
@@ -146,11 +147,11 @@ public class spawner1 : MonoBehaviour
     {
         waveInfoText.text = $" Enemies Left : {enemiesLeft}";
     }
-
     public void increaseStage()
     { 
         portal.SetActive(false);
         currentStage++;
+        stageInfoText.text = $"{currentStage} Stage";
         currentWave = 0;
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
