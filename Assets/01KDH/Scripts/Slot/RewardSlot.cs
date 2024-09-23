@@ -2,10 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering;
 
 public class RewardSlot : InvenSlot
 {
+    public Button rewardBtn;
+
+    private void Awake()
+    {
+        rewardBtn.onClick.AddListener(OnSlotButtonClicked); // 버튼 클릭 시 메서드 호출
+    }
+
+    private void OnSlotButtonClicked()
+    {
+        if (item != null)
+        {
+            Inventory inventory = FindObjectOfType<Inventory>(); // 인벤토리 찾아서
+            inventory.AcquireItem(item, itemCount); // 아이템 추가
+            ClearSlot(); // 슬롯 초기화
+        }
+    }
+
     public void AddItemNoCount(Item _item, int _count = 1)         // 보상 선택은 제공되는 아이템 개수가 하나이므로
     {
         item = _item;
