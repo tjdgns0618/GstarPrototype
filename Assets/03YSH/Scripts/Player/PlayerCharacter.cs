@@ -31,6 +31,11 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] protected int dashCount;
     #endregion
 
+    [Header("공격 콜라이더")]
+    [SerializeField] public BoxCollider attackRange;
+
+    public PlayerCharacterController PCC;
+
     private void Awake()
     {
         if(instance == null)
@@ -73,5 +78,6 @@ public class PlayerCharacter : MonoBehaviour
         PlayerCharacterController controller = GetComponent<PlayerCharacterController>();
         stateMachine = new StateMachine(StateName.MOVE, new MoveState(controller));
         stateMachine.AddState(StateName.ATTACK, new AttackState(controller));
+        stateMachine.AddState(StateName.DASH, new DashState(controller));
     }
 }

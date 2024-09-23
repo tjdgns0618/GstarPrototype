@@ -6,11 +6,14 @@ namespace CharacterController
 {
     public class DashState : BaseState
     {
+        public static bool IsDash = false;
+
         public DashState(PlayerCharacterController controller) : base(controller) {}
 
         public override void OnEnterState()
         {
-            throw new System.NotImplementedException();
+            IsDash = true;
+            Controller.Dash();
         }
 
         public override void OnExitState()
@@ -20,12 +23,10 @@ namespace CharacterController
 
         public override void OnFixedUpdateState()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void OnUpdateState()
         {
-            throw new System.NotImplementedException();
         }
     }
 }
