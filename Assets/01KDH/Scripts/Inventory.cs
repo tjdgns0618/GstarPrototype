@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
                     if (slots[i].item.itemID == _item.itemID)
                     {
                         slots[i].SetSlotCount(_count);
+                    Debug.Log("1111");
                         return;
                     }
                 }
@@ -36,6 +37,7 @@ public class Inventory : MonoBehaviour
             if (slots[i].item == null)
             {
                 slots[i].AddItem(_item, _count);
+                Debug.Log("2222");
                 return;
             }
         }
