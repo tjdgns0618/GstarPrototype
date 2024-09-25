@@ -1350,6 +1350,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2084852729892721037, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1658877815}
     - targetCorrespondingSourceObject: {fileID: 4775001187944001079, guid: 17c25086ce14e754aacdae636139a306, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1769029422}
@@ -1908,7 +1911,7 @@ MonoBehaviour:
   stageInfoText: {fileID: 2094783439}
   spawnRadius: 10
   minDistancefromPlayer: 5
-  firstWaveEnemy: 1
+  firstWaveEnemy: 8
   spawnInterval: 3
   waveInterval: 1
   maxWaves: 5
@@ -7379,6 +7382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639cc4dcfc80530438f756c356ff0762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1565151645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2084852729892721037, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+  m_PrefabInstance: {fileID: 92168122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1575296227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7859,12 +7867,30 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6732998744332725832, guid: 17c25086ce14e754aacdae636139a306, type: 3}
   m_PrefabInstance: {fileID: 92168122}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1565151645}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8eed4856b073bef4bb66adbc774f35f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1658877815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565151645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ae5b9ef79152648a181b10150a5137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1658877803}
+  firstEnemy: {fileID: 0}
+  targetRange: 100
+  maxTargets: 5
+  attackDelay: 0.1
+  lineMat: {fileID: 2100000, guid: 8001fedece0cec54997d1f606cf58ea7, type: 2}
 --- !u!114 &1671992330 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1365614394857729152, guid: 495c7e7d34d1af943812992739729534, type: 3}
