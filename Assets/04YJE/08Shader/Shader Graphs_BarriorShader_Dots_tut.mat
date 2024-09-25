@@ -7,18 +7,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall
+  m_Name: Shader Graphs_BarriorShader_Dots_tut
   m_Shader: {fileID: -6465566751694194690, guid: 1045a3cdde713cf4bbef6b1cab5bdd33, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -37,14 +40,28 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fresnel_Power: 5
-    - _Offset: 0
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 2
+    - _CastShadows: 1
+    - _Cull: 2
+    - _DotsNoiseScale: 30
+    - _DotsSize: 0.8
+    - _DstBlend: 1
+    - _NoiseScale: 10
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
-    - _Emission: {r: 0, g: 0.32987702, b: 0.32814988, a: 0}
+    - _DotsColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DotsTiling: {r: 8, g: 8, b: 0, a: 0}
+    - _NoiseSpeed: {r: 0, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &4309497334688557411
+--- !u!114 &7955280359963189840
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
