@@ -18,7 +18,7 @@ namespace CharacterController
 
         public override void OnExitState()
         {
-            PlayerCharacter.Instance.rigidbody.velocity = Vector3.zero;
+
         }
 
         public override void OnFixedUpdateState()
