@@ -839,8 +839,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 5375799980167797289}
-  reUI: {fileID: 0}
+  reUI: {fileID: 3527510467309788529}
   items: []
+  _inventory: {fileID: 0}
   _rewardslot: {fileID: 7361518146721998067}
   _spawn: {fileID: 0}
 --- !u!1 &1672049410371634000
@@ -2118,6 +2119,7 @@ MonoBehaviour:
   itemImage: {fileID: 6247046008795269240}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 4069242570890254411}
 --- !u!1 &3876930830789885469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,7 +2242,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3704860365794545662}
+      - m_Target: {fileID: 557545254832913868}
         m_TargetAssemblyTypeName: RewardBtn, Assembly-CSharp
         m_MethodName: NextWave
         m_Mode: 1
@@ -2266,8 +2268,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 5375799980167797289}
-  reUI: {fileID: 0}
+  reUI: {fileID: 3527510467309788529}
   items: []
+  _inventory: {fileID: 0}
   _rewardslot: {fileID: 4002938435498300372}
   _spawn: {fileID: 0}
 --- !u!1 &3882145431335290020
@@ -3538,6 +3541,7 @@ MonoBehaviour:
   itemImage: {fileID: 6875574572216990387}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 110575142042682460}
 --- !u!1 &6252163053850821280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3917,6 +3921,7 @@ MonoBehaviour:
   itemImage: {fileID: 2545360200551592874}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 5353435614993899714}
 --- !u!1 &6428034704649522964
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,6 +4985,7 @@ MonoBehaviour:
   itemImage: {fileID: 6849007763159953614}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 3744117744454485801}
 --- !u!1 &7943587299937796613
 GameObject:
   m_ObjectHideFlags: 0
@@ -5276,8 +5282,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 5375799980167797289}
-  reUI: {fileID: 0}
+  reUI: {fileID: 3527510467309788529}
   items: []
+  _inventory: {fileID: 0}
   _rewardslot: {fileID: 184824361205897699}
   _spawn: {fileID: 0}
 --- !u!1 &8249528659493505481
@@ -5539,6 +5546,7 @@ MonoBehaviour:
   itemImage: {fileID: 31785886255000046}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 5312138644777807082}
 --- !u!1 &8582022762220992431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6018,7 +6026,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3704860365794545662}
+      - m_Target: {fileID: 4226083322381124176}
         m_TargetAssemblyTypeName: RewardBtn, Assembly-CSharp
         m_MethodName: NextWave
         m_Mode: 1
@@ -6044,8 +6052,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 5375799980167797289}
-  reUI: {fileID: 0}
+  reUI: {fileID: 3527510467309788529}
   items: []
+  _inventory: {fileID: 0}
   _rewardslot: {fileID: 5231462743736161115}
   _spawn: {fileID: 0}
 --- !u!1 &8938946922855085269
@@ -6275,7 +6284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3024036559344849302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6423,7 +6432,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3704860365794545662}
+      - m_Target: {fileID: 4750147766148151910}
         m_TargetAssemblyTypeName: RewardBtn, Assembly-CSharp
         m_MethodName: NextWave
         m_Mode: 1
@@ -6449,7 +6458,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 5375799980167797289}
-  reUI: {fileID: 0}
+  reUI: {fileID: 3527510467309788529}
   items: []
+  _inventory: {fileID: 0}
   _rewardslot: {fileID: 726340037103812356}
   _spawn: {fileID: 0}

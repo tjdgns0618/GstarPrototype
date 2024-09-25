@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 292675996430040269}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -63,8 +63,8 @@ Transform:
   m_GameObject: {fileID: 2078756588476773903}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.4, y: 0, z: 15.5984}
-  m_LocalScale: {x: 10, y: 20, z: 49.597797}
+  m_LocalPosition: {x: 30, y: 0, z: 10}
+  m_LocalScale: {x: 0.5, y: 20, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4918929786267835897}
@@ -118,7 +118,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3661639628750336703, guid: 6d5d5a4b755d3c446ab64cc2ba9937d8, type: 3}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 00a1f65ceab58ac4cbdf5068e15fc59c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,8 +276,8 @@ Transform:
   m_GameObject: {fileID: 2904258610440082102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.7166, y: 0, z: 35.8}
-  m_LocalScale: {x: 57.685055, y: 20, z: 10}
+  m_LocalPosition: {x: 10, y: 0, z: 35}
+  m_LocalScale: {x: 40, y: -20, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4918929786267835897}
@@ -330,7 +331,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3661639628750336703, guid: 6d5d5a4b755d3c446ab64cc2ba9937d8, type: 3}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 00a1f65ceab58ac4cbdf5068e15fc59c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -486,8 +488,8 @@ Transform:
   m_GameObject: {fileID: 4880393895973003338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.1, y: -0, z: 5.5926}
-  m_LocalScale: {x: 10, y: 20, z: 49.94235}
+  m_LocalPosition: {x: -10, y: -0, z: 10}
+  m_LocalScale: {x: 0.5, y: 20, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4918929786267835897}
@@ -541,7 +543,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3661639628750336703, guid: 6d5d5a4b755d3c446ab64cc2ba9937d8, type: 3}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 00a1f65ceab58ac4cbdf5068e15fc59c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -591,8 +594,8 @@ Transform:
   m_GameObject: {fileID: 5375764997970472599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.1926, y: 0, z: -14.1}
-  m_LocalScale: {x: 47.8842, y: 20, z: 10}
+  m_LocalPosition: {x: 10, y: 0, z: -15}
+  m_LocalScale: {x: 40, y: 20, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4918929786267835897}
@@ -646,7 +649,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3661639628750336703, guid: 6d5d5a4b755d3c446ab64cc2ba9937d8, type: 3}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 00a1f65ceab58ac4cbdf5068e15fc59c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -853,6 +857,10 @@ PrefabInstance:
     - target: {fileID: 2308906331489889654, guid: 2888e870c7bb77c418b97828ec7518ba, type: 3}
       propertyPath: m_Name
       value: Rock_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308906331489889654, guid: 2888e870c7bb77c418b97828ec7518ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2308906331490054486, guid: 2888e870c7bb77c418b97828ec7518ba, type: 3}
       propertyPath: m_LocalScale.x
@@ -1099,6 +1107,10 @@ PrefabInstance:
     - target: {fileID: 198933666482748135, guid: c623442f5c7cc554da8db59b13113a32, type: 3}
       propertyPath: m_Name
       value: Rock_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 198933666482748135, guid: c623442f5c7cc554da8db59b13113a32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198933666483037895, guid: c623442f5c7cc554da8db59b13113a32, type: 3}
       propertyPath: m_LocalScale.x
@@ -1443,6 +1455,10 @@ PrefabInstance:
     - target: {fileID: 1954203923124936568, guid: ae288f4c622432349b67e6ae691d5636, type: 3}
       propertyPath: m_Name
       value: Rock_07 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954203923124936568, guid: ae288f4c622432349b67e6ae691d5636, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1954203923125289816, guid: ae288f4c622432349b67e6ae691d5636, type: 3}
       propertyPath: m_LocalScale.x
@@ -1874,6 +1890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_05 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 198933666482748135, guid: c623442f5c7cc554da8db59b13113a32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198933666483037895, guid: c623442f5c7cc554da8db59b13113a32, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -2060,11 +2080,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6917998947320127080, guid: 7a77406307db9f447863b1371da346dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6917998947320127080, guid: 7a77406307db9f447863b1371da346dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.5
+      value: 27.75
       objectReference: {fileID: 0}
     - target: {fileID: 6917998947320127080, guid: 7a77406307db9f447863b1371da346dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2101,6 +2121,10 @@ PrefabInstance:
     - target: {fileID: 6917998947320283720, guid: 7a77406307db9f447863b1371da346dc, type: 3}
       propertyPath: m_Name
       value: Rock_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917998947320283720, guid: 7a77406307db9f447863b1371da346dc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6917998947322551432, guid: 7a77406307db9f447863b1371da346dc, type: 3}
       propertyPath: m_Materials.Array.size
