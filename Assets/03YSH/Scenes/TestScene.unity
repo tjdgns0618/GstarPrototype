@@ -1342,6 +1342,14 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8234467585059617416, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: SkillEffs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234467585059617416, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: SkillEffs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4364861999203606394, guid: 46d2156800973de47ab4e709fdbc2c5f, type: 3}
     - target: {fileID: 8645061494796557065, guid: 17c25086ce14e754aacdae636139a306, type: 3}
       propertyPath: baseAttackRange
       value: 
@@ -2827,6 +2835,55 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3336873064857767317, guid: 495c7e7d34d1af943812992739729534, type: 3}
   m_PrefabInstance: {fileID: 554721854}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &554763158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554763160}
+  - component: {fileID: 554763159}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &554763159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554763158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e0a8d929866d04482688f4ea112b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aitem: {fileID: 0}
+  enemyM:
+    serializedVersion: 2
+    m_Bits: 0
+  _maneulObj: {fileID: 0}
+--- !u!4 &554763160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554763158}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &569250349 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1771152541504925944, guid: 1ea19851dd1d3464ca45a98180679d1c, type: 3}
@@ -3498,7 +3555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools: {fileID: 0}
-  itempools: {fileID: 0}
+  itempools: {fileID: 98979236}
   txt_gold: {fileID: 0}
   _maxhp: 100
   _hp: 100
@@ -9351,3 +9408,4 @@ SceneRoots:
   - {fileID: 2068905114}
   - {fileID: 750627877}
   - {fileID: 340337848}
+  - {fileID: 554763160}

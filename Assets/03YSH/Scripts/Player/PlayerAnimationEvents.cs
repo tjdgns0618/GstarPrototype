@@ -27,6 +27,11 @@ public class PlayerAnimationEvents : MonoBehaviour
         PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
 
+    public void OnStartSkill_Q()
+    {
+        effect.PlaySkillEffect();
+    }
+
     public void OnFinishedSkill_Q()
     {
         AttackState.IsAttack = false;
@@ -55,6 +60,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         DashState.IsDash = false;
         PlayerCharacter.Instance.animator.SetBool("IsDashing", false);
+        
         PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
 
