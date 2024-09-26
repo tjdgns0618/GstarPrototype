@@ -16,6 +16,10 @@ public class PlayerAttack : BaseWeapon, IEffect
     private Coroutine checkAttackReInputCor;
     public GameObject[] defaultAttackEffs;
     public GameObject[] SkillEffs;
+
+    [Header("±Ã¼öÈ­»ì")]
+    public GameObject[] arrowPrefabs;
+
     public Vector3 adjustTransform;
         
     [SerializeField]
@@ -23,10 +27,16 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public override void Attack(BaseState state)
     {
-        ComboCount++;
+        
+        ComboCount++;        
         PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         PlayerCharacter.Instance.animator.SetBool(hashIsAttackAnimation, true);
         PlayerCharacter.Instance.animator.SetInteger(hashAttackAnimation, ComboCount);
+        // if(PlayerCharacter.Instance.characterClass == CharacterType.Archer)
+        {
+            GameObject arrow = Instantiate(arrowPrefabs[ComboCount - 1], PlayerCharacter.Instance.transform.position
+                + PlayerCharacter.Instance.transform.forward * 2f + Vector3.up * 1f, PlayerCharacter.Instance.transform.rotation);
+        }
         CheckAttackReInput(AttackState.CanReInputTime);
     }
 
@@ -69,12 +79,11 @@ public class PlayerAttack : BaseWeapon, IEffect
     public void PlayComboAttackEffects()
     {
         int comboCount = Mathf.Clamp(ComboCount - 1, 0, 3);
-        GameObject effect = Instantiate(defaultAttackEffs[comboCount]);
-        effect.transform.SetParent(effectGenerator.transform);
+        GameObject effect = Instantiate(defaultAttackEffs[comboCount], Vector3.zero, PlayerCharacter.Instance.transform.rotation);
+        // effect.transform.SetParent(effectGenerator.transform);
 
         effect.transform.position = PlayerCharacter.Instance.effectGenerator.transform.position + adjustTransform;
         // Vector3 secondAttackAdjustAngle = ComboCount == 2 ? new Vector3(0, -90f, 0f) : Vector3.zero;
-        effect.transform.rotation = PlayerCharacter.Instance.targetRotation;
         effect.transform.Rotate(new Vector3(0f, 150f, 0f));
 
         // effect.transform.eulerAngles += secondAttackAdjustAngle;
@@ -88,9 +97,9 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public void PlaySkillEffect()
     {
-        GameObject effect = Instantiate(SkillEffs[(int)PlayerCharacter.Instance.characterClass], PlayerCharacter.Instance.transform.position, PlayerCharacter.Instance.transform.rotation);
+        GameObject effect = Instantiate(SkillEffs[0], PlayerCharacter.Instance.transform.position, PlayerCharacter.Instance.transform.rotation);
 
-        GroundSlash groundSlashScript = effect.GetComponent<GroundSlash>();
-        effect.GetComponent<Rigidbody>().velocity = PlayerCharacter.Instance.transform.forward * groundSlashScript.speed;
+        // GroundSlash groundSlashScript = effect.GetComponent<GroundSlash>();
+        // effect.GetComponent<Rigidbody>().velocity = PlayerCharacter.Instance.transform.forward * groundSlashScript.speed;
     }
 }

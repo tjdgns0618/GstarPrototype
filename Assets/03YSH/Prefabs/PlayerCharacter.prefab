@@ -66,6 +66,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04cc669676b44247b4b38731b3cf41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimationEvents: {fileID: 0}
+  weaponAnimator: {fileID: 0}
+  _name: 
+  attackDamage: 0
+  attackSpeed: 0
+  attackRange: 0
+  defaultAttackEffs: []
+  SkillEffs: []
+  arrowPrefabs: []
+  adjustTransform: {x: 0, y: 0, z: 0}
+  effectGenerator: {fileID: 0}
 --- !u!1 &7386769106729562891
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,11 +229,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60d310309985b9d4e9917e6e851e63c9, type: 3}
---- !u!2083052967 &6518448447854440075 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 1010469353794949301, guid: 60d310309985b9d4e9917e6e851e63c9, type: 3}
-  m_PrefabInstance: {fileID: 6085426142663327294}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7394923011704953196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3662496979572467538, guid: 60d310309985b9d4e9917e6e851e63c9, type: 3}
@@ -2038,7 +2044,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.75
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -2081,8 +2087,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ca815e60adb6342a4f330a18d69206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  hp: 50
+  effectGenerator: {fileID: 0}
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  characterClass: 0
+  maxHp: 0
+  currentHp: 0
+  moveSpeed: 0
+  dashCount: 0
+  attackRange: {fileID: 0}
+  PCC: {fileID: 0}
 --- !u!114 &2732171614104986436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2098,7 +2111,11 @@ MonoBehaviour:
   bullet: {fileID: 1293491881183770582, guid: bbee76956597ca143ae06c016e59a1d9, type: 3}
   shotPosition: {fileID: 7822765294145932826}
   cam: {fileID: 0}
-  slash: {fileID: 6518448447854440075}
+  dashPower: 0
+  dashAnimTime: 0
+  dashReInputTime: 0
+  dashTetanyTime: 0
+  dashCoolTime: 0
 --- !u!4 &8016344783704966715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e21bde0edb14d7c479dc892de0b82673, type: 3}

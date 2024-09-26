@@ -24,8 +24,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     [SerializeField]
     Transform shotPosition;
     [SerializeField]
-    VisualEffect slash;
-    [SerializeField]
     Camera cam;
 
     public enum PlayerState
@@ -89,11 +87,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     float timer;
     public void OnClickLeftMouse(InputAction.CallbackContext context)
-    {
-        
+    {        
         if (context.performed)
-        {
-                
+        {                
             if (context.interaction is HoldInteraction)
             {
             }
