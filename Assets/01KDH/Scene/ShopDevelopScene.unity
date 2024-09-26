@@ -1958,9 +1958,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 0}
+  reUI: {fileID: 0}
+  items: []
   _inventory: {fileID: 0}
   _rewardslot: {fileID: 0}
-  _slot: {fileID: 0}
   _spawn: {fileID: 0}
 --- !u!1 &402114377
 GameObject:
@@ -2342,6 +2343,7 @@ MonoBehaviour:
   itemImage: {fileID: 537296358}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 0}
 --- !u!1 &548032727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,7 +3143,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3537,6 +3539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools: {fileID: 0}
+  itempools: {fileID: 0}
   txt_gold: {fileID: 0}
   _maxhp: 0
   _hp: 100
@@ -4923,9 +4926,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 0}
+  reUI: {fileID: 0}
+  items: []
   _inventory: {fileID: 0}
   _rewardslot: {fileID: 0}
-  _slot: {fileID: 0}
   _spawn: {fileID: 0}
 --- !u!1 &855200839
 GameObject:
@@ -7563,7 +7567,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7831,6 +7835,7 @@ MonoBehaviour:
   itemImage: {fileID: 1179073377}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 0}
 --- !u!1 &1207746569
 GameObject:
   m_ObjectHideFlags: 0
@@ -7891,7 +7896,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8072,9 +8077,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 0}
+  reUI: {fileID: 0}
+  items: []
   _inventory: {fileID: 0}
   _rewardslot: {fileID: 0}
-  _slot: {fileID: 0}
   _spawn: {fileID: 0}
 --- !u!1 &1242684644
 GameObject:
@@ -8297,6 +8303,7 @@ MonoBehaviour:
   itemImage: {fileID: 1244024245}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 0}
 --- !u!114 &1244024245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8414,7 +8421,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9017,9 +9024,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 0}
+  reUI: {fileID: 0}
+  items: []
   _inventory: {fileID: 0}
   _rewardslot: {fileID: 0}
-  _slot: {fileID: 0}
   _spawn: {fileID: 0}
 --- !u!1 &1380357415
 GameObject:
@@ -10263,9 +10271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveStart: {fileID: 0}
   rewardUI: {fileID: 0}
+  reUI: {fileID: 0}
+  items: []
   _inventory: {fileID: 0}
   _rewardslot: {fileID: 0}
-  _slot: {fileID: 0}
   _spawn: {fileID: 0}
 --- !u!1001 &1628663470
 PrefabInstance:
@@ -11695,6 +11704,7 @@ MonoBehaviour:
   itemImage: {fileID: 1658328567}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 0}
 --- !u!1 &1659463809
 GameObject:
   m_ObjectHideFlags: 0
@@ -11814,7 +11824,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13164,6 +13174,7 @@ MonoBehaviour:
   itemImage: {fileID: 1951777300}
   textCount: {fileID: 0}
   itemCount: 0
+  rewardBtn: {fileID: 0}
 --- !u!1 &1993877329
 GameObject:
   m_ObjectHideFlags: 0
@@ -14337,8 +14348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawn: {fileID: 0}
-  _rewardslot: {fileID: 0}
-  _inventory: {fileID: 0}
   rewardSlots:
   - {fileID: 1244024244}
   - {fileID: 537296360}

@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools: {fileID: 0}
+  itempools: {fileID: 0}
   txt_gold: {fileID: 0}
   _maxhp: 0
   _hp: 100
@@ -512,8 +513,10 @@ MonoBehaviour:
   enemyprefab:
   - {fileID: 4166752092908897032, guid: 68d88f8a2fa2f2e48a15bcb0168e818e, type: 3}
   player: {fileID: 1303047730}
+  portal: {fileID: 0}
   rewardUI: {fileID: 0}
   waveInfoText: {fileID: 1966161529}
+  stageInfoText: {fileID: 0}
   spawnRadius: 10
   minDistancefromPlayer: 5
   firstWaveEnemy: 5
@@ -521,6 +524,8 @@ MonoBehaviour:
   waveInterval: 1
   maxWaves: 5
   currentWave: 0
+  currentStage: 1
+  stagePerEnemy: 3
 --- !u!1 &916453470
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +689,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -941,7 +946,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
