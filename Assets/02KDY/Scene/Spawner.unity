@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &233076485 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1444246605349438230, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+  m_PrefabInstance: {fileID: 876840247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &475789937
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,10 +466,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: e7db5c32-6c37-45f3-a33d-43967dbf4830
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 277d92a8-d58e-445b-9b62-f945a06802af
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: 6ced7fe3-79b8-43db-aa70-bc31d17aeb04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: Player/Skill1[/Keyboard/q]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Player/Skill2[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244692202838868050, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: Player/Skill3[/Keyboard/r]
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2084852729892721037, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1303047731}
   m_SourcePrefab: {fileID: 100100000, guid: 17c25086ce14e754aacdae636139a306, type: 3}
 --- !u!1 &907144236
 GameObject:
@@ -515,6 +551,7 @@ MonoBehaviour:
   player: {fileID: 1303047730}
   portal: {fileID: 0}
   rewardUI: {fileID: 0}
+  bossprefab: {fileID: 0}
   waveInfoText: {fileID: 1966161529}
   stageInfoText: {fileID: 0}
   spawnRadius: 10
@@ -628,6 +665,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1027465239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2084852729892721037, guid: 17c25086ce14e754aacdae636139a306, type: 3}
+  m_PrefabInstance: {fileID: 876840247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1059230894
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +782,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1703823214107560759, guid: 17c25086ce14e754aacdae636139a306, type: 3}
   m_PrefabInstance: {fileID: 876840247}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1303047731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027465239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ed9dae31e617e4fb73855c18d10586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowPrefab: {fileID: 6357461142508639897, guid: 3431cb83d38e05846ad0b632b0de8f6a, type: 3}
+  firePoint: {fileID: 233076485}
+  ArrowSpeed: 10
 --- !u!1 &1540762994
 GameObject:
   m_ObjectHideFlags: 0

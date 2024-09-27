@@ -12,6 +12,7 @@ public class spawner1 : MonoBehaviour
     public Transform player; // 플레이어의 위치
     public GameObject portal;
     public GameObject rewardUI;
+    public GameObject bossprefab;
     //public GameObject playerPrefab;
     public TMP_Text waveInfoText;
     public TMP_Text stageInfoText;
@@ -148,7 +149,7 @@ public class spawner1 : MonoBehaviour
         waveInfoText.text = $" Enemies Left : {enemiesLeft}";
     }
     public void increaseStage()
-    { 
+    {
         portal.SetActive(false);
         currentStage++;
         stageInfoText.text = $"{currentStage} Stage";
@@ -156,4 +157,5 @@ public class spawner1 : MonoBehaviour
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
     }
+
 }
