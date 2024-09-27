@@ -16,15 +16,15 @@ namespace CharacterController
 
         public static int comboCount;
 
-        public const float CanReInputTime = 0.2f;
-        
+        public const float CanReInputTime = 0.5f;
+
         public AttackState(PlayerCharacterController controller) : base(controller) { }
 
         public override void OnEnterState()
         {
             IsAttack = true;            // 공격 실행
-            if (IsBaseAttack && !isHolding)            
-                PlayerCharacter.Instance.weaponManager.Weapon.Attack(this);            
+            if (IsBaseAttack && !isHolding)
+                PlayerCharacter.Instance.weaponManager.Weapon.Attack(this);
             else if (IsSkill_Q)
                 PlayerCharacter.Instance.weaponManager.Weapon.Skill(this);
             else if (IsSkill_E)

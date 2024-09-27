@@ -10,7 +10,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public PlayerAttack effect;
 
     public Dictionary<string, IEffect> myWeaponEffects { get; private set; }
-    public Dictionary<string, ISound> mySounds {  get; private set; }
+    public Dictionary<string, ISound> mySounds { get; private set; }
 
     public void OnStartAttack()
     {

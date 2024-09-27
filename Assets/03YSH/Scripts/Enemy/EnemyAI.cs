@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public enum EnemyType
 {
@@ -24,7 +25,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     float _movementSpeed = 10f;
     [SerializeField]
     EnemyAttack enemyAttack;
-
+    
     public GameObject bullet;
     public Transform shotPosition;
 
@@ -36,10 +37,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     Animator animator;
     float hp = 20;
     bool isDead = false;
-
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
-    const string _MELEE_ATTACK_ANIM_TRIGGER_NAME = "attack";
+    const string _ATTACK_ANIM_TRIGGER_NAME = "attack";
     const string _RANGE_ATTACK_ANIM_TRIGGER_NAME = "shot";
 
     private void Awake()
@@ -102,7 +102,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     #region Attack Node
     INode.ENodeState CheckMeleeAttacking()
     {
-        if (IsAniamtionRunning(_MELEE_ATTACK_ANIM_STATE_NAME))
+        if (IsAniamtionRunning(_ATTACK_ANIM_TRIGGER_NAME))
         {
             return INode.ENodeState.ENS_Running;
         }
@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
             else if (enemyType == EnemyType.range)
             {
                 Rotate();
-                Shot();
+                Attack();
             }
             return INode.ENodeState.ENS_Success;
         }
@@ -200,7 +200,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     public void Attack()
     {
-        animator.SetTrigger(_MELEE_ATTACK_ANIM_TRIGGER_NAME);
+        animator.SetTrigger(_ATTACK_ANIM_TRIGGER_NAME);
     }
 
     public void Damage(float damageTaken)
@@ -293,5 +293,5 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
         temp.transform.forward = transform.forward;
         //temp.transform.Rotate(new Vector3(90f, transform.rotation.y, 0f));
-    }
+    }  
 }

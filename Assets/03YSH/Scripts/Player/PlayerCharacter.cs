@@ -27,10 +27,10 @@ public class PlayerCharacter : MonoBehaviour
 
     #region #Ä³¸¯ÅÍ ½ºÅÈ
 
-    public float MaxHp      { get { return maxHp; } }
-    public float CurrentHp  { get { return currentHp; } }
-    public float MoveSpeed  { get { return moveSpeed; } }
-    public int DashCount    { get { return dashCount; } }
+    public float MaxHp { get { return maxHp; } }
+    public float CurrentHp { get { return currentHp; } }
+    public float MoveSpeed { get { return moveSpeed; } }
+    public int DashCount { get { return dashCount; } }
 
     [Header("Ä³¸¯ÅÍ ½ºÅÈ")]
     [SerializeField] protected float maxHp;
@@ -49,7 +49,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             weaponManager = new WeaponManager();
@@ -80,7 +80,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         this.maxHp = maxHp;
         this.currentHp = currentHp;
-        this.moveSpeed = moveSpeed; 
+        this.moveSpeed = moveSpeed;
         this.dashCount = dashCount;
     }
 

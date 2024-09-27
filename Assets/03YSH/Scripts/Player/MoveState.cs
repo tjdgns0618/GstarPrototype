@@ -45,7 +45,7 @@ namespace CharacterController
 
         public override void OnFixedUpdateState()
         {
-            
+
         }
     }
 }

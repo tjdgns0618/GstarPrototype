@@ -22,18 +22,18 @@ public class PlayerAttack : BaseWeapon, IEffect
     public GameObject[] projectiles;
 
     public Vector3 adjustTransform;
-        
+
     [SerializeField]
     GameObject effectGenerator;
 
     public override void Attack(BaseState state)
-    {        
+    {
         ComboCount++;
         AttackState.comboCount = ComboCount;
         PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         PlayerCharacter.Instance.animator.SetBool(hashIsAttackAnimation, true);
         PlayerCharacter.Instance.animator.SetInteger(hashAttackAnimation, ComboCount);
-        if(PlayerCharacter.Instance.characterClass != CharacterType.Warrior)
+        if (PlayerCharacter.Instance.characterClass != CharacterType.Warrior)
         {
             GameObject arrow = Instantiate(projectiles[ComboCount - 1], PlayerCharacter.Instance.firePoint.transform.position,
                 PlayerCharacter.Instance.transform.rotation);
@@ -57,7 +57,7 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public void CheckAttackReInput(float reInputTime)
     {
-        if(checkAttackReInputCor != null) 
+        if (checkAttackReInputCor != null)
             StopCoroutine(checkAttackReInputCor);
         checkAttackReInputCor = StartCoroutine(checkAttackReInputCoroutine(reInputTime));
     }

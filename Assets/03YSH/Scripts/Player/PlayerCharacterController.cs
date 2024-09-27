@@ -70,16 +70,16 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     private void FixedUpdate()
     {
-        
+
     }
 
     public void Damage(float damageTaken)
-    { 
+    {
         player.animator.ResetTrigger("hit");
         player.animator.SetTrigger("hit");
         player.OnUpdateStat(player.MaxHp, player.CurrentHp - damageTaken, player.MoveSpeed, player.DashCount);
     }
-    
+
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         // player.stateMachine.ChangeState(StateName.MOVE);
@@ -93,9 +93,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     float timer;
     public void OnClickLeftMouse(InputAction.CallbackContext context)
-    {        
+    {
         if (context.performed)
-        {         
+        {
             if (context.interaction is HoldInteraction)
             {
                 bool isAvailableAttack = !AttackState.IsBaseAttack &&
@@ -157,7 +157,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 }
             }
         }
-        
+
     }
     public void OnClickE(InputAction.CallbackContext context)
     {
@@ -279,7 +279,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
 
     }
-    
+
     void GetMousePosition()
     {
         Vector3 mouseWorldPosition =
@@ -291,7 +291,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = targetRotation;
     }
-    
+
     public void Attack()
     {
 
