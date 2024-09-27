@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class RewardBtn : MonoBehaviour
+public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject waveStart;
     public GameObject rewardUI;
@@ -12,13 +14,23 @@ public class RewardBtn : MonoBehaviour
 
     public Inventory _inventory;
     public RewardSlot _rewardslot;
-    // public InvenSlot _slot;
-    
+
+    public Animator uiAnim;
+
+    private Image image;
+
     public spawner1 _spawn;
 
+    private RectTransform _rectTransform;
+
+    private void Start()
+    {
+        _rectTransform = GetComponent<RectTransform>();
+    }
 
     public void NextWave()
     {
+        _rectTransform.anchoredPosition = new Vector3(-356, _rectTransform.anchoredPosition.y, 0);
         if (_spawn.currentWave < _spawn.maxWaves)   // 아직 스테이지가 진행 중 이라면
         {
             if (_rewardslot.item != null) // 슬롯에 아이템이 있을 경우
@@ -31,6 +43,20 @@ public class RewardBtn : MonoBehaviour
         reUI.AddRewardRandomItems(items);   // 새로운 아이템을 보상 슬롯에 추가
         }
         else  // 스테이지가 끝났다면,
+        {
             rewardUI.SetActive(false);    // 창만 닫기
+        }
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        uiAnim.SetBool("isOn", true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        uiAnim.SetBool("isOn", false);
+        uiAnim.SetTrigger("isOnTrigger");
+    }
+
 }

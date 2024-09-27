@@ -21,7 +21,6 @@ public class SlotToolTip : MonoBehaviour
 
         txt_Itemname.text = _item.itemName;
         txt_Itemeffect.text = _item.itemEffect;
-        txt_Iteminfo.text = _item.itemInfo;
     }
 
     public void HideToolTip()

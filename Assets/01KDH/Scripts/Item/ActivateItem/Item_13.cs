@@ -78,7 +78,7 @@ public class Item_13 : MonoBehaviour
                         yield break;
                     }
                 }
-                currentTarget.Damage(1f);
+                currentTarget.Damage(100f);
                 targetedEnemies.Add(currentTarget); // 공격한 적 추가
                 enemies.Remove(currentTarget); // 공격한 적을 enemies 리스트에서도 제거
             }

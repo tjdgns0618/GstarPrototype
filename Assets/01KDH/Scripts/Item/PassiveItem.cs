@@ -16,47 +16,52 @@ public class PassiveItem : MonoBehaviour
 
     public void _01Pitem()
     {
-
+        GameManager.instance._cooldown -= 0.08f;
     }   
     public void _02Pitem()
     {
-
+        GameManager.instance._damage += 8f;
     }   
     public void _03Pitem()
     {
-
+        GameManager.instance._attackspeed += 0.08f;
     }  
     public void _04Pitem()
     {
-
+        GameManager.instance._movespeed += 0.04f;
     } 
     public void _05Pitem()
     {
-
+        GameManager.instance._maxhp += 10f;
     }   
     public void _06Pitem()
     {
-
+        GameManager.instance._critdmg += 5f;
     }  
     public void _07Pitem()
     {
-
+        GameManager.instance._critchance += 5f;
     } 
     public void _08Pitem()
     {
-
+        GameManager.instance._damage += 5f;
+        GameManager.instance._attackspeed += 0.03f;
+        GameManager.instance._critchance += 3f;
+        GameManager.instance._maxhp += 5f;
     } 
     public void _09Pitem()
     {
-
+        GameManager.instance._dashcount += 1;
     }  
     public void _10Pitem()
     {
-
+        GameManager.instance._range = 0.1f;
     }
     public void _11Pitem()
     {
-
+        GameManager.instance._damage += 30f;
+        GameManager.instance._attackspeed -= 0.05f;
+        GameManager.instance._cooldown += 0.05f;
     }    
     public void _12Pitem()
     {

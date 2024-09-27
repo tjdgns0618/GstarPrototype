@@ -4,10 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering;
+using TMPro;
 
 public class RewardSlot : InvenSlot
 {
     public Button rewardBtn;
+    public TextMeshProUGUI _rewardName;
+    public TextMeshProUGUI _rewardEffect;
 
     private void Awake()
     {
@@ -30,6 +33,8 @@ public class RewardSlot : InvenSlot
         itemCount = _count;
         itemImage.sprite = item.itemImage;
 
+        _rewardName.text = _item.name;
+        _rewardEffect.text = _item.itemEffect;
         SetColor(1);
     }
     // 슬롯에 아이템 추가 (아이템이 하나일 때 사용)
