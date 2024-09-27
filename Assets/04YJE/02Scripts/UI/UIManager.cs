@@ -4,7 +4,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,8 +12,13 @@ public class UIManager : MonoBehaviour
     public GameObject statWindow;
     public GameObject pauseWindow;
     public GameObject fieldUI;
-    
+
+    public Image innShowObj;
+    public Image wizardShowObj;
+    public Image blacksmithShowObj;
+
     //캐릭터 선택 UI
+    [Header("Select_Character_UI")]
     public GameObject[] characterSelectionUI;
     public GameObject[] charactersUltimateUI;
     private int[] chargeCount;
@@ -193,5 +197,11 @@ public class UIManager : MonoBehaviour
         
         Debug.Log(chargeCount[index]);
         SetUIActive(chargeCountParent[index].transform.GetChild(chargeCount[index]).gameObject, false);
+    }
+
+    public void InitScrollbarValue(Scrollbar scrollbar)
+    {
+        if(scrollbar != null)
+            scrollbar.value = 1;
     }
 }
