@@ -99,20 +99,47 @@ public class spawner1 : MonoBehaviour
         {
             for (int i = 0; i < enemyPerSpawn; i++)
             {
-                if (spawnedCount >= totalEnemiesInWave) break; //현재 웨이브의 총 몬스터 수 초과 방지
+                if (spawnedCount >= totalEnemiesInWave) break; // 현재 웨이브의 총 몬스터 수 초과 방지
 
-                Vector3 randomPosition = GetRandomPosition(); //플레이어 주변 랜덤 위치 생성
+                Vector3 randomPosition = GetRandomPosition(); // 플레이어 주변 랜덤 위치 생성
 
-                if (Vector3.Distance(randomPosition, player.position) >= minDistancefromPlayer) //플레이어가 최소 거리보다 멀리 떨어진 경우 생성
+                // 플레이어와의 최소 거리가 유지되는지 확인
+                if (Vector3.Distance(randomPosition, player.position) >= minDistancefromPlayer)
                 {
-                    GameObject randomEnemyPrefab = enemyprefab[Random.Range(0, enemyprefab.Count)]; //랜덤한 enemy프리팹 선택
+                    // 기존에 생성된 적과의 거리가 충분한지 확인
+                    if (!IsPositionOccupied(randomPosition))
+                    {
+                        GameObject randomEnemyPrefab = enemyprefab[Random.Range(0, enemyprefab.Count)]; // 랜덤한 enemy프리팹 선택
 
-                    Instantiate(randomEnemyPrefab, randomPosition, Quaternion.identity);
-                    spawnedCount++;
+                        // Y축 기준 랜덤 회전 생성 (0도 ~ 360도)
+                        Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+
+                        // 적을 랜덤한 위치와 회전으로 생성
+                        Instantiate(randomEnemyPrefab, randomPosition, randomRotation);
+                        spawnedCount++;
+                    }
                 }
             }
+            yield return null;
         }
-        yield return null;
+    }
+
+    // 다른 적들과의 거리를 계산하여 겹치지 않도록 체크하는 함수
+    bool IsPositionOccupied(Vector3 position)
+    {
+        float minDistanceBetweenEnemies = 2f; // 적들 간의 최소 거리 설정
+
+        GameObject[] spawnedEnemies = GameObject.FindGameObjectsWithTag("Enemy"); // 이미 생성된 적들을 찾음
+
+        foreach (GameObject enemy in spawnedEnemies)
+        {
+            if (Vector3.Distance(position, enemy.transform.position) < minDistanceBetweenEnemies)
+            {
+                return true; // 다른 적과 너무 가까우면 위치를 사용할 수 없음
+            }
+        }
+
+        return false; // 충분히 떨어져 있으면 위치를 사용할 수 있음
     }
 
     //플레이어 주변의 랜덤한 위치를 반환하는 함수
