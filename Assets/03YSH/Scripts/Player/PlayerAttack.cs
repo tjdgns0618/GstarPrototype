@@ -11,14 +11,15 @@ public class PlayerAttack : BaseWeapon, IEffect
 {
     public readonly int hashIsAttackAnimation = Animator.StringToHash("IsAttack");
     public readonly int hashIsSkill_Q_Animation = Animator.StringToHash("IsSkill_Q");
+    public readonly int hashIsSkill_R_Animation = Animator.StringToHash("IsSkill_R");
     public readonly int hashAttackAnimation = Animator.StringToHash("AttackCombo");
     public readonly int hashAttackSpeedAnimation = Animator.StringToHash("AttackSpeed");
     private Coroutine checkAttackReInputCor;
     public GameObject[] defaultAttackEffs;
     public GameObject[] SkillEffs;
 
-    [Header("궁수화살")]
-    public GameObject[] arrowPrefabs;
+    [Header("발사체")]
+    public GameObject[] projectiles;
 
     public Vector3 adjustTransform;
         
@@ -26,16 +27,16 @@ public class PlayerAttack : BaseWeapon, IEffect
     GameObject effectGenerator;
 
     public override void Attack(BaseState state)
-    {
-        
-        ComboCount++;        
+    {        
+        ComboCount++;
+        AttackState.comboCount = ComboCount;
         PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         PlayerCharacter.Instance.animator.SetBool(hashIsAttackAnimation, true);
         PlayerCharacter.Instance.animator.SetInteger(hashAttackAnimation, ComboCount);
-        // if(PlayerCharacter.Instance.characterClass == CharacterType.Archer)
+        if(PlayerCharacter.Instance.characterClass != CharacterType.Warrior)
         {
-            GameObject arrow = Instantiate(arrowPrefabs[ComboCount - 1], PlayerCharacter.Instance.transform.position
-                + PlayerCharacter.Instance.transform.forward * 2f + Vector3.up * 1f, PlayerCharacter.Instance.transform.rotation);
+            GameObject arrow = Instantiate(projectiles[ComboCount - 1], PlayerCharacter.Instance.firePoint.transform.position,
+                PlayerCharacter.Instance.transform.rotation);
         }
         CheckAttackReInput(AttackState.CanReInputTime);
     }
@@ -73,6 +74,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         }
 
         ComboCount = 0;
+        AttackState.comboCount = 0;
         PlayerCharacter.Instance.animator.SetInteger(hashAttackAnimation, 0);
     }
 
@@ -97,7 +99,8 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public void PlaySkillEffect()
     {
-        GameObject effect = Instantiate(SkillEffs[0], PlayerCharacter.Instance.transform.position, PlayerCharacter.Instance.transform.rotation);
+        GameObject effect = Instantiate(SkillEffs[0], PlayerCharacter.Instance.firePoint.transform.position, PlayerCharacter.Instance.transform.rotation);
+
 
         // GroundSlash groundSlashScript = effect.GetComponent<GroundSlash>();
         // effect.GetComponent<Rigidbody>().velocity = PlayerCharacter.Instance.transform.forward * groundSlashScript.speed;

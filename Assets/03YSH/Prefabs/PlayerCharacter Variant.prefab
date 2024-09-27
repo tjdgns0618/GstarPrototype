@@ -2932,7 +2932,9 @@ MonoBehaviour:
   - {fileID: 1737387875744588960, guid: b65542e2c1b9d344d8d4e3573cf120ba, type: 3}
   - {fileID: 2223439838157312332, guid: 4492a5f685d41b743ad4bca57eac6734, type: 3}
   SkillEffs:
-  - {fileID: 4364861999203606394, guid: 46d2156800973de47ab4e709fdbc2c5f, type: 3}
+  - {fileID: 1949624779417528, guid: e73124b5ba126cc499fb7e927b7a79ac, type: 3}
+  - {fileID: 1648509489993130, guid: 8a0c2ade089d4c44fbdf861f7bcd7be6, type: 3}
+  projectiles: []
   adjustTransform: {x: 0, y: 1.5, z: 0}
   effectGenerator: {fileID: 1651504415727996351}
 --- !u!64 &4997478790948802058
@@ -3011,7 +3013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7238436576499997825, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8016344783704966715, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3031,15 +3033,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8016344783704966715, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8016344783704966715, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8016344783704966715, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8016344783704966715, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
