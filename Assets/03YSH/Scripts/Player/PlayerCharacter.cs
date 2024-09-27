@@ -7,7 +7,7 @@ using CharacterController;
 
 public enum CharacterType
 {
-    Sword = 0,
+    Warrior = 0,
     Archer = 1,
     Wizard = 2,
 }
@@ -39,8 +39,11 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] protected int dashCount;
     #endregion
 
+    [Header("발사체 발사위치")]
+    public GameObject firePoint;
+
     [Header("공격 콜라이더")]
-    [SerializeField] public BoxCollider attackRange;
+    public BoxCollider attackRange;
 
     public PlayerCharacterController PCC;
 
@@ -49,7 +52,6 @@ public class PlayerCharacter : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            characterClass = CharacterType.Sword;
             weaponManager = new WeaponManager();
             rigidbody = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();

@@ -9,6 +9,7 @@ using UnityEngine.VFX;
 using CharacterController;
 using System.Data;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -19,12 +20,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public Vector3 calculatedDirection { get; private set; }
     PlayerAttack playerAttack;
 
-    [SerializeField]
-    GameObject bullet;
-    [SerializeField]
-    Transform shotPosition;
-    [SerializeField]
-    VisualEffect slash;
     [SerializeField]
     Camera cam;
 
@@ -54,11 +49,13 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private Coroutine dashCoroutine;
     private Coroutine dashCoolTimeCoroutine;
     private int currentDashCount;
+    public static bool canMove = true;
 
     private void Start()
     {
         player = GetComponent<PlayerCharacter>();
-        
+        hasMoveAnimation = Animator.StringToHash("moveSpeed");
+
         DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);
         DASH_RE_INPUT_TIME = new WaitForSeconds(dashReInputTime);
         DASH_TETANY_TIME = new WaitForSeconds(dashTetanyTime);
@@ -67,6 +64,13 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private void Update()
     {
         GetMousePosition();
+        Move();
+        // Cursor.visible = false;
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     public void Damage(float damageTaken)
@@ -78,7 +82,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        player.stateMachine.ChangeState(StateName.MOVE);
+        // player.stateMachine.ChangeState(StateName.MOVE);
         Vector3 input = context.ReadValue<Vector3>();
         direction = new Vector3(input.x, 0f, input.z);
     }
@@ -89,27 +93,40 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     float timer;
     public void OnClickLeftMouse(InputAction.CallbackContext context)
-    {
-        
+    {        
         if (context.performed)
-        {
-                
+        {         
             if (context.interaction is HoldInteraction)
             {
-            }
-            else if (context.interaction is PressInteraction)
-            {
-                Debug.Log(AttackState.IsAttack);
                 bool isAvailableAttack = !AttackState.IsBaseAttack &&
                    (player.weaponManager.Weapon.ComboCount < 3);
 
                 if (isAvailableAttack)
                 {
                     AttackState.IsBaseAttack = true;
+                    AttackState.isHolding = true;
+                    Debug.Log("HoldInteraction AttackState");
+                    player.stateMachine.ChangeState(StateName.ATTACK);
+                }
+            }
+            else if (context.interaction is PressInteraction)
+            {
+                Debug.Log(AttackState.isHolding);
+                bool isAvailableAttack = !AttackState.IsBaseAttack &&
+                   (player.weaponManager.Weapon.ComboCount < 3);
+
+                if (isAvailableAttack)
+                {
+                    AttackState.IsBaseAttack = true;
+                    AttackState.isHolding = false;
+                    Debug.Log("PressInteraction AttackState");
+
                     player.stateMachine.ChangeState(StateName.ATTACK);
                 }
             }
         }
+        if (context.canceled)
+            AttackState.isHolding = false;
     }
     public void OnDashInput(InputAction.CallbackContext context)
     {
@@ -169,6 +186,41 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         }
     }
 
+    public const float CONVERT_UNIT_VALUE = 0.01f;
+    public const float DEFAULT_CONVERT_MOVESPEED = 3f;
+    public const float DEFAULT_ANIMATION_PLAYSPEED = 0.9f;
+    private int hasMoveAnimation;
+
+
+    protected float GetAnimationSyncWithMovement(float changedMoveSpeed)
+    {
+        if (direction == Vector3.zero)
+        {
+            return -DEFAULT_ANIMATION_PLAYSPEED;
+        }
+
+        return (changedMoveSpeed - DEFAULT_CONVERT_MOVESPEED) * 0.5f;
+    }
+
+    public void Move()
+    {
+        if (!canMove)
+            return;
+
+        #region #캐릭터 움직임 구현
+        float curretnMoveSpeed = player.MoveSpeed * CONVERT_UNIT_VALUE;
+        float animationPlaySpeed = DEFAULT_ANIMATION_PLAYSPEED *
+                                    GetAnimationSyncWithMovement(curretnMoveSpeed);
+
+        PlayerCharacter.Instance.rigidbody.velocity =
+            direction * curretnMoveSpeed +
+            Vector3.up * PlayerCharacter.Instance.rigidbody.velocity.y;
+
+        if (animationPlaySpeed < 0f) animationPlaySpeed = 0f;
+
+        PlayerCharacter.Instance.animator.SetFloat("moveSpeed", animationPlaySpeed);
+        #endregion
+    }
 
     public void Dash()
     {
@@ -202,7 +254,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         player.rigidbody.velocity = Vector3.zero;
 
         yield return DASH_TETANY_TIME;
-        playerState = PlayerState.MOVE;
+        player.stateMachine.ChangeState(StateName.MOVE);
 
         dashCoolTimeCoroutine = StartCoroutine(DashCoolTimeCoroutine());
     }
@@ -210,7 +262,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private IEnumerator DashCoolTimeCoroutine()
     {
         float currentTime = 0f;
-        int dashCount = player.DashCount;
+
         while (true)
         {
             currentTime += Time.deltaTime;
@@ -219,7 +271,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             yield return null;
         }
 
-        if (currentDashCount == dashCount)
+        if (currentDashCount == player.DashCount)
             currentDashCount = 0;
     }
 

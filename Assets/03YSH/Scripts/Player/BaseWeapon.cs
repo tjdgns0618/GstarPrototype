@@ -8,8 +8,6 @@ public abstract class BaseWeapon : MonoBehaviour
     public int ComboCount { get; set; }
     public PlayerAnimationEvents playerAnimationEvents;
     public RuntimeAnimatorController WeaponAnimator { get { return weaponAnimator; } }
-
-    public string Name { get { return _name; } }
     public float AttackDamage { get { return attackDamage; } }
     public float AttackSpeed { get { return attackSpeed; } }
     public float AttackRange { get { return attackRange; } }

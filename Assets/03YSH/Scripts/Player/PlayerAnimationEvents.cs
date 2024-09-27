@@ -21,10 +21,23 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnFinishedAttack()
     {
+        //AttackState.IsAttack = false;
+        //AttackState.IsBaseAttack = false;
+        //PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
+        //if(!AttackState.isHolding)
+        //    PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        //AttackState.isAttackAnimationStart = true;
+
         AttackState.IsAttack = false;
         AttackState.IsBaseAttack = false;
         PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+
+        AttackState.canAttack = true;
+
+        //if (!AttackState.isHolding)
+        //{
+        //    PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        //}
     }
 
     public void OnStartSkill_Q()
@@ -37,7 +50,7 @@ public class PlayerAnimationEvents : MonoBehaviour
         AttackState.IsAttack = false;
         AttackState.IsSkill_Q = false;
         PlayerCharacter.Instance.animator.SetBool("IsSkill_Q", false);
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
 
     public void OnFinishedSkill_E()
@@ -45,7 +58,7 @@ public class PlayerAnimationEvents : MonoBehaviour
         AttackState.IsAttack = false;
         AttackState.IsSkill_E = false;
         PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
 
     public void OnFinishedSkill_R()
@@ -53,15 +66,15 @@ public class PlayerAnimationEvents : MonoBehaviour
         AttackState.IsAttack = false;
         AttackState.IsSkill_R = false;
         PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
 
     public void OnFinishedDash()
     {
         DashState.IsDash = false;
         PlayerCharacter.Instance.animator.SetBool("IsDashing", false);
-        
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+
+        PlayerCharacterController.canMove = true;
     }
 
     public void AttackColliderChange()
