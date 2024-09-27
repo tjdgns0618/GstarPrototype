@@ -5,6 +5,13 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using CharacterController;
 
+public enum CharacterType
+{
+    Sword = 0,
+    Archer = 1,
+    Wizard = 2,
+}
+
 public class PlayerCharacter : MonoBehaviour
 {
     public static PlayerCharacter Instance { get { return instance; } }
@@ -14,6 +21,7 @@ public class PlayerCharacter : MonoBehaviour
     public Animator animator { get; private set; }
     public GameObject effectGenerator;
     public Quaternion targetRotation;
+    public CharacterType characterClass;
 
     private static PlayerCharacter instance;
 
@@ -41,6 +49,7 @@ public class PlayerCharacter : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            characterClass = CharacterType.Sword;
             weaponManager = new WeaponManager();
             rigidbody = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();

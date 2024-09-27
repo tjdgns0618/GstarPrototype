@@ -74,8 +74,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         player.animator.ResetTrigger("hit");
         player.animator.SetTrigger("hit");
         player.OnUpdateStat(player.MaxHp, player.CurrentHp - damageTaken, player.MoveSpeed, player.DashCount);
-
-        //Debug.Log("남은 체력 = " + player.CurrentHp);
     }
     
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -128,12 +126,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     public void OnClickQ(InputAction.CallbackContext context)
     {
-        // && !AttackState.IsBaseAttack
         if (context.performed && !AttackState.IsBaseAttack)
         {
             if (context.interaction is PressInteraction)
             {
-                // Debug.Log("Q" + AttackState.IsSkill_Q);
                 bool isAvailableSkill = !AttackState.IsSkill_Q;
                 // 스킬 쿨타임 다 찼을때 isAvailableSkill true로 초기화
 
@@ -230,26 +226,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public void Dead()
     {
 
-    }    
+    }
     
     void GetMousePosition()
     {
-        //Vector3 mouseWorldPosition =
-        //    Camera.main.ScreenToWorldPoint(
-        //        new Vector3(
-        //        mousePosition.x,
-        //        mousePosition.y,
-        //        Camera.main.transform.position.y));
-
-        //// 캐릭터와 마우스 사이의 방향 계산
-        //Vector3 direction = mouseWorldPosition - transform.position;
-        //direction.y = 0f;  // 캐릭터의 Y축은 변경하지 않음 (수평 회전만 적용)
-        //                   // 마우스 방향으로의 회전 계산
-
-        //Quaternion targetRotation = Quaternion.LookRotation(direction);
-        //player.targetRotation = targetRotation;
-        //transform.rotation = targetRotation;
-
         Vector3 mouseWorldPosition =
             Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.y));
 

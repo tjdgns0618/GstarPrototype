@@ -15,6 +15,7 @@ public class PlayerAttack : BaseWeapon, IEffect
     public readonly int hashAttackSpeedAnimation = Animator.StringToHash("AttackSpeed");
     private Coroutine checkAttackReInputCor;
     public GameObject[] defaultAttackEffs;
+    public GameObject[] SkillEffs;
     public Vector3 adjustTransform;
         
     [SerializeField]
@@ -87,6 +88,9 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public void PlaySkillEffect()
     {
-        throw new System.NotImplementedException();
+        GameObject effect = Instantiate(SkillEffs[(int)PlayerCharacter.Instance.characterClass], PlayerCharacter.Instance.transform.position, PlayerCharacter.Instance.transform.rotation);
+
+        GroundSlash groundSlashScript = effect.GetComponent<GroundSlash>();
+        effect.GetComponent<Rigidbody>().velocity = PlayerCharacter.Instance.transform.forward * groundSlashScript.speed;
     }
 }
