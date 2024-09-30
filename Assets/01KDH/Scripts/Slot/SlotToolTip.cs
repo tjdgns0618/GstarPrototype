@@ -10,9 +10,8 @@ public class SlotToolTip : MonoBehaviour
 
     public TextMeshProUGUI txt_Itemname;
     public TextMeshProUGUI txt_Itemeffect;
-    public TextMeshProUGUI txt_Iteminfo;
 
-    public void ShowToolTip(Item _item, Vector3 _pos)
+    public void ShowToolTip(Item _item, Vector3 _pos, int _count)
     {
         tBox.SetActive(true);
         _pos += new Vector3(tBox.GetComponent<RectTransform>().rect.width * 0.65f,
@@ -20,7 +19,7 @@ public class SlotToolTip : MonoBehaviour
         tBox.transform.position = _pos;
 
         txt_Itemname.text = _item.itemName;
-        txt_Itemeffect.text = _item.itemEffect;
+        txt_Itemeffect.text = string.Format(_item.itemEffect, _count);
     }
 
     public void HideToolTip()

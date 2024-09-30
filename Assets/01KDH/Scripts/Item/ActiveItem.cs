@@ -17,8 +17,11 @@ public class ActiveItem : MonoBehaviour
 
     //public GameObject _maneulObj;
 
+    public GameManager gm;
+
     private void Start()
     {
+        gm = GameManager.instance;
         StartCoroutine(LateStart());
         //_08item = new WaitForSeconds(15f);
         //_09item = new WaitForSeconds(30f);
@@ -56,7 +59,7 @@ public class ActiveItem : MonoBehaviour
     public void _06Item()
     {
         Debug.Log("asdfasfdfsafasfdsaf");
-        Transform firework = GameManager.instance.itempools.Get(1).transform;
+        Transform firework = gm.itempools.Get(1).transform;
         firework.parent = transform;
         firework.transform.position = PlayerCharacter.Instance.transform.position + new Vector3(0, 3, 0);
     }    

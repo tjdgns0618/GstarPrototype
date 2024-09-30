@@ -35,6 +35,7 @@ public class RewardSlot : InvenSlot
 
         _rewardName.text = _item.name;
         _rewardEffect.text = _item.itemEffect;
+        
         SetColor(1);
     }
     // 슬롯에 아이템 추가 (아이템이 하나일 때 사용)

@@ -28,8 +28,8 @@ public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         item = _item;
         itemCount = _count;
         itemImage.sprite = item.itemImage;
-
         textCount.text = itemCount.ToString();
+        //textCount.text = _item.GetFormattedEffect(1);
 
         SetColor(1);
     }
@@ -55,7 +55,7 @@ public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (item != null)
-            _slotToolTip.ShowToolTip(item, transform.position);
+            _slotToolTip.ShowToolTip(item, transform.position, itemCount);
     }
 
     public void OnPointerExit(PointerEventData eventData)
