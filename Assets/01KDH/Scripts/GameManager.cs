@@ -26,10 +26,17 @@ public class GameManager : MonoBehaviour
     public float _critchance = 10f;
     public float _critdmg = 150f;
 
-    public int _dashcount = 1;
+    public float _lifesteal = 0f;
+    public float _lifegen = 0f;
 
+    public int _dashcount = 1;
+    public int _skillcount = 1;
+    public int _ultcount = 1;
+
+    public int _revivecount = 0;
 
     public bool isHit = false;  // 플레이어가 피격했는지 확인하는 변수
+    public bool isPause = false;
 
     private void Awake()
     {
