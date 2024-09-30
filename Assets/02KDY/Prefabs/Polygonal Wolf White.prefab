@@ -1110,10 +1110,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.48
-  m_Height: 1.7
+  m_Radius: 0.58989835
+  m_Height: 1.5598017
   m_Direction: 2
-  m_Center: {x: 0, y: 0.42, z: 0}
+  m_Center: {x: 0, y: 0.5298983, z: -0.070099175}
 --- !u!54 &7414831138920104070
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   _detectRange: 10
-  _attackRange: 1.5
+  _attackRange: 2
   _movementSpeed: 10
   enemyAttack: {fileID: 3810629070147215833}
   bullet: {fileID: 0}

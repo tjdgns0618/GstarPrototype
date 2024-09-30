@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5924592944483947783}
   - component: {fileID: -6784758214664706658}
   - component: {fileID: 3340234302040158142}
-  - component: {fileID: 9221278172882553701}
+  - component: {fileID: 2649803235693750162}
   m_Layer: 0
-  m_Name: bullet
+  m_Name: bullet2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5000001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9221278172882553701
+--- !u!114 &2649803235693750162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1293491881183770582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba963996b4d7ad4cb67131919b79ffd, type: 3}
+  m_Script: {fileID: 11500000, guid: 26a64144c8d3d694ab103a4a4b02778b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetname: Enemy
+  speed: 20
+  maxDistance: 5

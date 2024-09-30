@@ -8,8 +8,8 @@ using TMPro;
 
 public class spawner1 : MonoBehaviour
 {
-    public List<GameObject> enemyprefab; //enemy프리팹
-    public Transform player; // 플레이어의 위치
+    public List<GameObject> enemyPrefab; //enemy프리팹
+    public Transform spawnPos; //스폰 중심 위치
     public GameObject portal;
     public GameObject rewardUI;
     public GameObject bossprefab;
@@ -19,7 +19,7 @@ public class spawner1 : MonoBehaviour
 
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
-    public int firstWaveEnemy = 5; //첫번째 웨이브에 나오는 enemy의 수
+    public int firstWaveEnemy = 10; //첫번째 웨이브에 나오는 enemy의 수
     public float spawnInterval = 3f; //enemy 생성 주기
     public float waveInterval = 5f; //웨이브 간 대기 시간
     public int maxWaves = 5; //최대 웨이브 수
@@ -33,11 +33,19 @@ public class spawner1 : MonoBehaviour
     private int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
     private int enemiesLeft;
 
+//    [SerializeField]
+//    private List<EnemyPoolManager.Pool> pools = new List<EnemyPoolManager.Pool>
+//{
+//    new EnemyPoolManager.Pool { tag = "Enemy", prefab = enemyPrefab, size = 20 },
+//};
+
     public delegate void Action();
     public Action enemyDead;
 
+    WaitForSeconds wInterval;
     void Start()
     {
+        wInterval= new WaitForSeconds(spawnInterval);
         StartWave();
         enemyDead += OnEnemyDeath;     // 이벤트 등록
     }
@@ -77,7 +85,7 @@ public class spawner1 : MonoBehaviour
         {
             currentWave++; //다음 웨이브로 넘어감
             SetupWave(); //웨이브 설정
-            yield return new WaitForSeconds(spawnInterval);
+            yield return wInterval;
             yield return StartCoroutine(SpawnEnemy()); //몬스터 생성
         }
 
@@ -87,7 +95,7 @@ public class spawner1 : MonoBehaviour
     public void SetupWave()
     {
         enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가
-        totalEnemiesInWave = enemyPerSpawn; //웨이브마다 총 생성할 몬스터의 수(지금은 웨이브 당 4마리씩 증가 ex.10->14->18)
+        totalEnemiesInWave = enemyPerSpawn; //웨이브마다 총 생성할 몬스터의 수
         spawnedCount = 0;
         enemiesLeft = totalEnemiesInWave;
         UpdateWaveInfoUI();
@@ -105,12 +113,12 @@ public class spawner1 : MonoBehaviour
                 Vector3 randomPosition = GetRandomPosition(); // 플레이어 주변 랜덤 위치 생성
 
                 // 플레이어와의 최소 거리가 유지되는지 확인
-                if (Vector3.Distance(randomPosition, player.position) >= minDistancefromPlayer)
+                if (Vector3.Distance(randomPosition, spawnPos.position) >= minDistancefromPlayer)
                 {
                     // 기존에 생성된 적과의 거리가 충분한지 확인
                     if (!IsPositionOccupied(randomPosition))
                     {
-                        GameObject randomEnemyPrefab = enemyprefab[Random.Range(0, enemyprefab.Count)]; // 랜덤한 enemy프리팹 선택
+                        GameObject randomEnemyPrefab = enemyPrefab[Random.Range(0, enemyPrefab.Count)]; // 랜덤한 enemy프리팹 선택
 
                         // Y축 기준 랜덤 회전 생성 (0도 ~ 360도)
                         Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
@@ -143,15 +151,15 @@ public class spawner1 : MonoBehaviour
         return false; // 충분히 떨어져 있으면 위치를 사용할 수 있음
     }
 
-    //플레이어 주변의 랜덤한 위치를 반환하는 함수
+    //spawnPos 주변의 랜덤한 위치를 반환하는 함수
     Vector3 GetRandomPosition()
     {
         //스폰 영역 내에서 랜덤한 위치 생성
         Vector2 randomCirclePoint = Random.insideUnitSphere * spawnRadius; //원형 범위 내에서 랜덤한 2D좌표
         Vector3 randomPosition = new Vector3(randomCirclePoint.x, 0, randomCirclePoint.y); //y를 0으로 설정하여 평면에서 생성
 
-        // 플레이어의 위치 기준해서 오프셋 적용
-        randomPosition += player.position;
+        // spawnPos의 위치 기준해서 오프셋 적용
+        randomPosition += spawnPos.position;
 
         return randomPosition;
     }
@@ -160,10 +168,10 @@ public class spawner1 : MonoBehaviour
     void OnDrawGizmosSelected() //디버그용 코드(스폰 범위 시각화)
     {
         Gizmos.color = Color.green;
-        if (player != null)
+        if (spawnPos != null)
         {
-            //플레이어 위치를 중심해서 스폰 반경 표시
-            Gizmos.DrawWireSphere(player.position, spawnRadius);
+            //spawnPos를 중심해서 스폰 반경 표시
+            Gizmos.DrawWireSphere(spawnPos.position, spawnRadius);
         }
     }
     public void OnEnemyDestroyed()
@@ -173,7 +181,7 @@ public class spawner1 : MonoBehaviour
     }
     void UpdateWaveInfoUI()
     {
-        waveInfoText.text = $" Enemies Left : {enemiesLeft}";
+        waveInfoText.text = $" 남은 적 : {enemiesLeft}";
     }
     public void increaseStage()
     {
@@ -184,5 +192,4 @@ public class spawner1 : MonoBehaviour
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
     }
-
 }

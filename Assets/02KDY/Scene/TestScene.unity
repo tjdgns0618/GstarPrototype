@@ -923,6 +923,10 @@ PrefabInstance:
       propertyPath: m_text
       value: 1 Stage
       objectReference: {fileID: 0}
+    - target: {fileID: 3923033488142766370, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4002938435498300372, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
       propertyPath: rewardBtn
       value: 
@@ -1135,6 +1139,46 @@ PrefabInstance:
       propertyPath: _slotToolTip
       value: 
       objectReference: {fileID: 1283127792}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_text
+      value: "\uB0A8\uC740 \uC801 : 0"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 88e5bb682d3aef54baf8fd6d63e9e7eb, type: 2}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -7663975852802626781, guid: 88e5bb682d3aef54baf8fd6d63e9e7eb, type: 2}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335460949682313575, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9013993537394715287, guid: 8e3f4618f7a3d1a48aca4b636005c173, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2993,12 +3037,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314b09864c803b9428417a38cc7038bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyprefab:
-  - {fileID: 1372988556098474, guid: 3a09def1ff2b15e42b2f8c3d2716fca2, type: 3}
+  enemyPrefab:
   - {fileID: 1666637062901154, guid: d1b7ec3c5379803498bdcdce2a411aac, type: 3}
-  player: {fileID: 949596963}
+  - {fileID: 1372988556098474, guid: 3a09def1ff2b15e42b2f8c3d2716fca2, type: 3}
+  spawnPos: {fileID: 949596963}
   portal: {fileID: 952685967}
   rewardUI: {fileID: 901174566}
+  bossprefab: {fileID: 0}
   waveInfoText: {fileID: 1966161529}
   stageInfoText: {fileID: 2094783439}
   spawnRadius: 10
@@ -7094,6 +7139,9 @@ MonoBehaviour:
   statWindow: {fileID: 15479896}
   pauseWindow: {fileID: 1717155141}
   fieldUI: {fileID: 0}
+  innShowObj: {fileID: 0}
+  wizardShowObj: {fileID: 0}
+  blacksmithShowObj: {fileID: 0}
   characterSelectionUI:
   - {fileID: 880617090}
   - {fileID: 880617089}
@@ -10455,7 +10503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6288321212404497852, guid: f0dbc6cea9a761645b392ad4f3510a14, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.6
+      value: 12.1
       objectReference: {fileID: 0}
     - target: {fileID: 6288321212404497852, guid: f0dbc6cea9a761645b392ad4f3510a14, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10463,7 +10511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6288321212404497852, guid: f0dbc6cea9a761645b392ad4f3510a14, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.2
+      value: 11.9
       objectReference: {fileID: 0}
     - target: {fileID: 6288321212404497852, guid: f0dbc6cea9a761645b392ad4f3510a14, type: 3}
       propertyPath: m_LocalRotation.w
