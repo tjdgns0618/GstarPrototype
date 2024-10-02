@@ -102,11 +102,17 @@ public class spawner1 : MonoBehaviour
         Debug.Log($"{currentWave}웨이브 시작! 적 {totalEnemiesInWave}개 생성");
     }
 
-    IEnumerator SpawnEnemy() //일정 시간 간격으로 몬스터 생성
+    IEnumerator SpawnEnemy() // 일정 시간 간격으로 몬스터 생성
     {
-        while (spawnedCount < totalEnemiesInWave)
+        int enemiesToSpawn = totalEnemiesInWave; // 남은 적의 수
+        int enemiesInThisBatch; // 이번 배치에서 생성할 적의 수
+
+        while (enemiesToSpawn > 0)
         {
-            for (int i = 0; i < enemyPerSpawn; i++)
+            // 이번 배치에서 생성할 적의 수를 계산 (최대 firstWaveEnemy 마리까지만 생성)
+            enemiesInThisBatch = Mathf.Min(firstWaveEnemy, enemiesToSpawn);
+
+            for (int i = 0; i < enemiesInThisBatch; i++)
             {
                 if (spawnedCount >= totalEnemiesInWave) break; // 현재 웨이브의 총 몬스터 수 초과 방지
 
@@ -126,12 +132,16 @@ public class spawner1 : MonoBehaviour
                         // 적을 랜덤한 위치와 회전으로 생성
                         Instantiate(randomEnemyPrefab, randomPosition, randomRotation);
                         spawnedCount++;
+                        enemiesToSpawn--; // 남은 적 수 감소
                     }
                 }
             }
-            yield return null;
+
+            // 다음 배치를 생성하기 전에 대기
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
+
 
     // 다른 적들과의 거리를 계산하여 겹치지 않도록 체크하는 함수
     bool IsPositionOccupied(Vector3 position)
