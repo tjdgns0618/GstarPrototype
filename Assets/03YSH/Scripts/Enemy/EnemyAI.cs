@@ -253,7 +253,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         if(spawner != null)             // enemy를 카운트 하기 위해 넣은 조건문 (문제 발생 시 삭제)
         {
-            spawner.OnEnemyDestroyed();
+            //spawner.OnEnemyDestroyed();
         }
     }
 

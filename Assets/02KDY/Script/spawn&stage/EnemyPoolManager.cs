@@ -12,13 +12,13 @@ public class EnemyPoolManager : MonoBehaviour
         public int size;
     }
 
-    public static EnemyPoolManager instance;
+    public static EnemyPoolManager Instance;
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach(Pool pool in pools)

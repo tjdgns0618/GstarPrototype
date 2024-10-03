@@ -533,7 +533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2669383855729745665, guid: e3ebcef127e61f746a3b198ea4ac2982, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: increaseStage
+      value: OnFieldYes
       objectReference: {fileID: 0}
     - target: {fileID: 2669383855729745665, guid: e3ebcef127e61f746a3b198ea4ac2982, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -3048,7 +3048,7 @@ MonoBehaviour:
   stageInfoText: {fileID: 2094783439}
   spawnRadius: 10
   minDistancefromPlayer: 5
-  firstWaveEnemy: 10
+  firstWaveEnemy: 1
   spawnInterval: 3
   waveInterval: 1
   maxWaves: 5
@@ -8302,6 +8302,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639cc4dcfc80530438f756c356ff0762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1469028883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1469028884}
+  - component: {fileID: 1469028885}
+  m_Layer: 0
+  m_Name: EnemyPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1469028884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469028883}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2068905114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1469028885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469028883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90121a5842f40404696ec4592570a085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: 
+    prefab: {fileID: 1372988556098474, guid: 3a09def1ff2b15e42b2f8c3d2716fca2, type: 3}
+    size: 10
+  - tag: 
+    prefab: {fileID: 1666637062901154, guid: d1b7ec3c5379803498bdcdce2a411aac, type: 3}
+    size: 10
 --- !u!1001 &1499440733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10217,6 +10268,7 @@ Transform:
   - {fileID: 2010012742}
   - {fileID: 948837459}
   - {fileID: 98979235}
+  - {fileID: 1469028884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2078584684 stripped

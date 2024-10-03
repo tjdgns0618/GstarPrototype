@@ -20,7 +20,7 @@ public class spawner1 : MonoBehaviour
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
     public int firstWaveEnemy = 10; //첫번째 웨이브에 나오는 enemy의 수
-    public float spawnInterval = 3f; //enemy 생성 주기
+    public float spawnInterval = 5f; //enemy 생성 주기
     public float waveInterval = 5f; //웨이브 간 대기 시간
     public int maxWaves = 5; //최대 웨이브 수
     public int currentWave = 0; //현재 웨이브
@@ -33,11 +33,11 @@ public class spawner1 : MonoBehaviour
     private int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
     private int enemiesLeft;
 
-//    [SerializeField]
-//    private List<EnemyPoolManager.Pool> pools = new List<EnemyPoolManager.Pool>
-//{
-//    new EnemyPoolManager.Pool { tag = "Enemy", prefab = enemyPrefab, size = 20 },
-//};
+    //[SerializeField]
+    //private List<EnemyPoolManager.Pool> pools = new List<EnemyPoolManager.Pool>
+    //{
+    //new EnemyPoolManager.Pool { tag = "Enemy", prefab = enemyPrefab, size = 20 },
+    //};
 
     public delegate void Action();
     public Action enemyDead;
@@ -59,10 +59,10 @@ public class spawner1 : MonoBehaviour
     void OnEnemyDeath()                     //살아있는 적의 수가 0이 되면 NextWave 함수 호출
     {
         spawnedCount--;
-
+        Debug.Log(enemiesLeft);
         UpdateWaveInfoUI();
-
-        if (spawnedCount == 0)
+        OnEnemyDestroyed();
+        if (enemiesLeft == 0)
         {
             if(currentWave == maxWaves)
             {
@@ -94,8 +94,8 @@ public class spawner1 : MonoBehaviour
 
     public void SetupWave()
     {
-        enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가
-        totalEnemiesInWave = enemyPerSpawn; //웨이브마다 총 생성할 몬스터의 수
+        enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가 ex_firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
+        totalEnemiesInWave = enemyPerSpawn; 
         spawnedCount = 0;
         enemiesLeft = totalEnemiesInWave;
         UpdateWaveInfoUI();
@@ -146,7 +146,7 @@ public class spawner1 : MonoBehaviour
     // 다른 적들과의 거리를 계산하여 겹치지 않도록 체크하는 함수
     bool IsPositionOccupied(Vector3 position)
     {
-        float minDistanceBetweenEnemies = 2f; // 적들 간의 최소 거리 설정
+        float minDistanceBetweenEnemies = 3f; // 적들 간의 최소 거리 설정
 
         GameObject[] spawnedEnemies = GameObject.FindGameObjectsWithTag("Enemy"); // 이미 생성된 적들을 찾음
 
@@ -201,5 +201,11 @@ public class spawner1 : MonoBehaviour
         currentWave = 0;
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
+    }
+
+    public void OnFieldYes()
+    {
+        portal.SetActive(false);
+        currentStage++;
     }
 }
