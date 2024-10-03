@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using CharacterController;
+using UnityEditor.Animations;
+using UnityEngine.UIElements;
 
 public enum CharacterType
 {
@@ -18,10 +20,22 @@ public class PlayerCharacter : MonoBehaviour
     public WeaponManager weaponManager { get; private set; }
     public StateMachine stateMachine { get; private set; }
     public new Rigidbody rigidbody { get; private set; }
-    public Animator animator { get; private set; }
+    public Animator animator { get; set; }
+    public AnimatorController animatorCon { get; set; }
+
+    // public SkinnedMeshRenderer skinnedMeshRenderer;
+
     public GameObject effectGenerator;
-    public Quaternion targetRotation;
+
     public CharacterType characterClass;
+
+    [Header("Character Meshs")]
+    public Mesh[] classMesh;
+    [Header("Character AnimatorControllers")]
+    public RuntimeAnimatorController[] classControllers;
+    [Header("Character WeaponObjects")]
+    public GameObject[] weaponObjects;
+
 
     private static PlayerCharacter instance;
 
@@ -47,6 +61,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public PlayerCharacterController PCC;
 
+
     private void Awake()
     {
         if (instance == null)
@@ -54,11 +69,9 @@ public class PlayerCharacter : MonoBehaviour
             instance = this;
             weaponManager = new WeaponManager();
             rigidbody = GetComponent<Rigidbody>();
-            animator = GetComponent<Animator>();
-            DontDestroyOnLoad(gameObject);
+            animator = GetComponent<Animator>();            
             return;
         }
-        DestroyImmediate(gameObject);
     }
 
     private void Start()

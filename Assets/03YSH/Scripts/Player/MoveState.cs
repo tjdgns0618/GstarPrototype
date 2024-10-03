@@ -34,8 +34,7 @@ namespace CharacterController
 
         public override void OnExitState()
         {
-            PlayerCharacter.Instance.animator.SetFloat(hasMoveAnimation, 0f);
-            PlayerCharacter.Instance.rigidbody.velocity = Vector3.zero;
+
         }
 
         public override void OnUpdateState()
@@ -46,6 +45,10 @@ namespace CharacterController
         public override void OnFixedUpdateState()
         {
 
+        }
+
+        public override void Init(float dashPower, float dashTetanyTime, float dashCooltime)
+        {
         }
     }
 }

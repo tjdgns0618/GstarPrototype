@@ -19,7 +19,7 @@ public class ActiveItem : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LateStart());
+        // StartCoroutine(LateStart());
         //_08item = new WaitForSeconds(15f);
         //_09item = new WaitForSeconds(30f);
         //_10item = new WaitForSeconds(10f);
