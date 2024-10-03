@@ -253,7 +253,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         if(spawner != null)             // enemy를 카운트 하기 위해 넣은 조건문 (문제 발생 시 삭제)
         {
-            spawner.OnEnemyDestroyed();
+            //spawner.OnEnemyDestroyed();
         }
     }
 
@@ -293,5 +293,5 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
         temp.transform.forward = transform.forward;
         //temp.transform.Rotate(new Vector3(90f, transform.rotation.y, 0f));
-    }  
+    }
 }
