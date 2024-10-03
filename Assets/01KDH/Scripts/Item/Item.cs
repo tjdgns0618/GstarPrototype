@@ -18,6 +18,4 @@ public class Item : ScriptableObject
 
     [TextArea]
     public string itemEffect;
-    [TextArea]
-    public string itemInfo;
 }

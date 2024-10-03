@@ -1,0 +1,331 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf67b50d6decc78439091cbdce112493, type: 3}
+  m_Name: ItemDB
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - itemID: 0
+    itemText: "\uC2A4\uD0AC \uCFE8\uD0C0\uC784 \uAC10\uC18C"
+    itemVariable: 8
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 1
+    itemText: "\uB370\uBBF8\uC9C0 \uC99D\uAC00"
+    itemVariable: 8
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 2
+    itemText: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
+    itemVariable: 8
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 3
+    itemText: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
+    itemVariable: 4
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 4
+    itemText: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
+    itemVariable: 10
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 5
+    itemText: "\uCE58\uBA85\uD0C0 \uB370\uBBF8\uC9C0 \uC99D\uAC00"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 6
+    itemText: "\uCE58\uBA85\uD0C0 \uD655\uB960 \uC99D\uAC00"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 7
+    itemText: "\uBAA8\uB4E0 \uC2A4\uD0EF \uC99D\uAC00"
+    itemVariable: 5
+    itemVariable2: 3
+    itemVariable3: 3
+    itemVariable4: 5
+  - itemID: 8
+    itemText: "\uB300\uC2DC \uD69F\uC218 \uC99D\uAC00"
+    itemVariable: 1
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 9
+    itemText: "\uBC94\uC704 \uC99D\uAC00"
+    itemVariable: 10
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 10
+    itemText: "\uACF5\uACA9\uB825 \uC99D\uAC00, \uACF5\uACA9\uC18D\uB3C4 \uAC10\uC18C
+      \uBC0F \uCFE8\uD0C0\uC784 \uC99D\uAC00"
+    itemVariable: 30
+    itemVariable2: 5
+    itemVariable3: 5
+    itemVariable4: 0
+  - itemID: 11
+    itemText: "\uACF5\uACA9\uB825 \uAC10\uC18C, \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00
+      \uBC0F \uCFE8\uD0C0\uC784 \uAC10\uC18C"
+    itemVariable: 25
+    itemVariable2: 10
+    itemVariable3: 7
+    itemVariable4: 0
+  - itemID: 12
+    itemText: "\uC2A4\uD0AC \uCDA9\uC804 \uD69F\uC218 \uC99D\uAC00"
+    itemVariable: 1
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 13
+    itemText: "\uAD81\uADF9\uAE30 \uC2A4\uD0AC \uCDA9\uC804 \uD69F\uC218 \uC99D\uAC00"
+    itemVariable: 1
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 14
+    itemText: "\uD1A0\uD15C \uBB34\uC2DC\uD558\uACE0 \uC9C4\uD589\uC2DC \uC2A4\uD0EF
+      \uC99D\uAC00"
+    itemVariable: 3
+    itemVariable2: 2
+    itemVariable3: 2
+    itemVariable4: 0
+  - itemID: 15
+    itemText: "\uCD5C\uB300 \uCCB4\uB825 \uB300\uD3ED \uAC10\uC18C \uACF5\uACA9\uB825
+      \uB300\uD3ED \uC99D\uAC00"
+    itemVariable: 30
+    itemVariable2: 40
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 16
+    itemText: "\uCD5C\uB300 \uCCB4\uB825 \uB300\uD3ED \uAC10\uC18C, \uACE8\uB4DC
+      \uD68D\uB4DD \uC99D\uAC00"
+    itemVariable: 20
+    itemVariable2: 15
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 17
+    itemText: "\uCD5C\uB300 \uCCB4\uB825 \uB300\uD3ED \uAC10\uC18C, \uCCB4\uB825
+      \uD761\uD608 \uB2A5\uB825 \uD76D\uB4DD \uBC0F \uB300\uD3ED \uC99D\uAC00"
+    itemVariable: 20
+    itemVariable2: 15
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 18
+    itemText: "\uCD5C\uB300 \uCCB4\uB825 \uB300\uD3ED \uC99D\uAC00, \uC774\uB3D9
+      \uC18D\uB3C4 \uB300\uD3ED \uAC10\uC18C"
+    itemVariable: 30
+    itemVariable2: 12
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 19
+    itemText: "\uB300\uC2DC \uC0AC\uC6A9 \uBD88\uAC00, \uC774\uB3D9 \uC18D\uB3C4
+      \uB300\uD3ED \uC99D\uAC00"
+    itemVariable: 30
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 20
+    itemText: "\uCE58\uBA85\uD0C0 \uD655\uB960 \uACE0\uC815, \uCE58\uBA85\uD0C0 \uCD94\uAC00\uB370\uBBF8\uC9C0
+      \uB300\uD3ED \uC0C1\uC2B9"
+    itemVariable: 50
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 21
+    itemText: "\uC2A4\uD0AC \uC0AC\uC6A9\uC2DC \uD655\uB960\uB85C \uB2E4\uB978 \uC2A4\uD0AC
+      \uCFE8\uD0C0\uC784 \uAC10\uC18C"
+    itemVariable: 4
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 22
+    itemText: "\uC77C\uC815 \uC2DC\uAC04\uB9C8\uB2E4 \uCCB4\uB825 \uC790\uB3D9\uD68C\uBCF5"
+    itemVariable: 1
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 23
+    itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uCD5C\uB300\uCCB4\uB825 \uB79C\uB364
+      \uBCC0\uACBD 50% ~ 200%"
+    itemVariable: 50
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 24
+    itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uB370\uBBF8\uC9C0 \uB79C\uB364
+      \uBCC0\uACBD \uCD5C\uC885\uB370\uBBF8\uC9C0 20% ~ 500%"
+    itemVariable: 20
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 25
+    itemText: "\uC801 \uCC98\uCE58 \uC2DC \uCD5C\uB300\uCCB4\uB825 \uC99D\uAC00 \uCD5C\uB300\uCE58
+      \uC874\uC7AC"
+    itemVariable: 1
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 26
+    itemText: "\uC801 \uCC98\uCE58 \uC2DC \uCD5C\uB300\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00
+      \uCD5C\uB300\uCE58 \uC874\uC7AC"
+    itemVariable: 0.5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 27
+    itemText: "\uC801 \uCC98\uCE58 \uC2DC \uCD5C\uB300\uACF5\uACA9\uB825 \uC99D\uAC00
+      \uCD5C\uB300\uCE58 \uC874\uC7AC"
+    itemVariable: 1
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 28
+    itemText: "\uBD80\uD65C"
+    itemVariable: 1
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 29
+    itemText: "\uC801 \uCC98\uCE58\uC2DC \uCCB4\uB825\uD68C\uBCF5\uC624\uBE0C \uB4DC\uB78D"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 30
+    itemText: "\uC801 \uCC98\uCE58 \uC2DC \uC801 \uD3ED\uBC1C"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 31
+    itemText: "\uC801 \uD53C\uACA9\uC2DC \uD655\uB960\uB85C \uD3ED\uD0C4 \uBD80\uCC29"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 32
+    itemText: "\uC801 \uD53C\uACA9\uC2DC \uD655\uB960\uB85C \uC9C0\uB8B0 \uC124\uCE58"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 33
+    itemText: "\uD53C\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uACF5\uACA9\uBC1B\uC740\uBC29\uD5A5\uC73C\uB85C
+      \uBC94\uC704\uB370\uBBF8\uC9C0"
+    itemVariable: 3
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 34
+    itemText: "\uD53C\uACA9\uC2DC \uD655\uB960\uB85C \uD3ED\uC8FD \uBC1C\uC0AC"
+    itemVariable: 3
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 35
+    itemText: "\uD53C\uACA9\uC2DC \uBC1C\uB3D9\uD615 \uD6A8\uACFC \uB79C\uB364 \uBC1C\uB3D9"
+    itemVariable: 2
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 36
+    itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uCE90\uB9AD\uD130 \uC8FC\uBCC0
+      \uC9C0\uC18D\uD53C\uD574 \uC6D0 \uC0DD\uC131"
+    itemVariable: 10
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 37
+    itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uBC29\uD328\uAC00 \uC0DD\uC131\uB418\uC5B4
+      \uD50C\uB808\uC774\uC5B4\uC640 \uACF5\uC804"
+    itemVariable: 15
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 38
+    itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uC801\uC774 \uC788\uB294\uACF3\uC5D0
+      \uC7A5\uD310"
+    itemVariable: 10
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 39
+    itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uC8FC\uBCC0\uC801 \uC815\uC9C0"
+    itemVariable: 30
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 40
+    itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uC9E7\uC740 \uBB34\uC801"
+    itemVariable: 1
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 41
+    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uC5F0\uC1C4\uBC88\uAC1C"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 42
+    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uBC94\uC704\uD53C\uACA9(\uC5EC\uB798\uC2E0\uC7A5)"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 43
+    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uBC94\uC704 \uC7A5\uD310"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 44
+    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uD22C\uC0AC\uCCB4
+      \uBC1C\uC0AC"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 45
+    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uB418\uB3CC\uC544\uC624\uB294
+      \uD22C\uC0AC\uCCB4 \uBC1C\uC0AC"
+    itemVariable: 5
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 46
+    itemText: "\uCE90\uB9AD\uD130 \uAD50\uCCB4\uC2DC \uBC94\uC704\uB370\uBBF8\uC9C0"
+    itemVariable: 0
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 47
+    itemText: "\uBC14\uB77C\uBCF4\uB294 \uBC29\uD5A5\uC73C\uB85C \uC77C\uC815 \uBC94\uC704\uB9CC\uD07C
+      \uC801 \uC2AC\uB85C\uC6B0"
+    itemVariable: 10
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
+  - itemID: 48
+    itemText: "\uBCBD\uC5D0 \uD295\uAE30\uB294 \uACF5\uACA9 \uBB3C\uCCB4 \uBC1C\uC0AC"
+    itemVariable: 3
+    itemVariable2: 0
+    itemVariable3: 0
+    itemVariable4: 0
