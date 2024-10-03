@@ -3054,7 +3054,7 @@ MonoBehaviour:
   weaponAnimator: {fileID: 9100000, guid: 7fb7836cacbed8149a410db2aa198c03, type: 2}
   _name: Sword
   attackDamage: 20
-  attackSpeed: 1
+  attackSpeed: 5
   attackRange: 3
   defaultAttackEffs:
   - {fileID: 1819066416490906, guid: f71e64e1ba018eb419bd5e9e3ca8a65c, type: 3}
@@ -5126,7 +5126,19 @@ MonoBehaviour:
     m_ActionId: 6ced7fe3-79b8-43db-aa70-bc31d17aeb04
     m_ActionName: Player/Skill3[/Keyboard/r]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2732171614104986436}
+        m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
+        m_MethodName: OnCharacterChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fea75da2-8de5-443e-ba0b-13e66642e257
     m_ActionName: Player/CharacterChange[/Keyboard/1,/Keyboard/2,/Keyboard/3]
   m_NeverAutoSwitchControlSchemes: 0

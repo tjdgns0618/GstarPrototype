@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public GameObject[] characters;
+
     public PoolManager pools;
     public ItemPoolManager itempools;
 

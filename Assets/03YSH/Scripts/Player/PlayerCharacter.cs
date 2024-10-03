@@ -60,11 +60,9 @@ public class PlayerCharacter : MonoBehaviour
             instance = this;
             weaponManager = new WeaponManager();
             rigidbody = GetComponent<Rigidbody>();
-            animator = GetComponent<Animator>();
-            DontDestroyOnLoad(gameObject);
+            animator = GetComponent<Animator>();            
             return;
         }
-        DestroyImmediate(gameObject);
     }
 
     private void Start()

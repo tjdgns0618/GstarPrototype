@@ -13,7 +13,7 @@ using UnityEditor.Animations;
 using UnityEngine.Rendering;
 
 [RequireComponent(typeof(PlayerCharacter))]
-public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
+public class PlayerCharacterController1 : MonoBehaviour, IDamageAble<float>
 {
     public PlayerCharacter player { get; private set; }
     public Vector3 direction { get; private set; }  // 키보드 입력 방향
@@ -73,11 +73,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public static bool canMove = true;
     PlayerCharacter pi;
 
-
-    private void Awake()
-    {
-
-    }
     private void Start()
     {
         player = GetComponent<PlayerCharacter>();
@@ -110,7 +105,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        Debug.Log("input Move");
         // player.stateMachine.ChangeState(StateName.MOVE);
         Vector3 input = context.ReadValue<Vector3>();
         direction = new Vector3(input.x, 0f, input.z);
@@ -238,7 +232,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             }
         }
     }
-
 
     public void OnClickLeftMouse(InputAction.CallbackContext context)
     {

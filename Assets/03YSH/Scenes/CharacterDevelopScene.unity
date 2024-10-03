@@ -2560,32 +2560,6 @@ Transform:
   - {fileID: 3811270402319137581}
   m_Father: {fileID: 1680360432286234833}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3627988461143404412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8342843975781257401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eed4856b073bef4bb66adbc774f35f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  warriorAnimController: {fileID: 9100000, guid: 7fb7836cacbed8149a410db2aa198c03, type: 2}
-  archerAnimController: {fileID: 22100000, guid: 7dbe83ff9590ec74fa316cc14fb90eef, type: 2}
-  wizardAnimController: {fileID: 22100000, guid: cd5766eba4f9c6449ba541b60cccd739, type: 2}
-  warriorMesh: {fileID: 4300038, guid: e2958561779b1a748a4246b9d0c0b309, type: 3}
-  archerMesh: {fileID: 4300044, guid: e2958561779b1a748a4246b9d0c0b309, type: 3}
-  wizardMesh: {fileID: 4300046, guid: e2958561779b1a748a4246b9d0c0b309, type: 3}
-  warriorWeapon: {fileID: 8695152934902215124}
-  archerWeapon: {fileID: 763999532}
-  wizardWeapon: {fileID: 724151112}
-  dashPower: 2
-  dashAnimTime: 0.2
-  dashReInputTime: 0.2
-  dashTetanyTime: 0.1
-  dashCoolTime: 0.5
 --- !u!1 &3661694876830824653
 GameObject:
   m_ObjectHideFlags: 0
@@ -3684,7 +3658,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3627988461143404412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: OnMoveInput
         m_Mode: 0
@@ -3700,7 +3674,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3627988461143404412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: OnRotate
         m_Mode: 0
@@ -3716,7 +3690,7 @@ MonoBehaviour:
     m_ActionName: Player/New action[/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3627988461143404412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: OnClickLeftMouse
         m_Mode: 0
@@ -3732,7 +3706,7 @@ MonoBehaviour:
     m_ActionName: Player/LeftMouse[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3627988461143404412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: OnDashInput
         m_Mode: 0
@@ -3748,7 +3722,7 @@ MonoBehaviour:
     m_ActionName: Player/Dash[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3627988461143404412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: OnClickQ
         m_Mode: 0
@@ -3764,7 +3738,7 @@ MonoBehaviour:
     m_ActionName: Player/Skill[/Keyboard/q,/Keyboard/e,/Keyboard/r]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3627988461143404412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: OnClickE
         m_Mode: 0
@@ -3780,7 +3754,7 @@ MonoBehaviour:
     m_ActionName: Player/Skill2[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3627988461143404412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: OnClickR
         m_Mode: 0
@@ -3796,7 +3770,7 @@ MonoBehaviour:
     m_ActionName: Player/Skill3[/Keyboard/r]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3627988461143404412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCharacterController, Assembly-CSharp
         m_MethodName: OnCharacterChange
         m_Mode: 0
@@ -3859,7 +3833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ca815e60adb6342a4f330a18d69206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinnedMeshRenderer: {fileID: 2640617946040582928}
   effectGenerator: {fileID: 4841410105995303035}
   characterClass: 0
   maxHp: 50
@@ -3868,8 +3841,7 @@ MonoBehaviour:
   dashCount: 2
   firePoint: {fileID: 8156221846467444531}
   attackRange: {fileID: 7410559274501116770}
-  PCC: {fileID: 3627988461143404412}
-  animEvent: {fileID: 5608206507925783467}
+  PCC: {fileID: 0}
 --- !u!1 &7081990373380819987
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,7 +4359,7 @@ GameObject:
   - component: {fileID: 3525572474257611895}
   - component: {fileID: 6045407982817915186}
   - component: {fileID: 7065535700830522419}
-  - component: {fileID: 3627988461143404412}
+  - component: {fileID: 8686437388920244740}
   - component: {fileID: 7018096792880114376}
   - component: {fileID: 3310264833955957301}
   - component: {fileID: 5608206507925783467}
@@ -4450,6 +4422,23 @@ Transform:
   - {fileID: 2325715842635174186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8686437388920244740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342843975781257401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f4466bc3d22654daea62cfb0152bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashPower: 5
+  dashAnimTime: 0.2
+  dashReInputTime: 0.2
+  dashTetanyTime: 0.1
+  dashCoolTime: 2
 --- !u!114 &8695152934902215124
 MonoBehaviour:
   m_ObjectHideFlags: 0
