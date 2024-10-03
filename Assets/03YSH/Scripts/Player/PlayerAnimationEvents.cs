@@ -10,7 +10,10 @@ public class PlayerAnimationEvents : MonoBehaviour
     public PlayerAttack effect;
 
     public Dictionary<string, IEffect> myWeaponEffects { get; private set; }
-    public Dictionary<string, ISound> mySounds {  get; private set; }
+    public Dictionary<string, ISound> mySounds { get; private set; }
+
+    DashState dashState;
+    private Coroutine dashCoolTimeCoroutine;
 
     public void OnStartAttack()
     {
@@ -21,10 +24,25 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnFinishedAttack()
     {
+        //AttackState.IsAttack = false;
+        //AttackState.IsBaseAttack = false;
+        //PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
+        //if(!AttackState.isHolding)
+        //    PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        //AttackState.isAttackAnimationStart = true;
+
         AttackState.IsAttack = false;
         AttackState.IsBaseAttack = false;
         PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+
+        AttackState.isClick = false;
+
+        AttackState.canAttack = true;
+
+        //if (!AttackState.isHolding)
+        //{
+        //    PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        //}
     }
 
     public void OnStartSkill_Q()
@@ -37,33 +55,36 @@ public class PlayerAnimationEvents : MonoBehaviour
         AttackState.IsAttack = false;
         AttackState.IsSkill_Q = false;
         PlayerCharacter.Instance.animator.SetBool("IsSkill_Q", false);
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
+
+    public void OnStartSkill_E()
+    {
+        effect.PlaySkillEffect();
+    }
+
 
     public void OnFinishedSkill_E()
     {
         AttackState.IsAttack = false;
         AttackState.IsSkill_E = false;
-        PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        PlayerCharacter.Instance.animator.SetBool("IsSkill_E", false);
+        // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+    }
+
+    public void OnStartSkill_R()
+    {
+        effect.PlaySkillEffect();
     }
 
     public void OnFinishedSkill_R()
     {
         AttackState.IsAttack = false;
         AttackState.IsSkill_R = false;
-        PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
+        PlayerCharacter.Instance.animator.SetBool("IsSkill_R", false);
+        // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
-
-    public void OnFinishedDash()
-    {
-        DashState.IsDash = false;
-        PlayerCharacter.Instance.animator.SetBool("IsDashing", false);
-        
-        PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
-    }
-
+    
     public void AttackColliderChange()
     {
         PlayerCharacter.Instance.attackRange.enabled = !PlayerCharacter.Instance.attackRange.enabled;

@@ -34,8 +34,7 @@ namespace CharacterController
 
         public override void OnExitState()
         {
-            PlayerCharacter.Instance.animator.SetFloat(hasMoveAnimation, 0f);
-            PlayerCharacter.Instance.rigidbody.velocity = Vector3.zero;
+
         }
 
         public override void OnUpdateState()
@@ -45,19 +44,11 @@ namespace CharacterController
 
         public override void OnFixedUpdateState()
         {
-            #region #캐릭터 움직임 구현
-            float curretnMoveSpeed = Controller.player.MoveSpeed * CONVERT_UNIT_VALUE;
-            float animationPlaySpeed = DEFAULT_ANIMATION_PLAYSPEED *
-                                        GetAnimationSyncWithMovement(curretnMoveSpeed);
 
-            PlayerCharacter.Instance.rigidbody.velocity = 
-                Controller.direction * curretnMoveSpeed + 
-                Vector3.up * PlayerCharacter.Instance.rigidbody.velocity.y;
+        }
 
-            if(animationPlaySpeed < 0f) animationPlaySpeed = 0f;
-
-            PlayerCharacter.Instance.animator.SetFloat("moveSpeed", animationPlaySpeed);
-            #endregion
+        public override void Init(float dashPower, float dashTetanyTime, float dashCooltime)
+        {
         }
     }
 }

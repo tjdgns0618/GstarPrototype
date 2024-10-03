@@ -7,7 +7,7 @@ public class AttackColliderCheck : MonoBehaviour
 {
     private void Start()
     {
-        PlayerCharacter.Instance.weaponManager.Weapon.ItemChance += test1;
+        // PlayerCharacter.Instance.weaponManager.Weapon.ItemChance += test1;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -15,8 +15,8 @@ public class AttackColliderCheck : MonoBehaviour
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
         if (damageAble != null)
         {
-            PlayerCharacter.Instance.weaponManager.Weapon.ItemChance();
             damageAble?.Damage(PlayerCharacter.Instance.weaponManager.Weapon.AttackDamage);
+            // PlayerCharacter.Instance.weaponManager.Weapon.ItemChance();
         }
     }
 

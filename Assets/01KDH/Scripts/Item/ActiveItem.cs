@@ -77,7 +77,7 @@ public class ActiveItem : MonoBehaviour
     #region effect
     void _01Item()
     {
-        // ¾ÆÀÌÅÛ ¾ÆÀÌµð°¡ 30¹øÀÎ ¾ÆÀÌÅÛ µ¥ÀÌÅ¸ Ã£±â
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ 30ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ Ã£ï¿½ï¿½
         if(GetRandomOutcome(FindItemData(29), FindItemCount(29)))
         {
             Debug.Log("asdf");
@@ -171,15 +171,15 @@ public class ActiveItem : MonoBehaviour
         float aProbability = ItemDataBase.instance.Variable(item.itemID) * itemcount;
         float bProbability = percentTotal - ItemDataBase.instance.Variable(item.itemID) * itemcount;
 
-        // 0ºÎÅÍ 100 »çÀÌÀÇ ·£´ý °ªÀ» »ý¼º
+        // 0ï¿½ï¿½ï¿½ï¿½ 100 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         float randomValue = Random.Range(0f, percentTotal);
         if (randomValue < aProbability)
         {
-            return true; // a°¡ ¼±ÅÃµÊ
+            return true; // aï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½
         }
         else
         {
-            return false; // b°¡ ¼±ÅÃµÊ
+            return false; // bï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½
         }
     }
 }
