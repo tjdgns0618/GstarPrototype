@@ -43,91 +43,91 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 {
                     switch (_rewardslot.item.itemID)
                     {
-                        case 1:
+                        case 0:
                             _passiveItem._01Pitem();
                             break;
-                        case 2:
+                        case 1:
                             _passiveItem._02Pitem();
                             break;
-                        case 3:
+                        case 2:
                             _passiveItem._03Pitem();
                             break;
-                        case 4:
+                        case 3:
                             _passiveItem._04Pitem();
                             break;
-                        case 5:
+                        case 4:
                             _passiveItem._05Pitem();
                             break;
-                        case 6:
+                        case 5:
                             _passiveItem._06Pitem();
                             break;
-                        case 7:
+                        case 6:
                             _passiveItem._07Pitem();
                             break;
-                        case 8:
+                        case 7:
                             _passiveItem._08Pitem();
                             break;
-                        case 9:
+                        case 8:
                             _passiveItem._09Pitem();
                             break;
-                        case 10:
+                        case 9:
                             _passiveItem._10Pitem();
                             break;
-                        case 11:
+                        case 10:
                             _passiveItem._11Pitem();
                             break;
-                        case 12:
+                        case 11:
                             _passiveItem._12Pitem();
                             break;
-                        case 13:
+                        case 12:
                             _passiveItem._13Pitem();
                             break;
-                        case 14:
+                        case 13:
                             _passiveItem._14Pitem();
                             break;
-                        case 15:
+                        case 14:
                             _passiveItem._15Pitem();
                             break;
-                        case 16:
+                        case 15:
                             _passiveItem._16Pitem();
                             break;
-                        case 17:
+                        case 16:
                             _passiveItem._17Pitem();
                             break;
-                        case 18:
+                        case 17:
                             _passiveItem._18Pitem();
                             break;
-                        case 19:
+                        case 18:
                             _passiveItem._19Pitem();
                             break;
-                        case 20:
+                        case 19:
                             _passiveItem._20Pitem();
                             break;
-                        case 21:
+                        case 20:
                             _passiveItem._21Pitem();
                             break;
-                        case 22:
+                        case 21:
                             _passiveItem._22Pitem();
                             break;
-                        case 23:
+                        case 22:
                             _passiveItem._23Pitem();
                             break;
-                        case 24:
+                        case 23:
                             _passiveItem._24Pitem();
                             break;
-                        case 25:
+                        case 24:
                             _passiveItem._25Pitem();
                             break;
-                        case 26:
+                        case 25:
                             _passiveItem._26Pitem();
                             break;
-                        case 27:
+                        case 26:
                             _passiveItem._27Pitem();
                             break;
-                        case 28:
+                        case 27:
                             _passiveItem._28Pitem();
                             break;
-                        case 29:
+                        case 28:
                             _passiveItem._29Pitem();
                             break;
                         default:

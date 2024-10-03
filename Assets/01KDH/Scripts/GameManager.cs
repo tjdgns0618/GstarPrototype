@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public TMP_Text txt_gold;
 
     public float _maxhp = 100f;
-    public float _currenthp = 100f;
     public float _hp = 100f;
     public int _gold = 0;
 
@@ -29,11 +28,11 @@ public class GameManager : MonoBehaviour
     public float _lifesteal = 0f;
     public float _lifegen = 0f;
 
-    public int _dashcount = 1;
-    public int _skillcount = 1;
-    public int _ultcount = 1;
+    public float _dashcount = 1;
+    public float _skillcount = 1;
+    public float _ultcount = 1;
 
-    public int _revivecount = 0;
+    public float _revivecount = 0;
 
     public bool isHit = false;  // 플레이어가 피격했는지 확인하는 변수
     public bool isPause = false;

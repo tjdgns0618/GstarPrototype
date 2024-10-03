@@ -1,10 +1,20 @@
+using DuloGames.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEditor.Progress;
 
 public class ActiveItem : MonoBehaviour
 {
+
+    public float percentTotal = 100f;
+
+    public int _itemcount;
+    private Item _item;
+
+    public InvenSlot[] slots;
+
     //public Item _aitem;
 
     //public LayerMask enemyM;
@@ -17,12 +27,11 @@ public class ActiveItem : MonoBehaviour
 
     //public GameObject _maneulObj;
 
-    public GameManager gm;
+    GameManager gm;
 
     private void Start()
     {
         gm = GameManager.instance;
-        StartCoroutine(LateStart());
         //_08item = new WaitForSeconds(15f);
         //_09item = new WaitForSeconds(30f);
         //_10item = new WaitForSeconds(10f);
@@ -30,15 +39,53 @@ public class ActiveItem : MonoBehaviour
         //_12item = new WaitForSeconds(15f);
     }
 
-    IEnumerator LateStart()
+    private void Update()
     {
-        yield return new WaitForSeconds(1f);
-        PlayerCharacter.Instance.weaponManager.Weapon.ItemChance += _06Item;
+
     }
 
+    public Item FindItemData(int id)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item != null)
+            {
+                if (slots[i].item.itemID == id)
+                {
+                    _item = slots[i].item;
+                }
+            }
+        }
+        return _item;
+    }
+
+    public int FindItemCount(int id)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item != null)
+            {
+                if (slots[i].item.itemID == id)
+                {
+                    _itemcount = slots[i].itemCount;
+                }
+            }
+        }
+        return _itemcount;
+    }
+    
+    #region effect
     void _01Item()
     {
-        
+        // 아이템 아이디가 30번인 아이템 데이타 찾기
+        if(GetRandomOutcome(FindItemData(29), FindItemCount(29)))
+        {
+            Debug.Log("asdf");
+        }
+        else
+        {
+            Debug.Log("Failed");
+        }
     }    
     void _02Item()
     {
@@ -58,7 +105,6 @@ public class ActiveItem : MonoBehaviour
     }    
     public void _06Item()
     {
-        Debug.Log("asdfasfdfsafasfdsaf");
         Transform firework = gm.itempools.Get(1).transform;
         firework.parent = transform;
         firework.transform.position = PlayerCharacter.Instance.transform.position + new Vector3(0, 3, 0);
@@ -117,5 +163,23 @@ public class ActiveItem : MonoBehaviour
     void _20Item()
     {
         
+    }
+    #endregion
+
+    public bool GetRandomOutcome(Item item, float itemcount)
+    { 
+        float aProbability = ItemDataBase.instance.Variable(item.itemID) * itemcount;
+        float bProbability = percentTotal - ItemDataBase.instance.Variable(item.itemID) * itemcount;
+
+        // 0부터 100 사이의 랜덤 값을 생성
+        float randomValue = Random.Range(0f, percentTotal);
+        if (randomValue < aProbability)
+        {
+            return true; // a가 선택됨
+        }
+        else
+        {
+            return false; // b가 선택됨
+        }
     }
 }

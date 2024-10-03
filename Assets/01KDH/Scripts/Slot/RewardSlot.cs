@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering;
 using TMPro;
+using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class RewardSlot : InvenSlot
 {
@@ -12,11 +14,16 @@ public class RewardSlot : InvenSlot
     public TextMeshProUGUI _rewardName;
     public TextMeshProUGUI _rewardEffect;
 
+    ItemDataBase itemDatabase;
+
     private void Awake()
     {
         rewardBtn.onClick.AddListener(OnSlotButtonClicked); // 버튼 클릭 시 메서드 호출
     }
-
+    private void Start()
+    {
+        itemDatabase = ItemDataBase.instance;
+    }
     private void OnSlotButtonClicked()
     {
         if (item != null)
@@ -34,13 +41,27 @@ public class RewardSlot : InvenSlot
         itemImage.sprite = item.itemImage;
 
         _rewardName.text = _item.name;
-        _rewardEffect.text = _item.itemEffect;
-        
+
+        float itemVariable = ItemDataBase.instance.Variable(item.itemID);
+        float itemVariable2 = ItemDataBase.instance.Variable2(item.itemID);
+        float itemVariable3 = ItemDataBase.instance.Variable3(item.itemID);
+        float itemVariable4 = ItemDataBase.instance.Variable4(item.itemID);
+
+        _rewardEffect.text = string.Format(_item.itemEffect, itemVariable, itemVariable2, itemVariable3, itemVariable4);
+
         SetColor(1);
     }
     // 슬롯에 아이템 추가 (아이템이 하나일 때 사용)
     public void AddRewardRandomItem(Item item)
     {
         AddItemNoCount(item, 1); // 아이템 개수는 항상 1로 설정
+    }
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
     }
 }

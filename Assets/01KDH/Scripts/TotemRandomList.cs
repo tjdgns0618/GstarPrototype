@@ -15,7 +15,7 @@ public class TotemRandomList : MonoBehaviour    // 석상이 스폰될 때 가중치를 받�
         decimal total = 0;  // 
         int maxLength = 0;  // 
 
-        foreach(var pair in weightMap)
+        foreach(var pair in weightMap) // 가중치 총합한 토탈 계산
         {
             float weight = pair.Value;
             int length = weight.ToString().Substring(weight.ToString().IndexOf('.') + 1).Length;
@@ -23,7 +23,7 @@ public class TotemRandomList : MonoBehaviour    // 석상이 스폰될 때 가중치를 받�
             if (maxLength < length)
                 maxLength = length;
         }
-        int correction = (int)(total * (decimal)Mathf.Pow(10, maxLength));
+        int correction = (int)(total * (decimal)Mathf.Pow(10, maxLength));  // total을 정수형으로 변환하기 위해 10을 제곱해줌
 
         int randomN = Random.Range(1, correction + 1);
         int tempNum = 0;

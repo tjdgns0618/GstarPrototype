@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExcelAsset]
-public class PassiveItemDB : ScriptableObject
+public class ItemDB : ScriptableObject
 {
 	public List<ItemSheet> Sheet1;
 }

@@ -30,12 +30,19 @@ public class Totem : MonoBehaviour                                  // 토템에 상
     public float _healWeight = 0.5f;
     public float _diceWeight = 0.1f;
 
+    GameManager gm;
+
+    private void Start()
+    {
+        gm = GameManager.instance;
+    }
+
     public void BloodTotem(int _costHp)
     {
-        if (GameManager.instance._hp > _costHp)
+        if (gm._hp > _costHp)
         {
-            GameManager.instance._hp -= _costHp;
-            GameManager.instance._gold += 2000;
+            gm._hp -= _costHp;
+            gm._gold += 2000;
         }
         else
         {
@@ -45,7 +52,7 @@ public class Totem : MonoBehaviour                                  // 토템에 상
 
     public void HealTotem()
     {
-        GameManager.instance._hp = 100;
+        gm._hp = gm._maxhp;
     }
 
     public void DiceTotem()
@@ -54,35 +61,34 @@ public class Totem : MonoBehaviour                                  // 토템에 상
         switch(rollNum)
         {
             case 1:
-                GameManager.instance._damage -= 4f;
+                gm._damage -= 4f;
                 Debug.Log("무기의 날이 무뎌진 느낌이 든다.");
                 return;
             case 2:
-                GameManager.instance._attackspeed -= 0.2f;
-                GameManager.instance._cooldown -= 2f;
+                gm._attackspeed -= 0.2f;
+                gm._cooldown -= 2f;
                 Debug.Log("몸이 둔해진 것 같다.");
                  return;
                 case 3:
                 Debug.Log("아무 일도 일어나지 않았다.");
                 return;
             case 4:
-                GameManager.instance._attackspeed += 0.3f;
-                GameManager.instance._cooldown += 4f;
+                gm._attackspeed += 0.3f;
+                gm._cooldown += 4f;
                 Debug.Log("몸이 가벼워졌다.");
                 return;
             case 5:
-                GameManager.instance._damage += 6f;
+                gm._damage += 6f;
                 Debug.Log("힘이 강해졌다.");
                 return;
             case 6:
-                GameManager.instance._attackspeed += 0.5f;
-                GameManager.instance._cooldown += 6f;
-                GameManager.instance._damage += 10f;
+                gm._attackspeed += 0.5f;
+                gm._cooldown += 6f;
+                gm._damage += 10f;
                 Debug.Log("신의 힘에 가까워진 기분이 든다.");
                 return;
             default:
                 return;
-
         }
     }
 
