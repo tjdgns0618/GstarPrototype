@@ -85,6 +85,7 @@ public class UIManager : MonoBehaviour
             SetUIActive(statWindow, false);
         }
 
+        //캐릭터 선택
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeCharacterUI(0);
@@ -187,15 +188,12 @@ public class UIManager : MonoBehaviour
     public void ChargingSkillCount(int index)
     {
         chargeCount[index] = Mathf.Clamp(++chargeCount[index], 0, 3);
-        Debug.Log(chargeCount[index]);
         SetUIActive(chargeCountParent[index].transform.GetChild(chargeCount[index] -1).gameObject, true);
     }
 
     public void UseSkillCount(int index)
     {
         chargeCount[index] = Mathf.Clamp(--chargeCount[index],0,3);
-        
-        Debug.Log(chargeCount[index]);
         SetUIActive(chargeCountParent[index].transform.GetChild(chargeCount[index]).gameObject, false);
     }
 
