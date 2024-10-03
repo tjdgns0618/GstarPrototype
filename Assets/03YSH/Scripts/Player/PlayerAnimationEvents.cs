@@ -72,11 +72,16 @@ public class PlayerAnimationEvents : MonoBehaviour
         // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
 
+    public void OnStartSkill_R()
+    {
+        effect.PlaySkillEffect();
+    }
+
     public void OnFinishedSkill_R()
     {
         AttackState.IsAttack = false;
         AttackState.IsSkill_R = false;
-        PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
+        PlayerCharacter.Instance.animator.SetBool("IsSkill_R", false);
         // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
     

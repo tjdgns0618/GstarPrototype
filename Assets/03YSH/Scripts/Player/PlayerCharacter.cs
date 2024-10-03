@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using CharacterController;
 using UnityEditor.Animations;
+using UnityEngine.UIElements;
 
 public enum CharacterType
 {
@@ -27,6 +28,14 @@ public class PlayerCharacter : MonoBehaviour
     public GameObject effectGenerator;
 
     public CharacterType characterClass;
+
+    [Header("Character Meshs")]
+    public Mesh[] classMesh;
+    [Header("Character AnimatorControllers")]
+    public RuntimeAnimatorController[] classControllers;
+    [Header("Character WeaponObjects")]
+    public GameObject[] weaponObjects;
+
 
     private static PlayerCharacter instance;
 
