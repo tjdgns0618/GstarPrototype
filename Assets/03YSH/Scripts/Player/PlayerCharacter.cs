@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using CharacterController;
+using UnityEditor.Animations;
 
 public enum CharacterType
 {
@@ -18,9 +19,13 @@ public class PlayerCharacter : MonoBehaviour
     public WeaponManager weaponManager { get; private set; }
     public StateMachine stateMachine { get; private set; }
     public new Rigidbody rigidbody { get; private set; }
-    public Animator animator { get; private set; }
+    public Animator animator { get; set; }
+    public AnimatorController animatorCon { get; set; }
+
+    // public SkinnedMeshRenderer skinnedMeshRenderer;
+
     public GameObject effectGenerator;
-    public Quaternion targetRotation;
+
     public CharacterType characterClass;
 
     private static PlayerCharacter instance;
@@ -46,6 +51,7 @@ public class PlayerCharacter : MonoBehaviour
     public BoxCollider attackRange;
 
     public PlayerCharacterController PCC;
+
 
     private void Awake()
     {

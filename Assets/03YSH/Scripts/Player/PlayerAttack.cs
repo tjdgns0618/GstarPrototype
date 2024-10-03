@@ -11,12 +11,15 @@ public class PlayerAttack : BaseWeapon, IEffect
 {
     public readonly int hashIsAttackAnimation = Animator.StringToHash("IsAttack");
     public readonly int hashIsSkill_Q_Animation = Animator.StringToHash("IsSkill_Q");
+    public readonly int hashIsSkill_E_Animation = Animator.StringToHash("IsSkill_E");
     public readonly int hashIsSkill_R_Animation = Animator.StringToHash("IsSkill_R");
     public readonly int hashAttackAnimation = Animator.StringToHash("AttackCombo");
     public readonly int hashAttackSpeedAnimation = Animator.StringToHash("AttackSpeed");
     private Coroutine checkAttackReInputCor;
     public GameObject[] defaultAttackEffs;
     public GameObject[] SkillEffs;
+
+    public int skillType;
 
     [Header("발사체")]
     public GameObject[] projectiles;
@@ -33,26 +36,37 @@ public class PlayerAttack : BaseWeapon, IEffect
         PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         PlayerCharacter.Instance.animator.SetBool(hashIsAttackAnimation, true);
         PlayerCharacter.Instance.animator.SetInteger(hashAttackAnimation, ComboCount);
+        CheckAttackReInput(AttackState.CanReInputTime);
         if (PlayerCharacter.Instance.characterClass != CharacterType.Warrior)
         {
+            Debug.Log(projectiles[0].name);
             GameObject arrow = Instantiate(projectiles[ComboCount - 1], PlayerCharacter.Instance.firePoint.transform.position,
                 PlayerCharacter.Instance.transform.rotation);
         }
-        CheckAttackReInput(AttackState.CanReInputTime);
     }
 
     public override void Skill(BaseState state)
     {
-        Debug.Log("Q,E");
+        Debug.Log("Q");
+        skillType = 0;
         PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         PlayerCharacter.Instance.animator.SetBool(hashIsSkill_Q_Animation, true);
+    }
+
+    public override void Skill2(BaseState state)
+    {
+        Debug.Log("E");
+        skillType = 1;
+        PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
+        PlayerCharacter.Instance.animator.SetBool(hashIsSkill_E_Animation, true);
     }
 
     public override void UltimateSkill(BaseState state)
     {
         Debug.Log("R");
-
+        skillType = 2;
         PlayerCharacter.Instance.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
+        PlayerCharacter.Instance.animator.SetBool(hashIsSkill_R_Animation, true);
     }
 
     public void CheckAttackReInput(float reInputTime)
@@ -69,13 +83,16 @@ public class PlayerAttack : BaseWeapon, IEffect
         {
             currentTime += Time.deltaTime;
             if (currentTime >= reInputTime)
+            {
+                ComboCount = 0;
+                AttackState.comboCount = 0;
+                PlayerCharacter.Instance.animator.SetInteger(hashAttackAnimation, 0);
                 break;
+            }
             yield return null;
         }
 
-        ComboCount = 0;
-        AttackState.comboCount = 0;
-        PlayerCharacter.Instance.animator.SetInteger(hashAttackAnimation, 0);
+        
     }
 
     public void PlayComboAttackEffects()
@@ -89,7 +106,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         effect.transform.Rotate(new Vector3(0f, 150f, 0f));
 
         // effect.transform.eulerAngles += secondAttackAdjustAngle;
-        effect.GetComponent<ParticleSystem>().Play();
+        // effect.GetComponent<ParticleSystem>().Play();
     }
 
     public void DestroyEffect()
@@ -99,10 +116,13 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public void PlaySkillEffect()
     {
-        GameObject effect = Instantiate(SkillEffs[0], PlayerCharacter.Instance.firePoint.transform.position, PlayerCharacter.Instance.transform.rotation);
+        Debug.Log("파티클 생성");
+        GameObject effect = Instantiate(SkillEffs[skillType], PlayerCharacter.Instance.firePoint.transform.position, PlayerCharacter.Instance.transform.rotation);
 
 
         // GroundSlash groundSlashScript = effect.GetComponent<GroundSlash>();
         // effect.GetComponent<Rigidbody>().velocity = PlayerCharacter.Instance.transform.forward * groundSlashScript.speed;
     }
+
+    
 }

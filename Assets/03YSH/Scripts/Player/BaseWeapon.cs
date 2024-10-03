@@ -32,5 +32,6 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public abstract void Attack(BaseState state);
     public abstract void Skill(BaseState state);
+    public abstract void Skill2(BaseState state);
     public abstract void UltimateSkill(BaseState state);
 }

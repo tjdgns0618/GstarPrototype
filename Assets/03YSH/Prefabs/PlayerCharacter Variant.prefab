@@ -2934,6 +2934,7 @@ MonoBehaviour:
   SkillEffs:
   - {fileID: 1949624779417528, guid: e73124b5ba126cc499fb7e927b7a79ac, type: 3}
   - {fileID: 1648509489993130, guid: 8a0c2ade089d4c44fbdf861f7bcd7be6, type: 3}
+  skillType: 0
   projectiles: []
   adjustTransform: {x: 0, y: 1.5, z: 0}
   effectGenerator: {fileID: 1651504415727996351}
@@ -3013,7 +3014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7238436576499997825, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8016344783704966715, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3079,6 +3080,10 @@ PrefabInstance:
       propertyPath: dashCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8484351355468709899, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 2169018036437761543}
     - target: {fileID: 8484351355468709899, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
       propertyPath: moveSpeed
       value: 500
@@ -3311,6 +3316,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 8234467585059617416}
+--- !u!1 &2169018036437761543 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7386769106729562891, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
+  m_PrefabInstance: {fileID: 8690528035209235724}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4775001187944001079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4242042837048238907, guid: 8aebb974202230c489c366c0a9b2d036, type: 3}
