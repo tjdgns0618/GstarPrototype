@@ -1766,9 +1766,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimationEvents: {fileID: 5615261431785076518}
   weaponAnimator: {fileID: 9100000, guid: 7fb7836cacbed8149a410db2aa198c03, type: 2}
-  _name: Sword
   attackDamage: 20
-  attackSpeed: 3
+  attackSpeed: 1
   attackRange: 3
   defaultAttackEffs:
   - {fileID: 1819066416490906, guid: f71e64e1ba018eb419bd5e9e3ca8a65c, type: 3}
@@ -1779,20 +1778,23 @@ MonoBehaviour:
   - {fileID: 6816406262456432491, guid: 0bc1abd017feb4c45a38d77b0785b699, type: 3}
   SkillEffs:
   - {fileID: 1648509489993130, guid: 8a0c2ade089d4c44fbdf861f7bcd7be6, type: 3}
-  - {fileID: 1949624779417528, guid: e73124b5ba126cc499fb7e927b7a79ac, type: 3}
-  - {fileID: 1481587283673810, guid: 14858837f53355d4da384553fc019a5c, type: 3}
   - {fileID: 1481587283673810, guid: 14858837f53355d4da384553fc019a5c, type: 3}
   - {fileID: 1543153927702632, guid: 638bf80b37fd48a458d61ac9d454265e, type: 3}
+  - {fileID: 1646871050452766, guid: 95b3ea755bc01f344a99fccc5f4702f8, type: 3}
+  - {fileID: 1481587283673810, guid: 14858837f53355d4da384553fc019a5c, type: 3}
   - {fileID: 1543153927702632, guid: 638bf80b37fd48a458d61ac9d454265e, type: 3}
+  - {fileID: 1148156256932182, guid: 28a4398affc61c34b9d35ff05a71c011, type: 3}
+  - {fileID: 7221003193399831673, guid: 8f755bfb73e89bf48b3fe3fa0a3a1040, type: 3}
+  - {fileID: 5637757207944978291, guid: 69c722eb56ec8ec4fb2ef127643e7ad7, type: 3}
   pi: {fileID: 6574374890407462785}
   skillType: 0
   projectiles:
   - {fileID: 1168065043843762, guid: 70cd80e6e8517904da249485ffde005f, type: 3}
   - {fileID: 1878987882032996, guid: 90b685dd555e0c848806f1fb6209e1e9, type: 3}
   - {fileID: 1427661989262336, guid: c970a13f2161f4a4ab26ff5009e6e0da, type: 3}
-  - {fileID: 1347034509603832, guid: 3c42b034bb8443e4fa9300af22f9fa12, type: 3}
-  - {fileID: 1094010528761658, guid: b0389c6e65001864996fae9b89a15c7b, type: 3}
-  - {fileID: 1884515083064658, guid: da6ba3f426992ac4796bcaac2b95a0c9, type: 3}
+  - {fileID: 8780727661788297695, guid: d21e5b00fdb343444a500464d07897b8, type: 3}
+  - {fileID: 3814496778439236206, guid: 0e97097ebbad225488a0264463560ec6, type: 3}
+  - {fileID: 7653787099927154482, guid: db5486219ba247746b2df5fe8cfb8119, type: 3}
   adjustTransform: {x: 0, y: 1.5, z: 0}
   effectGenerator: {fileID: 6698038940508262435}
 --- !u!1 &5399732695965662576
@@ -3095,7 +3097,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8935320841809148343}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3207,7 +3209,7 @@ MonoBehaviour:
   - {fileID: 6284271490130863646}
   maxHp: 50
   currentHp: 50
-  moveSpeed: 500
+  moveSpeed: 350
   dashCount: 2
   firePoint: {fileID: 2250253852884136523}
   attackRange: {fileID: 4047415224661216195}
@@ -3224,11 +3226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f4466bc3d22654daea62cfb0152bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashPower: 5
+  dashPower: 2
   dashAnimTime: 0.2
   dashReInputTime: 0.2
   dashTetanyTime: 0.1
-  dashCoolTime: 2
+  dashCoolTime: 1
 --- !u!114 &3682853116239599240
 MonoBehaviour:
   m_ObjectHideFlags: 0

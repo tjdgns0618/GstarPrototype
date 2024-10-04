@@ -14,7 +14,6 @@ public abstract class BaseWeapon : MonoBehaviour
 
     [Header("무기 정보")]
     [SerializeField] protected RuntimeAnimatorController weaponAnimator;
-    [SerializeField] protected string _name;
     [SerializeField] protected float attackDamage;
     [SerializeField] protected float attackSpeed;
     [SerializeField] protected float attackRange;
@@ -22,13 +21,13 @@ public abstract class BaseWeapon : MonoBehaviour
     public delegate void Action();
     public Action ItemChance;
 
-    public void SetWeaponData(string name, float attackDamage, float attackSpeed, float attackRange)
+    public void SetWeaponData(float attackDamage, float attackSpeed, float attackRange)
     {
-        this._name = name;
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed; 
         this.attackRange = attackRange;
     }
+
 
     public abstract void Attack(BaseState state);
     public abstract void Skill(BaseState state);

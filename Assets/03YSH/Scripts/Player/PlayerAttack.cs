@@ -20,6 +20,7 @@ public class PlayerAttack : BaseWeapon, IEffect
     public GameObject[] defaultAttackEffs;
     public GameObject[] SkillEffs;
     public PlayerCharacter pi;
+    private GameManager gi;
 
     public int skillType;
 
@@ -34,6 +35,8 @@ public class PlayerAttack : BaseWeapon, IEffect
     private void Start()
     {
         pi = PlayerCharacter.Instance;
+        gi = GameManager.instance;
+        SetWeaponData(gi._damage, gi._attackspeed,gi._range);
     }
 
     public override void Attack(BaseState state)
