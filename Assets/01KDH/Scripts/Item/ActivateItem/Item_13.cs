@@ -12,16 +12,17 @@ public class Item_13 : MonoBehaviour
     public float attackDelay;
 
     private LineRenderer lineRenderer;
-    public Material lineMat;
-    //public ParticleSystem lineParticle;
-    //public ParticleSystem sparkParticle;
+
+    public GameObject particleSystemPrefab;
+    public GameObject particle2SystemPrefab;
+
+    Vector3 chainPos;
 
     private void Start()
     {
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.startWidth = 0.1f; // 선의 시작 두께
         lineRenderer.endWidth = 0.1f; // 선의 끝 두께
-        lineRenderer.material = lineMat; // 선의 재질 설정
         lineRenderer.startColor = Color.red; // 선의 시작 색상
         lineRenderer.endColor = Color.red; // 선의 끝 색상
         lineRenderer.positionCount = 0; // 초기 포지션 수
@@ -61,24 +62,29 @@ public class Item_13 : MonoBehaviour
             {
                 if (targetedEnemies.Count == 0)
                 {
+                    chainPos = currentTarget.transform.position;
                     // 첫 번째 타겟: 플레이어와 가장 가까운 적
                     currentTarget = availableEnemies.OrderBy(enemy => Vector3.Distance(player.position, enemy.transform.position)).First();
-                    DrawLineToTarget(player.position, currentTarget.transform.position);
+                    
+                    GameObject particle = Instantiate(particleSystemPrefab, chainPos, Quaternion.identity); // 체인 파티클
+                    GameObject particle2 = Instantiate(particle2SystemPrefab, chainPos, Quaternion.identity);   // 적 피격시 파티클
+                    DrawLineToTarget(player.position, chainPos);
                 }
                 else
                 {
                     if (targetedEnemies.Count > 0) // 리스트가 비어 있지 않음을 확인
                     {
+                        chainPos = currentTarget.transform.position;
                         // 두 번째 타겟부터: 이전 타겟과 가장 가까운 적
                         currentTarget = availableEnemies.OrderBy(enemy => Vector3.Distance(targetedEnemies.Last().transform.position, enemy.transform.position)).First();
-                        DrawLineToTarget(targetedEnemies.Last().transform.position, currentTarget.transform.position);
+                        DrawLineToTarget(targetedEnemies.Last().transform.position, chainPos);
                     }
                     else
                     {
                         yield break;
                     }
                 }
-                currentTarget.Damage(100f);
+                currentTarget.Damage(3f);
                 targetedEnemies.Add(currentTarget); // 공격한 적 추가
                 enemies.Remove(currentTarget); // 공격한 적을 enemies 리스트에서도 제거
             }
@@ -92,5 +98,10 @@ public class Item_13 : MonoBehaviour
         lineRenderer.positionCount += 2; // 포지션 수 증가
         lineRenderer.SetPosition(lineRenderer.positionCount - 2, from); // 이전 타겟 위치
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, to); // 현재 타겟 위치
+    }
+
+    void Test()
+    {
+
     }
 }
