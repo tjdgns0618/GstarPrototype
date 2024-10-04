@@ -2314,7 +2314,7 @@ PrefabInstance:
     - target: {fileID: 6588066774720758262, guid: 1ea19851dd1d3464ca45a98180679d1c, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 1658877803}
+      objectReference: {fileID: 740046085}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2483,12 +2483,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314b09864c803b9428417a38cc7038bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyprefab:
-  - {fileID: 4166752092908897032, guid: 68d88f8a2fa2f2e48a15bcb0168e818e, type: 3}
-  - {fileID: 4166752092908897032, guid: 18876bdd2db230f458d194c1b0de2288, type: 3}
-  player: {fileID: 1658877803}
+  enemyPrefab:
+  - {fileID: 1372988556098474, guid: 3a09def1ff2b15e42b2f8c3d2716fca2, type: 3}
+  - {fileID: 1666637062901154, guid: d1b7ec3c5379803498bdcdce2a411aac, type: 3}
+  spawnPos: {fileID: 740046085}
   portal: {fileID: 952685967}
   rewardUI: {fileID: 5375799980236767569}
+  bossprefab: {fileID: 0}
   waveInfoText: {fileID: 8335460949734507039}
   stageInfoText: {fileID: 3923033488069134938}
   spawnRadius: 10
@@ -5223,6 +5224,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4bd839c790aea4bbb00990121708e2, type: 3}
+--- !u!1001 &653689413
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8935320841809148343, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_Name
+      value: PlayerCharacter 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
 --- !u!1 &660494778
 GameObject:
   m_ObjectHideFlags: 0
@@ -5475,6 +5533,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: add75599f085be44fbad0333ed024fc7, type: 3}
+--- !u!4 &740046085 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+  m_PrefabInstance: {fileID: 653689413}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &747527103
 GameObject:
   m_ObjectHideFlags: 0
@@ -5786,6 +5849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9eb9bf571205d419b506d4cd994c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characters: []
   pools: {fileID: 0}
   itempools: {fileID: 98979236}
   txt_gold: {fileID: 0}
@@ -8704,6 +8768,9 @@ MonoBehaviour:
   statWindow: {fileID: 5578720312884626060}
   pauseWindow: {fileID: 282898674173713437}
   fieldUI: {fileID: 0}
+  innShowObj: {fileID: 0}
+  wizardShowObj: {fileID: 0}
+  blacksmithShowObj: {fileID: 0}
   characterSelectionUI:
   - {fileID: 3288315537621770439}
   - {fileID: 3207392296191134188}
@@ -11389,7 +11456,8 @@ MonoBehaviour:
   targetRange: 100
   maxTargets: 5
   attackDelay: 0.1
-  lineMat: {fileID: 2100000, guid: 8001fedece0cec54997d1f606cf58ea7, type: 2}
+  particleSystemPrefab: {fileID: 0}
+  particle2SystemPrefab: {fileID: 5237683167020436190, guid: 50b8f8b77ce2489438dd17a3b3e9557c, type: 3}
 --- !u!114 &1671992330 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1365614394857729152, guid: 495c7e7d34d1af943812992739729534, type: 3}
@@ -13788,7 +13856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb4d4d137447d24f864cd3a382ff100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1658877803}
+  player: {fileID: 740046085}
   villageSpawnPos: {fileID: 1165467986}
   fieldSpawnPos: {fileID: 441140256}
   cameraManager: {fileID: 2010012743}
@@ -34348,3 +34416,4 @@ SceneRoots:
   - {fileID: 2068905114}
   - {fileID: 750627877}
   - {fileID: 340337848}
+  - {fileID: 653689413}
