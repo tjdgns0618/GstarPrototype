@@ -61,7 +61,6 @@ public class PlayerCharacter : MonoBehaviour
 
     public PlayerCharacterController PCC;
 
-
     private void Awake()
     {
         if (instance == null)
