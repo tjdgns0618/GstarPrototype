@@ -12,10 +12,13 @@ public class spawner1 : MonoBehaviour
     public Transform spawnPos; //스폰 중심 위치
     public GameObject portal;
     public GameObject rewardUI;
-    public GameObject bossprefab;
+    public GameObject waveClear;
+    public GameObject stageClear;
+    //public GameObject bossprefab;
     //public GameObject playerPrefab;
     public TMP_Text waveInfoText;
     public TMP_Text stageInfoText;
+    
 
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
@@ -33,6 +36,8 @@ public class spawner1 : MonoBehaviour
     private int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
     private int enemiesLeft;
 
+    public string[] enemyNames;
+
     //[SerializeField]
     //private List<EnemyPoolManager.Pool> pools = new List<EnemyPoolManager.Pool>
     //{
@@ -43,11 +48,16 @@ public class spawner1 : MonoBehaviour
     public Action enemyDead;
 
     WaitForSeconds wInterval;
+
+    private void Awake()
+    {
+        enemyDead += OnEnemyDeath;     // 이벤트 등록
+    }
+
     void Start()
     {
         wInterval= new WaitForSeconds(spawnInterval);
         StartWave();
-        enemyDead += OnEnemyDeath;     // 이벤트 등록
     }
 
     void StartWave()
@@ -66,19 +76,31 @@ public class spawner1 : MonoBehaviour
         {
             if(currentWave == maxWaves)
             {
+                stageClear.SetActive(true);
+                Invoke("StageClear", 2f);
                 portal.SetActive(true);
                 Time.timeScale = 1;
                 //토템 추가 예정
             }
             else
             {
-                Time.timeScale = 0;
+                waveClear.SetActive(true);
+                Invoke("RewardTerm", 2f);
                 //rewardUI.AddRewardRandomItems(rewardUI.allItems);
-                rewardUI.SetActive(true);
             }
         }
     }
 
+    public void RewardTerm()
+    {
+        Time.timeScale = 0;
+        rewardUI.SetActive(true);
+        waveClear.SetActive(false);
+    }
+    public void StageClear()
+    {
+        stageClear.SetActive(false);
+    }
     IEnumerator WaveSystem() //웨이브 시스템
     {
         if (currentWave < maxWaves)
@@ -109,35 +131,35 @@ public class spawner1 : MonoBehaviour
 
         while (enemiesToSpawn > 0)
         {
-            // 이번 배치에서 생성할 적의 수를 계산 (최대 firstWaveEnemy 마리까지만 생성)
             enemiesInThisBatch = Mathf.Min(firstWaveEnemy, enemiesToSpawn);
 
             for (int i = 0; i < enemiesInThisBatch; i++)
             {
-                if (spawnedCount >= totalEnemiesInWave) break; // 현재 웨이브의 총 몬스터 수 초과 방지
+                if (spawnedCount >= totalEnemiesInWave) break;
 
                 Vector3 randomPosition = GetRandomPosition(); // 플레이어 주변 랜덤 위치 생성
 
-                // 플레이어와의 최소 거리가 유지되는지 확인
                 if (Vector3.Distance(randomPosition, spawnPos.position) >= minDistancefromPlayer)
                 {
-                    // 기존에 생성된 적과의 거리가 충분한지 확인
                     if (!IsPositionOccupied(randomPosition))
                     {
-                        GameObject randomEnemyPrefab = enemyPrefab[Random.Range(0, enemyPrefab.Count)]; // 랜덤한 enemy프리팹 선택
+                        // enemyPrefab 리스트에서 랜덤한 프리팹 선택
+                        string randomEnemyName = enemyNames[Random.Range(0, enemyNames.Length)];
 
-                        // Y축 기준 랜덤 회전 생성 (0도 ~ 360도)
                         Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
 
-                        // 적을 랜덤한 위치와 회전으로 생성
-                        Instantiate(randomEnemyPrefab, randomPosition, randomRotation);
+                        // Instantiate 대신 오브젝트 풀링에서 스폰
+                        GameObject enemy = GameManager.instance.enemyPoolManager.GetEnemyPool(randomEnemyName);
+                        enemy.transform.position = randomPosition;
+                        enemy.transform.rotation = randomRotation;
+
+                        // ObjectPoolManager.instance.SpawnFromPool(randomEnemyPrefab, randomPosition, randomRotation);
                         spawnedCount++;
-                        enemiesToSpawn--; // 남은 적 수 감소
+                        enemiesToSpawn--;
                     }
                 }
             }
 
-            // 다음 배치를 생성하기 전에 대기
             yield return new WaitForSeconds(spawnInterval);
         }
     }
@@ -160,6 +182,7 @@ public class spawner1 : MonoBehaviour
 
         return false; // 충분히 떨어져 있으면 위치를 사용할 수 있음
     }
+
 
     //spawnPos 주변의 랜덤한 위치를 반환하는 함수
     Vector3 GetRandomPosition()
@@ -203,9 +226,9 @@ public class spawner1 : MonoBehaviour
         StartWave();
     }
 
-    public void OnFieldYes()
-    {
-        portal.SetActive(false);
-        currentStage++;
-    }
+    //public void OnFieldYes()
+    //{
+    //    portal.SetActive(false);
+    //    currentStage++;
+    //}
 }
