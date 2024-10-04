@@ -30,28 +30,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     protected PlayerState playerState;
 
-    //[Header("캐릭터 애니메이터")]
-    //[SerializeField, Tooltip("전사 애니메이터")]
-    //protected RuntimeAnimatorController warriorAnimController;
-    //[SerializeField, Tooltip("궁수 애니메이터")]
-    //protected RuntimeAnimatorController archerAnimController;
-    //[SerializeField, Tooltip("마법사 애니메이터")]
-    //protected RuntimeAnimatorController wizardAnimController;
-    //[Header("캐릭터 메쉬")]
-    //[SerializeField, Tooltip("전사 메쉬")]
-    //protected Mesh warriorMesh;
-    //[SerializeField, Tooltip("궁수 메쉬")]
-    //protected Mesh archerMesh;
-    //[SerializeField, Tooltip("마법사 메쉬")]
-    //protected Mesh wizardMesh;
-    //[Header("캐릭터 무기")]
-    //[SerializeField, Tooltip("전사 무기")]
-    //protected PlayerAttack warriorWeapon;
-    //[SerializeField, Tooltip("궁수 무기")]
-    //protected PlayerAttack archerWeapon;
-    //[SerializeField, Tooltip("마법사 무기")]
-    //protected PlayerAttack wizardWeapon;
-
     [Header("대시 옵션")]
     [SerializeField, Tooltip("대쉬의 힘을 나타내는 값")]
     protected float dashPower;
@@ -73,11 +51,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public static bool canMove = true;
     PlayerCharacter pi;
 
-
-    private void Awake()
-    {
-
-    }
     private void Start()
     {
         player = GetComponent<PlayerCharacter>();
@@ -110,8 +83,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        Debug.Log("input Move");
-        // player.stateMachine.ChangeState(StateName.MOVE);
         Vector3 input = context.ReadValue<Vector3>();
         direction = new Vector3(input.x, 0f, input.z);
     }
@@ -122,123 +93,44 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
 
 
-    /*public void OnClickLeftMouse(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            if (context.interaction is HoldInteraction)
-            {
-                bool isAvailableAttack = !AttackState.IsBaseAttack &&
-                   (player.weaponManager.Weapon.ComboCount < 3);
-
-                Debug.Log("true면 공격 가능 : " + isAvailableAttack);
-
-                if (isAvailableAttack)
-                {
-                    AttackState.IsBaseAttack = true;
-                    AttackState.isHolding = true;
-                    AttackState.isClick = false;
-                    Debug.Log("HoldInteraction AttackState");
-                    player.stateMachine.ChangeState(StateName.ATTACK);
-                }
-            }
-            else if (context.interaction is PressInteraction && !AttackState.isHolding)
-            {
-
-                bool isAvailableAttack = !AttackState.IsBaseAttack &&
-                   (player.weaponManager.Weapon.ComboCount < 3);
-
-                Debug.Log(AttackState.IsBaseAttack + "true 이면 공격 불가능");
-
-                if (isAvailableAttack)
-                {
-                    AttackState.IsBaseAttack = true;
-                    AttackState.isHolding = false;
-                    AttackState.isClick = true;
-                    Debug.Log("PressInteraction AttackState");
-
-                    player.stateMachine.ChangeState(StateName.ATTACK);
-                }
-            }
-        }
-        else if (context.canceled)
-        {
-            AttackState.isHolding = false;
-        }
-    }*/
-
     public void OnCharacterChange(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            /*
             if (context.control.name == "1")
             {
-                Debug.Log("버튼 1");
-
-                // player.weaponManager.SetWeapon(warriorWeapon.gameObject);
-                player.animator.runtimeAnimatorController = warriorAnimController;
+                player.weaponObjects[0].SetActive(true);
+                player.weaponObjects[1].SetActive(false);
+                player.weaponObjects[2].SetActive(false);
                 player.characterClass = CharacterType.Warrior;
-                player.skinnedMeshRenderer.sharedMesh = warriorMesh;
-                // ItemManager.Instance.equipWeapon = warriorWeapon.gameObject;
-                warriorWeapon.gameObject.SetActive(true);
-                archerWeapon.gameObject.SetActive(false);
-                wizardWeapon.gameObject.SetActive(false);
-                player.animEvent.effect = warriorWeapon;
-                player.weaponManager.Weapon.ComboCount = 0;
-            }
-            else if (context.control.name == "2")
-            {
-                Debug.Log("버튼 2");
-                // player.weaponManager.SetWeapon(archerWeapon.gameObject);
-                player.animator.runtimeAnimatorController = archerAnimController;
-                player.characterClass = CharacterType.Archer;
-                player.skinnedMeshRenderer.sharedMesh = archerMesh;
-                // ItemManager.Instance.equipWeapon = archerWeapon.gameObject;
-                warriorWeapon.gameObject.SetActive(false);
-                archerWeapon.gameObject.SetActive(true);
-                wizardWeapon.gameObject.SetActive(false);
-                player.animEvent.effect = archerWeapon;
-                player.weaponManager.Weapon.ComboCount = 0;
+                player.animator.runtimeAnimatorController = player.classControllers[0];
+                player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[0];
+                AttackState.comboCount = 0;
 
-
-            }
-            else if (context.control.name == "3") {
-                Debug.Log("버튼 3");
-                // player.weaponManager.SetWeapon(wizardWeapon.gameObject);
-                player.animator.runtimeAnimatorController = wizardAnimController;
-                player.characterClass = CharacterType.Wizard;
-                player.skinnedMeshRenderer.sharedMesh = wizardMesh; 
-                // ItemManager.Instance.equipWeapon = wizardWeapon.gameObject;
-                warriorWeapon.gameObject.SetActive(false);
-                archerWeapon.gameObject.SetActive(false);
-                wizardWeapon.gameObject.SetActive(true);
-                player.animEvent.effect = wizardWeapon;
-                player.weaponManager.Weapon.ComboCount = 0;
-            }
-            */
-            if (context.control.name == "1")
-            {
-                GameManager.instance.characters[0].SetActive(true);
-                GameManager.instance.characters[1].SetActive(false);
-                GameManager.instance.characters[2].SetActive(false);
             }
             if (context.control.name == "2")
-            {                
-                GameManager.instance.characters[0].SetActive(false);
-                GameManager.instance.characters[1].SetActive(true);
-                GameManager.instance.characters[2].SetActive(false);
-
+            {
+                player.weaponObjects[0].SetActive(false);
+                player.weaponObjects[1].SetActive(true);
+                player.weaponObjects[2].SetActive(false);
+                player.characterClass = CharacterType.Archer;
+                player.animator.runtimeAnimatorController = player.classControllers[1];
+                player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[1];
+                AttackState.comboCount = 0;
 
             }
-            if (context.control.name == "3") {             
-                GameManager.instance.characters[0].SetActive(false);
-                GameManager.instance.characters[1].SetActive(false);
-                GameManager.instance.characters[2].SetActive(true);
+            if (context.control.name == "3")
+            {
+                player.weaponObjects[0].SetActive(false);
+                player.weaponObjects[1].SetActive(false);
+                player.weaponObjects[2].SetActive(true);
+                player.characterClass = CharacterType.Wizard;
+                player.animator.runtimeAnimatorController = player.classControllers[2];
+                player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[2];
+                AttackState.comboCount = 0;
             }
         }
     }
-
 
     public void OnClickLeftMouse(InputAction.CallbackContext context)
     {
@@ -394,7 +286,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
 
     public const float CONVERT_UNIT_VALUE = 0.01f;
-    public const float DEFAULT_CONVERT_MOVESPEED = 3f;
+    public const float DEFAULT_CONVERT_MOVESPEED = 1f;
     public const float DEFAULT_ANIMATION_PLAYSPEED = 0.9f;
     private int hasMoveAnimation;
 

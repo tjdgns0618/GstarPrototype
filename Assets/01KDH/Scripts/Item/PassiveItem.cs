@@ -50,7 +50,7 @@ public class PassiveItem : MonoBehaviour
     } 
     public void _09Pitem()
     {
-        gm._dashcount += ItemDataBase.instance.Variable(8);
+        gm._dashcount += (int)ItemDataBase.instance.Variable(8);
     }  
     public void _10Pitem()
     {

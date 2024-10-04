@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject[] characters;
-
     public PoolManager pools;
     public ItemPoolManager itempools;
 
@@ -30,7 +28,7 @@ public class GameManager : MonoBehaviour
     public float _lifesteal = 0f;
     public float _lifegen = 0f;
 
-    public float _dashcount = 1;
+    public int _dashcount = 2;
     public float _skillcount = 1;
     public float _ultcount = 1;
 
@@ -49,6 +47,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    private void Start()
+    {
+        PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed,_dashcount);
     }
 
     private void Update()
