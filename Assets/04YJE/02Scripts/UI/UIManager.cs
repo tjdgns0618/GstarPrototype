@@ -13,10 +13,6 @@ public class UIManager : MonoBehaviour
     public GameObject pauseWindow;
     public GameObject fieldUI;
 
-    public Image innShowObj;
-    public Image wizardShowObj;
-    public Image blacksmithShowObj;
-
     //캐릭터 선택 UI
     [Header("Select_Character_UI")]
     public GameObject[] characterSelectionUI;

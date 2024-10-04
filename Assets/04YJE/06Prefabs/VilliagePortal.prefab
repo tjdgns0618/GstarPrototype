@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 823367340641308799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0.11, z: 0.95}
+  m_LocalPosition: {x: -0.06, y: 1.62, z: -0.4}
   m_LocalScale: {x: 2, y: 4, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823367340641308799}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -614,7 +614,7 @@ Transform:
   m_GameObject: {fileID: 3938895938327263147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.3, z: 0.73}
+  m_LocalPosition: {x: -0.1, y: 1.81, z: -0.62}
   m_LocalScale: {x: 0.6, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4712,7 +4712,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.37773618, g: 0.121568605, b: 0.67058825, a: 1}
+      maxColor: {r: 0.39648288, g: 0.29178533, b: 0.7830189, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -11240,7 +11240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7617512945218453298, guid: dccbe7dd555d7a848b8d48f3dbfe58e2, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7617512945218453298, guid: dccbe7dd555d7a848b8d48f3dbfe58e2, type: 3}
       propertyPath: m_Materials.Array.data[1]
