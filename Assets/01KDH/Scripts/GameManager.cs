@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public ParticlePoolManager particlePoolManager;
     public UIManager uiManager;
     public PoolManager pools;
     public ItemPoolManager itempools;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float _cooldown = 0;
     public float _attackspeed = 1f;
     public float _movespeed = 1f;
+    public float _reInputTime = 1f;
 
     public float _critchance = 10f;
     public float _critdmg = 150f;
