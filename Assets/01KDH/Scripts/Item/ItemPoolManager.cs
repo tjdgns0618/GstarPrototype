@@ -6,10 +6,23 @@ public class ItemPoolManager : MonoBehaviour
 {
     public GameObject[] i_Prefabs;
 
+    public static ItemPoolManager instance;
+
     List<GameObject>[] i_Pools;
 
     private void Awake()
     {
+            if (instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+            }
+
+
+
         i_Pools = new List<GameObject>[i_Prefabs.Length];
 
         for (int index = 0; index < i_Pools.Length; index++)

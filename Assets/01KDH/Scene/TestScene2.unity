@@ -1477,9 +1477,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i_Prefabs:
-  - {fileID: 6498597564311645989, guid: fb2887dd78d36ae438e4857a3e9449db, type: 3}
-  - {fileID: 3735305204471012075, guid: bfa475e32ffdb3b458d6be8b9293c809, type: 3}
-  - {fileID: 3735305204471012075, guid: bfa475e32ffdb3b458d6be8b9293c809, type: 3}
+  - {fileID: 7962428821614199758, guid: f77d0672819997148a9dde2678a85340, type: 3}
+  - {fileID: 5817418629556497170, guid: 6a1df42bace543843a5ff5ac457b4639, type: 3}
+  - {fileID: 5817418629556497170, guid: 9bc66f129e58cd54d80f1e74dbef4bd4, type: 3}
 --- !u!1 &101459786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2493,7 @@ MonoBehaviour:
   stageInfoText: {fileID: 3923033488069134938}
   spawnRadius: 10
   minDistancefromPlayer: 5
-  firstWaveEnemy: 1
+  firstWaveEnemy: 10
   spawnInterval: 3
   waveInterval: 1
   maxWaves: 5
@@ -10411,7 +10411,6 @@ GameObject:
   - component: {fileID: 1238487120}
   - component: {fileID: 1238487123}
   - component: {fileID: 1238487124}
-  - component: {fileID: 1238487125}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -10463,18 +10462,6 @@ MonoBehaviour:
   _itemDB: {fileID: 11400000, guid: f11d66ff35f87d447b811f56fa73f432, type: 2}
   _slots: []
   _itemCount: 0
---- !u!114 &1238487125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238487118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6920ec20650114da507bee628749f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1246818809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12807,6 +12794,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1604371955}
   - component: {fileID: 1604371956}
+  - component: {fileID: 1604371959}
+  - component: {fileID: 1604371958}
+  - component: {fileID: 1604371957}
   m_Layer: 0
   m_Name: asdfasfd
   m_TagString: Untagged
@@ -12884,6 +12874,54 @@ MonoBehaviour:
   - {fileID: 2117394635}
   - {fileID: 1537063632}
   - {fileID: 908917238}
+  effectObjects: []
+--- !u!114 &1604371957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604371954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ae5b9ef79152648a181b10150a5137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1284883492}
+  targetRange: 10
+  maxTargets: 5
+  attackDelay: 0.1
+  hitParticlePrefab: {fileID: 5237683167020436190, guid: 50b8f8b77ce2489438dd17a3b3e9557c, type: 3}
+--- !u!114 &1604371958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604371954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5774a7cd3f34dbe42bccfaf29ec70c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1682974611}
+--- !u!114 &1604371959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604371954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e22b0900a0b1b44bdf4c3a5477c425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldCount: 3
+  itemID: 0
+  rotationSpeed: 30
+  radius: 3
+  shields: []
 --- !u!1001 &1607825080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13773,6 +13811,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677965644}
   m_CullTransparentMesh: 1
+--- !u!1 &1682974611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8935320841809148343, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+  m_PrefabInstance: {fileID: 1015620982}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1699260948 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1365614394857729152, guid: 495c7e7d34d1af943812992739729534, type: 3}
