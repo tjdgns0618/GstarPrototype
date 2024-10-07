@@ -50,9 +50,12 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private int currentDashCount;
     public static bool canMove = true;
     PlayerCharacter pi;
+    GameManager gameManager;
 
     private void Start()
     {
+        gameManager = GameManager.instance;
+
         player = GetComponent<PlayerCharacter>();
         pi = PlayerCharacter.Instance;
         hasMoveAnimation = Animator.StringToHash("moveSpeed");
@@ -106,7 +109,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.runtimeAnimatorController = player.classControllers[0];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[0];
                 AttackState.comboCount = 0;
-
+                gameManager.uiManager.ChangeCharacterUI(0);
             }
             if (context.control.name == "2")
             {
@@ -117,7 +120,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.runtimeAnimatorController = player.classControllers[1];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[1];
                 AttackState.comboCount = 0;
-
+                gameManager.uiManager.ChangeCharacterUI(1);
             }
             if (context.control.name == "3")
             {
@@ -128,6 +131,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.runtimeAnimatorController = player.classControllers[2];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[2];
                 AttackState.comboCount = 0;
+                gameManager.uiManager.ChangeCharacterUI(2);
             }
         }
     }
