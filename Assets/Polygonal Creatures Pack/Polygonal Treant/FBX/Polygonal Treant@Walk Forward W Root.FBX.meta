@@ -1,91 +1,236 @@
 fileFormatVersion: 2
 guid: 37e088c8d281d5046a43eeec76ee8218
-timeCreated: 1523429583
-licenseType: Store
 ModelImporter:
-  serializedVersion: 21
-  fileIDToRecycleName:
-    100000: Polygonal Treant
-    100002: //RootNode
-    100004: Rig
-    100006: RigHead
-    100008: RigHeadGizmo
-    100010: RigJaw
-    100012: RigJawGizmo
-    100014: RigLArm1
-    100016: RigLArm1Gizmo
-    100018: RigLArm2
-    100020: RigLArm2Gizmo
-    100022: RigLLegBack1
-    100024: RigLLegBack2
-    100026: RigLLegBackAnkle
-    100028: RigLLegBackPlatform
-    100030: RigLLegFront1
-    100032: RigLLegFront2
-    100034: RigLLegFrontAnkle
-    100036: RigLLegFrontPlatform
-    100038: RigPelvis
-    100040: RigPelvisGizmo
-    100042: RigRArm1
-    100044: RigRArm1Gizmo
-    100046: RigRArm2
-    100048: RigRArm2Gizmo
-    100050: RigRLegBack1
-    100052: RigRLegBack2
-    100054: RigRLegBackAnkle
-    100056: RigRLegBackPlatform
-    100058: RigRLegFront1
-    100060: RigRLegFront2
-    100062: RigRLegFrontAnkle
-    100064: RigRLegFrontPlatform
-    100066: RigSpine
-    400000: Polygonal Treant
-    400002: //RootNode
-    400004: Rig
-    400006: RigHead
-    400008: RigHeadGizmo
-    400010: RigJaw
-    400012: RigJawGizmo
-    400014: RigLArm1
-    400016: RigLArm1Gizmo
-    400018: RigLArm2
-    400020: RigLArm2Gizmo
-    400022: RigLLegBack1
-    400024: RigLLegBack2
-    400026: RigLLegBackAnkle
-    400028: RigLLegBackPlatform
-    400030: RigLLegFront1
-    400032: RigLLegFront2
-    400034: RigLLegFrontAnkle
-    400036: RigLLegFrontPlatform
-    400038: RigPelvis
-    400040: RigPelvisGizmo
-    400042: RigRArm1
-    400044: RigRArm1Gizmo
-    400046: RigRArm2
-    400048: RigRArm2Gizmo
-    400050: RigRLegBack1
-    400052: RigRLegBack2
-    400054: RigRLegBackAnkle
-    400056: RigRLegBackPlatform
-    400058: RigRLegFront1
-    400060: RigRLegFront2
-    400062: RigRLegFrontAnkle
-    400064: RigRLegFrontPlatform
-    400066: RigSpine
-    4300000: Polygonal Treant
-    7400000: Walk Forward W Root
-    9500000: //RootNode
-    13700000: Polygonal Treant
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Polygonal Treant
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: Rig
+  - first:
+      1: 100006
+    second: RigHead
+  - first:
+      1: 100008
+    second: RigHeadGizmo
+  - first:
+      1: 100010
+    second: RigJaw
+  - first:
+      1: 100012
+    second: RigJawGizmo
+  - first:
+      1: 100014
+    second: RigLArm1
+  - first:
+      1: 100016
+    second: RigLArm1Gizmo
+  - first:
+      1: 100018
+    second: RigLArm2
+  - first:
+      1: 100020
+    second: RigLArm2Gizmo
+  - first:
+      1: 100022
+    second: RigLLegBack1
+  - first:
+      1: 100024
+    second: RigLLegBack2
+  - first:
+      1: 100026
+    second: RigLLegBackAnkle
+  - first:
+      1: 100028
+    second: RigLLegBackPlatform
+  - first:
+      1: 100030
+    second: RigLLegFront1
+  - first:
+      1: 100032
+    second: RigLLegFront2
+  - first:
+      1: 100034
+    second: RigLLegFrontAnkle
+  - first:
+      1: 100036
+    second: RigLLegFrontPlatform
+  - first:
+      1: 100038
+    second: RigPelvis
+  - first:
+      1: 100040
+    second: RigPelvisGizmo
+  - first:
+      1: 100042
+    second: RigRArm1
+  - first:
+      1: 100044
+    second: RigRArm1Gizmo
+  - first:
+      1: 100046
+    second: RigRArm2
+  - first:
+      1: 100048
+    second: RigRArm2Gizmo
+  - first:
+      1: 100050
+    second: RigRLegBack1
+  - first:
+      1: 100052
+    second: RigRLegBack2
+  - first:
+      1: 100054
+    second: RigRLegBackAnkle
+  - first:
+      1: 100056
+    second: RigRLegBackPlatform
+  - first:
+      1: 100058
+    second: RigRLegFront1
+  - first:
+      1: 100060
+    second: RigRLegFront2
+  - first:
+      1: 100062
+    second: RigRLegFrontAnkle
+  - first:
+      1: 100064
+    second: RigRLegFrontPlatform
+  - first:
+      1: 100066
+    second: RigSpine
+  - first:
+      4: 400000
+    second: Polygonal Treant
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: Rig
+  - first:
+      4: 400006
+    second: RigHead
+  - first:
+      4: 400008
+    second: RigHeadGizmo
+  - first:
+      4: 400010
+    second: RigJaw
+  - first:
+      4: 400012
+    second: RigJawGizmo
+  - first:
+      4: 400014
+    second: RigLArm1
+  - first:
+      4: 400016
+    second: RigLArm1Gizmo
+  - first:
+      4: 400018
+    second: RigLArm2
+  - first:
+      4: 400020
+    second: RigLArm2Gizmo
+  - first:
+      4: 400022
+    second: RigLLegBack1
+  - first:
+      4: 400024
+    second: RigLLegBack2
+  - first:
+      4: 400026
+    second: RigLLegBackAnkle
+  - first:
+      4: 400028
+    second: RigLLegBackPlatform
+  - first:
+      4: 400030
+    second: RigLLegFront1
+  - first:
+      4: 400032
+    second: RigLLegFront2
+  - first:
+      4: 400034
+    second: RigLLegFrontAnkle
+  - first:
+      4: 400036
+    second: RigLLegFrontPlatform
+  - first:
+      4: 400038
+    second: RigPelvis
+  - first:
+      4: 400040
+    second: RigPelvisGizmo
+  - first:
+      4: 400042
+    second: RigRArm1
+  - first:
+      4: 400044
+    second: RigRArm1Gizmo
+  - first:
+      4: 400046
+    second: RigRArm2
+  - first:
+      4: 400048
+    second: RigRArm2Gizmo
+  - first:
+      4: 400050
+    second: RigRLegBack1
+  - first:
+      4: 400052
+    second: RigRLegBack2
+  - first:
+      4: 400054
+    second: RigRLegBackAnkle
+  - first:
+      4: 400056
+    second: RigRLegBackPlatform
+  - first:
+      4: 400058
+    second: RigRLegFront1
+  - first:
+      4: 400060
+    second: RigRLegFront2
+  - first:
+      4: 400062
+    second: RigRLegFrontAnkle
+  - first:
+      4: 400064
+    second: RigRLegFrontPlatform
+  - first:
+      4: 400066
+    second: RigSpine
+  - first:
+      43: 4300000
+    second: Polygonal Treant
+  - first:
+      74: 7400000
+    second: Walk Forward W Root
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Polygonal Treant
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -93,7 +238,9 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -104,6 +251,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk Forward W Root
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -113,7 +261,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -135,32 +283,221 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Polygonal Treant@Walk Forward W Root(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Polygonal Treant
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rig
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999994, w: 0.49999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLegBackPlatform
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0.7320789, y: -0.0032392868, z: -0.87715924}
+      rotation: {x: 0.50843054, y: -0.49142492, z: -0.49142477, w: 0.50843054}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLegBackPlatform
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: 0.7321329, y: -0.0004887563, z: -0.66599214}
+      rotation: {x: -0.49871573, y: 0.50128096, z: 0.5012809, w: -0.49871582}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLegFrontPlatform
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0.7447903, y: -0.0005147933, z: 0.8845737}
+      rotation: {x: 0.5013497, y: -0.49864674, z: -0.4986466, w: 0.5013497}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLegFrontPlatform
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: 0.7447349, y: -0.0032842297, z: 0.6723179}
+      rotation: {x: -0.49130416, y: 0.50854737, z: 0.5085472, w: -0.4913041}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigPelvisGizmo
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0.015013988, y: 0.63629144, z: -0.0000005602177}
+      rotation: {x: 0.59766734, y: -0.41001678, z: -0.57324344, w: 0.3821936}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: RigHeadGizmo
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0.011213934, y: 1.475306, z: -0.007434297}
+      rotation: {x: 0.4560536, y: -0.5824045, z: -0.41487148, w: 0.52981293}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: RigLArm1Gizmo
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0.59548116, y: 0.95415205, z: 0.05216359}
+      rotation: {x: 0.99987954, y: 0.0041025183, z: 0.0071429554, w: -0.013157139}
+      scale: {x: 1, y: 1, z: 1.0000005}
+    - name: RigLArm2Gizmo
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0.7423838, y: 0.9529743, z: 0.05004906}
+      rotation: {x: 0.7239676, y: -0.050763432, z: 0.008446678, w: 0.6879118}
+      scale: {x: 1, y: 1.0000015, z: 0.9999991}
+    - name: RigRArm1Gizmo
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: 0.5653958, y: 0.9359178, z: 0.1102858}
+      rotation: {x: 0.008695351, y: 0.04656999, z: 0.9974677, w: 0.05304578}
+      scale: {x: 1.0000001, y: 0.99999964, z: 1.000001}
+    - name: RigRArm2Gizmo
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: 0.71135086, y: 0.9202637, z: 0.10846457}
+      rotation: {x: -0.033407167, y: 0.7296248, z: 0.6792464, w: 0.071804784}
+      scale: {x: 1.0000007, y: 1.0000027, z: 0.9999979}
+    - name: RigJawGizmo
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0.014531395, y: 0.89826655, z: 0.05892397}
+      rotation: {x: 0.7120622, y: 0.1352322, z: -0.67510927, w: -0.13750398}
+      scale: {x: 0.9999999, y: 1.0000004, z: 1.0000002}
+    - name: RigPelvis
+      parentName: Polygonal Treant@Walk Forward W Root(Clone)
+      position: {x: -0.015013988, y: 0.63629144, z: 0.34434694}
+      rotation: {x: 0.59766734, y: -0.41001678, z: -0.57324344, w: 0.3821936}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: RigJaw
+      parentName: RigPelvis
+      position: {x: -0.26509345, y: -0.04276369, z: -0.000000038146972}
+      rotation: {x: 4.9516996e-10, y: -0.00000013796772, z: -0.709627, w: 0.70457757}
+      scale: {x: 0.99999976, y: 1.0000002, z: 0.99999994}
+    - name: RigRLegFront1
+      parentName: RigPelvis
+      position: {x: -0.043483276, y: 0.3443601, z: -0.39291114}
+      rotation: {x: -0.6044957, y: 0.6704012, z: -0.37138557, w: -0.21730144}
+      scale: {x: 0.9999997, y: 1, z: 1.0000001}
+    - name: RigRLegFront2
+      parentName: RigRLegFront1
+      position: {x: -0.45784545, y: -0.00000015258789, z: 0.0000006723404}
+      rotation: {x: 0.027889, y: -0.02636275, z: 0.58687365, w: 0.8087686}
+      scale: {x: 0.9999996, y: 1.0000007, z: 0.9999998}
+    - name: RigRLegFrontAnkle
+      parentName: RigRLegFront2
+      position: {x: -0.2064902, y: 0, z: -0.000000007152557}
+      rotation: {x: -0.38330755, y: 0.0594725, z: -0.33479023, w: 0.85875136}
+      scale: {x: 0.99999994, y: 1.0000004, z: 0.99999964}
+    - name: RigRLegBack1
+      parentName: RigPelvis
+      position: {x: -0.024979247, y: -0.38151214, z: -0.36587995}
+      rotation: {x: -0.06698024, y: 0.93328756, z: 0.323232, w: -0.14145313}
+      scale: {x: 0.9999994, y: 1.000001, z: 0.99999934}
+    - name: RigRLegBack2
+      parentName: RigRLegBack1
+      position: {x: -0.4155256, y: 0.00000015258789, z: -0.00000016212464}
+      rotation: {x: 0.9706921, y: -0.21841186, z: 0.012159707, w: 0.09952544}
+      scale: {x: 1.0000107, y: 0.9999983, z: 0.9999915}
+    - name: RigRLegBackAnkle
+      parentName: RigRLegBack2
+      position: {x: -0.25843096, y: 0, z: 0}
+      rotation: {x: 0.80421054, y: -0.33571258, z: 0.11322044, w: -0.4772039}
+      scale: {x: 0.99999976, y: 1.0000054, z: 0.99999547}
+    - name: RigRArm1
+      parentName: RigPelvis
+      position: {x: -0.31533888, y: -0.039261606, z: -0.58123505}
+      rotation: {x: -0.35390168, y: -0.6406873, z: -0.38023454, w: 0.56541586}
+      scale: {x: 0.99999994, y: 0.99999946, z: 1.0000008}
+    - name: RigRArm2
+      parentName: RigRArm1
+      position: {x: -0.14680344, y: 0, z: 0}
+      rotation: {x: 0.6937471, y: 0.07458841, z: -0.043491744, w: 0.7150245}
+      scale: {x: 1.0000005, y: 1.0000019, z: 0.99999833}
+    - name: RigSpine
+      parentName: RigPelvis
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.011026718, y: 0.006842744, z: 0.19363476, w: 0.9809879}
+      scale: {x: 0.9999999, y: 0.99999994, z: 1}
+    - name: RigHead
+      parentName: RigSpine
+      position: {x: -0.83905625, y: 0, z: 0.0000000011920929}
+      rotation: {x: 0.009978487, y: 0.00068145077, z: 0.11620183, w: 0.99317527}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: RigLLegFront1
+      parentName: RigPelvis
+      position: {x: -0.04348335, y: 0.3443602, z: 0.39291114}
+      rotation: {x: -0.9914406, y: 0.00963202, z: 0.08589231, w: 0.09785332}
+      scale: {x: 0.9999997, y: 1.0000004, z: 0.99999994}
+    - name: RigLLegFront2
+      parentName: RigLLegFront1
+      position: {x: -0.45784542, y: -0.00000022888183, z: -0.00000063896175}
+      rotation: {x: -0.029273931, y: -0.5155694, z: 0.11251825, w: 0.8489234}
+      scale: {x: 0.9999999, y: 1.0000004, z: 0.9999999}
+    - name: RigLLegFrontAnkle
+      parentName: RigLLegFront2
+      position: {x: -0.2064902, y: 0, z: -0.000000014305114}
+      rotation: {x: 0.36859888, y: -0.03353076, z: 0.16289057, w: 0.9145913}
+      scale: {x: 0.9999995, y: 1.000001, z: 1.0000002}
+    - name: RigLArm1
+      parentName: RigPelvis
+      position: {x: -0.31826675, y: -0.03963125, z: 0.58123493}
+      rotation: {x: 0.39058775, y: 0.5736168, z: -0.4172314, w: 0.5867904}
+      scale: {x: 0.9999998, y: 0.9999999, z: 1.0000002}
+    - name: RigLArm2
+      parentName: RigLArm1
+      position: {x: -0.1469226, y: 0, z: -0.0000000047683715}
+      rotation: {x: -0.6977514, y: 0.0011201215, z: 0.048702545, w: 0.7146816}
+      scale: {x: 1, y: 1.0000011, z: 0.99999917}
+    - name: RigLLegBack1
+      parentName: RigPelvis
+      position: {x: -0.024979323, y: -0.3815121, z: 0.3658799}
+      rotation: {x: -0.06443, y: 0.92682785, z: -0.35007006, w: 0.119540855}
+      scale: {x: 1.0000005, y: 1.0000006, z: 0.99999905}
+    - name: RigLLegBack2
+      parentName: RigLLegBack1
+      position: {x: -0.41552556, y: 0.0000003814697, z: 0.00000011920929}
+      rotation: {x: 0.99516374, y: 0.0000006624049, z: 0.00000018776547, w: -0.09823023}
+      scale: {x: 0.9999889, y: 1.0000032, z: 1.0000085}
+    - name: RigLLegBackAnkle
+      parentName: RigLLegBack2
+      position: {x: -0.25843352, y: 0, z: 0.000000028610229}
+      rotation: {x: 0.86928046, y: -0.15631595, z: -0.03192929, w: 0.46786466}
+      scale: {x: 0.99999905, y: 0.9999988, z: 1.0000024}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -168,14 +505,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

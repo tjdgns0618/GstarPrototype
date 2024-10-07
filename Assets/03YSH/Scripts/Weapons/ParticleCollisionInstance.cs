@@ -22,6 +22,17 @@ public class ParticleCollisionInstance : MonoBehaviour
     {
         part = GetComponent<ParticleSystem>();
     }
+
+    private void OnEnable()
+    {
+        Invoke("InActiveParticle", 5f);
+    }
+
+    public void InActiveParticle()
+    {
+        GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
+    }
+
     void OnParticleCollision(GameObject other)
     {
         if (other.tag == "Enemy")
@@ -29,6 +40,8 @@ public class ParticleCollisionInstance : MonoBehaviour
             IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
             int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
             damageAble?.Damage(20f);
+            GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
+            /*
             for (int i = 0; i < numCollisionEvents; i++)
             {
                 foreach (var effect in EffectsOnCollision)
@@ -44,10 +57,12 @@ public class ParticleCollisionInstance : MonoBehaviour
                     }
                     Destroy(instance, DestroyTimeDelay);
                 }
-            }
+            }*/
             if (DestoyMainEffect == true)
             {
-                Destroy(gameObject, DestroyTimeDelay + 0.5f);
+                GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
+
+                //Destroy(gameObject, DestroyTimeDelay + 0.5f);
             }
         }
     }

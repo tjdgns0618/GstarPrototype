@@ -59,7 +59,7 @@ public class PlayerCharacter : MonoBehaviour
     [Header("공격 콜라이더")]
     public BoxCollider attackRange;
 
-    public PlayerCharacterController PCC;
+    public bool playSkill;
 
     private void Awake()
     {
