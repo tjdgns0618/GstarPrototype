@@ -1,4 +1,5 @@
 using CharacterController;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -7,6 +8,7 @@ using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerAttack : BaseWeapon, IEffect
 {
@@ -16,11 +18,14 @@ public class PlayerAttack : BaseWeapon, IEffect
     public readonly int hashIsSkill_R_Animation = Animator.StringToHash("IsSkill_R");
     public readonly int hashAttackAnimation = Animator.StringToHash("AttackCombo");
     public readonly int hashAttackSpeedAnimation = Animator.StringToHash("AttackSpeed");
+    public readonly string hashArcherAttackEffect = "ArcherProjectile";
+    public readonly string hashWizardAttackEffect = "WizardProjectile";
     private Coroutine checkAttackReInputCor;
     public GameObject[] defaultAttackEffs;
     public GameObject[] SkillEffs;
     public PlayerCharacter pi;
     private GameManager gi;
+    private ParticlePoolManager pm;
 
     public int skillType;
 
@@ -36,6 +41,7 @@ public class PlayerAttack : BaseWeapon, IEffect
     {
         pi = PlayerCharacter.Instance;
         gi = GameManager.instance;
+        pm = gi.particlePoolManager;
         SetWeaponData(gi._damage, gi._attackspeed,gi._range);
     }
 
@@ -52,6 +58,7 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public override void Skill(BaseState state)
     {
+        PlayerCharacter.Instance.playSkill = true;
         Debug.Log("Q");
         skillType = 0;
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
@@ -60,6 +67,7 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public override void Skill2(BaseState state)
     {
+        PlayerCharacter.Instance.playSkill = true;
         Debug.Log("E");
         skillType = 3;
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
@@ -69,6 +77,7 @@ public class PlayerAttack : BaseWeapon, IEffect
     public override void UltimateSkill(BaseState state)
     {
         Debug.Log("R");
+        PlayerCharacter.Instance.playSkill = true;
         skillType = 6;
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         pi.animator.SetBool(hashIsSkill_R_Animation, true);
@@ -95,9 +104,7 @@ public class PlayerAttack : BaseWeapon, IEffect
                 break;
             }
             yield return null;
-        }
-
-        
+        }        
     }
 
     public void PlayComboAttackEffects()
@@ -107,44 +114,39 @@ public class PlayerAttack : BaseWeapon, IEffect
         if (pi.characterClass == CharacterType.Warrior)
         {
             effect = Instantiate(defaultAttackEffs[comboCount], Vector3.zero, pi.transform.rotation);
+            effect.transform.position = pi.effectGenerator.transform.position + adjustTransform;
+            effect.transform.Rotate(new Vector3(0f, 150f, 0f));
         }
         else if(pi.characterClass == CharacterType.Archer)
         {
-            effect = Instantiate(defaultAttackEffs[comboCount + 3], Vector3.zero, pi.transform.rotation);
-            GameObject arrow = Instantiate(projectiles[ComboCount - 1], pi.firePoint.transform.position,
-                pi.transform.rotation);
+            GameObject arrow = pm.GetParticle(hashArcherAttackEffect + ComboCount);
+            if (arrow != null)
+            {
+                arrow.transform.position = pi.firePoint.transform.position;
+                arrow.transform.rotation = pi.transform.rotation;
+            }
         }
         else if(pi.characterClass == CharacterType.Wizard)
         {
-            effect = Instantiate(defaultAttackEffs[comboCount + 3], Vector3.zero, pi.transform.rotation);
-            GameObject magic = Instantiate(projectiles[ComboCount + 2], pi.firePoint.transform.position,
-                pi.transform.rotation);
-            // magic.transform.Rotate(0, -90f, 0);
+            GameObject magic = pm.GetParticle(hashWizardAttackEffect + ComboCount);
+
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject firework = pm.GetParticle("FireWork");
+                firework.transform.position = pi.transform.position + Vector3.up * 1f + new Vector3(UnityEngine.Random.Range(0,2), UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2));
+            }
+            if (magic != null)
+            {
+                magic.transform.position = pi.firePoint.transform.position;
+                magic.transform.rotation = pi.transform.rotation;
+            }
         }
-
-        // effect.transform.SetParent(effectGenerator.transform);
-
-        effect.transform.position = pi.effectGenerator.transform.position + adjustTransform;
-        // Vector3 secondAttackAdjustAngle = ComboCount == 2 ? new Vector3(0, -90f, 0f) : Vector3.zero;
-        effect.transform.Rotate(new Vector3(0f, 150f, 0f));
-
-        // effect.transform.eulerAngles += secondAttackAdjustAngle;
-        // effect.GetComponent<ParticleSystem>().Play();
-    }
-
-    public void DestroyEffect()
-    {
-        throw new System.NotImplementedException();
     }
 
     public void PlaySkillEffect()
     {
-        Debug.Log("파티클 생성");
         GameObject effect = Instantiate(SkillEffs[skillType + ((int)pi.characterClass)], pi.firePoint.transform.position, pi.transform.rotation);
 
-
-        // GroundSlash groundSlashScript = effect.GetComponent<GroundSlash>();
-        // effect.GetComponent<Rigidbody>().velocity = PlayerCharacter.Instance.transform.forward * groundSlashScript.speed;
     }
 
     

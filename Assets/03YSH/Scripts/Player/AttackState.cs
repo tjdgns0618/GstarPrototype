@@ -17,9 +17,14 @@ namespace CharacterController
 
         public static int comboCount;
 
-        public const float CanReInputTime = 1.5f;
+        public static float CanReInputTime = 0.5f;
 
         public AttackState(PlayerCharacterController controller) : base(controller) { }
+
+        public void OnUpdateReinputTime(float reInputTime)
+        {
+            CanReInputTime = reInputTime;
+        }
 
         public override void OnEnterState()
         {
