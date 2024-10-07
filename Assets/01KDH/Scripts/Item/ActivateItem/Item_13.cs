@@ -52,7 +52,7 @@ public class Item_13 : MonoBehaviour
         List<EnemyAI> enemies = FindEnemiesInRange();
 
         // 적이 5명 미만이면 종료
-        if (enemies.Count < 2)
+        if (enemies.Count < 1)
         {
             yield break; // 적이 부족하면 코루틴 종료
         }
@@ -87,7 +87,7 @@ public class Item_13 : MonoBehaviour
             // 현재 타겟과 연결하는 라인 그리기
             DrawLine(targetedEnemies.Count == 0 ? player.position : targetedEnemies.Last().transform.position, currentTarget.transform.position);
 
-            currentTarget.Damage(3f); // 적에게 3의 피해를 입힘
+            currentTarget.Damage(100f); // 적에게 3의 피해를 입힘
             GameObject particle = Instantiate(hitParticlePrefab, currentTarget.transform.position, Quaternion.identity); // 피격 파티클 생성
             activeParticles[currentTarget] = particle; // 현재 적과 파티클 연결
 

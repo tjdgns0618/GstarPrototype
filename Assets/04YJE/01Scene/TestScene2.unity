@@ -2459,9 +2459,11 @@ MonoBehaviour:
   spawnPos: {fileID: 441140256}
   portal: {fileID: 952685967}
   rewardUI: {fileID: 5375799980236767569}
-  bossprefab: {fileID: 0}
+  waveClear: {fileID: 0}
+  stageClear: {fileID: 0}
   waveInfoText: {fileID: 8335460949734507039}
   stageInfoText: {fileID: 3923033488069134938}
+  waveCountText: {fileID: 0}
   spawnRadius: 10
   minDistancefromPlayer: 5
   firstWaveEnemy: 1
@@ -2471,6 +2473,7 @@ MonoBehaviour:
   currentWave: 0
   currentStage: 1
   stagePerEnemy: 3
+  enemyNames: []
 --- !u!4 &221857133
 Transform:
   m_ObjectHideFlags: 0
@@ -6854,8 +6857,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9eb9bf571205d419b506d4cd994c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particlePoolManager: {fileID: 0}
   uiManager: {fileID: 1235205384}
   pools: {fileID: 0}
+  enemyPoolManager: {fileID: 0}
   itempools: {fileID: 98979236}
   txt_gold: {fileID: 0}
   _maxhp: 100
@@ -6866,6 +6871,7 @@ MonoBehaviour:
   _cooldown: 0
   _attackspeed: 1
   _movespeed: 350
+  _reInputTime: 1
   _critchance: 10
   _critdmg: 150
   _lifesteal: 0
@@ -13326,6 +13332,7 @@ MonoBehaviour:
   - {fileID: 2117394635}
   - {fileID: 1537063632}
   - {fileID: 908917238}
+  effectObjects: []
 --- !u!1001 &1607825080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19275,7 +19282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &672536109601422801
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20134,7 +20141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1163837521742365035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32943,7 +32950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &7845289978173604318
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public ParticlePoolManager particlePoolManager;
     public UIManager uiManager;
-    public PoolManager pools;
+    public EnemyPoolManager enemyPoolManager;
     public ItemPoolManager itempools;
 
     public TMP_Text txt_gold;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPoolManager : MonoBehaviour
+public class EnemyPoolManager : MonoBehaviour
 {
     // 여러 종류의 파티클 프리팹
     public List<GameObject> enemyPrefabs;

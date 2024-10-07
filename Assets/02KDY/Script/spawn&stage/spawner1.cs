@@ -122,7 +122,7 @@ public class spawner1 : MonoBehaviour
         enemiesLeft = totalEnemiesInWave;
         UpdateWaveInfoUI();
         Debug.Log($"{currentWave}웨이브 시작! 적 {totalEnemiesInWave}개 생성");
-        waveCountText.text = $"Wave {currentWave}";
+        waveCountText.text = $"WAVE {currentWave}";
     }
 
     IEnumerator SpawnEnemy() // 일정 시간 간격으로 몬스터 생성
@@ -215,13 +215,13 @@ public class spawner1 : MonoBehaviour
     }
     void UpdateWaveInfoUI()
     {
-        waveInfoText.text = $" 남은 적 : {enemiesLeft}";
+        waveInfoText.text = $"남은 적  {enemiesLeft}";
     }
     public void increaseStage()
     {
         portal.SetActive(false);
         currentStage++;
-        stageInfoText.text = $"{currentStage} Stage";
+        stageInfoText.text = $"STAGE {currentStage}";
         currentWave = 0;
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
