@@ -11,13 +11,14 @@ using System.Data;
 using UnityEngine.InputSystem.XR;
 using UnityEditor.Animations;
 using UnityEngine.Rendering;
+using System.Runtime.CompilerServices;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 {
     public PlayerCharacter player { get; private set; }
-    public Vector3 direction { get; private set; }  // Å°º¸µå ÀÔ·Â ¹æÇâ
-    public Vector2 mousePosition { get; private set; }  // ÀÔ·Â¹ŞÀº ¸¶¿ì½º ¹æÇâ
+    public Vector3 direction { get; private set; }  // í‚¤ë³´ë“œ ì…ë ¥ ë°©í–¥
+    public Vector2 mousePosition { get; private set; }  // ì…ë ¥ë°›ì€ ë§ˆìš°ìŠ¤ ë°©í–¥
     public Vector3 calculatedDirection { get; private set; }
     PlayerAttack playerAttack;
     BaseState dashState;
@@ -30,16 +31,16 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     protected PlayerState playerState;
 
-    [Header("´ë½Ã ¿É¼Ç")]
-    [SerializeField, Tooltip("´ë½¬ÀÇ ÈûÀ» ³ªÅ¸³»´Â °ª")]
+    [Header("ëŒ€ì‹œ ì˜µì…˜")]
+    [SerializeField, Tooltip("ëŒ€ì‰¬ì˜ í˜ì„ ë‚˜íƒ€ë‚´ëŠ” ê°’")]
     protected float dashPower;
-    [SerializeField, Tooltip("´ë½Ã ¸ğ¼Ç ½Ã°£")]
+    [SerializeField, Tooltip("ëŒ€ì‹œ ëª¨ì…˜ ì‹œê°„")]
     protected float dashAnimTime;
-    [SerializeField, Tooltip("´ë½Ã ½ÃÀÛ ÈÄ, ÀçÀÔ·Â ¹ŞÀ» ¼ö ÀÖ´Â ½Ã°£")]
+    [SerializeField, Tooltip("ëŒ€ì‹œ ì‹œì‘ í›„, ì¬ì…ë ¥ ë°›ì„ ìˆ˜ ìˆëŠ” ì‹œê°„")]
     protected float dashReInputTime;
-    [SerializeField, Tooltip("´ë½Ã ÈÄ, °æÁ÷ ½Ã°£")]
+    [SerializeField, Tooltip("ëŒ€ì‹œ í›„, ê²½ì§ ì‹œê°„")]
     protected float dashTetanyTime;
-    [SerializeField, Tooltip("´ë½Ã Àç»ç¿ë ´ë±â½Ã°£")]
+    [SerializeField, Tooltip("ëŒ€ì‹œ ì¬ì‚¬ìš© ëŒ€ê¸°ì‹œê°„")]
     protected float dashCoolTime;
 
     private WaitForSeconds DASH_ANIM_TIME;
@@ -50,9 +51,13 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private int currentDashCount;
     public static bool canMove = true;
     PlayerCharacter pi;
+    GameManager gameManager;
+    public readonly int hashIsAttackAnimation = Animator.StringToHash("IsAttack");
 
     private void Start()
     {
+        gameManager = GameManager.instance;
+
         player = GetComponent<PlayerCharacter>();
         pi = PlayerCharacter.Instance;
         hasMoveAnimation = Animator.StringToHash("moveSpeed");
@@ -60,7 +65,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);
         DASH_RE_INPUT_TIME = new WaitForSeconds(dashReInputTime);
         DASH_TETANY_TIME = new WaitForSeconds(dashTetanyTime);
-    }
+
+        AttackState.CanReInputTime = GameManager.instance._reInputTime;
+    }   
 
     private void Update()
     {
@@ -95,7 +102,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnCharacterChange(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !player.playSkill)
         {
             if (context.control.name == "1")
             {
@@ -106,7 +113,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.runtimeAnimatorController = player.classControllers[0];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[0];
                 AttackState.comboCount = 0;
-
+                gameManager.uiManager.ChangeCharacterUI(0);
+                AttackState.IsAttack = false;
+                AttackState.IsBaseAttack = false;
+                player.animator.Rebind();
             }
             if (context.control.name == "2")
             {
@@ -117,7 +127,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.runtimeAnimatorController = player.classControllers[1];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[1];
                 AttackState.comboCount = 0;
-
+                gameManager.uiManager.ChangeCharacterUI(1);
+                AttackState.IsAttack = false;
+                AttackState.IsBaseAttack = false;
+                player.animator.Rebind();
             }
             if (context.control.name == "3")
             {
@@ -128,15 +141,19 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.runtimeAnimatorController = player.classControllers[2];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[2];
                 AttackState.comboCount = 0;
+                gameManager.uiManager.ChangeCharacterUI(2);
+                AttackState.IsAttack = false; 
+                AttackState.IsBaseAttack = false;
+                player.animator.Rebind();
             }
         }
     }
 
     public void OnClickLeftMouse(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !player.playSkill)
         {
-            Debug.Log("OnClickLeftMouse");
+            // Debug.Log("OnClickLeftMouse");
             HandlePerformedInteraction(context);
         }
         else if (context.canceled)
@@ -149,7 +166,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         if (context.interaction is HoldInteraction)
         {
-            Debug.Log("Context HoldInteraction");
+            // Debug.Log("Context HoldInteraction");
             HandleHoldInteraction();
         }
         else if (context.interaction is PressInteraction && !AttackState.isHolding)
@@ -168,13 +185,13 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             AttackState.IsBaseAttack = true;
             AttackState.isHolding = true;
             AttackState.canAttack = true;
-            Debug.Log("HoldInteraction AttackState");
+            // Debug.Log("HoldInteraction AttackState");
             player.stateMachine.ChangeState(StateName.ATTACK);
         }
         /*bool isAvailableAttack = !AttackState.IsBaseAttack &&
         //                         (player.weaponManager.Weapon.ComboCount < 3);
 
-        //Debug.Log("true¸é °ø°İ °¡´É : " + isAvailableAttack);
+        //Debug.Log("trueë©´ ê³µê²© ê°€ëŠ¥ : " + isAvailableAttack);
 
         //if (isAvailableAttack)
         //{
@@ -194,14 +211,14 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         if (isAvailableAttack)
         {
             AttackState.IsBaseAttack = true;
-            Debug.Log("PressInteraction AttackState");
+            // Debug.Log("PressInteraction AttackState");
 
             player.stateMachine.ChangeState(StateName.ATTACK);
         }
         /*bool isAvailableAttack = !AttackState.IsBaseAttack &&
         //                         (player.weaponManager.Weapon.ComboCount < 3);
 
-        //Debug.Log(AttackState.IsBaseAttack + "true ÀÌ¸é °ø°İ ºÒ°¡´É");
+        //Debug.Log(AttackState.IsBaseAttack + "true ì´ë©´ ê³µê²© ë¶ˆê°€ëŠ¥");
 
         //if (isAvailableAttack)
         //{
@@ -242,12 +259,12 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     public void OnClickQ(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack)
+        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
         {
             if (context.interaction is PressInteraction)
             {
                 bool isAvailableSkill = !AttackState.IsSkill_Q;
-                // ½ºÅ³ ÄğÅ¸ÀÓ ´Ù Ã¡À»¶§ isAvailableSkill true·Î ÃÊ±âÈ­
+                // ìŠ¤í‚¬ ì¿¨íƒ€ì„ ë‹¤ ì°¼ì„ë•Œ isAvailableSkill trueë¡œ ì´ˆê¸°í™”
 
                 if (isAvailableSkill)
                 {
@@ -260,7 +277,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     public void OnClickE(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
         {
             bool isAvailableAttack = !AttackState.IsSkill_E;
 
@@ -273,7 +290,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     public void OnClickR(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
         {
             bool isAvailableAttack = !AttackState.IsSkill_R;
 
@@ -306,7 +323,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         if (!canMove)
             return;
 
-        #region #Ä³¸¯ÅÍ ¿òÁ÷ÀÓ ±¸Çö
+        #region #ìºë¦­í„° ì›€ì§ì„ êµ¬í˜„
         float curretnMoveSpeed = player.MoveSpeed * CONVERT_UNIT_VALUE;
         float animationPlaySpeed = DEFAULT_ANIMATION_PLAYSPEED *
                                     GetAnimationSyncWithMovement(curretnMoveSpeed);
@@ -325,7 +342,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         if (DashState.IsDash && DashState.CurrentDashCount < player.DashCount)
         {
-            // OnFinishedDashÇÏ°í Ã¹¹øÂ° ½ºÅ×ÀÌÆ® º¯°æ
+            // OnFinishedDashí•˜ê³  ì²«ë²ˆì§¸ ìŠ¤í…Œì´íŠ¸ ë³€ê²½
             pi.stateMachine.ChangeState(StateName.DASH);
             return;
         }
@@ -358,7 +375,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             yield return null;
         }
     }
-    #region ´ë½¬ ±¸Çö
+    #region ëŒ€ì‰¬ êµ¬í˜„
     //public void Dash()
     //{
     //    currentDashCount++;

@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &224555838264603501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2073649917552632882}
+  - component: {fileID: 7605581301164863138}
+  - component: {fileID: 1335156811945068509}
+  - component: {fileID: 7923119885167123820}
+  m_Layer: 0
+  m_Name: FireWork
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2073649917552632882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224555838264603501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7610608674543155862}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7605581301164863138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224555838264603501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ded3834dd4adb42adbf98b2a434943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ascentSpeed: 5
+  trackingSpeed: 3
+  maxHeight: 10
+  rotationSpeed: 20
+  target: {fileID: 0}
+--- !u!136 &1335156811945068509
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224555838264603501}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.21232879
+  m_Height: 1.1572001
+  m_Direction: 1
+  m_Center: {x: 0.0000044927, y: 0.46070436, z: -0.0000000018626451}
+--- !u!95 &7923119885167123820
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224555838264603501}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ffc79395f3542b47804568f009e63c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &2579235249426227830
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2073649917552632882}
+    m_Modifications:
+    - target: {fileID: 4692407916867715674, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_Name
+      value: FireWork
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6920409579607301929, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+    - {fileID: 5357030261571604825, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+    - {fileID: 1525035104874201830, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+--- !u!4 &7610608674543155862 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5356214334430238944, guid: 63c78afb3c09ba843b8f88511c29a4b8, type: 3}
+  m_PrefabInstance: {fileID: 2579235249426227830}
+  m_PrefabAsset: {fileID: 0}

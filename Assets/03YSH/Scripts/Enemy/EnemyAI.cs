@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     Vector3 _originPos;
     Animator animator;
     float hp = 20;
-    bool isDead = false;
+    public bool isDead = false;
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
     const string _ATTACK_ANIM_TRIGGER_NAME = "attack";

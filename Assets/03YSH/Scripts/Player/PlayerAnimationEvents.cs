@@ -52,6 +52,8 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnFinishedSkill_Q()
     {
+        PlayerCharacter.Instance.playSkill = false;
+
         AttackState.IsAttack = false;
         AttackState.IsSkill_Q = false;
         PlayerCharacter.Instance.animator.SetBool("IsSkill_Q", false);
@@ -60,12 +62,15 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnStartSkill_E()
     {
+
         effect.PlaySkillEffect();
     }
 
 
     public void OnFinishedSkill_E()
     {
+        PlayerCharacter.Instance.playSkill = false;
+
         AttackState.IsAttack = false;
         AttackState.IsSkill_E = false;
         PlayerCharacter.Instance.animator.SetBool("IsSkill_E", false);
@@ -79,6 +84,8 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnFinishedSkill_R()
     {
+        PlayerCharacter.Instance.playSkill = false;
+
         AttackState.IsAttack = false;
         AttackState.IsSkill_R = false;
         PlayerCharacter.Instance.animator.SetBool("IsSkill_R", false);
