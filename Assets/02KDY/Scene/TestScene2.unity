@@ -1796,7 +1796,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wave Clear
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e719f61ab042ac94baf4b2e494f26531, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1828,8 +1828,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &139008202
@@ -1888,7 +1888,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &143851322
 GameObject:
@@ -2619,6 +2619,8 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 1372988556098474, guid: 3a09def1ff2b15e42b2f8c3d2716fca2, type: 3}
   - {fileID: 1666637062901154, guid: d1b7ec3c5379803498bdcdce2a411aac, type: 3}
+  - {fileID: 1353782578366774, guid: 12ba41821cd488644a09f67a87fad6b5, type: 3}
+  - {fileID: 1204140190044184, guid: a925e8dfcd708b84182e150d6b173192, type: 3}
   spawnPos: {fileID: 441140256}
   portal: {fileID: 952685967}
   rewardUI: {fileID: 5375799980236767569}
@@ -2626,9 +2628,10 @@ MonoBehaviour:
   stageClear: {fileID: 1145404729}
   waveInfoText: {fileID: 8335460949734507039}
   stageInfoText: {fileID: 3923033488069134938}
+  waveCountText: {fileID: 6476767945889163270}
   spawnRadius: 10
   minDistancefromPlayer: 5
-  firstWaveEnemy: 1
+  firstWaveEnemy: 5
   spawnInterval: 3
   waveInterval: 1
   maxWaves: 5
@@ -2638,6 +2641,8 @@ MonoBehaviour:
   enemyNames:
   - Cobra
   - Wolf
+  - Bat
+  - Golem
 --- !u!4 &221857133
 Transform:
   m_ObjectHideFlags: 0
@@ -3254,7 +3259,9 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1666637062901154, guid: d1b7ec3c5379803498bdcdce2a411aac, type: 3}
   - {fileID: 1372988556098474, guid: 3a09def1ff2b15e42b2f8c3d2716fca2, type: 3}
-  poolSize: 1
+  - {fileID: 1353782578366774, guid: 12ba41821cd488644a09f67a87fad6b5, type: 3}
+  - {fileID: 1204140190044184, guid: a925e8dfcd708b84182e150d6b173192, type: 3}
+  poolSize: 2
 --- !u!1 &385118057
 GameObject:
   m_ObjectHideFlags: 0
@@ -9532,7 +9539,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1145404731
 MonoBehaviour:
@@ -9556,7 +9563,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Stage Clear
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e719f61ab042ac94baf4b2e494f26531, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -9620,7 +9627,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1145404732
@@ -19681,7 +19688,7 @@ GameObject:
   - component: {fileID: 2762564326306298622}
   - component: {fileID: 6476767945889163270}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: WaveCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

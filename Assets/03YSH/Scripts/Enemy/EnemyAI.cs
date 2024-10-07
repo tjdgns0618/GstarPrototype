@@ -55,6 +55,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         spawner = FindAnyObjectByType<spawner1>();
         isDead = false;
         hp = 20f;
+        gameObject.layer = 8;
     }
 
     private void Update()
@@ -256,10 +257,6 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         Invoke("InActiveEnemy", 3f);
         spawner.enemyDead();           // 스포너에 적 사망시 호출 함수
-        //if (spawner.enemyDead != null)             // enemy를 카운트 하기 위해 넣은 조건문 (문제 발생 시 삭제)
-        //{
-        //   spawner.enemyDead.Invoke();
-        //}
     }
 
     public void InActiveEnemy()
