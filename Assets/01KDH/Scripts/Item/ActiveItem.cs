@@ -29,9 +29,17 @@ public class ActiveItem : MonoBehaviour
 
     GameManager gm;
 
+    public Dictionary<string, GameObject> effectDictionary;
+    public GameObject[] effectObjects;
+
     private void Start()
     {
         gm = GameManager.instance;
+
+        foreach (var item in effectObjects)
+        {
+            effectDictionary.Add(item.name, item);
+        }
         //_08item = new WaitForSeconds(15f);
         //_09item = new WaitForSeconds(30f);
         //_10item = new WaitForSeconds(10f);
@@ -42,6 +50,14 @@ public class ActiveItem : MonoBehaviour
     private void Update()
     {
 
+    }
+    void Test()
+    {
+        GameObject targetObj;
+        if(effectDictionary.TryGetValue("object name", out targetObj))
+        {
+
+        }
     }
 
     public Item FindItemData(int id)
@@ -72,6 +88,11 @@ public class ActiveItem : MonoBehaviour
             }
         }
         return _itemcount;
+    }
+
+    public void ActiveItemEffect()
+    {
+
     }
     
     #region effect
