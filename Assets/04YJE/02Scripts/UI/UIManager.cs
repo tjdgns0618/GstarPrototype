@@ -13,10 +13,6 @@ public class UIManager : MonoBehaviour
     public GameObject pauseWindow;
     public GameObject fieldUI;
 
-    public Image innShowObj;
-    public Image wizardShowObj;
-    public Image blacksmithShowObj;
-
     //캐릭터 선택 UI
     [Header("Select_Character_UI")]
     public GameObject[] characterSelectionUI;
@@ -26,6 +22,18 @@ public class UIManager : MonoBehaviour
     public GameObject[] chargeCountParent;
     public GameObject[] skillCoolTimeParent;
     private Text[] skillCoolTime_Txt;
+
+    //현재 캐릭터 스킬 UI
+    public GameObject[] skillActiveUI;
+    public GameObject[] skillCoolTimeUI;
+    public TextMeshPro[] skillCoolTimeText;
+
+    public enum Skill
+    {
+        Q = 0,
+        E = 1,
+        R = 2,
+    }
 
     //상점 UI
     private GameObject prevShowImage;
@@ -45,7 +53,7 @@ public class UIManager : MonoBehaviour
 
         chargeCount = new int[characterSelectionUI.Length];                  //임의로 한 것. 나중에 캐릭터 개수만큼 배열 생성
         chargeCountParent = new GameObject[characterSelectionUI.Length];     //임의로 한 것. 나중에 캐릭터 개수만큼 배열 생성
-        
+
 
         for (int index = 0; index < characterSelectionUI.Length; index++)
         {
@@ -70,7 +78,7 @@ public class UIManager : MonoBehaviour
             if (openPopups.Count > 0)
                 CloseLastOpenedPopup();
             else
-            { 
+            {
                 OpenPopup(pauseWindow);
             }
         }
@@ -80,30 +88,16 @@ public class UIManager : MonoBehaviour
         {
             SetUIActive(statWindow, true);
         }
-        else if(Input.GetKeyUp(KeyCode.Tab))
+        else if (Input.GetKeyUp(KeyCode.Tab))
         {
             SetUIActive(statWindow, false);
-        }
-
-        //캐릭터 선택
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeCharacterUI(0);
-        }
-        else if( Input.GetKeyUp(KeyCode.Alpha2))
-        {
-            ChangeCharacterUI(1);
-        }
-        else if( Input.GetKeyUp(KeyCode.Alpha3))
-        {
-            ChangeCharacterUI(2);
         }
     }
 
     //UI팝업창 열기
-    public void OpenPopup(GameObject popup) 
+    public void OpenPopup(GameObject popup)
     {
-        if(popup != null && !openPopups.Contains(popup))
+        if (popup != null && !openPopups.Contains(popup))
         {
             SetUIActive(popup, true);
             openPopups.Add(popup);
@@ -116,7 +110,7 @@ public class UIManager : MonoBehaviour
     //UI팝업창 닫기
     public void ClosePopup(GameObject popup)
     {
-        if(popup != null && openPopups.Contains(popup))
+        if (popup != null && openPopups.Contains(popup))
         {
             SetUIActive(popup, false);
             openPopups.Remove(popup);
@@ -129,7 +123,7 @@ public class UIManager : MonoBehaviour
     //가장 최근에 열린 팝업창 닫기
     public void CloseLastOpenedPopup()
     {
-        if(openPopups.Count > 0)
+        if (openPopups.Count > 0)
         {
             ClosePopup(openPopups.Last());
         }
@@ -174,7 +168,7 @@ public class UIManager : MonoBehaviour
         SetUIActive(characterSelectionUI[num], true);
         SetUIActive(charactersUltimateUI[num], false);
 
-        for(int index = 0; index < characterSelectionUI.Length; index++)  //선택 가능한 캐릭터 개수로 변경할 것
+        for (int index = 0; index < characterSelectionUI.Length; index++)  //선택 가능한 캐릭터 개수로 변경할 것
         {
             if (index == num)
                 continue;
@@ -184,22 +178,24 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //사용 가능 스킬 횟수 충전
+    //스킬  충전
     public void ChargingSkillCount(int index)
     {
         chargeCount[index] = Mathf.Clamp(++chargeCount[index], 0, 3);
-        SetUIActive(chargeCountParent[index].transform.GetChild(chargeCount[index] -1).gameObject, true);
+        SetUIActive(chargeCountParent[index].transform.GetChild(chargeCount[index] - 1).gameObject, true);
     }
 
+    //스킬 사용
     public void UseSkillCount(int index)
     {
-        chargeCount[index] = Mathf.Clamp(--chargeCount[index],0,3);
+        chargeCount[index] = Mathf.Clamp(--chargeCount[index], 0, 3);
         SetUIActive(chargeCountParent[index].transform.GetChild(chargeCount[index]).gameObject, false);
     }
 
+    //상점 스크롤바 초기화
     public void InitScrollbarValue(Scrollbar scrollbar)
     {
-        if(scrollbar != null)
+        if (scrollbar != null)
             scrollbar.value = 1;
     }
 }
