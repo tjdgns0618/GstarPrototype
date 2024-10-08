@@ -1,10 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+[SerializeField]
+public struct ShopItemData
+{
+    public int itemID;
+    public string itemName;
+    public string itemInfo;
+    public float attackDamage;
+    public float diffence;
+    public float hp;
+    public float hpRate;
+    public float criticalDamage;
+    public float criticalRate;
+}
+
 public class Shop : MonoBehaviour
 {
+    [SerializeField] private int itemID;
+    [SerializeField] private ShopItemDB shopItemDB;
+    [SerializeField] private ShopItemData[] shopitems;
     enum _item
     {
         _damage,
@@ -15,6 +33,26 @@ public class Shop : MonoBehaviour
     public Text t_hp;
 
     public GameManager gm;
+
+    private void Awake()
+    {
+        int index = 0;
+
+        for (int i = 0; i < shopItemDB.entities.Count; ++i)
+        {
+            if (shopItemDB.entities[i].itemID == itemID)
+            {
+                shopitems[index].itemName = shopItemDB.entities[i].itemName;
+                shopitems[index].itemName = shopItemDB.entities[i].itemName;
+                shopitems[index].itemName = shopItemDB.entities[i].itemName;
+                shopitems[index].itemName = shopItemDB.entities[i].itemName;
+                shopitems[index].itemName = shopItemDB.entities[i].itemName;
+                shopitems[index].itemName = shopItemDB.entities[i].itemName;
+                shopitems[index].itemName = shopItemDB.entities[i].itemName;
+                shopitems[index].itemName = shopItemDB.entities[i].itemName;
+            }
+        }
+    }
 
     private void Start()
     {
