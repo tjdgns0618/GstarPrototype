@@ -6,6 +6,7 @@ public class ShopItemDBEntity
     public int itemID;
     public string itemName;
     public string itemInfo;
+    public int price;
     public float attackDamage;
     public float diffence;
     public float hp;

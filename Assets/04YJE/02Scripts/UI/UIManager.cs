@@ -21,12 +21,12 @@ public class UIManager : MonoBehaviour
     private float[] skillCoolTime;
     public GameObject[] chargeCountParent;
     public GameObject[] skillCoolTimeParent;
-    private Text[] skillCoolTime_Txt;
+    private TMP_Text[] skillCoolTime_Txt;
 
     //현재 캐릭터 스킬 UI
     public GameObject[] skillActiveUI;
     public GameObject[] skillCoolTimeUI;
-    public TextMeshPro[] skillCoolTimeText;
+    public TMP_Text[] skillCoolTimeText;
 
     public enum Skill
     {

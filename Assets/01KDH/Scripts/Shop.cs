@@ -1,62 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-[SerializeField]
-public struct ShopItemData
+[System.Serializable]
+public struct ShopItemImageData
 {
     public int itemID;
-    public string itemName;
-    public string itemInfo;
-    public float attackDamage;
-    public float diffence;
-    public float hp;
-    public float hpRate;
-    public float criticalDamage;
-    public float criticalRate;
+    public Sprite itemImage;
 }
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] private int itemID;
-    [SerializeField] private ShopItemDB shopItemDB;
-    [SerializeField] private ShopItemData[] shopitems;
-    enum _item
-    {
-        _damage,
-        _cooldown
-    }
+    [SerializeField] private ShopItemDB shopitemDB;
+    [SerializeField] private ShopItemImageData[] shopItemImages;
 
-    public Text t_gold;
-    public Text t_hp;
+    [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private Transform itemParent;
 
-    public GameManager gm;
+    public TMP_Text gold_Txt;
 
-    private void Awake()
-    {
-        int index = 0;
+    private int selectedShopItemID;
 
-        for (int i = 0; i < shopItemDB.entities.Count; ++i)
-        {
-            if (shopItemDB.entities[i].itemID == itemID)
-            {
-                shopitems[index].itemName = shopItemDB.entities[i].itemName;
-                shopitems[index].itemName = shopItemDB.entities[i].itemName;
-                shopitems[index].itemName = shopItemDB.entities[i].itemName;
-                shopitems[index].itemName = shopItemDB.entities[i].itemName;
-                shopitems[index].itemName = shopItemDB.entities[i].itemName;
-                shopitems[index].itemName = shopItemDB.entities[i].itemName;
-                shopitems[index].itemName = shopItemDB.entities[i].itemName;
-                shopitems[index].itemName = shopItemDB.entities[i].itemName;
-            }
-        }
-    }
+    private GameManager gm;
 
     private void Start()
     {
         gm = GameManager.instance;
+
+        for (int i = 0; i < shopItemImages.Length; ++i)
+        {
+            //상점 아이템 생성
+            GameObject shopitem = Instantiate(itemPrefab, itemParent);
+            ShopItem shopitemData = shopitem.GetComponent<ShopItem>();
+
+            //상점 아이템 데이터 불러오기
+            if (shopitemDB.entities[i].itemID == shopItemImages[i].itemID)
+            shopitemData.itemID = shopItemImages[i].itemID;
+            shopitemData.itemImage = shopItemImages[i].itemImage;
+            shopitemData.itemName = shopitemDB.entities[i].itemName;
+            shopitemData.itemInfo = shopitemDB.entities[i].itemInfo;
+            shopitemData.price = shopitemDB.entities[i].price;
+            shopitemData.attackDamage = shopitemDB.entities[i].attackDamage;
+            shopitemData.diffence = shopitemDB.entities[i].diffence;
+            shopitemData.hp = shopitemDB.entities[i].hp;
+            shopitemData.hpRate = shopitemDB.entities[i].hpRate;
+            shopitemData.criticalDamage = shopitemDB.entities[i].criticalDamage;
+            shopitemData.criticalRate = shopitemDB.entities[i].criticalRate;
+        }
     }
 
     public void GoldTrade(int _cost_gold)                   // 돈 부족할 때 부족하다는 UI(자막) 추가
@@ -67,8 +60,40 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            Debug.Log("돈없어");
+            Debug.Log("골드가 부족합니다.");
         }
+    }
+
+    public void SelectShopItem(int shopitemID)
+    {
+        selectedShopItemID = shopitemID;
+    }
+
+    public void BuySelectedShopItem()
+    {
+        //아이템 개수 추가
+
+        //골드 줄어들기
+        GoldTrade(GetShopItemPrice(selectedShopItemID));
+    }
+
+    private int GetShopItemPrice(int itemID)
+    {
+        int price = -1;
+
+        for (int i = 0; i < shopitemDB.entities.Count; ++i)
+        {
+            if (shopitemDB.entities[i].itemID == itemID)
+                price = shopitemDB.entities[i].price;
+        }
+
+        if (price < 0)
+        { 
+            Debug.Log("아이템을 찾을 수 없습니다.");
+            return 0;
+        }
+
+        return price;
     }
 
     public void HpTrade(int _cost_hp)                           // 피 부족할 때 부족하다는 UI(자막) 추가
@@ -79,7 +104,7 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            Debug.Log("피없어");
+            Debug.Log("체력이 부족합니다.");
         }
     }
 
@@ -95,7 +120,7 @@ public class Shop : MonoBehaviour
 
     public void Update()
     {
-        t_gold.text = "Gold : "+ gm._gold;
-        t_hp.text = "Hp : " + gm._hp;
+        gold_Txt.text = "Gold : "+ gm._gold;
+        //t_hp.text = "Hp : " + gm._hp;
     }
 }
