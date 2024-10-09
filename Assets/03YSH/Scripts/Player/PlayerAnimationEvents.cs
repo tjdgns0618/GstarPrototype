@@ -45,6 +45,26 @@ public class PlayerAnimationEvents : MonoBehaviour
         //}
     }
 
+    public void OnStartDash()
+    {
+        PlayerCharacter.Instance.animator.SetBool("canHit", false);
+    }
+
+    public void OnFinishedDash()
+    {
+        PlayerCharacter.Instance.animator.SetBool("canHit", true);
+    }
+
+    public void OnStartHit()
+    {
+        PlayerCharacter.Instance.animator.SetBool("canHit", false);
+    }
+
+    public void OnFinishedHit()
+    {
+        PlayerCharacter.Instance.animator.SetBool("canHit", true);
+    }
+
     public void OnStartSkill_Q()
     {
         effect.PlaySkillEffect();
