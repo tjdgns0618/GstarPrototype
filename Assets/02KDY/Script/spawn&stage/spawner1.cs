@@ -23,7 +23,7 @@ public class spawner1 : MonoBehaviour
     public float spawnRadius = 20f; // 플레이어로부터 enemy가 생성될 수 있는 최대 거리
     public float minDistancefromPlayer = 5f; // 플레이어와 enemy 간의 최소 거리
     public int firstWaveEnemy = 10; //첫번째 웨이브에 나오는 enemy의 수
-    public float spawnInterval = 5f; //enemy 생성 주기
+    public float spawnInterval = 3f; //enemy 생성 주기
     public float waveInterval = 5f; //웨이브 간 대기 시간
     public int maxWaves = 5; //최대 웨이브 수
     public int currentWave = 0; //현재 웨이브
