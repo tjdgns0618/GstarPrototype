@@ -18,10 +18,10 @@ public class PlayerAttack : BaseWeapon, IEffect
     public readonly int hashIsSkill_R_Animation = Animator.StringToHash("IsSkill_R");
     public readonly int hashAttackAnimation = Animator.StringToHash("AttackCombo");
     public readonly int hashAttackSpeedAnimation = Animator.StringToHash("AttackSpeed");
+    public readonly string hashWarriorAttackEffect = "WarriorAttackParticle";
     public readonly string hashArcherAttackEffect = "ArcherProjectile";
     public readonly string hashWizardAttackEffect = "WizardProjectile";
     private Coroutine checkAttackReInputCor;
-    public GameObject[] defaultAttackEffs;
     public GameObject[] SkillEffs;
     public PlayerCharacter pi;
     private GameManager gi;
@@ -109,13 +109,16 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public void PlayComboAttackEffects()
     {
-        int comboCount = Mathf.Clamp(ComboCount - 1, 0, 3);
-        GameObject effect = null;
+        int comboCount = Mathf.Clamp(ComboCount - 1, 0, 3);        
         if (pi.characterClass == CharacterType.Warrior)
         {
-            effect = Instantiate(defaultAttackEffs[comboCount], Vector3.zero, pi.transform.rotation);
-            effect.transform.position = pi.effectGenerator.transform.position + adjustTransform;
-            effect.transform.Rotate(new Vector3(0f, 150f, 0f));
+            GameObject effect = pm.GetParticle(hashWarriorAttackEffect + ComboCount);
+            if (effect != null)
+            {
+                effect.transform.position = pi.effectGenerator.transform.position + adjustTransform;
+                effect.transform.rotation = pi.transform.rotation;
+                effect.transform.Rotate(new Vector3(0f, 150f, 0f));
+            }
         }
         else if(pi.characterClass == CharacterType.Archer)
         {
@@ -129,12 +132,6 @@ public class PlayerAttack : BaseWeapon, IEffect
         else if(pi.characterClass == CharacterType.Wizard)
         {
             GameObject magic = pm.GetParticle(hashWizardAttackEffect + ComboCount);
-
-            for (int i = 0; i < 5; i++)
-            {
-                GameObject firework = pm.GetParticle("FireWork");
-                firework.transform.position = pi.transform.position + Vector3.up * 1f + new Vector3(UnityEngine.Random.Range(0,2), UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2));
-            }
             if (magic != null)
             {
                 magic.transform.position = pi.firePoint.transform.position;
