@@ -179,7 +179,6 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             break;
                         case 41:
                             GameManager.instance.activeDelegate += _activeItem._13Item;
-                            Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                             break;
                         case 42:
                             GameManager.instance.activeDelegate += _activeItem._14Item;
