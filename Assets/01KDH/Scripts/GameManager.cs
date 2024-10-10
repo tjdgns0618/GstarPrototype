@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     public bool isHit = false;  // 플레이어가 피격했는지 확인하는 변수
     public bool isPause = false;
 
+    public delegate void ActiveDelegate();
+    public ActiveDelegate activeDelegate;
+
     private void Awake()
     {
         if(instance != null)
@@ -55,10 +58,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed,_dashcount);
+        activeDelegate += Test;
+        activeDelegate();
     }
 
     private void Update()
     {
         //txt_gold = _gold;
+    }
+
+    void Test()
+    {
+        return;
     }
 }

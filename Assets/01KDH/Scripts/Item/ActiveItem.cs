@@ -7,30 +7,32 @@ using static UnityEditor.Progress;
 
 public class ActiveItem : MonoBehaviour
 {
-
-    public float percentTotal = 100f;
-
     public int _itemcount;
     private Item _item;
 
     public InvenSlot[] slots;
 
-    //public Item _aitem;
+    // 공격시
+    public float attackRandomValue;
+    public float attackProbability;
 
-    //public LayerMask enemyM;
+    //  피격시
+    public float hitRandomValue;
+    public float hitProbability;
 
-    //WaitForSeconds _08item;
-    //WaitForSeconds _09item;
-    //WaitForSeconds _10item;
-    //WaitForSeconds _11item;
-    //WaitForSeconds _12item;
-
-    //public GameObject _maneulObj;
+    // 처치시
+    public float killRandomValue;
+    public float killProbability;
 
     GameManager gm;
 
     public Dictionary<string, GameObject> effectDictionary;
     public GameObject[] effectObjects;
+
+    #region 
+    public ChainLightning chainLightning;
+    public Item_09 _09item;
+    #endregion
 
     private void Start()
     {
@@ -40,11 +42,6 @@ public class ActiveItem : MonoBehaviour
         {
             effectDictionary.Add(item.name, item);
         }
-        //_08item = new WaitForSeconds(15f);
-        //_09item = new WaitForSeconds(30f);
-        //_10item = new WaitForSeconds(10f);
-        //_11item = new WaitForSeconds(60f);
-        //_12item = new WaitForSeconds(15f);
     }
 
     private void Update()
@@ -58,21 +55,6 @@ public class ActiveItem : MonoBehaviour
         {
 
         }
-    }
-
-    public Item FindItemData(int id)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item != null)
-            {
-                if (slots[i].item.itemID == id)
-                {
-                    _item = slots[i].item;
-                }
-            }
-        }
-        return _item;
     }
 
     public int FindItemCount(int id)
@@ -94,113 +76,180 @@ public class ActiveItem : MonoBehaviour
     {
 
     }
-    
+
     #region effect
-    void _01Item()
+    public void _01Item()   //  처치 시 체력회복 오브 드랍 
     {
-        // ������ ���̵� 30���� ������ ����Ÿ ã��
-        if(GetRandomOutcome(FindItemData(29), FindItemCount(29)))
+        if(GetKillRandom(29))
         {
-            Debug.Log("asdf");
+
         }
-        else
+
+    }
+    public void _02Item()   // 처치 시 적 폭발
+    {
+        if(GetKillRandom(30))
         {
-            Debug.Log("Failed");
+
         }
     }    
-    void _02Item()
+    public void _03Item()   // 적 피격 시 폭탄 부착
     {
-        
+        if(GetHitRandom(31))
+        {
+
+        }
     }    
-    void _03Item()
+    public void _04Item()   // 적 피격 시 지뢰 설치
     {
-        
+        if (GetHitRandom(32))
+        {
+
+        }
     }    
-    void _04Item()
+    public void _05Item()   // 플레이어 피격 시 공격 방향 반사 범위 피해
     {
-        
+        if (GetHitRandom(33))
+        {
+
+        }
     }    
-    void _05Item()
+    public void _06Item()   // 플레이어 피격 시 미사일 발사
     {
-        
+        if (GetHitRandom(34))
+        {
+
+        }
+        //Transform firework = gm.itempools.Get(1).transform;
+        //firework.parent = transform;
+        //firework.transform.position = PlayerCharacter.Instance.transform.position + new Vector3(0, 3, 0);
     }    
-    public void _06Item()
+    public void _07Item()   // 플레이어 피격 시 랜덤 효과 발동
     {
-        Transform firework = gm.itempools.Get(1).transform;
-        firework.parent = transform;
-        firework.transform.position = PlayerCharacter.Instance.transform.position + new Vector3(0, 3, 0);
+        if (GetHitRandom(35))
+        {
+
+        }
     }    
-    void _07Item()
-    {
-        
-    }    
-    void _08Item()
-    {
-        //_maneulObj.SetActive(true);
-    }    
-    void _09Item()
-    {
-        
-    }   
-    void _10Item()
-    {
-        
-    } 
-    void _11Item()
-    {
-        
-    }  
-    void _12Item()
-    {
-    }  
-    void _13Item()
+    public void _08Item()   // 일정 시간마다 마늘 효과
     {
 
     }    
-    void _14Item()
+    public void _09Item()   // 방패 공전
     {
-        
+        _09item.UseItem();
     }   
-    void _15Item()
+    public void _10Item()   // 일정 시간마다 적이 있는 곳에 장판
+    {
+        if (GetHitRandom(38))
+        {
+
+        }
+    } 
+    public void _11Item()   // 일정 시간마다 주변 적 정지
     {
         
     }  
-    void _16Item()
+    public void _12Item()   // 일정 시간마다 짧은 무적
     {
-        
+    }  
+    public void _13Item()   // 공격 시 연쇄 번개
+    {
+        if(GetAttackRandom(41))
+        {
+            chainLightning.UseItem();
+        }
     }    
-    void _17Item()
+    public void _14Item()   //  공격 시 범위 피격
     {
-        
+        if (GetAttackRandom(42))
+        {
+
+        }
     }   
-    void _18Item()
+    public void _15Item()   // 공격 시 범위 장판 
     {
-        
+        if (GetAttackRandom(43))
+        {
+
+        }
+    }  
+    public void _16Item()   // 공격 시 투사체 발사
+    {
+        if (GetAttackRandom(44))
+        {
+
+        }
+    }    
+    public void _17Item()   // 공격 시 부메랑 발사
+    {
+        if (GetAttackRandom(45))
+        {
+
+        }
+    }   
+    public void _18Item()   // 캐릭터 교체 시 범위 데미지
+    {
+
     } 
-    void _19Item()
+    public void _19Item()   // 바라보는 방향 적 슬로우
     {
         
     }   
-    void _20Item()
+    public void _20Item()   // 공격 시 튕기는 투사체 발사
     {
-        
+        if (GetAttackRandom(48))
+        {
+
+        }
     }
     #endregion
 
-    public bool GetRandomOutcome(Item item, float itemcount)
-    { 
-        float aProbability = ItemDataBase.instance.Variable(item.itemID) * itemcount;
-        float bProbability = percentTotal - ItemDataBase.instance.Variable(item.itemID) * itemcount;
-
-        // 0���� 100 ������ ���� ���� ����
-        float randomValue = Random.Range(0f, percentTotal);
-        if (randomValue < aProbability)
+    public bool GetAttackRandom(int id)
+    {
+        attackRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
+        attackProbability = 100f - ItemDataBase.instance.Variable(id) * FindItemCount(id); 
+        if (attackRandomValue >= attackProbability)
         {
-            return true; // a�� ���õ�
+            Debug.Log("Attack True");
+            return true;
         }
         else
         {
-            return false; // b�� ���õ�
+            Debug.Log("Attack False");
+            return false;
+        }
+     }
+
+    public bool GetHitRandom(int id)
+    {
+        hitRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
+        hitProbability = 100f - ItemDataBase.instance.Variable(id) * FindItemCount(id);
+        if (hitRandomValue >= hitProbability)
+        {
+            Debug.Log("Hit True");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Hit False");
+            return false;
+        }
+    }
+
+    public bool GetKillRandom(int id)
+    {
+        killRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
+        killProbability = 100f - ItemDataBase.instance.Variable(id) * FindItemCount(id);
+        if (killRandomValue >= killProbability)
+        {
+            Debug.Log("Kill True");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Kill False");
+            return false;
         }
     }
 }

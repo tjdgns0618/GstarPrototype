@@ -17,6 +17,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public Inventory _inventory;
     public RewardSlot _rewardslot;
     public PassiveItem _passiveItem;
+    public ActiveItem _activeItem;
 
     public Animator uiAnim;
 
@@ -25,6 +26,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public spawner1 _spawn;
 
     private RectTransform _rectTransform;
+
 
     private void Start()
     {
@@ -134,6 +136,75 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             break;
                     }
 
+                }
+                if (_rewardslot.item.itemType == Item.ItemType.active)
+                {
+                    switch (_rewardslot.item.itemID)
+                    {
+                        case 29:
+                            GameManager.instance.activeDelegate += _activeItem._01Item;
+                            break;
+                        case 30:
+                            GameManager.instance.activeDelegate += _activeItem._02Item;
+                            break;
+                        case 31:
+                            GameManager.instance.activeDelegate += _activeItem._03Item;
+                            break;
+                        case 32:
+                            GameManager.instance.activeDelegate += _activeItem._04Item;
+                            break;
+                        case 33:
+                            GameManager.instance.activeDelegate += _activeItem._05Item;
+                            break;
+                        case 34:
+                            GameManager.instance.activeDelegate += _activeItem._06Item;
+                            break;
+                        case 35:
+                            GameManager.instance.activeDelegate += _activeItem._07Item;
+                            break;
+                        case 36:
+                            GameManager.instance.activeDelegate += _activeItem._08Item;
+                            break;
+                        case 37:
+                            GameManager.instance.activeDelegate += _activeItem._09Item;
+                            break;
+                        case 38:
+                            GameManager.instance.activeDelegate += _activeItem._10Item;
+                            break;
+                        case 39:
+                            GameManager.instance.activeDelegate += _activeItem._11Item;
+                            break;
+                        case 40:
+                            GameManager.instance.activeDelegate += _activeItem._12Item;
+                            break;
+                        case 41:
+                            GameManager.instance.activeDelegate += _activeItem._13Item;
+                            Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                            break;
+                        case 42:
+                            GameManager.instance.activeDelegate += _activeItem._14Item;
+                            break;
+                        case 43:
+                            GameManager.instance.activeDelegate += _activeItem._15Item;
+                            break;
+                        case 44:
+                            GameManager.instance.activeDelegate += _activeItem._16Item;
+                            break;
+                        case 45:
+                            GameManager.instance.activeDelegate += _activeItem._17Item;
+                            break;
+                        case 46:
+                            GameManager.instance.activeDelegate += _activeItem._18Item;
+                            break;
+                        case 47:
+                            GameManager.instance.activeDelegate += _activeItem._19Item;
+                            break;
+                        case 48:
+                            GameManager.instance.activeDelegate += _activeItem._20Item;
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 _rewardslot.ClearSlot();    // 다음 웨이브 보상 때 새로운 랜덤 보상으로 바꿔야 하기에 슬롯 초기화
             }

@@ -1112,8 +1112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -356, y: -445}
-  m_SizeDelta: {x: 1000, y: 240}
+  m_AnchoredPosition: {x: -380, y: -400}
+  m_SizeDelta: {x: 1000, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &56879494
 MonoBehaviour:
@@ -1191,6 +1191,7 @@ MonoBehaviour:
   _inventory: {fileID: 279832115}
   _rewardslot: {fileID: 1932497752}
   _passiveItem: {fileID: 904436008}
+  _activeItem: {fileID: 264058769}
   uiAnim: {fileID: 56879498}
   _spawn: {fileID: 221857132}
 --- !u!114 &56879496
@@ -2927,7 +2928,7 @@ MonoBehaviour:
   waveCountText: {fileID: 6476767945889163270}
   spawnRadius: 10
   minDistancefromPlayer: 5
-  firstWaveEnemy: 5
+  firstWaveEnemy: 1
   spawnInterval: 3
   waveInterval: 1
   maxWaves: 5
@@ -3249,6 +3250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 264058768}
   - component: {fileID: 264058769}
+  - component: {fileID: 264058771}
   - component: {fileID: 264058770}
   m_Layer: 0
   m_Name: ActiveItem
@@ -3284,7 +3286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e0a8d929866d04482688f4ea112b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percentTotal: 0
   _itemcount: 0
   slots:
   - {fileID: 2692187769795238341}
@@ -3327,7 +3328,15 @@ MonoBehaviour:
   - {fileID: 2117394635}
   - {fileID: 1537063632}
   - {fileID: 908917238}
+  attackRandomValue: 0
+  attackProbability: 0
+  hitRandomValue: 0
+  hitProbability: 0
+  killRandomValue: 0
+  killProbability: 0
   effectObjects: []
+  chainLightning: {fileID: 264058770}
+  _09item: {fileID: 0}
 --- !u!114 &264058770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3341,10 +3350,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1284883492}
-  targetRange: 5
+  targetRange: 10
   maxTargets: 5
-  attackDelay: 0.2
+  attackDelay: 0.5
   hitParticlePrefab: {fileID: 5237683167020436190, guid: 50b8f8b77ce2489438dd17a3b3e9557c, type: 3}
+--- !u!114 &264058771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264058767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e22b0900a0b1b44bdf4c3a5477c425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prevCount: 3
+  totalCount: 2
+  itemID: 0
+  shields: []
 --- !u!1 &265617119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4917,8 +4942,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -356, y: -185}
-  m_SizeDelta: {x: 1000, y: 240}
+  m_AnchoredPosition: {x: -380, y: -160}
+  m_SizeDelta: {x: 1000, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &463237416
 MonoBehaviour:
@@ -4996,6 +5021,7 @@ MonoBehaviour:
   _inventory: {fileID: 279832115}
   _rewardslot: {fileID: 495214254}
   _passiveItem: {fileID: 904436008}
+  _activeItem: {fileID: 264058769}
   uiAnim: {fileID: 463237420}
   _spawn: {fileID: 221857132}
 --- !u!114 &463237418
@@ -8016,7 +8042,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePoolManager: {fileID: 1494862214}
   uiManager: {fileID: 1235205384}
-  pools: {fileID: 0}
   enemyPoolManager: {fileID: 1737429637}
   itempools: {fileID: 98979236}
   txt_gold: {fileID: 7631177499464440033}
@@ -11479,6 +11504,7 @@ GameObject:
   - component: {fileID: 904436006}
   - component: {fileID: 904436008}
   - component: {fileID: 904436007}
+  - component: {fileID: 904436009}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -11530,6 +11556,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fc84c34ef4dc344aaf19f97e5f02aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &904436009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904436005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e22b0900a0b1b44bdf4c3a5477c425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prevCount: 3
+  totalCount: 3
+  itemID: 0
+  shields: []
 --- !u!4 &904662345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 775732498671582187, guid: 6b13f5c2ecd871949a80d7992e772d01, type: 3}
@@ -12025,8 +12067,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -356, y: 75}
-  m_SizeDelta: {x: 1000, y: 240}
+  m_AnchoredPosition: {x: -380, y: 80}
+  m_SizeDelta: {x: 1000, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &950946763
 MonoBehaviour:
@@ -12104,6 +12146,7 @@ MonoBehaviour:
   _inventory: {fileID: 279832115}
   _rewardslot: {fileID: 1928825781}
   _passiveItem: {fileID: 904436008}
+  _activeItem: {fileID: 264058769}
   uiAnim: {fileID: 950946767}
   _spawn: {fileID: 221857132}
 --- !u!114 &950946765
@@ -22851,7 +22894,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 350, y: 200}
+  m_SizeDelta: {x: 600, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &77900061579418855
 MonoBehaviour:
@@ -23868,8 +23911,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -356, y: 335}
-  m_SizeDelta: {x: 1000, y: 240}
+  m_AnchoredPosition: {x: -380, y: 320}
+  m_SizeDelta: {x: 1000, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &748804850653325727
 RectTransform:
@@ -25667,7 +25710,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 87, y: 12}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &1864989229487421648
@@ -26251,8 +26294,8 @@ RectTransform:
   - {fileID: 1759197001}
   - {fileID: 726274706129292995}
   - {fileID: 950946762}
-  - {fileID: 56879493}
   - {fileID: 463237415}
+  - {fileID: 56879493}
   - {fileID: 1940192054}
   m_Father: {fileID: 6146743161662586303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26547,6 +26590,7 @@ MonoBehaviour:
   _inventory: {fileID: 279832115}
   _rewardslot: {fileID: 5023059027720068841}
   _passiveItem: {fileID: 904436008}
+  _activeItem: {fileID: 264058769}
   uiAnim: {fileID: 7623794287320645630}
   _spawn: {fileID: 221857132}
 --- !u!1 &2376158560502235045
@@ -28372,6 +28416,7 @@ MonoBehaviour:
   - {fileID: 495214254}
   - {fileID: 1932497752}
   allItems:
+  - {fileID: 11400000, guid: 41ad69b12a4ba264a93dbf03de2cc7ed, type: 2}
   - {fileID: 11400000, guid: 884c8a3bb573cdb4aba86ba8aefdf698, type: 2}
   - {fileID: 11400000, guid: fec367c0c2e3b88499a37193221fd593, type: 2}
   - {fileID: 11400000, guid: d9a9c597aaea9894fbc381d9edc1582a, type: 2}
@@ -28386,41 +28431,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eebe76b82b931c94c86c38cde0ab47b0, type: 2}
   - {fileID: 11400000, guid: 74a698263eb1d534aa1287718212137a, type: 2}
   - {fileID: 11400000, guid: 5d928a7bf656f1346861633971ab4ca7, type: 2}
-  - {fileID: 11400000, guid: 1b32c8f0d84de604b8e1479492ab4271, type: 2}
-  - {fileID: 11400000, guid: 06dffad1e66788645b0ee5f111c9ca96, type: 2}
-  - {fileID: 11400000, guid: b2d879a26d595494b92d738f8b4843a8, type: 2}
-  - {fileID: 11400000, guid: 30ffdef9d39c7674e8b9691babc81420, type: 2}
-  - {fileID: 11400000, guid: ecddd6e82acaabc408f2448cfd7dbe46, type: 2}
-  - {fileID: 11400000, guid: a12b43bbb2034234f910b49277607950, type: 2}
-  - {fileID: 11400000, guid: c2cb70d8d7872be46aa75d832e39c4ed, type: 2}
-  - {fileID: 11400000, guid: 3381eb6d259793c46b93185e0f17f4de, type: 2}
-  - {fileID: 11400000, guid: 8043621be7022cd48a87658361816207, type: 2}
-  - {fileID: 11400000, guid: 7ab269a34dbb5e74abb1e1396f86dd61, type: 2}
-  - {fileID: 11400000, guid: beb94841091185e40a0362ea06657290, type: 2}
-  - {fileID: 11400000, guid: ae5eeffe5bf65544e98cb8b9dc5e0991, type: 2}
-  - {fileID: 11400000, guid: 41177a95123b9644fbda1afa12d8aa57, type: 2}
-  - {fileID: 11400000, guid: 2f62d7615a7eb1c4daa208998fc9a15f, type: 2}
-  - {fileID: 11400000, guid: f14d17f168a3620498cb3411265050b6, type: 2}
-  - {fileID: 11400000, guid: 3c0a6ddfb94fde24bae534af7cb829f7, type: 2}
-  - {fileID: 11400000, guid: 3865ae54a5658a34ca4fcf42a351b593, type: 2}
-  - {fileID: 11400000, guid: 567676a4780f97f438b1bd85d105d1b1, type: 2}
-  - {fileID: 11400000, guid: aff20f28f09698e489adb7192d339865, type: 2}
-  - {fileID: 11400000, guid: 634894f5e1184a14cb35c5792ce78d7c, type: 2}
-  - {fileID: 11400000, guid: 1576955dd1e17a943880e2afa4187d4d, type: 2}
-  - {fileID: 11400000, guid: 2097c983fd321eb4abbb4bd5a4abad47, type: 2}
-  - {fileID: 11400000, guid: 14f5763ea3ce52249af4dc889c050cb8, type: 2}
-  - {fileID: 11400000, guid: e098b5c99b964e942bf04990a814a17f, type: 2}
-  - {fileID: 11400000, guid: 906b4e965dc93ce4cb5707dc4cc54ff4, type: 2}
-  - {fileID: 11400000, guid: 45c78aa19f8be0740bb52845302e15a0, type: 2}
-  - {fileID: 11400000, guid: cc9dceafd3b776e4a820837d986603dd, type: 2}
-  - {fileID: 11400000, guid: 41ad69b12a4ba264a93dbf03de2cc7ed, type: 2}
-  - {fileID: 11400000, guid: 4b5cacdf04e738b4a9bca2b1f42e969e, type: 2}
-  - {fileID: 11400000, guid: cd6ac6ba73418b04db25313074dbb293, type: 2}
-  - {fileID: 11400000, guid: db228415e5f83e94bb26e735dc650276, type: 2}
-  - {fileID: 11400000, guid: f3ee24384384e2144a6062a3313823e3, type: 2}
-  - {fileID: 11400000, guid: cb117c616d39cd846b318ed3f9e4e602, type: 2}
-  - {fileID: 11400000, guid: e251faeb70a50f14390d259236bd4c58, type: 2}
-  - {fileID: 11400000, guid: ffe47164087c8264d9699af947e69455, type: 2}
 --- !u!114 &3541861247488651933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30293,7 +30303,7 @@ MonoBehaviour:
   m_text: sadfasfd
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e5bb682d3aef54baf8fd6d63e9e7eb, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -7663975852802626781, guid: 88e5bb682d3aef54baf8fd6d63e9e7eb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -30356,7 +30366,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4583888477777918812
@@ -32735,7 +32745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -55}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &5920067191790975855
@@ -33345,7 +33355,7 @@ MonoBehaviour:
   m_text: 123
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88e5bb682d3aef54baf8fd6d63e9e7eb, type: 2}
-  m_sharedMaterial: {fileID: 0}
+  m_sharedMaterial: {fileID: -7663975852802626781, guid: 88e5bb682d3aef54baf8fd6d63e9e7eb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -33408,7 +33418,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &6276967620595662211
@@ -34227,15 +34237,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fb840e91cff016a41853c7fbefd14bba, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -34699,7 +34709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6894623139303990547
 RectTransform:
   m_ObjectHideFlags: 0
