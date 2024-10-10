@@ -18,19 +18,10 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void OnStartAttack()
     {
         effect.PlayComboAttackEffects();
-        // if(mySounds.TryGetValue(PlayerCharacter.Instance.weaponManager.Weapon.Name, out ISound weaponSound))
-        //     weaponSound.PlayComboAttackSound();
     }
 
     public void OnFinishedAttack()
     {
-        //AttackState.IsAttack = false;
-        //AttackState.IsBaseAttack = false;
-        //PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
-        //if(!AttackState.isHolding)
-        //    PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
-        //AttackState.isAttackAnimationStart = true;
-
         AttackState.IsAttack = false;
         AttackState.IsBaseAttack = false;
         PlayerCharacter.Instance.animator.SetBool("IsAttack", false);
@@ -38,11 +29,6 @@ public class PlayerAnimationEvents : MonoBehaviour
         AttackState.isClick = false;
 
         AttackState.canAttack = true;
-
-        //if (!AttackState.isHolding)
-        //{
-        //    PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
-        //}
     }
 
     public void OnStartDash()
