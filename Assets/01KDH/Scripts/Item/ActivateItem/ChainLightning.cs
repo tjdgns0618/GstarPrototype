@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Item_13 : MonoBehaviour
+public class ChainLightning : MonoBehaviour
 {
     public Transform player; // 플레이어의 Transform
     public float targetRange; // 공격 범위
@@ -15,8 +15,9 @@ public class Item_13 : MonoBehaviour
 
     private List<EnemyAI> targetedEnemies = new List<EnemyAI>(); // 타겟 적 리스트
     private LineRenderer lineRenderer; // 라인 렌더러 컴포넌트
-    //public LineRenderer linePrefab;
     private Dictionary<EnemyAI, GameObject> activeParticles = new Dictionary<EnemyAI, GameObject>(); // 적과 연결된 파티클
+
+    WaitForSeconds aDelay;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class Item_13 : MonoBehaviour
         lineRenderer.material = new Material(Shader.Find("Hovl/Particles/testS")); // 기본 재질 설정
         lineRenderer.startColor = new Color(97f / 255f, 157f / 255f, 255f / 255f);
         lineRenderer.endColor = new Color(97f / 255f, 157f / 255f, 255f / 255f);
+
         Texture2D texture = Resources.Load<Texture2D>("Trail6"); // 텍스처 경로
         lineRenderer.material.mainTexture = texture;
         Texture2D noiseTexture = Resources.Load<Texture2D>("Noise34"); // 노이즈 텍스처 경로
@@ -35,15 +37,13 @@ public class Item_13 : MonoBehaviour
         {
             lineRenderer.material.SetTexture("_Noise", noiseTexture); // 텍스처 설정
         }
+
+        aDelay = new WaitForSeconds(attackDelay);
     }
 
-    private void Update()
+    public void UseItem()
     {
-        // 'P' 키를 눌렀을 때 타겟 적을 찾기 시작
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartCoroutine(TargetEnemies()); // 타겟 적 코루틴 시작
-        }
+        StartCoroutine(TargetEnemies());
     }
 
     private IEnumerator TargetEnemies()
@@ -87,14 +87,14 @@ public class Item_13 : MonoBehaviour
             // 현재 타겟과 연결하는 라인 그리기
             DrawLine(targetedEnemies.Count == 0 ? player.position : targetedEnemies.Last().transform.position, currentTarget.transform.position);
 
-            currentTarget.Damage(100f); // 적에게 3의 피해를 입힘
+            currentTarget.Damage(GameManager.instance._damage * 10f); // 적에게 현재 공격력*10의 피해를 입힘
             GameObject particle = Instantiate(hitParticlePrefab, currentTarget.transform.position, Quaternion.identity); // 피격 파티클 생성
             activeParticles[currentTarget] = particle; // 현재 적과 파티클 연결
 
             targetedEnemies.Add(currentTarget); // 타겟 리스트에 현재 적 추가
             enemies.Remove(currentTarget); // 공격한 적을 리스트에서 제거
 
-            yield return new WaitForSeconds(attackDelay); // 공격 사이 대기
+            yield return aDelay; // 공격 사이 대기
         }
 
         // 모든 타겟에 대한 파티클 삭제
@@ -115,7 +115,7 @@ public class Item_13 : MonoBehaviour
     {
         // 플레이어와 지정된 범위 내의 적들을 찾음
         return FindObjectsOfType<EnemyAI>()
-            .Where(enemy => enemy != null && Vector3.Distance(player.position, enemy.transform.position) <= targetRange) // 범위 내의 적 필터링
+            .Where(enemy => enemy != null && !enemy.isDead && Vector3.Distance(player.position, enemy.transform.position) <= targetRange) // 범위 내의 적 필터링
             .ToList(); // 리스트로 반환
     }
 

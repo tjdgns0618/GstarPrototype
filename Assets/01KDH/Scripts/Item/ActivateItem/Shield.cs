@@ -7,42 +7,47 @@ public class Shield : MonoBehaviour
 {
     int shieldHp = 1;
 
+    private bool isShieldDestroy = false;
+
+    private float shieldGenT;
+    private float shieldT = 3f;
+
+
     public GameObject shieldBoomParticle;
-
-    WaitForSeconds shieldgen;
-
-    private void Start()
-    {
-        shieldgen = new WaitForSeconds(3f);
-    }
-
-    private void Update()
-    {
-        if(shieldHp <= 0)
-            StartCoroutine(ShieldRegen());
-    }
 
     void BoomShield()
     {
         Instantiate(shieldBoomParticle, transform.position, Quaternion.identity);
-        Destroy(shieldBoomParticle);
+        Debug.Log("particle inst");
+        DestroyImmediate(shieldBoomParticle, true);
+        isShieldDestroy = true;
         gameObject.SetActive(false);
     }
 
-    IEnumerator ShieldRegen()
+    void ShieldRegen()
     {
         BoomShield();
-        Debug.Log("regen...");
-        yield return shieldgen;
-        gameObject.SetActive(true);
+        if (isShieldDestroy)
+        {
+            shieldGenT += Time.deltaTime;
+            Debug.Log(shieldGenT);
+            if(shieldGenT <= shieldT)
+            {
+                isShieldDestroy = false;
+                shieldGenT = 0;
+                gameObject.SetActive(true);
+            }
+        }
     }
+
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Bullet"))
         {
             Destroy(col.gameObject);
-            shieldHp--;
+            //Debug.Log(" def");
+            //shieldHp--;
         }
     }
 }

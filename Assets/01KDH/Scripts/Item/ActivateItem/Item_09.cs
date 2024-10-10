@@ -6,10 +6,10 @@ using UnityEngine;
 public class Item_09 : MonoBehaviour
 {
     public int prevCount = 3;
-    public int totalCount = 3;
+    public int totalCount = 2;
     public int itemID;
-    public float rotationSpeed = 50f;
-    public float radius = 1.8f;
+    float rotationSpeed = 50f;
+    float radius = 1.8f;
 
 
     public Transform[] shields;
@@ -22,6 +22,16 @@ public class Item_09 : MonoBehaviour
             Batch();
         }
 
+        if (shields != null && shields.Length > 0)
+        {
+            ShieldsTurn();
+        }
+    }
+
+    public void UseItem()
+    {
+        totalCount++;
+        Batch();
         if (shields != null && shields.Length > 0)
         {
             ShieldsTurn();
@@ -73,19 +83,6 @@ public class Item_09 : MonoBehaviour
                     shields[i].gameObject.SetActive(false); // 방패 비활성화
                 }
             }
-        }
-    }
-
-    public void DiscountShields()
-    {
-        DeactiveShields();
-        shields = new Transform[prevCount];
-
-        for (int i = 0; i < prevCount; i++)
-        {
-            Transform shield = ItemPoolManager.instance.Get(0).transform;
-            shield.parent = transform;
-            shields[i] = shield;
         }
     }
 }
