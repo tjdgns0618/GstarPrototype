@@ -1156,10 +1156,11 @@ MonoBehaviour:
   enemyType: 0
   _detectRange: 10
   _attackRange: 2
-  _movementSpeed: 10
+  _movementSpeed: 6
   enemyAttack: {fileID: 3810629070147215833}
   bullet: {fileID: 0}
   shotPosition: {fileID: 0}
+  isDead: 0
 --- !u!1 &1675628249591230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,7 +1909,7 @@ Transform:
   m_GameObject: {fileID: 5237716185699298466}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.525, z: 1.472}
+  m_LocalPosition: {x: 0, y: 0.525, z: 1.925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
