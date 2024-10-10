@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.LowLevel;
@@ -34,20 +35,26 @@ namespace CharacterController
 
         private void Dash()
         {
-            PlayerCharacter.Instance.animator.SetBool(Hash_IsDashBool, true);
-            PlayerCharacter.Instance.animator.SetTrigger(Hash_DashTrigger);
+            PlayerCharacter pi = PlayerCharacter.Instance;
+
+            pi.gameObject.layer = 11;
+            pi.animator.SetBool(Hash_IsDashBool, true);
+            pi.animator.SetTrigger(Hash_DashTrigger);
             
             float dashAnimationPlaySpeed = DEFAULT_ANIMATION_SPEED + (PlayerCharacter.Instance.MoveSpeed * MoveState.CONVERT_UNIT_VALUE - MoveState.DEFAULT_CONVERT_MOVESPEED) * 0.1f;
-            PlayerCharacter.Instance.animator.SetFloat(Hash_DashPlaySpeedFloat, dashAnimationPlaySpeed);
-            PlayerCharacter.Instance.rigidbody.velocity = PlayerCharacter.Instance.transform.forward * (PlayerCharacter.Instance.MoveSpeed * MoveState.CONVERT_UNIT_VALUE) * dashPower;
+            pi.animator.SetFloat(Hash_DashPlaySpeedFloat, dashAnimationPlaySpeed);
+            pi.rigidbody.velocity = PlayerCharacter.Instance.transform.forward * (PlayerCharacter.Instance.MoveSpeed * MoveState.CONVERT_UNIT_VALUE) * dashPower;
         }
 
 
         public override void OnExitState()
         {
-            PlayerCharacter.Instance.rigidbody.velocity = Vector3.zero;
-            PlayerCharacter.Instance.animator.SetBool(Hash_IsDashBool,false);
+            PlayerCharacter pi = PlayerCharacter.Instance;
+            pi.rigidbody.velocity = Vector3.zero;
+            pi.animator.SetBool(Hash_IsDashBool,false);
             AttackState.IsBaseAttack = false;
+            pi.gameObject.layer = 6;
+
         }
 
         public override void OnFixedUpdateState()
