@@ -53,6 +53,16 @@ public class Shop : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        gold_Txt.text = gm._gold + " Gold";
+
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            TestGold();
+        }
+    }
+
     public void GoldTrade(int _cost_gold)                   // 돈 부족할 때 부족하다는 UI(자막) 추가
     {
         if (gm._gold >= _cost_gold)
@@ -117,11 +127,5 @@ public class Shop : MonoBehaviour
     public void TestHp()
     {
         gm._hp -= 10;
-    }
-
-    public void Update()
-    {
-        gold_Txt.text = gm._gold + " Gold";
-        //t_hp.text = "Hp : " + gm._hp;
     }
 }
