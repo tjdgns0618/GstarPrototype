@@ -29,10 +29,10 @@ public class HealthBar : MonoBehaviour
         UpdateEaseHealthSlider(gameManager._hp);
 
         
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-            IncreaseHP(10);
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-            DecreaseHP(10);
+        //if (Input.GetKeyUp(KeyCode.UpArrow))
+        //    IncreaseHP(10);
+        //if (Input.GetKeyUp(KeyCode.DownArrow))
+        //    DecreaseHP(10);
 
     }
 

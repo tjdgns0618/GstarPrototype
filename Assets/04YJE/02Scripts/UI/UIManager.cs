@@ -15,18 +15,19 @@ public class UIManager : MonoBehaviour
 
     //캐릭터 선택 UI
     [Header("Select_Character_UI")]
-    public GameObject[] characterSelectionUI;
-    public GameObject[] charactersUltimateUI;
-    private int[] chargeCount;
-    private float[] skillCoolTime;
-    public GameObject[] chargeCountParent;
-    public GameObject[] skillCoolTimeParent;
-    private TMP_Text[] skillCoolTime_Txt;
+    public GameObject[] characterSelectionUI;   //선택된 캐릭터를 표시되는 프레임 이미지(오브젝트)
+    public GameObject[] charactersUltimateUI;   //선택되지 않은 캐릭터들의 궁극기 스킬 UI(오브젝트)
+    private int[] chargeCount;                  //캐릭터별 충전된 궁극기 횟수
+    //private float[] skillCoolTime;              
+    private GameObject[] chargeCountParent;     //스킬 충전 UI 오브젝트 (부모)
+    //public GameObject[] skillCoolTimeParent;
+    //private TMP_Text[] skillCoolTime_Txt;
 
     //현재 캐릭터 스킬 UI
-    public GameObject[] skillActiveUI;
-    public GameObject[] skillCoolTimeUI;
-    public TMP_Text[] skillCoolTimeText;
+    public GameObject[] skillActiveFrame;       //활성화된 현재 캐릭터 스킬의 프레임 UI
+    public GameObject[] skillCoolTimeUI;        //현재 캐릭터 스킬 쿨타임 UI(오브젝트)
+    public GameObject[] skillChargeUI;          //현재 캐릭터 궁극기 충전 UI(오브젝트)
+    public TMP_Text[] skillCoolTimeText;        //현재 캐릭터 스킬 쿨타임 Text
 
     public enum Skill
     {

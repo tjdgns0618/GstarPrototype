@@ -8734,6 +8734,10 @@ PrefabInstance:
       propertyPath: gold_Txt
       value: 
       objectReference: {fileID: 7631177499464440033}
+    - target: {fileID: 2608470021274986498, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
+      propertyPath: shopItemImages.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6003691042778430384, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: onInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -12440,10 +12444,9 @@ MonoBehaviour:
   - {fileID: 6550024159239051735}
   - {fileID: 6613218874243444988}
   - {fileID: 7676971291017379748}
-  chargeCountParent: []
-  skillCoolTimeParent: []
-  skillActiveUI: []
+  skillActiveFrame: []
   skillCoolTimeUI: []
+  skillChargeUI: []
   skillCoolTimeText: []
   wave_Txt: {fileID: 6476767945889163270}
   health_Txt: {fileID: 1041020533634025101}
