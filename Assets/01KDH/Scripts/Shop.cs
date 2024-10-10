@@ -36,7 +36,7 @@ public class Shop : MonoBehaviour
             GameObject shopitem = Instantiate(itemPrefab, itemParent);
             ShopItem shopitemData = shopitem.GetComponent<ShopItem>();
 
-            //상점 아이템 데이터 불러오기
+            //상점 아이템 데이터 불러오기 및 초기화
             if (shopitemDB.entities[i].itemID == shopItemImages[i].itemID)
             shopitemData.itemID = shopItemImages[i].itemID;
             shopitemData.itemImage = shopItemImages[i].itemImage;
@@ -49,6 +49,7 @@ public class Shop : MonoBehaviour
             shopitemData.hpRate = shopitemDB.entities[i].hpRate;
             shopitemData.criticalDamage = shopitemDB.entities[i].criticalDamage;
             shopitemData.criticalRate = shopitemDB.entities[i].criticalRate;
+            shopitemData.SetShop(this);
         }
     }
 
@@ -71,10 +72,10 @@ public class Shop : MonoBehaviour
 
     public void BuySelectedShopItem()
     {
-        //아이템 개수 추가
-
         //골드 줄어들기
         GoldTrade(GetShopItemPrice(selectedShopItemID));
+
+        //아이템 개수 추가
     }
 
     private int GetShopItemPrice(int itemID)
@@ -120,7 +121,7 @@ public class Shop : MonoBehaviour
 
     public void Update()
     {
-        gold_Txt.text = "Gold : "+ gm._gold;
+        gold_Txt.text = gm._gold + " Gold";
         //t_hp.text = "Hp : " + gm._hp;
     }
 }

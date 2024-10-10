@@ -21,6 +21,7 @@ public class ShopItem : MonoBehaviour
     public float criticalRate;
 
     private Image showImage;
+    private Shop shop;
     public TMP_Text itemNameText;
     public TMP_Text itemInfoText;
     public TMP_Text itemPriceText;
@@ -31,6 +32,7 @@ public class ShopItem : MonoBehaviour
         SetShopItemData();
     }
 
+    //아이템 이름, 정보, 가격 표시
     public void SetShopItemData()
     {
         itemNameText.text = itemName;
@@ -38,8 +40,21 @@ public class ShopItem : MonoBehaviour
         itemPriceText.text = string.Format(@"<sprite=0>") + string.Format(price.ToString());
     }
 
-    public void ChangeShopShowImage()
+    //현재 선택된 아이템 표시
+    public void ShowSelectedShopItem()
     {
         showImage.sprite = itemImage;
+    }
+
+    //선택된 아이템을 바꿈
+    public void SelectedShopItemChange()
+    {
+        shop.SelectShopItem(itemID);
+    }
+
+    //Shop 설정
+    public void SetShop(Shop _shop)
+    {
+        shop = _shop;
     }
 }
