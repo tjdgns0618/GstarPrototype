@@ -58,7 +58,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnFinishedSkill_Q()
     {
-        PlayerCharacter.Instance.playSkill = false;
+        PlayerCharacter.Instance.isPlaySkill = false;
 
         AttackState.IsAttack = false;
         AttackState.IsSkill_Q = false;
@@ -75,7 +75,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnFinishedSkill_E()
     {
-        PlayerCharacter.Instance.playSkill = false;
+        PlayerCharacter.Instance.isPlaySkill = false;
 
         AttackState.IsAttack = false;
         AttackState.IsSkill_E = false;
@@ -90,7 +90,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnFinishedSkill_R()
     {
-        PlayerCharacter.Instance.playSkill = false;
+        PlayerCharacter.Instance.isPlaySkill = false;
 
         AttackState.IsAttack = false;
         AttackState.IsSkill_R = false;
@@ -98,6 +98,11 @@ public class PlayerAnimationEvents : MonoBehaviour
         // PlayerCharacter.Instance.stateMachine.ChangeState(StateName.MOVE);
     }
     
+    public void OnEndChangeCharacter()
+    {
+        PlayerCharacter.Instance.canChange = true;
+    }
+
     public void AttackColliderChange()
     {
         PlayerCharacter.Instance.attackRange.enabled = !PlayerCharacter.Instance.attackRange.enabled;

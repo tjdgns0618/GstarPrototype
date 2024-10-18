@@ -59,7 +59,7 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public override void Skill(BaseState state)
     {
-        PlayerCharacter.Instance.playSkill = true;
+        PlayerCharacter.Instance.isPlaySkill = true;
         Debug.Log("Q");
         skillType = 0;
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
@@ -68,7 +68,7 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public override void Skill2(BaseState state)
     {
-        PlayerCharacter.Instance.playSkill = true;
+        PlayerCharacter.Instance.isPlaySkill = true;
         Debug.Log("E");
         skillType = 3;
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
@@ -78,7 +78,7 @@ public class PlayerAttack : BaseWeapon, IEffect
     public override void UltimateSkill(BaseState state)
     {
         Debug.Log("R");
-        PlayerCharacter.Instance.playSkill = true;
+        PlayerCharacter.Instance.isPlaySkill = true;
         skillType = 6;
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         pi.animator.SetBool(hashIsSkill_R_Animation, true);
@@ -116,7 +116,7 @@ public class PlayerAttack : BaseWeapon, IEffect
             GameObject effect = pm.GetParticle(hashWarriorAttackEffect + ComboCount);
             if (effect != null)
             {
-                effect.transform.position = pi.effectGenerator.transform.position + adjustTransform;
+                effect.transform.position = pi.attackRange.transform.position + adjustTransform;
                 effect.transform.rotation = pi.transform.rotation;
                 effect.transform.Rotate(new Vector3(0f, 150f, 0f));
             }

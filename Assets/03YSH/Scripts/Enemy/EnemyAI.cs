@@ -214,14 +214,19 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         if(isDead) return;
 
         animator.SetTrigger("hit");
-        StartCoroutine(Knockback(transform.forward * -1f, 0.2f, 1f));
         hp -= damageTaken;
+        PlayKnockback();
         Debug.Log(hp);
         if (hp <= 0)
         {
             hp = 0;
             Dead();
         }
+    }
+
+    public void PlayKnockback()
+    {
+        StartCoroutine(Knockback(transform.forward * -1f, 0.2f, 1f));
     }
 
     IEnumerator Knockback(Vector3 direction, float duration, float strength)
