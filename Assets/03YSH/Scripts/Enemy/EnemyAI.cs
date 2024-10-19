@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
     const string _ATTACK_ANIM_TRIGGER_NAME = "attack";
     const string _RANGE_ATTACK_ANIM_TRIGGER_NAME = "shot";
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -57,6 +58,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         hp = 20f;
         gameObject.layer = 8;
     }
+
 
     private void Update()
     {
@@ -215,7 +217,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         animator.SetTrigger("hit");
         hp -= damageTaken;
-        PlayKnockback();
+        PlayKnockback(transform.forward * -1f, 0.2f, 1f);
         Debug.Log(hp);
         if (hp <= 0)
         {
@@ -224,9 +226,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         }
     }
 
-    public void PlayKnockback()
+    public void PlayKnockback(Vector3 direction, float duration, float strength)
     {
-        StartCoroutine(Knockback(transform.forward * -1f, 0.2f, 1f));
+        StartCoroutine(Knockback(direction, duration, strength));
     }
 
     IEnumerator Knockback(Vector3 direction, float duration, float strength)
@@ -262,6 +264,8 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         Invoke("InActiveEnemy", 3f);
         spawner.enemyDead();           // 스포너에 적 사망시 호출 함수
+
+        
     }
 
     public void InActiveEnemy()

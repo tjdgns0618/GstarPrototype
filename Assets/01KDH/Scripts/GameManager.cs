@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public bool isHit = false;  // 플레이어가 피격했는지 확인하는 변수
     public bool isPause = false;
+    public bool isDead = false;
 
     public delegate void ActiveDelegate();
     public ActiveDelegate activeDelegate;
