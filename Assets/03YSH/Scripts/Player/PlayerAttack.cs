@@ -32,8 +32,6 @@ public class PlayerAttack : BaseWeapon, IEffect
     [Header("πﬂªÁ√º")]
     public GameObject[] projectiles;
 
-    public Vector3 adjustTransform;
-
     [SerializeField]
     GameObject effectGenerator;
 
@@ -115,9 +113,15 @@ public class PlayerAttack : BaseWeapon, IEffect
             GameObject effect = pm.GetParticle(hashWarriorAttackEffect + ComboCount);
             if (effect != null)
             {
-                effect.transform.position = pi.attackRange.transform.position + adjustTransform;
+                effect.transform.position = pi.transform.position + (Vector3.up * 1f);
                 effect.transform.rotation = pi.transform.rotation;
-                effect.transform.Rotate(new Vector3(0f, 150f, 0f));
+                if (ComboCount == 3)
+                {
+                    effect.transform.position += (transform.forward * 1f + Vector3.up * 1f);
+                    effect.transform.Rotate(new Vector3(0f, 250f, 60f));
+                }
+                else
+                    effect.transform.Rotate(new Vector3(0f, 200f, 0f));
             }
         }
         else if(pi.characterClass == CharacterType.Archer)

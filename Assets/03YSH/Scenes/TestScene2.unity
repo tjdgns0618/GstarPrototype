@@ -3436,6 +3436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e0a8d929866d04482688f4ea112b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Healingorb: 
+  Deathboom: 
   _itemcount: 0
   slots:
   - {fileID: 2692187769795238341}
@@ -8251,15 +8253,15 @@ MonoBehaviour:
   enemyPoolManager: {fileID: 1737429637}
   itempools: {fileID: 98979236}
   txt_gold: {fileID: 7631177499464440033}
-  _maxhp: 100
-  _hp: 100
+  _maxhp: 3000
+  _hp: 3000
   _gold: 0
   _damage: 10
   _range: 1
   _cooldown: 0
-  _attackspeed: 4
+  _attackspeed: 1
   _movespeed: 350
-  _reInputTime: 0.5
+  _reInputTime: 2
   _critchance: 10
   _critdmg: 150
   _lifesteal: 0
@@ -14537,7 +14539,7 @@ MonoBehaviour:
   - {fileID: 224555838264603501, guid: 6996e23ca9234f84799a03d16245b29d, type: 3}
   - {fileID: 1819066416490906, guid: ee0e16978f587694d87a0d6d4427f365, type: 3}
   - {fileID: 1107296871017770, guid: b70f87c202c52124a9cd19e4ddcec309, type: 3}
-  - {fileID: 2223439838157312332, guid: 0646539bd496e6048b9454797ee5576f, type: 3}
+  - {fileID: 1233043069084803275, guid: 8b9afae0d5358254ebd17b21cf6b9961, type: 3}
   poolSize: 5
 --- !u!1001 &1499440733
 PrefabInstance:
