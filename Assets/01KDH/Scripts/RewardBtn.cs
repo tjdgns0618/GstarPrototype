@@ -142,25 +142,25 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                     switch (_rewardslot.item.itemID)
                     {
                         case 29:
-                            GameManager.instance.activeDelegate += _activeItem._01Item;
+                            GameManager.instance.dieDelegate += _activeItem._01Item;
                             break;
                         case 30:
-                            GameManager.instance.activeDelegate += _activeItem._02Item;
+                            GameManager.instance.dieDelegate += _activeItem._02Item;
                             break;
                         case 31:
-                            GameManager.instance.activeDelegate += _activeItem._03Item;
+                            GameManager.instance.hitDelegate += _activeItem._03Item;
                             break;
                         case 32:
-                            GameManager.instance.activeDelegate += _activeItem._04Item;
+                            GameManager.instance.hitDelegate += _activeItem._04Item;
                             break;
                         case 33:
-                            GameManager.instance.activeDelegate += _activeItem._05Item;
+                            GameManager.instance.hitDelegate += _activeItem._05Item;
                             break;
                         case 34:
-                            GameManager.instance.activeDelegate += _activeItem._06Item;
+                            GameManager.instance.hitDelegate += _activeItem._06Item;
                             break;
                         case 35:
-                            GameManager.instance.activeDelegate += _activeItem._07Item;
+                            GameManager.instance.hitDelegate += _activeItem._07Item;
                             break;
                         case 36:
                             GameManager.instance.activeDelegate += _activeItem._08Item;
