@@ -5,13 +5,7 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    int shieldHp = 1;
-
-    private bool isShieldDestroy = false;
-
-    private float shieldGenT;
-    private float shieldT = 3f;
-
+    int shieldHp = 5;
 
     public GameObject shieldBoomParticle;
 
@@ -20,24 +14,7 @@ public class Shield : MonoBehaviour
         Instantiate(shieldBoomParticle, transform.position, Quaternion.identity);
         Debug.Log("particle inst");
         DestroyImmediate(shieldBoomParticle, true);
-        isShieldDestroy = true;
         gameObject.SetActive(false);
-    }
-
-    void ShieldRegen()
-    {
-        BoomShield();
-        if (isShieldDestroy)
-        {
-            shieldGenT += Time.deltaTime;
-            Debug.Log(shieldGenT);
-            if(shieldGenT <= shieldT)
-            {
-                isShieldDestroy = false;
-                shieldGenT = 0;
-                gameObject.SetActive(true);
-            }
-        }
     }
 
 
@@ -45,9 +22,12 @@ public class Shield : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Bullet"))
         {
-            Destroy(col.gameObject);
-            //Debug.Log(" def");
-            //shieldHp--;
+            shieldHp--;
+            if (shieldHp <= 0)
+            {
+                Destroy(col.gameObject);
+                BoomShield();
+            }
         }
     }
 }

@@ -3286,6 +3286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e0a8d929866d04482688f4ea112b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Healingorb: 
+  Deathboom: 
   _itemcount: 0
   slots:
   - {fileID: 2692187769795238341}
@@ -3367,9 +3369,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prevCount: 3
-  totalCount: 2
   itemID: 0
   shields: []
+  _shields: []
 --- !u!1 &265617119
 GameObject:
   m_ObjectHideFlags: 0
@@ -9860,6 +9862,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2608470021274986498, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
+      propertyPath: gold_Txt
+      value: 
+      objectReference: {fileID: 7631177499464440033}
     - target: {fileID: 3477377039740528425, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: m_LocalPosition.x
       value: 39.930935
@@ -10976,6 +10982,10 @@ PrefabInstance:
       propertyPath: onInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1235205384}
+    - target: {fileID: 6003691042778430384, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
+      propertyPath: onInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1408783509}
     - target: {fileID: 7851688942080795632, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: m_Name
       value: Shop
@@ -10996,6 +11006,10 @@ PrefabInstance:
       propertyPath: onInteractable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1235205384}
+    - target: {fileID: 9183273418121089554, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
+      propertyPath: gold_Txt
+      value: 
+      objectReference: {fileID: 7631177499464440033}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11569,9 +11583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prevCount: 3
-  totalCount: 3
   itemID: 0
   shields: []
+  _shields: []
 --- !u!4 &904662345 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 775732498671582187, guid: 6b13f5c2ecd871949a80d7992e772d01, type: 3}
@@ -14683,10 +14697,9 @@ MonoBehaviour:
   - {fileID: 6550024159239051735}
   - {fileID: 6613218874243444988}
   - {fileID: 7676971291017379748}
-  chargeCountParent: []
-  skillCoolTimeParent: []
-  skillActiveUI: []
+  skillActiveFrame: []
   skillCoolTimeUI: []
+  skillChargeUI: []
   skillCoolTimeText: []
   wave_Txt: {fileID: 6476767945889163270}
   health_Txt: {fileID: 1041020533634025101}
@@ -16066,6 +16079,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639cc4dcfc80530438f756c356ff0762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1408783509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3161111508077550041, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
+  m_PrefabInstance: {fileID: 855034155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1408915974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16544,6 +16562,8 @@ MonoBehaviour:
   - {fileID: 3814496778439236206, guid: f141028e1645b8f459ee926584ba24f6, type: 3}
   - {fileID: 7653787099927154482, guid: a04c277913a696342aaa2c705ae7fe3b, type: 3}
   - {fileID: 224555838264603501, guid: 6996e23ca9234f84799a03d16245b29d, type: 3}
+  - {fileID: 6332277918711105037, guid: f74083f4d412e4a4080e624dfb26bf4b, type: 3}
+  - {fileID: 1206084890288650638, guid: 36ba96c67f935b04fae5c4506de2dac8, type: 3}
   poolSize: 5
 --- !u!1001 &1499440733
 PrefabInstance:
@@ -28416,21 +28436,7 @@ MonoBehaviour:
   - {fileID: 495214254}
   - {fileID: 1932497752}
   allItems:
-  - {fileID: 11400000, guid: 41ad69b12a4ba264a93dbf03de2cc7ed, type: 2}
-  - {fileID: 11400000, guid: 884c8a3bb573cdb4aba86ba8aefdf698, type: 2}
-  - {fileID: 11400000, guid: fec367c0c2e3b88499a37193221fd593, type: 2}
-  - {fileID: 11400000, guid: d9a9c597aaea9894fbc381d9edc1582a, type: 2}
-  - {fileID: 11400000, guid: 2a9befc2aec89df4abd6d1e9727bae36, type: 2}
-  - {fileID: 11400000, guid: 30712034fc8fdce42a6367b601626601, type: 2}
-  - {fileID: 11400000, guid: c89d79594acf9a04aa8cdb6f03fe710c, type: 2}
-  - {fileID: 11400000, guid: 4fd88a5e2ef030f41a73dc5a6484619f, type: 2}
-  - {fileID: 11400000, guid: 915ed9a70d909f64598524865222a51a, type: 2}
-  - {fileID: 11400000, guid: 8ab1bf2f3d8115a47a28a59393b5388a, type: 2}
-  - {fileID: 11400000, guid: 6e8d8fbd833c45c4b81c92f04e37b3f7, type: 2}
-  - {fileID: 11400000, guid: bcfacd4a75123fa44afade730eab814c, type: 2}
-  - {fileID: 11400000, guid: eebe76b82b931c94c86c38cde0ab47b0, type: 2}
-  - {fileID: 11400000, guid: 74a698263eb1d534aa1287718212137a, type: 2}
-  - {fileID: 11400000, guid: 5d928a7bf656f1346861633971ab4ca7, type: 2}
+  - {fileID: 11400000, guid: 3c0a6ddfb94fde24bae534af7cb829f7, type: 2}
 --- !u!114 &3541861247488651933
 MonoBehaviour:
   m_ObjectHideFlags: 0
