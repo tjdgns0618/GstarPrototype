@@ -102,10 +102,14 @@ public class UIManager : MonoBehaviour
         {
             SetUIActive(popup, true);
             openPopups.Add(popup);
+            gameManager.isPause = true;
         }
 
         if (popup == pauseWindow)
+        {
             Time.timeScale = 0f;
+            gameManager.isPause = true;
+        }
     }
 
     //UIÆË¾÷Ã¢ ´Ý±â
@@ -115,10 +119,14 @@ public class UIManager : MonoBehaviour
         {
             SetUIActive(popup, false);
             openPopups.Remove(popup);
+            gameManager.isPause = false;
         }
 
         if (popup == pauseWindow && !pauseWindow.activeSelf)
+        {
             Time.timeScale = 1f;
+            gameManager.isPause = false;
+        }
     }
 
     //°¡Àå ÃÖ±Ù¿¡ ¿­¸° ÆË¾÷Ã¢ ´Ý±â

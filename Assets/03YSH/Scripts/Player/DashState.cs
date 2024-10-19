@@ -41,9 +41,9 @@ namespace CharacterController
             pi.animator.SetBool(Hash_IsDashBool, true);
             pi.animator.SetTrigger(Hash_DashTrigger);
             
-            float dashAnimationPlaySpeed = DEFAULT_ANIMATION_SPEED + (PlayerCharacter.Instance.MoveSpeed * MoveState.CONVERT_UNIT_VALUE - MoveState.DEFAULT_CONVERT_MOVESPEED) * 0.1f;
+            float dashAnimationPlaySpeed = DEFAULT_ANIMATION_SPEED + (GameManager.instance._movespeed * MoveState.CONVERT_UNIT_VALUE - MoveState.DEFAULT_CONVERT_MOVESPEED) * 0.1f;
             pi.animator.SetFloat(Hash_DashPlaySpeedFloat, dashAnimationPlaySpeed);
-            pi.rigidbody.velocity = PlayerCharacter.Instance.transform.forward * (PlayerCharacter.Instance.MoveSpeed * MoveState.CONVERT_UNIT_VALUE) * dashPower;
+            pi.rigidbody.velocity = PlayerCharacter.Instance.transform.forward * (GameManager.instance._movespeed * MoveState.CONVERT_UNIT_VALUE) * dashPower;
         }
 
 

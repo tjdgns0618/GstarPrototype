@@ -12,6 +12,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEditor.Animations;
 using UnityEngine.Rendering;
 using System.Runtime.CompilerServices;
+using UnityEditor.Rendering;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -53,6 +54,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     PlayerCharacter pi;
     GameManager gameManager;
     public readonly int hashIsAttackAnimation = Animator.StringToHash("IsAttack");
+    public readonly int hashIsChangeAnimation = Animator.StringToHash("change");
 
     private void Start()
     {
@@ -71,21 +73,24 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     private void Update()
     {
+        if (gameManager.isDead || gameManager.isPause)
+            return;
         GetMousePosition();
         Move();
-        // Cursor.visible = false;
-    }
-
-    private void FixedUpdate()
-    {
-
     }
 
     public void Damage(float damageTaken)
     {
+        if (gameManager.isDead || gameManager.isHit)
+            return;
+        gameManager.isHit = true;
         player.animator.ResetTrigger("hit");
         player.animator.SetTrigger("hit");
         player.OnUpdateStat(player.MaxHp, player.CurrentHp - damageTaken, player.MoveSpeed, player.DashCount);
+        if(player.CurrentHp <= 0)
+        {
+            Dead();
+        }
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -99,12 +104,11 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         mousePosition = context.ReadValue<Vector2>();
     }
 
-
     public void OnCharacterChange(InputAction.CallbackContext context)
     {
-        if (context.performed && !player.playSkill)
+        if (context.performed && !player.isPlaySkill && player.canChange && !gameManager.isDead && !gameManager.isPause)
         {
-            if (context.control.name == "1")
+            if (context.control.name == "1" && player.characterClass != CharacterType.Warrior)
             {
                 player.weaponObjects[0].SetActive(true);
                 player.weaponObjects[1].SetActive(false);
@@ -117,13 +121,15 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 AttackState.IsAttack = false;
                 AttackState.IsBaseAttack = false;
                 player.animator.Rebind();
+                player.animator.SetTrigger(hashIsChangeAnimation);
+                player.canChange = false;
             }
-            if (context.control.name == "2")
+            if (context.control.name == "2" && player.characterClass != CharacterType.Archer)
             {
                 player.weaponObjects[0].SetActive(false);
                 player.weaponObjects[1].SetActive(true);
                 player.weaponObjects[2].SetActive(false);
-                player.characterClass = CharacterType.Archer;
+                player.characterClass = CharacterType.Archer;                
                 player.animator.runtimeAnimatorController = player.classControllers[1];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[1];
                 AttackState.comboCount = 0;
@@ -131,8 +137,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 AttackState.IsAttack = false;
                 AttackState.IsBaseAttack = false;
                 player.animator.Rebind();
+                player.animator.SetTrigger(hashIsChangeAnimation);
+                player.canChange = false;
             }
-            if (context.control.name == "3")
+            if (context.control.name == "3" && player.characterClass != CharacterType.Wizard)
             {
                 player.weaponObjects[0].SetActive(false);
                 player.weaponObjects[1].SetActive(false);
@@ -145,13 +153,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 AttackState.IsAttack = false; 
                 AttackState.IsBaseAttack = false;
                 player.animator.Rebind();
+                player.animator.SetTrigger(hashIsChangeAnimation);
+                player.canChange = false;
             }
         }
     }
 
     public void OnClickLeftMouse(InputAction.CallbackContext context)
     {
-        if (context.performed && !player.playSkill)
+        if (gameManager.isPause || gameManager.isDead)
+            return;
+
+        if (context.performed && !player.isPlaySkill)
         {
             // Debug.Log("OnClickLeftMouse");
             HandlePerformedInteraction(context);
@@ -188,19 +201,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             // Debug.Log("HoldInteraction AttackState");
             player.stateMachine.ChangeState(StateName.ATTACK);
         }
-        /*bool isAvailableAttack = !AttackState.IsBaseAttack &&
-        //                         (player.weaponManager.Weapon.ComboCount < 3);
-
-        //Debug.Log("true면 공격 가능 : " + isAvailableAttack);
-
-        //if (isAvailableAttack)
-        //{
-        //    AttackState.IsBaseAttack = true;
-        //    AttackState.isHolding = true;
-        //    AttackState.isClick = false;
-        //    Debug.Log("HoldInteraction AttackState");
-        //    player.stateMachine.ChangeState(StateName.ATTACK);
-        }*/
     }
 
     private void HandlePressInteraction()
@@ -215,24 +215,11 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
             player.stateMachine.ChangeState(StateName.ATTACK);
         }
-        /*bool isAvailableAttack = !AttackState.IsBaseAttack &&
-        //                         (player.weaponManager.Weapon.ComboCount < 3);
-
-        //Debug.Log(AttackState.IsBaseAttack + "true 이면 공격 불가능");
-
-        //if (isAvailableAttack)
-        //{
-        //    AttackState.IsBaseAttack = true;
-        //    AttackState.isHolding = false;
-        //    AttackState.isClick = true;
-        //    Debug.Log("PressInteraction AttackState");
-        //    player.stateMachine.ChangeState(StateName.ATTACK);
-        }*/
     }
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !gameManager.isPause && !gameManager.isDead)
         {
             if (DashState.CurrentDashCount >= player.DashCount)
                 return;
@@ -246,20 +233,11 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.stateMachine.ChangeState(StateName.DASH);
                 canMove = false;
             }
-
-            //int dashCount = player.DashCount;
-            //bool isAvailableDash = playerState != PlayerState.DASH && currentDashCount < dashCount;
-            //Debug.Log(playerState != PlayerState.DASH);
-            //Debug.Log(playerState);
-            //if (isAvailableDash)
-            //{
-            //    player.stateMachine.ChangeState(StateName.DASH);
-            //}
         }
     }
     public void OnClickQ(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause || gameManager.isDead)
         {
             if (context.interaction is PressInteraction)
             {
@@ -277,7 +255,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     public void OnClickE(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause || gameManager.isDead)
         {
             bool isAvailableAttack = !AttackState.IsSkill_E;
 
@@ -290,7 +268,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     public void OnClickR(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill! && !gameManager.isPause || gameManager.isDead)
         {
             bool isAvailableAttack = !AttackState.IsSkill_R;
 
@@ -370,6 +348,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 DashState.CurrentDashCount = 0;
                 player.animator.ResetTrigger(DashState.Hash_DashTrigger);
                 pi.stateMachine.ChangeState(StateName.MOVE);
+                Debug.Log("MoveState이동");
                 break;
             }
             yield return null;
@@ -433,7 +412,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void Dead()
     {
-
+        gameManager.isDead = true;
+        player.animator.SetTrigger("dead");
     }
 
     void GetMousePosition()
