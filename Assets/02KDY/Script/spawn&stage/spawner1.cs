@@ -14,7 +14,7 @@ public class spawner1 : MonoBehaviour
     public GameObject rewardUI;
     public GameObject waveClear;
     public GameObject stageClear;
-    //public GameObject bossprefab;
+    public GameObject bossPrefab;
     //public GameObject playerPrefab;
     public TMP_Text waveInfoText;
     public TMP_Text stageInfoText;
@@ -76,11 +76,18 @@ public class spawner1 : MonoBehaviour
         {
             if(currentWave == maxWaves)
             {
-                stageClear.SetActive(true);
-                Invoke("StageClear", 2f);
-                portal.SetActive(true);
-                Time.timeScale = 1;
-                //토템 추가 예정
+                if (currentStage % 2 == 0 && currentWave == 5)
+                {
+                    SpawnBoss();  // 3스테이지마다 보스 등장
+                }
+                else
+                {
+                    stageClear.SetActive(true);
+                    Invoke("StageClear", 2f);
+                    portal.SetActive(true);
+                    Time.timeScale = 1;
+                    //토템 추가 예정
+                }
             }
             else
             {
@@ -225,5 +232,18 @@ public class spawner1 : MonoBehaviour
         currentWave = 0;
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
+    }
+
+    void SpawnBoss() // 보스 몬스터 스폰 함수
+    {
+        Vector3 bossSpawnPosition = GetRandomPosition();
+        if (Vector3.Distance(bossSpawnPosition, spawnPos.position) >= minDistancefromPlayer)
+        {
+            if (!IsPositionOccupied(bossSpawnPosition))
+            {
+                GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
+                Debug.Log("Boss Spawned!");
+            }
+        }
     }
 }
