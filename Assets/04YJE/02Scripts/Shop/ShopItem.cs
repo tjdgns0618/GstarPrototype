@@ -13,12 +13,15 @@ public class ShopItem : MonoBehaviour
     public string itemName;
     public string itemInfo;
     public int price;
+    public int maxLevel;
     public float attackDamage;
     public float diffence;
     public float hp;
     public float hpRate;
     public float criticalDamage;
     public float criticalRate;
+    public float dashCoolTime;
+    public float itemCoolTimeDropRate;
 
     private Image showImage;
     private Shop shop;

@@ -20,6 +20,8 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private Transform itemParent;
 
+    [SerializeField] private int adjustIndex;
+    
     public TMP_Text gold_Txt;
 
     private int selectedShopItemID;
@@ -30,26 +32,33 @@ public class Shop : MonoBehaviour
     {
         gm = GameManager.instance;
 
-        for (int i = 0; i < shopItemImages.Length; ++i)
+        for (int i = adjustIndex; i < adjustIndex + shopItemImages.Length; ++i)
         {
-            //상점 아이템 생성
-            GameObject shopitem = Instantiate(itemPrefab, itemParent);
-            ShopItem shopitemData = shopitem.GetComponent<ShopItem>();
 
             //상점 아이템 데이터 불러오기 및 초기화
-            if (shopitemDB.entities[i].itemID == shopItemImages[i].itemID)
-            shopitemData.itemID = shopItemImages[i].itemID;
-            shopitemData.itemImage = shopItemImages[i].itemImage;
-            shopitemData.itemName = shopitemDB.entities[i].itemName;
-            shopitemData.itemInfo = shopitemDB.entities[i].itemInfo;
-            shopitemData.price = shopitemDB.entities[i].price;
-            shopitemData.attackDamage = shopitemDB.entities[i].attackDamage;
-            shopitemData.diffence = shopitemDB.entities[i].diffence;
-            shopitemData.hp = shopitemDB.entities[i].hp;
-            shopitemData.hpRate = shopitemDB.entities[i].hpRate;
-            shopitemData.criticalDamage = shopitemDB.entities[i].criticalDamage;
-            shopitemData.criticalRate = shopitemDB.entities[i].criticalRate;
-            shopitemData.SetShop(this);
+            if (shopitemDB.entities[i].ItemID == shopItemImages[i - adjustIndex].itemID)
+            {
+                //상점 아이템 생성
+                GameObject shopitem = Instantiate(itemPrefab, itemParent);
+                ShopItem shopitemData = shopitem.GetComponent<ShopItem>();
+
+                shopitemData.itemID = shopitemDB.entities[i].ItemID;
+                shopitemData.itemImage = shopItemImages[i - adjustIndex].itemImage;
+                shopitemData.itemName = shopitemDB.entities[i].ItemName;
+                shopitemData.itemInfo = shopitemDB.entities[i].ItemInfo;
+                shopitemData.price = shopitemDB.entities[i].Price;
+                shopitemData.maxLevel = shopitemDB.entities[i].MaxLevel;
+                shopitemData.attackDamage = shopitemDB.entities[i].AttackDamage;
+                shopitemData.diffence = shopitemDB.entities[i].Deffence;
+                shopitemData.hp = shopitemDB.entities[i].HP;
+                shopitemData.hpRate = shopitemDB.entities[i].HPRate;
+                shopitemData.criticalDamage = shopitemDB.entities[i].CriticalDamage;
+                shopitemData.criticalRate = shopitemDB.entities[i].CriticalRate;
+                shopitemData.dashCoolTime = shopitemDB.entities[i].DashCoolTime;
+                shopitemData.itemCoolTimeDropRate = shopitemDB.entities[i].ItemCoolTimeDropRate;
+
+                shopitemData.SetShop(this);
+            }
         }
     }
 
@@ -63,7 +72,7 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void GoldTrade(int _cost_gold)                   // 돈 부족할 때 부족하다는 UI(자막) 추가
+    public void GoldTrade(int _cost_gold)   
     {
         if (gm._gold >= _cost_gold)
         {
@@ -94,8 +103,8 @@ public class Shop : MonoBehaviour
 
         for (int i = 0; i < shopitemDB.entities.Count; ++i)
         {
-            if (shopitemDB.entities[i].itemID == itemID)
-                price = shopitemDB.entities[i].price;
+            if (shopitemDB.entities[i].ItemID == itemID)
+                price = shopitemDB.entities[i].Price;
         }
 
         if (price < 0)

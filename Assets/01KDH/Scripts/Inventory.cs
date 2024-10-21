@@ -19,16 +19,16 @@ public class Inventory : MonoBehaviour
 
     public void AcquireItem(Item _item, int _count = 1)
     {
-            for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item != null)
             {
-                if (slots[i].item != null)
+                if (slots[i].item.itemID == _item.itemID)
                 {
-                    if (slots[i].item.itemID == _item.itemID)
-                    {
-                        slots[i].SetSlotCount(_count);
-                        return;
-                    }
+                    slots[i].SetSlotCount(_count);
+                    return;
                 }
+            }
         }
 
         for (int i = 0; i < slots.Length; i++)
@@ -37,6 +37,21 @@ public class Inventory : MonoBehaviour
             {
                 slots[i].AddItem(_item, _count);
                 return;
+            }
+        }
+    }
+
+    public void EnchantItem(Item _item, int _count)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item != null)
+            {
+                if (slots[i].item.itemID == _item.itemID)
+                {
+                    slots[i].SetSlotCount(_count);
+                    return;
+                }
             }
         }
     }
