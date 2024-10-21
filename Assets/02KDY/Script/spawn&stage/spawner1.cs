@@ -14,7 +14,7 @@ public class spawner1 : MonoBehaviour
     public GameObject rewardUI;
     public GameObject waveClear;
     public GameObject stageClear;
-    public GameObject bossPrefab;
+    //public GameObject bossPrefab;
     //public GameObject playerPrefab;
     public TMP_Text waveInfoText;
     public TMP_Text stageInfoText;
@@ -75,19 +75,12 @@ public class spawner1 : MonoBehaviour
         if (enemiesLeft == 0)
         {
             if(currentWave == maxWaves)
-            {
-                if (currentStage % 2 == 0 && currentWave == 5)
-                {
-                    SpawnBoss();  // 3스테이지마다 보스 등장
-                }
-                else
-                {
-                    stageClear.SetActive(true);
-                    Invoke("StageClear", 2f);
-                    portal.SetActive(true);
-                    Time.timeScale = 1;
-                    //토템 추가 예정
-                }
+            {           
+                stageClear.SetActive(true);
+                Invoke("StageClear", 2f);
+                portal.SetActive(true);
+                Time.timeScale = 1;
+                //토템 추가 예정   
             }
             else
             {
@@ -116,8 +109,12 @@ public class spawner1 : MonoBehaviour
             SetupWave(); //웨이브 설정
             yield return wInterval;
             yield return StartCoroutine(SpawnEnemy()); //몬스터 생성
-        }
 
+            //if (currentWave == maxWaves && currentStage % 3 == 0)
+            //{
+            //    yield return StartCoroutine(SpawnBoss()); // 보스 소환
+            //}
+        }
         Debug.Log("All waves completed");
     }
 
@@ -172,6 +169,18 @@ public class spawner1 : MonoBehaviour
         }
     }
 
+    //IEnumerator SpawnBoss()
+    //{
+    //    Vector3 randomPosition = GetRandomPosition(); // 보스 소환 위치
+    //    Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+
+    //    // 보스 소환
+    //    GameObject boss = Instantiate(bossPrefab, randomPosition, randomRotation);
+    //    Debug.Log("Boss 소환됨!");
+
+    //    yield return null;
+    //}
+
 
     // 다른 적들과의 거리를 계산하여 겹치지 않도록 체크하는 함수
     bool IsPositionOccupied(Vector3 position)
@@ -197,7 +206,7 @@ public class spawner1 : MonoBehaviour
     {
         //스폰 영역 내에서 랜덤한 위치 생성
         Vector2 randomCirclePoint = Random.insideUnitSphere * spawnRadius; //원형 범위 내에서 랜덤한 2D좌표
-        Vector3 randomPosition = new Vector3(randomCirclePoint.x, 0, randomCirclePoint.y); //y를 0으로 설정하여 평면에서 생성
+        Vector3 randomPosition = new Vector3(randomCirclePoint.x, 0, 0); //y를 0으로 설정하여 평면에서 생성
 
         // spawnPos의 위치 기준해서 오프셋 적용
         randomPosition += spawnPos.position;
@@ -232,18 +241,5 @@ public class spawner1 : MonoBehaviour
         currentWave = 0;
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
-    }
-
-    void SpawnBoss() // 보스 몬스터 스폰 함수
-    {
-        Vector3 bossSpawnPosition = GetRandomPosition();
-        if (Vector3.Distance(bossSpawnPosition, spawnPos.position) >= minDistancefromPlayer)
-        {
-            if (!IsPositionOccupied(bossSpawnPosition))
-            {
-                GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
-                Debug.Log("Boss Spawned!");
-            }
-        }
     }
 }

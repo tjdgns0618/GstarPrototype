@@ -2917,19 +2917,23 @@ MonoBehaviour:
   - {fileID: 1666637062901154, guid: d1b7ec3c5379803498bdcdce2a411aac, type: 3}
   - {fileID: 1204140190044184, guid: a925e8dfcd708b84182e150d6b173192, type: 3}
   - {fileID: 1353782578366774, guid: 12ba41821cd488644a09f67a87fad6b5, type: 3}
+  - {fileID: 1692177501903460, guid: fe29bf4ae9e7bee49893a0252e6302f7, type: 3}
+  - {fileID: 1369097125265668, guid: b3db8e8abfe44444d87e72e34972cb29, type: 3}
+  - {fileID: 1777853578748228, guid: f85bca83c39aac84ba2f8d19c4fb9125, type: 3}
+  - {fileID: 1089598549768886, guid: 02f4d38b806ee9040a4ccb638ffc2de2, type: 3}
+  - {fileID: 1780936617907984, guid: fda7149f553d8e440896a759f8dcd523, type: 3}
   spawnPos: {fileID: 441140256}
   portal: {fileID: 952685967}
   rewardUI: {fileID: 5375799980236767569}
   waveClear: {fileID: 1940945366}
   stageClear: {fileID: 326430266}
-  bossPrefab: {fileID: 5783409933715935772, guid: 47c69102c8dbf454998317da6ec89268, type: 3}
   waveInfoText: {fileID: 8335460949734507039}
   stageInfoText: {fileID: 3923033488069134938}
   waveCountText: {fileID: 6476767945889163270}
   spawnRadius: 15
   minDistancefromPlayer: 5
-  firstWaveEnemy: 5
-  spawnInterval: 3
+  firstWaveEnemy: 10
+  spawnInterval: 2
   waveInterval: 1
   maxWaves: 5
   currentWave: 0
@@ -2940,6 +2944,11 @@ MonoBehaviour:
   - Wolf
   - Golem
   - Bat
+  - Bee
+  - Chest
+  - Magma
+  - Spider
+  - Treant
 --- !u!4 &221857133
 Transform:
   m_ObjectHideFlags: 0
@@ -18874,6 +18883,11 @@ MonoBehaviour:
   - {fileID: 1372988556098474, guid: 3a09def1ff2b15e42b2f8c3d2716fca2, type: 3}
   - {fileID: 1353782578366774, guid: 12ba41821cd488644a09f67a87fad6b5, type: 3}
   - {fileID: 1204140190044184, guid: a925e8dfcd708b84182e150d6b173192, type: 3}
+  - {fileID: 1692177501903460, guid: fe29bf4ae9e7bee49893a0252e6302f7, type: 3}
+  - {fileID: 1369097125265668, guid: b3db8e8abfe44444d87e72e34972cb29, type: 3}
+  - {fileID: 1777853578748228, guid: f85bca83c39aac84ba2f8d19c4fb9125, type: 3}
+  - {fileID: 1089598549768886, guid: 02f4d38b806ee9040a4ccb638ffc2de2, type: 3}
+  - {fileID: 1780936617907984, guid: fda7149f553d8e440896a759f8dcd523, type: 3}
   poolSize: 2
 --- !u!1 &1750134095
 GameObject:
