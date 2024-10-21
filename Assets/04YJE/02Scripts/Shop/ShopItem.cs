@@ -40,7 +40,7 @@ public class ShopItem : MonoBehaviour
     {
         itemNameText.text = itemName;
         itemInfoText.text = itemInfo;
-        itemPriceText.text = string.Format(@"<sprite=0>") + string.Format(price.ToString());
+        itemPriceText.text = string.Format("<sprite=0>{0}",price);
     }
 
     //현재 선택된 아이템 표시
