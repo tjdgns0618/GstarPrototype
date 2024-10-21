@@ -8,7 +8,6 @@ using TMPro;
 
 public class spawner1 : MonoBehaviour
 {
-    public List<GameObject> enemyPrefab; //enemy프리팹
     public Transform spawnPos; //스폰 중심 위치
     public GameObject portal;
     public GameObject rewardUI;
@@ -29,7 +28,6 @@ public class spawner1 : MonoBehaviour
     public int currentWave = 0; //현재 웨이브
 
     public int currentStage = 1; //현재 스테이지
-    public int stagePerEnemy = 3; //스테이지마다 늘어나는 enemy의 배수
 
     private int enemyPerSpawn; //한 번의 주기에 생성할 enemy 수
     private int spawnedCount = 0; //생성된 enemy 카운트
@@ -37,12 +35,6 @@ public class spawner1 : MonoBehaviour
     private int enemiesLeft;
 
     public string[] enemyNames;
-
-    //[SerializeField]
-    //private List<EnemyPoolManager.Pool> pools = new List<EnemyPoolManager.Pool>
-    //{
-    //new EnemyPoolManager.Pool { tag = "Enemy", prefab = enemyPrefab, size = 20 },
-    //};
 
     public delegate void Action();
     public Action enemyDead;
@@ -109,18 +101,13 @@ public class spawner1 : MonoBehaviour
             SetupWave(); //웨이브 설정
             yield return wInterval;
             yield return StartCoroutine(SpawnEnemy()); //몬스터 생성
-
-            //if (currentWave == maxWaves && currentStage % 3 == 0)
-            //{
-            //    yield return StartCoroutine(SpawnBoss()); // 보스 소환
-            //}
         }
         Debug.Log("All waves completed");
     }
 
     public void SetupWave()
     {
-        enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가 ex_firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
+        enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가 ex)firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
         totalEnemiesInWave = enemyPerSpawn; 
         spawnedCount = 0;
         enemiesLeft = totalEnemiesInWave;
@@ -169,17 +156,6 @@ public class spawner1 : MonoBehaviour
         }
     }
 
-    //IEnumerator SpawnBoss()
-    //{
-    //    Vector3 randomPosition = GetRandomPosition(); // 보스 소환 위치
-    //    Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
-
-    //    // 보스 소환
-    //    GameObject boss = Instantiate(bossPrefab, randomPosition, randomRotation);
-    //    Debug.Log("Boss 소환됨!");
-
-    //    yield return null;
-    //}
 
 
     // 다른 적들과의 거리를 계산하여 겹치지 않도록 체크하는 함수
@@ -206,7 +182,7 @@ public class spawner1 : MonoBehaviour
     {
         //스폰 영역 내에서 랜덤한 위치 생성
         Vector2 randomCirclePoint = Random.insideUnitSphere * spawnRadius; //원형 범위 내에서 랜덤한 2D좌표
-        Vector3 randomPosition = new Vector3(randomCirclePoint.x, 0, 0); //y를 0으로 설정하여 평면에서 생성
+        Vector3 randomPosition = new Vector3(randomCirclePoint.x, 0, randomCirclePoint.y); //y를 0으로 설정하여 평면에서 생성
 
         // spawnPos의 위치 기준해서 오프셋 적용
         randomPosition += spawnPos.position;

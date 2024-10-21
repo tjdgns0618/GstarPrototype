@@ -6,7 +6,6 @@ public class Bullet : MonoBehaviour
 {
     private float speed = 20.0f;
     public string targetname;
-
     private void OnEnable()
     {
         Invoke("InActiveParticle", 5f);
