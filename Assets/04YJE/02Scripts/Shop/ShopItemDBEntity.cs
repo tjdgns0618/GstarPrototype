@@ -10,6 +10,9 @@ public class ShopItemDBEntity
     public int MaxLevel;
     public float AttackDamage;
     public float Deffence;
+    public bool IsAuto;
+    public float RecoveryThreshold;
+    public int RecoveryCount;
     public float HP;
     public float HPRate;
     public float CriticalDamage;

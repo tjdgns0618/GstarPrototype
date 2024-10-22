@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,9 @@ public class UIManager : MonoBehaviour
     [Header("Manager")]
     public spawner1 spawner;
     private GameManager gameManager;
+
+    [Header("AutoPotion")]
+    public AutoPotion[] autoPotion;
 
     private void Start()
     {
@@ -122,11 +126,13 @@ public class UIManager : MonoBehaviour
             gameManager.isPause = false;
         }
 
-        if (popup == pauseWindow && !pauseWindow.activeSelf)
+        if (popup == pauseWindow)
         {
             Time.timeScale = 1f;
-            gameManager.isPause = false;
         }
+
+        if (openPopups.Count <= 0)
+            gameManager.isPause = false;
     }
 
     //가장 최근에 열린 팝업창 닫기

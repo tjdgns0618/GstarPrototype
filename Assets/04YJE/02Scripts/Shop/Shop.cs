@@ -5,59 +5,52 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct ShopItemImageData
-{
-    public int itemID;
-    public Sprite itemImage;
-}
-
 public class Shop : MonoBehaviour
 {
     [SerializeField] private ShopItemDB shopitemDB;
-    [SerializeField] private ShopItemImageData[] shopItemImages;
-
-    [SerializeField] private GameObject itemPrefab;
-    [SerializeField] private Transform itemParent;
+    [SerializeField] private ShopItem[] shopItems;
 
     [SerializeField] private int adjustIndex;
-    
+
+    [SerializeField] private GameObject messageBox;
+    [SerializeField] private TMP_Text message;
+
     public TMP_Text gold_Txt;
+    public Image showImage;
 
     private int selectedShopItemID;
 
+    public AutoPotion[] autopotion;
+
     private GameManager gm;
+    public UIManager uiManager;
 
     private void Start()
     {
         gm = GameManager.instance;
 
-        for (int i = adjustIndex; i < adjustIndex + shopItemImages.Length; ++i)
+        for (int i = 0; i < shopItems.Length; ++i)
         {
-
             //상점 아이템 데이터 불러오기 및 초기화
-            if (shopitemDB.entities[i].ItemID == shopItemImages[i - adjustIndex].itemID)
+            if (shopItems[i].itemID == shopitemDB.entities[i + adjustIndex].ItemID)
             {
-                //상점 아이템 생성
-                GameObject shopitem = Instantiate(itemPrefab, itemParent);
-                ShopItem shopitemData = shopitem.GetComponent<ShopItem>();
+                shopItems[i].itemName = shopitemDB.entities[i + adjustIndex].ItemName;
+                shopItems[i].itemInfo = shopitemDB.entities[i + adjustIndex].ItemInfo;
+                shopItems[i].price = shopitemDB.entities[i + adjustIndex].Price;
+                shopItems[i].maxLevel = shopitemDB.entities[i + adjustIndex].MaxLevel;
+                shopItems[i].attackDamage = shopitemDB.entities[i + adjustIndex].AttackDamage;
+                shopItems[i].diffence = shopitemDB.entities[i + adjustIndex].Deffence;
+                shopItems[i].isAutoPotion = shopitemDB.entities[i + adjustIndex].IsAuto;
+                shopItems[i].recoveryThreshold = shopitemDB.entities[i + adjustIndex].RecoveryThreshold;
+                shopItems[i].recoveryCount = shopitemDB.entities[i + adjustIndex].RecoveryCount;
+                shopItems[i].hp = shopitemDB.entities[i + adjustIndex].HP;
+                shopItems[i].hpRate = shopitemDB.entities[i + adjustIndex].HPRate;
+                shopItems[i].criticalDamage = shopitemDB.entities[i + adjustIndex].CriticalDamage;
+                shopItems[i].criticalRate = shopitemDB.entities[i + adjustIndex].CriticalRate;
+                shopItems[i].dashCoolTime = shopitemDB.entities[i + adjustIndex].DashCoolTime;
+                shopItems[i].itemCoolTimeDropRate = shopitemDB.entities[i + adjustIndex].ItemCoolTimeDropRate;
 
-                shopitemData.itemID = shopitemDB.entities[i].ItemID;
-                shopitemData.itemImage = shopItemImages[i - adjustIndex].itemImage;
-                shopitemData.itemName = shopitemDB.entities[i].ItemName;
-                shopitemData.itemInfo = shopitemDB.entities[i].ItemInfo;
-                shopitemData.price = shopitemDB.entities[i].Price;
-                shopitemData.maxLevel = shopitemDB.entities[i].MaxLevel;
-                shopitemData.attackDamage = shopitemDB.entities[i].AttackDamage;
-                shopitemData.diffence = shopitemDB.entities[i].Deffence;
-                shopitemData.hp = shopitemDB.entities[i].HP;
-                shopitemData.hpRate = shopitemDB.entities[i].HPRate;
-                shopitemData.criticalDamage = shopitemDB.entities[i].CriticalDamage;
-                shopitemData.criticalRate = shopitemDB.entities[i].CriticalRate;
-                shopitemData.dashCoolTime = shopitemDB.entities[i].DashCoolTime;
-                shopitemData.itemCoolTimeDropRate = shopitemDB.entities[i].ItemCoolTimeDropRate;
-
-                shopitemData.SetShop(this);
+                shopItems[i].SetShop(this);
             }
         }
     }
@@ -74,14 +67,7 @@ public class Shop : MonoBehaviour
 
     public void GoldTrade(int _cost_gold)   
     {
-        if (gm._gold >= _cost_gold)
-        {
-            gm._gold -= _cost_gold;
-        }
-        else
-        {
-            Debug.Log("골드가 부족합니다.");
-        }
+        gm._gold -= _cost_gold;
     }
 
     public void SelectShopItem(int shopitemID)
@@ -91,29 +77,48 @@ public class Shop : MonoBehaviour
 
     public void BuySelectedShopItem()
     {
-        //골드 줄어들기
-        GoldTrade(GetShopItemPrice(selectedShopItemID));
+        ShopItem selectedItem = FindShopItem(selectedShopItemID);
 
-        //아이템 개수 추가
+        if (selectedItem.isItemUnbuyable)
+        {
+            OpenMessageBox("더 이상 구매할 수 없습니다.");
+            return;
+        }
+
+        //골드 줄어들기
+        if (gm._gold < selectedItem.price)
+        {
+            OpenMessageBox("돈이 부족합니다.");
+            return;
+        }
+
+        GoldTrade(selectedItem.price);
+
+        //구매 성공 및 아이템 효과 작용
+        if (!selectedItem.isAutoPotion)
+            selectedItem.ActivateItemAbility();
+        else
+        {
+            FindShopItem(selectedShopItemID).isItemUnbuyable = true;
+
+            if (selectedShopItemID == 1100)
+                autopotion[0].SetAblePotion();
+            else if (selectedShopItemID == 1101)
+                autopotion[1].SetAblePotion();
+        }
     }
 
-    private int GetShopItemPrice(int itemID)
+    private ShopItem FindShopItem(int itemID)
     {
-        int price = -1;
-
-        for (int i = 0; i < shopitemDB.entities.Count; ++i)
+        foreach(var item in shopItems)
         {
-            if (shopitemDB.entities[i].ItemID == itemID)
-                price = shopitemDB.entities[i].Price;
+            if (item.itemID == itemID)
+            { 
+                return item;
+            }
         }
 
-        if (price < 0)
-        { 
-            Debug.Log("아이템을 찾을 수 없습니다.");
-            return 0;
-        }
-
-        return price;
+        return null;
     }
 
     public void HpTrade(int _cost_hp)                           // 피 부족할 때 부족하다는 UI(자막) 추가
@@ -130,11 +135,17 @@ public class Shop : MonoBehaviour
 
     public void TestGold()
     {
-        gm._gold += 500;
+        gm._gold += 100000;
     }
 
     public void TestHp()
     {
         gm._hp -= 10;
+    }
+
+    public void OpenMessageBox(string text)
+    {
+        message.text = text;
+        uiManager.OpenPopup(messageBox);
     }
 }

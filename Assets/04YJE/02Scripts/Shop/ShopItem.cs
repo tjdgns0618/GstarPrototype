@@ -16,23 +16,29 @@ public class ShopItem : MonoBehaviour
     public int maxLevel;
     public float attackDamage;
     public float diffence;
+    public float recoveryThreshold;
+    public int recoveryCount;
     public float hp;
     public float hpRate;
     public float criticalDamage;
     public float criticalRate;
     public float dashCoolTime;
     public float itemCoolTimeDropRate;
-
-    private Image showImage;
-    private Shop shop;
+    
+    protected Shop shop;
     public TMP_Text itemNameText;
     public TMP_Text itemInfoText;
     public TMP_Text itemPriceText;
 
+    public bool isAutoPotion;
+    public bool isItemUnbuyable;
+    protected GameManager gm;
+
     private void Start()
     {
-        showImage = transform.parent.parent.parent.parent.GetChild(4).GetChild(1).GetComponent<Image>();
+        gm = GameManager.instance;
         SetShopItemData();
+        isAutoPotion = itemID == 1100 || itemID == 1101 ? true : false;
     }
 
     //아이템 이름, 정보, 가격 표시
@@ -46,7 +52,7 @@ public class ShopItem : MonoBehaviour
     //현재 선택된 아이템 표시
     public void ShowSelectedShopItem()
     {
-        showImage.sprite = itemImage;
+        shop.showImage.sprite = itemImage;
     }
 
     //선택된 아이템을 바꿈
@@ -59,5 +65,16 @@ public class ShopItem : MonoBehaviour
     public void SetShop(Shop _shop)
     {
         shop = _shop;
+    }
+
+    public void ActivateItemAbility()
+    {
+        gm._hp += hp;
+        gm._hp += gm._maxhp / 100 * hpRate;
+        gm._damage += attackDamage;
+        gm._critdmg += criticalDamage;
+        gm._critchance += criticalRate;
+        gm._dashcount += (int)dashCoolTime;
+        //아이템 쿨타임 감소, 대쉬 쿨타임 감소 추가
     }
 }
