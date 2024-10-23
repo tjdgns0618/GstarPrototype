@@ -56,15 +56,6 @@ public class spawner1 : MonoBehaviour
     {
         Time.timeScale = 1;
         StartCoroutine(WaveSystem());
-        //if (currentStage == 1 && currentWave == maxWaves)
-        //{
-        //    StartCoroutine(BossWave());
-        //    Debug.Log("보스 코루틴 작동");
-        //}
-        //else
-        //{
-        //    StartCoroutine(WaveSystem());
-        //}
     }
 
     void OnEnemyDeath()                     //살아있는 적의 수가 0이 되면 NextWave 함수 호출
@@ -119,8 +110,8 @@ public class spawner1 : MonoBehaviour
         if (currentStage == 1 && currentWave == maxWaves)
         {
             StartCoroutine(BossWave());
-            waveCountText.text = $"WAVE {currentWave}";
             UpdateWaveInfoUI();
+            waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
             return;
         }
@@ -177,10 +168,9 @@ public class spawner1 : MonoBehaviour
         }
     }
 
-    IEnumerator BossWave()
+    IEnumerator BossWave() //보스 웨이브
     {
         Debug.Log("보스 소환 준비 중...");
-
         SpawnBoss();
         yield return new WaitUntil(() => enemiesLeft == 0);
 
@@ -195,7 +185,7 @@ public class spawner1 : MonoBehaviour
         }
     }
 
-    void SpawnBoss()
+    void SpawnBoss() //보스 소환
     {
         Vector3 bossSpawnPosition = GetRandomPosition();
         GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
