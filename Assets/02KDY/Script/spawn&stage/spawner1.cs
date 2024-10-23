@@ -13,7 +13,7 @@ public class spawner1 : MonoBehaviour
     public GameObject rewardUI;
     public GameObject waveClear;
     public GameObject stageClear;
-    //public GameObject bossPrefab;
+    public GameObject bossPrefab;
     //public GameObject playerPrefab;
     public TMP_Text waveInfoText;
     public TMP_Text stageInfoText;
@@ -56,6 +56,15 @@ public class spawner1 : MonoBehaviour
     {
         Time.timeScale = 1;
         StartCoroutine(WaveSystem());
+        //if (currentStage == 1 && currentWave == maxWaves)
+        //{
+        //    StartCoroutine(BossWave());
+        //    Debug.Log("보스 코루틴 작동");
+        //}
+        //else
+        //{
+        //    StartCoroutine(WaveSystem());
+        //}
     }
 
     void OnEnemyDeath()                     //살아있는 적의 수가 0이 되면 NextWave 함수 호출
@@ -107,6 +116,14 @@ public class spawner1 : MonoBehaviour
 
     public void SetupWave()
     {
+        if (currentStage == 1 && currentWave == maxWaves)
+        {
+            StartCoroutine(BossWave());
+            waveCountText.text = $"WAVE {currentWave}";
+            UpdateWaveInfoUI();
+            Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            return;
+        }
         enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가 ex)firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
         totalEnemiesInWave = enemyPerSpawn; 
         spawnedCount = 0;
@@ -116,8 +133,13 @@ public class spawner1 : MonoBehaviour
         waveCountText.text = $"WAVE {currentWave}";
     }
 
-    IEnumerator SpawnEnemy() // 일정 시간 간격으로 몬스터 생성
+    IEnumerator SpawnEnemy()
     {
+        if (currentStage == 1 && currentWave == maxWaves)
+        {
+            yield break;
+        }
+
         int enemiesToSpawn = totalEnemiesInWave; // 남은 적의 수
         int enemiesInThisBatch; // 이번 배치에서 생성할 적의 수
 
@@ -145,7 +167,6 @@ public class spawner1 : MonoBehaviour
                         enemy.transform.position = randomPosition;
                         enemy.transform.rotation = randomRotation;
 
-                        // ObjectPoolManager.instance.SpawnFromPool(randomEnemyPrefab, randomPosition, randomRotation);
                         spawnedCount++;
                         enemiesToSpawn--;
                     }
@@ -156,7 +177,31 @@ public class spawner1 : MonoBehaviour
         }
     }
 
+    IEnumerator BossWave()
+    {
+        Debug.Log("보스 소환 준비 중...");
 
+        SpawnBoss();
+        yield return new WaitUntil(() => enemiesLeft == 0);
+
+        Debug.Log("보스 처치 완료. 스테이지 클리어");
+
+        if (currentStage == 1)
+        {
+            stageClear.SetActive(true);
+            Invoke("StageClear", 2f);
+            portal.SetActive(true);
+            Time.timeScale = 1;
+        }
+    }
+
+    void SpawnBoss()
+    {
+        Vector3 bossSpawnPosition = GetRandomPosition();
+        GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
+        enemiesLeft = 1; // 보스 몬스터 1마리
+        Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+    }
 
     // 다른 적들과의 거리를 계산하여 겹치지 않도록 체크하는 함수
     bool IsPositionOccupied(Vector3 position)
