@@ -40,7 +40,6 @@ public class AutoPotion : MonoBehaviour
     {
         isAble = true;
         activeFrame.SetActive(true);
-        disableFrame.SetActive(false);
         InitRecoveryCount();
     }
 
@@ -48,7 +47,6 @@ public class AutoPotion : MonoBehaviour
     {
         isAble = false;
         activeFrame.SetActive(false);
-        disableFrame.SetActive(true);
     }
 
     public float HealthThreshold()

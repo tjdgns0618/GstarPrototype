@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,25 +6,56 @@ using UnityEngine;
 public class TitleSceneCamChanger : MonoBehaviour
 {
     public GameObject[] cams;
-    public Animator[] animator;
+    public CinemachineBrain mainCam;
+
+    public CinemachineBlend blend;
+
+    private GameObject currentCam;
 
     public void SwitchToCamera(GameObject cam)
     {
         for(int i = 0; i < cams.Length; i++)
         {
             if (cams[i] == cam)
+            {
                 cam.SetActive(true);
+                currentCam = cam;
+            }
             else
                 cams[i].SetActive(false);
         }
     }
 
-    public void SwitchToAction(GameObject character)
+    public void TransitionToCamera(Animator charAnim)
     {
-        for(int i = 0; i < animator.Length; i++)
+        StartCoroutine(TransitionToIsPicked(charAnim));
+    }
+
+    IEnumerator TransitionToIsPicked(Animator charAnim)
+    {
+        if(charAnim != null) charAnim.ResetTrigger("PickOther");
+        
+
+        while (mainCam.IsBlending)
         {
-            if (character == animator[i].gameObject)
-                character.GetComponent<Animator>().SetTrigger("AttackAction");
+            yield return null; 
         }
+
+        if(charAnim != null) charAnim.SetTrigger("IsPicked");
+
+    }
+
+    public void TransitionToIdle(Animator charAnim)
+    {
+        if (charAnim != null)
+        {
+            charAnim.ResetTrigger("IsPicked");
+            charAnim.SetTrigger("PickOther");
+        }
+    }
+
+    public ICinemachineCamera GetCamera()
+    {
+        return currentCam.GetComponent<ICinemachineCamera>();
     }
 }

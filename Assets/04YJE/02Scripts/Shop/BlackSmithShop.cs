@@ -63,8 +63,16 @@ public class BlackSmithShop : MonoBehaviour
         if (selectedSlot != null)
         {
             selItemImg.sprite = selectedSlot.itemImage.sprite;
-            upGradeText.text = string.Format("{0} -> {1}", selectedSlot.itemCount, selectedSlot.itemCount + 1);
-            upgradePriceText.text = string.Format("<sprite=0>{0}", shopitemDB.entities3[selectedSlot.itemCount - 1].Price);
+            if (selectedSlot.itemCount < 5)
+            {
+                upgradePriceText.text = string.Format("<sprite=0>{0}", shopitemDB.entities3[selectedSlot.itemCount - 1].Price);
+                upGradeText.text = string.Format("{0} -> {1}", selectedSlot.itemCount, selectedSlot.itemCount + 1);
+            }
+            else
+            {
+                upgradePriceText.text = string.Format(" ");
+                upGradeText.text = string.Format("MAX");
+            }
         }
     }
 

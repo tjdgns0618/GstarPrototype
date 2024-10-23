@@ -102,9 +102,15 @@ public class Shop : MonoBehaviour
             FindShopItem(selectedShopItemID).isItemUnbuyable = true;
 
             if (selectedShopItemID == 1100)
+            {
                 autopotion[0].SetAblePotion();
+                autopotion[0].disableFrame.SetActive(false);
+            }
             else if (selectedShopItemID == 1101)
+            {
                 autopotion[1].SetAblePotion();
+                autopotion[1].disableFrame.SetActive(false);
+            }
         }
     }
 

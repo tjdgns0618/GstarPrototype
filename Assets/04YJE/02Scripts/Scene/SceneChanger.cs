@@ -5,29 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    static public SceneChanger instance = null;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
-    }
-
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("YJE_MainScene");
+        SceneManager.LoadScene(1);
     }
 
     public void LoadTitleScene()
     {
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene(0);
     }
 }
