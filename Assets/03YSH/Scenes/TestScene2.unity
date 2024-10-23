@@ -8259,9 +8259,9 @@ MonoBehaviour:
   _damage: 10
   _range: 1
   _cooldown: 0
-  _attackspeed: 1
+  _attackspeed: 3
   _movespeed: 350
-  _reInputTime: 2
+  _reInputTime: 0.5
   _critchance: 10
   _critdmg: 150
   _lifesteal: 0
@@ -10800,6 +10800,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2653476751956482836, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047415224661216195, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_Size.x
+      value: 2.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047415224661216195, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_Size.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047415224661216195, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6574374890407462785, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
       propertyPath: canChange
       value: 1
@@ -10864,6 +10880,42 @@ PrefabInstance:
       propertyPath: effectGenerator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1543153927702632, guid: 638bf80b37fd48a458d61ac9d454265e, type: 3}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1543153927702632, guid: 638bf80b37fd48a458d61ac9d454265e, type: 3}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.data[2]
+      value: 
+      objectReference: {fileID: 5637757207944978291, guid: 69c722eb56ec8ec4fb2ef127643e7ad7, type: 3}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.data[3]
+      value: 
+      objectReference: {fileID: 5637757207944978291, guid: 69c722eb56ec8ec4fb2ef127643e7ad7, type: 3}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.data[4]
+      value: 
+      objectReference: {fileID: 5637757207944978291, guid: 69c722eb56ec8ec4fb2ef127643e7ad7, type: 3}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.data[5]
+      value: 
+      objectReference: {fileID: 5637757207944978291, guid: 69c722eb56ec8ec4fb2ef127643e7ad7, type: 3}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.data[6]
+      value: 
+      objectReference: {fileID: 5637757207944978291, guid: 69c722eb56ec8ec4fb2ef127643e7ad7, type: 3}
+    - target: {fileID: 8064963141328842965, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: SkillEffs.Array.data[7]
+      value: 
+      objectReference: {fileID: 5637757207944978291, guid: 69c722eb56ec8ec4fb2ef127643e7ad7, type: 3}
     - target: {fileID: 8935320841809148343, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter 1 (1)
@@ -14533,13 +14585,21 @@ MonoBehaviour:
   - {fileID: 1168065043843762, guid: 2581bb28cefdab44f87c96d3cee21e43, type: 3}
   - {fileID: 1878987882032996, guid: a1ef11747ecf6c044a1603cc0c3b5695, type: 3}
   - {fileID: 1427661989262336, guid: cdf344f8a6d4401498262decc685d7aa, type: 3}
-  - {fileID: 8780727661788297695, guid: fb04260825ad1cd42b243151d3ec374f, type: 3}
+  - {fileID: 1481587283673810, guid: 7fc5b4fd0c6b1dc4ca03c3b557b67fac, type: 3}
+  - {fileID: 1764308443362498, guid: 2d9c2ec146aad5e418e28ed1df9fa848, type: 3}
+  - {fileID: 18111134782449830, guid: 49d96b002521c034497522ddc93082cc, type: 3}
+  - {fileID: 3244775856695447552, guid: 479d619b6cff5c543aa58b80990c6e57, type: 3}
   - {fileID: 3814496778439236206, guid: f141028e1645b8f459ee926584ba24f6, type: 3}
   - {fileID: 7653787099927154482, guid: a04c277913a696342aaa2c705ae7fe3b, type: 3}
+  - {fileID: 2026266475295086964, guid: a8737ea36e8f93d48943bcb728cf29c3, type: 3}
+  - {fileID: 876949634925983196, guid: f08b98f8c634e4741bbf96b113bde254, type: 3}
   - {fileID: 224555838264603501, guid: 6996e23ca9234f84799a03d16245b29d, type: 3}
   - {fileID: 1819066416490906, guid: ee0e16978f587694d87a0d6d4427f365, type: 3}
   - {fileID: 1107296871017770, guid: b70f87c202c52124a9cd19e4ddcec309, type: 3}
   - {fileID: 1233043069084803275, guid: 8b9afae0d5358254ebd17b21cf6b9961, type: 3}
+  - {fileID: 1878987882032996, guid: cd9fb464b769aa744a01229307e70836, type: 3}
+  - {fileID: 1115641076847360, guid: b75b5582a57118f47b005f59cb793b48, type: 3}
+  - {fileID: 1648509489993130, guid: a0eae450517716a43b858bdd3f03a3ae, type: 3}
   poolSize: 5
 --- !u!1001 &1499440733
 PrefabInstance:

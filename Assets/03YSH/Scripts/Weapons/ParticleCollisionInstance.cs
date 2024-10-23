@@ -41,12 +41,11 @@ public class ParticleCollisionInstance : MonoBehaviour
             int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
             damageAble?.Damage(20f);
             GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
-            /*
             for (int i = 0; i < numCollisionEvents; i++)
             {
                 foreach (var effect in EffectsOnCollision)
                 {
-                    var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset, new Quaternion()) as GameObject;
+                    var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset, Quaternion.identity) as GameObject;
                     if (!UseWorldSpacePosition) instance.transform.parent = transform;
                     if (UseFirePointRotation) { instance.transform.LookAt(transform.position); }
                     else if (rotationOffset != Vector3.zero && useOnlyRotationOffset) { instance.transform.rotation = Quaternion.Euler(rotationOffset); }
@@ -55,14 +54,11 @@ public class ParticleCollisionInstance : MonoBehaviour
                         instance.transform.LookAt(collisionEvents[i].intersection + collisionEvents[i].normal);
                         instance.transform.rotation *= Quaternion.Euler(rotationOffset);
                     }
-                    Destroy(instance, DestroyTimeDelay);
                 }
-            }*/
+            }
             if (DestoyMainEffect == true)
             {
                 GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
-
-                //Destroy(gameObject, DestroyTimeDelay + 0.5f);
             }
         }
     }

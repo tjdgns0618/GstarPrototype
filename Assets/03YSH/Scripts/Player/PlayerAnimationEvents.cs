@@ -16,6 +16,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     DashState dashState;
     Coroutine dashCoolTimeCoroutine;
     PlayerCharacter playerInstance;
+    string canHit = "canHit";
 
     private void Start()
     {
@@ -40,23 +41,23 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnStartDash()
     {
-        playerInstance.animator.SetBool("canHit", false);
+        playerInstance.animator.SetBool(canHit, false);
     }
 
     public void OnFinishedDash()
     {
-        playerInstance.animator.SetBool("canHit", true);
+        playerInstance.animator.SetBool(canHit, true);
     }
 
     public void OnStartHit()
     {
-        playerInstance.animator.SetBool("canHit", false);
+        playerInstance.animator.SetBool(canHit, false);
     }
 
     public void OnFinishedHit()
     {
         GameManager.instance.isHit = false;
-        playerInstance.animator.SetBool("canHit", true);
+        playerInstance.animator.SetBool(canHit, true);
     }
 
     public void OnStartSkill_Q()

@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static UnityEngine.ParticleSystem;
@@ -40,7 +41,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         pi = PlayerCharacter.Instance;
         gi = GameManager.instance;
         pm = gi.particlePoolManager;
-        SetWeaponData(gi._damage, gi._attackspeed,gi._range);
+        SetWeaponData(gi._damage, gi._attackspeed, gi._range);
     }
 
     public override void Attack(BaseState state)
@@ -58,7 +59,7 @@ public class PlayerAttack : BaseWeapon, IEffect
     {
         PlayerCharacter.Instance.isPlaySkill = true;
         Debug.Log("Q");
-        skillType = 0;
+        skillType = 4;
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         pi.animator.SetBool(hashIsSkill_Q_Animation, true);
     }
@@ -67,7 +68,7 @@ public class PlayerAttack : BaseWeapon, IEffect
     {
         PlayerCharacter.Instance.isPlaySkill = true;
         Debug.Log("E");
-        skillType = 3;
+        skillType = 5;
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         pi.animator.SetBool(hashIsSkill_E_Animation, true);
     }
@@ -102,12 +103,12 @@ public class PlayerAttack : BaseWeapon, IEffect
                 break;
             }
             yield return null;
-        }        
+        }
     }
 
     public void PlayComboAttackEffects()
     {
-        int comboCount = Mathf.Clamp(ComboCount - 1, 0, 3);        
+        int comboCount = Mathf.Clamp(ComboCount - 1, 0, 3);
         if (pi.characterClass == CharacterType.Warrior)
         {
             GameObject effect = pm.GetParticle(hashWarriorAttackEffect + ComboCount);
@@ -124,7 +125,7 @@ public class PlayerAttack : BaseWeapon, IEffect
                     effect.transform.Rotate(new Vector3(0f, 200f, 0f));
             }
         }
-        else if(pi.characterClass == CharacterType.Archer)
+        else if (pi.characterClass == CharacterType.Archer)
         {
             GameObject arrow = pm.GetParticle(hashArcherAttackEffect + ComboCount);
             if (arrow != null)
@@ -133,7 +134,7 @@ public class PlayerAttack : BaseWeapon, IEffect
                 arrow.transform.rotation = pi.transform.rotation;
             }
         }
-        else if(pi.characterClass == CharacterType.Wizard)
+        else if (pi.characterClass == CharacterType.Wizard)
         {
             GameObject magic = pm.GetParticle(hashWizardAttackEffect + ComboCount);
             if (magic != null)
@@ -146,9 +147,95 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public void PlaySkillEffect()
     {
-        GameObject effect = Instantiate(SkillEffs[skillType + ((int)pi.characterClass)], pi.firePoint.transform.position, pi.transform.rotation);
+        // GameObject effect = Instantiate(SkillEffs[skillType + ((int)pi.characterClass)], pi.firePoint.transform.position, pi.transform.rotation);
+        GameObject effect;
+        if (pi.characterClass == CharacterType.Warrior)
+        {
+            effect = gi.particlePoolManager.GetParticle(hashWarriorAttackEffect + skillType);
+            effect.transform.rotation = pi.transform.rotation;
+            effect.transform.position = pi.firePoint.transform.position;
+            if (skillType == 5)
+                effect.transform.position -= (Vector3.up * 1f) + (pi.transform.forward * -3f);
+        }
+        if (pi.characterClass == CharacterType.Archer)
+        {
+            if (skillType == 4)
+            {
+                effect = gi.particlePoolManager.GetParticle(hashArcherAttackEffect + skillType);
+                effect.transform.position = pi.firePoint.transform.position;
+                effect.transform.rotation = pi.transform.rotation;
+            }
+            else if(skillType == 5)
+            {
+                for (int i = -1; i < 2; i++)
+                {
+                    // 파티클을 가져옵니다.
+                    effect = gi.particlePoolManager.GetParticle(hashArcherAttackEffect + skillType);
 
+                    if (effect != null)
+                    {
+                        // 발사체의 회전을 설정합니다.
+                        Quaternion rotation = pi.transform.rotation * Quaternion.Euler(0, 30 * i, 0);
+
+                        // 발사체의 위치를 설정합니다.
+                        effect.transform.position = pi.firePoint.transform.position;
+                        effect.transform.rotation = rotation;
+
+                        // 활성화, 비활성화 시간체크
+                        // StartCoroutine(DebugObjectLifetime(effect));
+                    }
+                }
+            }
+            else if (skillType == 6)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    effect = gi.particlePoolManager.GetParticle(hashArcherAttackEffect + skillType);
+                    effect.transform.position = pi.firePoint.transform.position;
+                    effect.transform.rotation = pi.transform.rotation;
+                    effect.transform.position -= (Vector3.up * 1f);
+                    effect.transform.position += pi.transform.forward * 3f * i;
+                }
+            }
+            if (pi.characterClass == CharacterType.Wizard)
+            {
+                if (skillType == 4)
+                {
+                    effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
+                    effect.transform.position = pi.firePoint.transform.position;
+                    effect.transform.rotation = pi.transform.rotation;
+                }
+                else if(skillType == 5)
+                {
+                    effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
+                    effect.transform.position = pi.firePoint.transform.position;
+                    effect.transform.rotation = pi.transform.rotation;
+                }
+                else if(skillType == 6)
+                {
+                    effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
+                    GameObject effect2 = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + (skillType+1));
+                    effect.transform.position = pi.transform.position;
+                    effect.transform.rotation = pi.transform.rotation;
+                    effect2.transform.position = pi.transform.position;
+                    effect2.transform.rotation = pi.transform.rotation; 
+                }
+            }
+        }
     }
+    private IEnumerator DebugObjectLifetime(GameObject effect)
+    {
+        float startTime = Time.time;
+        Debug.Log($"Object {effect.name} created at {startTime}");
 
-    
+        // 오브젝트가 비활성화될 때까지 대기합니다.
+        while (effect.activeSelf)
+        {
+            yield return null;
+        }
+
+        float endTime = Time.time;
+        Debug.Log($"Object {effect.name} destroyed at {endTime}");
+        Debug.Log($"Object {effect.name} lifetime: {endTime - startTime} seconds");
+    }
 }

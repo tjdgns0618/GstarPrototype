@@ -247,6 +247,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 if (isAvailableSkill)
                 {
                     AttackState.IsSkill_Q = true;
+                    player.isPlaySkill = true;
+                    ResetAnimator();
                     player.stateMachine.ChangeState(StateName.ATTACK);
                 }
             }
@@ -262,6 +264,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             if (isAvailableAttack)
             {
                 AttackState.IsSkill_E = true;
+                player.isPlaySkill = true;
+                ResetAnimator();
                 player.stateMachine.ChangeState(StateName.ATTACK);
             }
         }
@@ -275,9 +279,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             if (isAvailableAttack)
             {
                 AttackState.IsSkill_R = true;
+                player.isPlaySkill = true;
+                ResetAnimator();
                 player.stateMachine.ChangeState(StateName.ATTACK);
             }
         }
+    }
+
+    public void ResetAnimator()
+    {
+        player.animator.SetBool("IsSkill_Q", false);
+        player.animator.SetBool("IsSkill_E", false);
+        player.animator.SetBool("IsSkill_R", false);
     }
 
     public const float CONVERT_UNIT_VALUE = 0.01f;
