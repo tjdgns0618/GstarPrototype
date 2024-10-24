@@ -8,8 +8,6 @@ public class TitleSceneCamChanger : MonoBehaviour
     public GameObject[] cams;
     public CinemachineBrain mainCam;
 
-    public CinemachineBlend blend;
-
     private GameObject currentCam;
 
     public void SwitchToCamera(GameObject cam)
@@ -34,7 +32,6 @@ public class TitleSceneCamChanger : MonoBehaviour
     IEnumerator TransitionToIsPicked(Animator charAnim)
     {
         if(charAnim != null) charAnim.ResetTrigger("PickOther");
-        
 
         while (mainCam.IsBlending)
         {
