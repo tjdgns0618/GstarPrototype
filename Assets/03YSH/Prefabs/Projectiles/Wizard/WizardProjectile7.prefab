@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 876949633973960716}
   - component: {fileID: 876949633973960718}
   - component: {fileID: 876949633973960719}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4911,7 +4911,7 @@ GameObject:
   - component: {fileID: 876949634775643253}
   - component: {fileID: 876949634775643255}
   - component: {fileID: 876949634775643252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9838,13 +9838,14 @@ GameObject:
   - component: {fileID: 876949634925983193}
   - component: {fileID: 876949634925983198}
   - component: {fileID: 876949634925983199}
-  m_Layer: 0
+  - component: {fileID: 1955510688817591976}
+  m_Layer: 9
   m_Name: WizardProjectile7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &876949634925983193
 Transform:
   m_ObjectHideFlags: 0
@@ -9854,8 +9855,8 @@ Transform:
   m_GameObject: {fileID: 876949634925983196}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.08, y: 5, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.08, y: 0, z: 2}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 876949633973960716}
@@ -14729,3 +14730,24 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!65 &1955510688817591976
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876949634925983196}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}

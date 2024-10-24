@@ -118,7 +118,7 @@ public class PlayerAttack : BaseWeapon, IEffect
                 effect.transform.rotation = pi.transform.rotation;
                 if (ComboCount == 3)
                 {
-                    effect.transform.position += (transform.forward * 1f + Vector3.up * 1f);
+                    effect.transform.position += (transform.forward * 1.5f);
                     effect.transform.Rotate(new Vector3(0f, 250f, 60f));
                 }
                 else
@@ -165,7 +165,7 @@ public class PlayerAttack : BaseWeapon, IEffect
                 effect.transform.position = pi.firePoint.transform.position;
                 effect.transform.rotation = pi.transform.rotation;
             }
-            else if(skillType == 5)
+            else if (skillType == 5)
             {
                 for (int i = -1; i < 2; i++)
                 {
@@ -197,29 +197,29 @@ public class PlayerAttack : BaseWeapon, IEffect
                     effect.transform.position += pi.transform.forward * 3f * i;
                 }
             }
-            if (pi.characterClass == CharacterType.Wizard)
+
+        }
+        if (pi.characterClass == CharacterType.Wizard)
+        {
+            if (skillType == 4)
             {
-                if (skillType == 4)
-                {
-                    effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
-                    effect.transform.position = pi.firePoint.transform.position;
-                    effect.transform.rotation = pi.transform.rotation;
-                }
-                else if(skillType == 5)
-                {
-                    effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
-                    effect.transform.position = pi.firePoint.transform.position;
-                    effect.transform.rotation = pi.transform.rotation;
-                }
-                else if(skillType == 6)
-                {
-                    effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
-                    GameObject effect2 = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + (skillType+1));
-                    effect.transform.position = pi.transform.position;
-                    effect.transform.rotation = pi.transform.rotation;
-                    effect2.transform.position = pi.transform.position;
-                    effect2.transform.rotation = pi.transform.rotation; 
-                }
+                effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
+                effect.transform.position = pi.transform.position;
+            }
+            else if (skillType == 5)
+            {
+                effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
+                effect.transform.position = pi.firePoint.transform.position;
+                effect.transform.rotation = pi.transform.rotation;
+            }
+            else if (skillType == 6)
+            {
+                effect = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + skillType);
+                effect.transform.position = pi.firePoint.transform.position;
+                effect.transform.rotation = pi.transform.rotation;
+                // GameObject effect2 = gi.particlePoolManager.GetParticle(hashWizardAttackEffect + (skillType + 1));
+                // effect2.transform.position = pi.transform.position + Vector3.up * 2f;
+                // effect2.transform.rotation = pi.transform.rotation;
             }
         }
     }

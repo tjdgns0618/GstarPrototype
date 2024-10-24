@@ -46,6 +46,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnFinishedDash()
     {
+        playerInstance.animator.SetBool("IsDashing", false);
         playerInstance.animator.SetBool(canHit, true);
     }
 

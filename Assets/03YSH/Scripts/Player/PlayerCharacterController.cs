@@ -340,6 +340,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         dashState = player.stateMachine.GetState(StateName.DASH);
         dashState.OnExitState();
         canMove = true;
+        player.animator.SetBool("IsDashing", false);
+        player.animator.SetBool("canHit", true);
+
         AttackState.IsBaseAttack = false;
 
         if (dashCoolTimeCoroutine != null)
