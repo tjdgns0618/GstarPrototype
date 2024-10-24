@@ -170,8 +170,10 @@ public class spawner1 : MonoBehaviour
 
     IEnumerator BossWave() //보스 웨이브
     {
+        yield return new WaitForSeconds(spawnInterval);
         Debug.Log("보스 소환 준비 중...");
         SpawnBoss();
+        UpdateWaveInfoUI();
         yield return new WaitUntil(() => enemiesLeft == 0);
 
         Debug.Log("보스 처치 완료. 스테이지 클리어");
