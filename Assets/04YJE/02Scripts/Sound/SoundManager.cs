@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
@@ -20,30 +21,23 @@ public class SoundManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
+    
 
-    private void Start()
-    {
-        SetSFXVolume(10);
-        SetBGMVolume(-80);
-    }
-
-    public void PlayMusic(int index, float fadeDuration = 0.5f)
+    public void PlayMusic(int index)
     {
         bgmSource.clip = bgmLists[index];
     }
 
-    public void MuteBGM()
+    public void SetBGMVolumeFromSlider(Slider slider)
     {
-        bgmSource.mute = true;
+        if(slider != null)
+            SetBGMVolume(slider.value);
     }
 
-    public void UnmuteBGM()
+    public void SetSFXVolumeFromSlider(Slider slider)
     {
-        bgmSource.mute = false;
-    }
-
-    public void MuteSFX()
-    {
+        if(slider != null)
+            SetSFXVolume(slider.value);
     }
 
     public void SetSFXVolume(float volume)

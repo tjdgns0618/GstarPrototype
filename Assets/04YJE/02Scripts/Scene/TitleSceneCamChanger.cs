@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TitleSceneCamChanger : MonoBehaviour
@@ -32,6 +33,11 @@ public class TitleSceneCamChanger : MonoBehaviour
     IEnumerator TransitionToIsPicked(Animator charAnim)
     {
         if(charAnim != null) charAnim.ResetTrigger("PickOther");
+
+        yield return new WaitForSeconds(0.2f);
+
+        if (charAnim.GetBool("PickOther"))
+            yield break;
 
         while (mainCam.IsBlending)
         {
