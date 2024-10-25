@@ -107,7 +107,7 @@ public class spawner1 : MonoBehaviour
 
     public void SetupWave()
     {
-        if (currentStage == 1 && currentWave == maxWaves)
+        if (currentStage % 2 == 0 && currentWave == maxWaves)
         {
             StartCoroutine(BossWave());
             UpdateWaveInfoUI();
@@ -126,7 +126,7 @@ public class spawner1 : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        if (currentStage == 1 && currentWave == maxWaves)
+        if (currentStage % 2 == 0 && currentWave == maxWaves)
         {
             yield break;
         }

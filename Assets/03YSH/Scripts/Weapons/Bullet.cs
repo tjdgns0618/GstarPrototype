@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     {
         Invoke("InActiveParticle", 5f);
     }
-
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
