@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
@@ -16,8 +17,10 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
-            instance = this;        
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
     }
@@ -28,27 +31,15 @@ public class SoundManager : MonoBehaviour
         bgmSource.clip = bgmLists[index];
     }
 
-    public void SetBGMVolumeFromSlider(Slider slider)
-    {
-        if(slider != null)
-            SetBGMVolume(slider.value);
-    }
-
-    public void SetSFXVolumeFromSlider(Slider slider)
-    {
-        if(slider != null)
-            SetSFXVolume(slider.value);
-    }
-
-    public void SetSFXVolume(float volume)
+    public void SetBGMVolume(float value)
     {
         if (audioMixer != null)
-            audioMixer.SetFloat("SFX", volume);
+            audioMixer.SetFloat("BGM", value);
     }
 
-    public void SetBGMVolume(float volume)
+    public void SetSFXVolume(float value)
     {
-        if(audioMixer != null)
-            audioMixer.SetFloat("BGM", volume);
+        if (audioMixer != null)
+            audioMixer.SetFloat("SFX", value);
     }
 }

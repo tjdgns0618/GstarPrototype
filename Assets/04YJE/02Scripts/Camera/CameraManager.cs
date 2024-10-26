@@ -55,7 +55,7 @@ public class CameraManager : MonoBehaviour
 
     public void ShakeCamera(float intensity, float time)
     {
-        shakeCam = currentCam;
+        shakeCam = GetCamera();
         CinemachineBasicMultiChannelPerlin cBMCP = currentCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
         cBMCP.m_AmplitudeGain = intensity;

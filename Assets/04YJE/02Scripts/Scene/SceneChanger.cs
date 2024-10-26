@@ -13,5 +13,6 @@ public class SceneChanger : MonoBehaviour
     public void LoadTitleScene()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
     }
 }

@@ -8,12 +8,16 @@ public class TitleSceneCamChanger : MonoBehaviour
 {
     public GameObject[] cams;
     public CinemachineBrain mainCam;
+    public GameObject[] buttonWindow;
 
     private GameObject currentCam;
 
     public void SwitchToCamera(GameObject cam)
     {
-        for(int i = 0; i < cams.Length; i++)
+        if (buttonWindow[0].activeSelf || buttonWindow[1].activeSelf || buttonWindow[2].activeSelf)
+            return;
+
+        for (int i = 0; i < cams.Length; i++)
         {
             if (cams[i] == cam)
             {
@@ -25,7 +29,7 @@ public class TitleSceneCamChanger : MonoBehaviour
         }
     }
 
-    public void TransitionToCamera(Animator charAnim)
+    public void TransitionToAnimation(Animator charAnim)
     {
         StartCoroutine(TransitionToIsPicked(charAnim));
     }
