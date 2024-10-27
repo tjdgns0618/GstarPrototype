@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
     const string _ATTACK_ANIM_TRIGGER_NAME = "attack";
     const string _RANGE_ATTACK_ANIM_TRIGGER_NAME = "shot";
+    DamageTextManager damagetextManager;
 
     private void Awake()
     {
@@ -49,6 +50,11 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         animator = GetComponent<Animator>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _originPos = transform.position;
+    }
+
+    void Start()
+    {
+        damagetextManager = DamageTextManager.instance;
     }
 
     private void OnEnable()
@@ -217,6 +223,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         animator.SetTrigger("hit");
         hp -= damageTaken;
+        damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken, transform.position, false);
         PlayKnockback(transform.forward * -1f, 0.2f, 1f);
         Debug.Log(hp);
         if (hp <= 0)

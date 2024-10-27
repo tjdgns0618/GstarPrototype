@@ -8,16 +8,18 @@ using UnityEngine.UIElements;
 public class DamageText : MonoBehaviour
 {
     [SerializeField] private GameObject cam;
-
-    private TMP_Text damage_Text;
+    [SerializeField] private TMP_Text damage_Text;
+    [SerializeField] private Animator animator;
     private Transform _transform;
-    private Animator animator;
+
+    private void Awake()
+    {
+        _transform = transform;
+    }
 
     private void Start()
     {
-        _transform = transform;
-        animator = GetComponent<Animator>();
-        damage_Text = GetComponent<TMP_Text>();
+        cam = FindObjectOfType<Camera>().gameObject;
     }
 
     private void OnEnable()
@@ -34,5 +36,10 @@ public class DamageText : MonoBehaviour
     private void Update()
     {
         _transform.LookAt(cam.transform.position);
+    }
+
+    public void DestroyObject()
+    {
+        gameObject.SetActive(false);
     }
 }
