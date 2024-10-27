@@ -217,7 +217,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         animator.SetTrigger("hit");
         hp -= damageTaken;
-        PlayKnockback(transform.forward * -1f, 0.2f, 1f);
+        PlayKnockback(transform.forward * -1f, 0.2f, 2f);
         Debug.Log(hp);
         if (hp <= 0)
         {
@@ -294,7 +294,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         IDamageAble<float> damageAble = collision.gameObject.GetComponent<IDamageAble<float>>();
         if (damageAble != null && collision.gameObject.tag == "Player")
         {
-            damageAble.Damage(20);
+            damageAble.Damage(GameManager.instance._damage);
         }
     }
 

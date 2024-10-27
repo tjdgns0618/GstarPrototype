@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed,_dashcount);
+        activeDelegate += Test;
+        hitDelegate += Test;
     }
 
     private void Update()
@@ -86,5 +88,10 @@ public class GameManager : MonoBehaviour
             else                                     // 힐을 받아도 최대체력을 넘어가지 않을 경우
                 _hp = _hp + heal;           // 현재체력에서 회복 수치만큼 회복
         }
+    }
+
+    public void Test()
+    {
+        return;
     }
 }
