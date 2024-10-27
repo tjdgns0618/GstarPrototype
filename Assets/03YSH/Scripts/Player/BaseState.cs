@@ -15,7 +15,7 @@ namespace CharacterController
             this.Controller = controller;
         }
 
-        public abstract void Init(float dashPower, float dashTetanyTime, float dashCooltime);
+        public abstract void Init(float dashPower,  float dashCooltime);
         public abstract void OnEnterState();
         public abstract void OnUpdateState();
         public abstract void OnFixedUpdateState();

@@ -44,11 +44,12 @@ public class PlayerAnimationEvents : MonoBehaviour
         playerInstance.animator.SetBool(canHit, false);
     }
 
-    public void OnFinishedDash()
-    {
-        playerInstance.animator.SetBool("IsDashing", false);
-        playerInstance.animator.SetBool(canHit, true);
-    }
+    //public void OnFinishedDash()
+    //{
+    //    playerInstance.stateMachine.GetState(StateName.DASH).OnExitState();
+    //    PlayerCharacterController.canMove = true;
+    //    playerInstance.animator.SetBool(canHit, true);
+    //}
 
     public void OnStartHit()
     {

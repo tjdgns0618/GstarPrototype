@@ -14632,7 +14632,7 @@ GameObject:
   - component: {fileID: 3244775856695447565}
   - component: {fileID: 3244775856695447566}
   - component: {fileID: 6907343775546400503}
-  - component: {fileID: 6061901744935057608}
+  - component: {fileID: 5583574426768285260}
   m_Layer: 9
   m_Name: WizardProjectile1
   m_TagString: Untagged
@@ -19548,7 +19548,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.485, y: 2.485, z: 2.485}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6061901744935057608
+--- !u!114 &5583574426768285260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19557,11 +19557,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3244775856695447552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba963996b4d7ad4cb67131919b79ffd, type: 3}
+  m_Script: {fileID: 11500000, guid: 19a0ab757a09f2c4abb20bc67b3d2ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetname: Enemy
-  EffectsOnCollision: {fileID: 6750108211637369354, guid: 34f3a8b34366bc5469ddbf9e468212fa, type: 3}
+  EffectsOnCollision: {fileID: 3775273307930507393, guid: b8cbf0802f081c245853f60240f107cc, type: 3}
   DestroyTimeDelay: 0
 --- !u!1 &3244775857551106936
 GameObject:

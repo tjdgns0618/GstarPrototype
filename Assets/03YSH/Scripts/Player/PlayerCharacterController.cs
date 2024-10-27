@@ -45,8 +45,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     protected float dashCoolTime;
 
     private WaitForSeconds DASH_ANIM_TIME;
-    private WaitForSeconds DASH_RE_INPUT_TIME;
-    private WaitForSeconds DASH_TETANY_TIME;
     private Coroutine dashCoroutine;
     private Coroutine dashCoolTimeCoroutine;
     private int currentDashCount;
@@ -64,12 +62,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         pi = PlayerCharacter.Instance;
         hasMoveAnimation = Animator.StringToHash("moveSpeed");
 
-        DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);
-        DASH_RE_INPUT_TIME = new WaitForSeconds(dashReInputTime);
-        DASH_TETANY_TIME = new WaitForSeconds(dashTetanyTime);
+        DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);    
 
         AttackState.CanReInputTime = GameManager.instance._reInputTime;
-    }   
+    }       
 
     private void Update()
     {
@@ -219,22 +215,21 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
-        if (context.performed && !gameManager.isPause && !gameManager.isDead)
+        if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0)
         {
-            if (DashState.CurrentDashCount >= player.DashCount)
-                return;
-
             if (!DashState.IsDash)
             {
                 Debug.Log("Dash Input");
                 DashState.CurrentDashCount++;
                 dashState = player.stateMachine.GetState(StateName.DASH);
-                dashState.Init(dashPower, dashTetanyTime, dashCoolTime);
+                dashState.Init(dashPower, dashCoolTime);
                 player.stateMachine.ChangeState(StateName.DASH);
                 canMove = false;
             }
         }
     }
+   
+
     public void OnClickQ(InputAction.CallbackContext context)
     {
         if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause || gameManager.isDead)
@@ -253,7 +248,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 }
             }
         }
-
     }
     public void OnClickE(InputAction.CallbackContext context)
     {
@@ -331,100 +325,21 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnFinishedDash()
     {
-        if (DashState.IsDash && DashState.CurrentDashCount < player.DashCount)
-        {
-            // OnFinishedDash하고 첫번째 스테이트 변경
-            pi.stateMachine.ChangeState(StateName.DASH);
-            return;
-        }
         dashState = player.stateMachine.GetState(StateName.DASH);
         dashState.OnExitState();
         canMove = true;
-        player.animator.SetBool("IsDashing", false);
         player.animator.SetBool("canHit", true);
 
         AttackState.IsBaseAttack = false;
 
-        if (dashCoolTimeCoroutine != null)
-            StopCoroutine(dashCoolTimeCoroutine);
-        dashCoolTimeCoroutine =
-            StartCoroutine(CheckDashReInputLimitTime(DashState.dashCooltime));
+        StartCoroutine(DashCooltime());
     }
 
-    private IEnumerator CheckDashReInputLimitTime(float limitTime)
+    public IEnumerator DashCooltime()
     {
-        float timer = 0f;
-
-        while (true) {
-            timer += Time.deltaTime;
-
-            if (timer > limitTime)
-            {
-                DashState.IsDash = false;
-                DashState.CurrentDashCount = 0;
-                player.animator.ResetTrigger(DashState.Hash_DashTrigger);
-                pi.stateMachine.ChangeState(StateName.MOVE);
-                Debug.Log("MoveState이동");
-                break;
-            }
-            yield return null;
-        }
+        yield return new WaitForSeconds(dashCoolTime);
+        DashState.CurrentDashCount = 0;
     }
-    #region 대쉬 구현
-    //public void Dash()
-    //{
-    //    currentDashCount++;
-
-    //    if (dashCoroutine != null && dashCoolTimeCoroutine != null)
-    //    {
-    //        StopCoroutine(dashCoroutine);
-    //        StopCoroutine(dashCoolTimeCoroutine);
-    //    }
-
-    //    dashCoroutine = StartCoroutine(DashCoroutine());
-    //}
-
-    //private IEnumerator DashCoroutine()
-    //{
-    //    int dashCount = player.DashCount;
-
-    //    player.animator.SetFloat("moveSpeed", 0f);
-    //    player.animator.SetBool("IsDashing", true);
-    //    player.animator.SetTrigger("Dash");
-    //    player.rigidbody.velocity = transform.forward * dashPower;
-
-    //    yield return DASH_ANIM_TIME;
-    //    playerState = (dashCount > 1 && currentDashCount < dashCount) ? PlayerState.NDASH : PlayerState.DASH;
-
-    //    yield return DASH_RE_INPUT_TIME;
-    //    player.animator.SetBool("IsDashing", false);
-    //    player.rigidbody.velocity = Vector3.zero;
-
-    //    yield return DASH_TETANY_TIME;
-    //    player.stateMachine.ChangeState(StateName.MOVE);
-
-    //    dashCoolTimeCoroutine = StartCoroutine(DashCoolTimeCoroutine());
-    //}
-
-    //private IEnumerator DashCoolTimeCoroutine()
-    //{
-    //    float currentTime = 0f;
-
-    //    while (true)
-    //    {
-    //        currentTime += Time.deltaTime;
-    //        if (currentTime >= dashCoolTime)
-    //        {
-    //            player.stateMachine.ChangeState(StateName.MOVE);
-    //            break;
-    //        }
-    //        yield return null;
-    //    }
-
-    //    if (currentDashCount == player.DashCount)
-    //        currentDashCount = 0;
-    //}
-    #endregion
 
     public void Dead()
     {

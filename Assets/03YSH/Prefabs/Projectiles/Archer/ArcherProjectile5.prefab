@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 198587663974982988}
   - component: {fileID: 199396539617275340}
   - component: {fileID: 54389543268620354}
-  - component: {fileID: 1007209267724464799}
   - component: {fileID: 6744044652935564421}
+  - component: {fileID: 612803786001068237}
   m_Layer: 9
   m_Name: ArcherProjectile5
   m_TagString: Untagged
@@ -4931,21 +4931,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1007209267724464799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764308443362498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba963996b4d7ad4cb67131919b79ffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetname: Enemy
-  EffectsOnCollision: {fileID: 1120835270511274, guid: 33cfc2755a55b7e4c86c9d7018efbaaa, type: 3}
-  DestroyTimeDelay: 3
 --- !u!65 &6744044652935564421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4967,3 +4952,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.28400004, y: 0.28400004, z: 1.09}
   m_Center: {x: 0, y: 0, z: -0.49997202}
+--- !u!114 &612803786001068237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764308443362498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a0ab757a09f2c4abb20bc67b3d2ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetname: Enemy
+  EffectsOnCollision: {fileID: 1120835270511274, guid: 33cfc2755a55b7e4c86c9d7018efbaaa, type: 3}
+  DestroyTimeDelay: 0

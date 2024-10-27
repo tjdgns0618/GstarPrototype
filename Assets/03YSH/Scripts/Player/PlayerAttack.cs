@@ -48,7 +48,7 @@ public class PlayerAttack : BaseWeapon, IEffect
     {
         ComboCount++;
         AttackState.comboCount = ComboCount;
-        pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
+        pi.animator.SetFloat(hashAttackSpeedAnimation, gi._attackspeed);
         pi.animator.SetBool(hashIsAttackAnimation, true);
         pi.animator.SetInteger(hashAttackAnimation, ComboCount);
         gi.activeDelegate();
@@ -60,7 +60,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         PlayerCharacter.Instance.isPlaySkill = true;
         Debug.Log("Q");
         skillType = 4;
-        pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
+        pi.animator.SetFloat(hashAttackSpeedAnimation, gi._attackspeed);
         pi.animator.SetBool(hashIsSkill_Q_Animation, true);
     }
 
@@ -69,7 +69,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         PlayerCharacter.Instance.isPlaySkill = true;
         Debug.Log("E");
         skillType = 5;
-        pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
+        pi.animator.SetFloat(hashAttackSpeedAnimation, gi._attackspeed);
         pi.animator.SetBool(hashIsSkill_E_Animation, true);
     }
 
@@ -78,7 +78,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         Debug.Log("R");
         PlayerCharacter.Instance.isPlaySkill = true;
         skillType = 6;
-        pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
+        pi.animator.SetFloat(hashAttackSpeedAnimation, gi._attackspeed);
         pi.animator.SetBool(hashIsSkill_R_Animation, true);
     }
 
