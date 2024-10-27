@@ -69,8 +69,8 @@ public class ShopItem : MonoBehaviour
 
     public void ActivateItemAbility()
     {
-        gm._hp += hp;
-        gm._hp += gm._maxhp / 100 * hpRate;
+        gm.Heal(hp);
+        gm.Heal(gm._maxhp / 100 * hpRate);
         gm._damage += attackDamage;
         gm._critdmg += criticalDamage;
         gm._critchance += criticalRate;

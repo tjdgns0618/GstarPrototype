@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class AutoPotion : MonoBehaviour
+public class AutoPotion : MonoBehaviour         //자동 회복 시켜주는 스크립트
 {
     public GameObject activeFrame;
     public GameObject disableFrame;
@@ -49,7 +49,7 @@ public class AutoPotion : MonoBehaviour
         activeFrame.SetActive(false);
     }
 
-    public float HealthThreshold()
+    public float HealthThreshold() //피가 일정 수치가 되었는지 확인
     {
         return gm._maxhp * 0.01f * shopitem.recoveryThreshold;
     }
