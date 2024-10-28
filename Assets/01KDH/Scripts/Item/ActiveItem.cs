@@ -1,206 +1,277 @@
 using DuloGames.UI;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEditor.Progress;
+using static UnityEngine.ParticleSystem;
 
 public class ActiveItem : MonoBehaviour
 {
-
-    public float percentTotal = 100f;
-
-    public int _itemcount;
     private Item _item;
 
-    public InvenSlot[] slots;
+    // 공격시
+    public float attackRandomValue;
+    public float attackProbability;
 
-    //public Item _aitem;
+    //  피격시
+    public float hitRandomValue;
+    public float hitProbability;
 
-    //public LayerMask enemyM;
-
-    //WaitForSeconds _08item;
-    //WaitForSeconds _09item;
-    //WaitForSeconds _10item;
-    //WaitForSeconds _11item;
-    //WaitForSeconds _12item;
-
-    //public GameObject _maneulObj;
+    // 처치시
+    public float killRandomValue;
+    public float killProbability;
 
     GameManager gm;
 
-    public Dictionary<string, GameObject> effectDictionary;
-    public GameObject[] effectObjects;
+    public spawner1 spawner;
+    public GameObject _player;
+
+    #region 
+    public ChainLightning chainLightning;
+    public Item_09 _09item;
+    #endregion
 
     private void Start()
     {
         gm = GameManager.instance;
-
-        foreach (var item in effectObjects)
-        {
-            effectDictionary.Add(item.name, item);
-        }
-        //_08item = new WaitForSeconds(15f);
-        //_09item = new WaitForSeconds(30f);
-        //_10item = new WaitForSeconds(10f);
-        //_11item = new WaitForSeconds(60f);
-        //_12item = new WaitForSeconds(15f);
     }
 
-    private void Update()
-    {
-
-    }
-    void Test()
-    {
-        GameObject targetObj;
-        if(effectDictionary.TryGetValue("object name", out targetObj))
-        {
-
-        }
-    }
-
-    public Item FindItemData(int id)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item != null)
-            {
-                if (slots[i].item.itemID == id)
-                {
-                    _item = slots[i].item;
-                }
-            }
-        }
-        return _item;
-    }
-
-    public int FindItemCount(int id)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item != null)
-            {
-                if (slots[i].item.itemID == id)
-                {
-                    _itemcount = slots[i].itemCount;
-                }
-            }
-        }
-        return _itemcount;
-    }
-
-    public void ActiveItemEffect()
-    {
-
-    }
-    
     #region effect
-    void _01Item()
+    public void _01Item(Transform transform)   //  처치 시 체력회복 오브 드랍 
     {
-        // ������ ���̵� 30���� ������ ����Ÿ ã��
-        if(GetRandomOutcome(FindItemData(29), FindItemCount(29)))
+        Debug.Log("01 힐링오브");
+        if (GetKillRandom(29))
         {
-            Debug.Log("asdf");
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Healingorb");
+            if (particle != null)
+            {
+                particle.transform.position = transform.position;
+            }
         }
-        else
+    }
+    public void _02Item(Transform transform)   // 처치 시 적 폭발
+    {
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Deathboom");
+        if (particle != null)
+            {
+                particle.transform.position = transform.position;
+            }
+    }
+
+    public void _03Item(Transform transform)   // 적 피격 시 폭탄 부착
+    {
+        if (GetHitRandom(31))
         {
-            Debug.Log("Failed");
+
         }
-    }    
-    void _02Item()
+    }
+    public void _04Item(Transform transform)   // 적 피격 시 지뢰 설치
     {
-        
-    }    
-    void _03Item()
+        if (GetHitRandom(32))
+        {
+
+        }
+    }
+    public void _05Item(Transform transform)   // 플레이어 피격 시 공격 방향 반사 범위 피해
     {
-        
-    }    
-    void _04Item()
+        if (GetHitRandom(33))
+        {
+
+        }
+    }
+    public void _06Item()   // 공격 시 미사일 발사
     {
-        
-    }    
-    void _05Item()
+        if (GetHitRandom34(34))
+        {
+            if (spawner.enemies.Count > 0)
+            {
+                GameObject particle = GameManager.instance.particlePoolManager.GetParticle("MissileUp");
+                GameObject particle2 = GameManager.instance.particlePoolManager.GetParticle("MissileDown");
+                 if (particle != null && particle2 != null)
+                 {
+                     particle.transform.position = PlayerCharacter.Instance.transform.position;
+                     particle2.transform.position = spawner.enemies[Random.Range(0, spawner.enemies.Count)].transform.position;
+                 }
+            }
+        }
+    }
+    public void _07Item(Transform transform)   // 플레이어 피격 시 랜덤 효과 발동
     {
-        
-    }    
-    public void _06Item()
+        if (GetHitRandom(35))
+        {
+
+        }
+    }
+    public void _08Item()   // 일정 시간마다 마늘 효과
     {
-        Transform firework = gm.itempools.Get(1).transform;
-        firework.parent = transform;
-        firework.transform.position = PlayerCharacter.Instance.transform.position + new Vector3(0, 3, 0);
-    }    
-    void _07Item()
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Maneul");
+        if (particle != null)
+        {
+            particle.transform.position = PlayerCharacter.Instance.transform.position;
+            particle.transform.SetParent(_player.transform);
+        }
+    }
+    public void _09Item()   // 방패 공전
     {
-        
-    }    
-    void _08Item()
+        _09item.UseItem();
+    }
+    public void _10Item()   // 일정 시간마다 적이 있는 곳에 장판
     {
-        //_maneulObj.SetActive(true);
-    }    
-    void _09Item()
-    {
-        
-    }   
-    void _10Item()
-    {
-        
-    } 
-    void _11Item()
-    {
-        
-    }  
-    void _12Item()
-    {
-    }  
-    void _13Item()
+        if(spawner.enemies.Count != 0)
+        {
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Fire");
+        if (particle != null)
+            {
+                if (spawner.enemies.Count > 0)
+                {
+                   particle.transform.position = spawner.enemies[Random.Range(0, spawner.enemies.Count)].transform.position;
+                }
+            }
+        }
+    }
+    public void _11Item()   // 일정 시간마다 주변 적 정지
     {
 
-    }    
-    void _14Item()
+    }
+    public void _12Item()   // 일정 시간마다 짧은 무적
     {
-        
-    }   
-    void _15Item()
+    }
+
+    public void _13Item()   // 공격 시 연쇄 번개
     {
-        
-    }  
-    void _16Item()
+        if (GetAttackRandom(41))
+        {
+            chainLightning.UseItem();
+        }
+    }
+    public void _14Item()   //  공격 시 범위 피격
     {
-        
-    }    
-    void _17Item()
+        if (GetAttackRandom(42))
+        {
+
+        }
+    }
+    public void _15Item()   // 공격 시 범위 장판 
     {
-        
-    }   
-    void _18Item()
+        if (GetAttackRandom(43))
+        {
+
+        }
+    }
+    public void _16Item()   // 공격 시 투사체 발사
     {
-        
-    } 
-    void _19Item()
+        if (GetAttackRandom(44))
+        {
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Wind");
+            if (particle != null)
+            {
+                particle.transform.position = PlayerCharacter.Instance.firePoint.transform.position;
+                particle.transform.rotation = PlayerCharacter.Instance.transform.rotation;
+            }
+        }
+    }
+    public void _17Item()   // 공격 시 부메랑 발사
     {
-        
-    }   
-    void _20Item()
+        if (GetAttackRandom(45))
+        {
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Boomerang");
+            if (particle != null)
+            {
+                particle.transform.position = PlayerCharacter.Instance.firePoint.transform.position;
+                particle.transform.rotation = PlayerCharacter.Instance.transform.rotation;
+            }
+        }
+    }
+    public void _18Item()   // 캐릭터 교체 시 범위 데미지
     {
-        
+
+    }
+    public void _19Item()   // 일정 시간마다 주변 적 슬로우
+    {
+        if (spawner.enemies.Count != 0)
+        {
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Freeze");
+            if (particle != null)
+            {
+                if (spawner.enemies.Count > 0)
+                {
+                    particle.transform.position = PlayerCharacter.Instance.transform.position;
+                }
+            }
+        }
+    }
+    public void _20Item()   // 공격 시 튕기는 투사체 발사
+    {
+        if (GetAttackRandom(48))
+        {
+
+        }
     }
     #endregion
 
-    public bool GetRandomOutcome(Item item, float itemcount)
-    { 
-        float aProbability = ItemDataBase.instance.Variable(item.itemID) * itemcount;
-        float bProbability = percentTotal - ItemDataBase.instance.Variable(item.itemID) * itemcount;
-
-        // 0���� 100 ������ ���� ���� ����
-        float randomValue = Random.Range(0f, percentTotal);
-        if (randomValue < aProbability)
+    public bool GetAttackRandom(int id)
+    {
+        attackRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
+        attackProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
+        if (attackRandomValue >= attackProbability)
         {
-            return true; // a�� ���õ�
+            Debug.Log("Attack True");
+            return true;
         }
         else
         {
-            return false; // b�� ���õ�
+            Debug.Log("Attack False");
+            return false;
+        }
+    }
+
+    public bool GetHitRandom(int id)
+    {
+        hitRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
+        hitProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
+        if (hitRandomValue >= hitProbability)
+        {
+            Debug.Log("Hit True");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Hit False");
+            return false;
+        }
+    }
+
+    public bool GetKillRandom(int id)
+    {
+        killRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
+        killProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
+        if (killRandomValue >= killProbability)
+        {
+            Debug.Log("Kill True");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Kill False");
+            return false;
+        }
+    }
+
+    public bool GetHitRandom34(int id)
+    {
+        hitRandomValue = Random.Range(1f, 101f);  //1~100
+        hitProbability = 100f - (ItemDataBase.instance.Variable(id) + (GameManager.instance.FindItemCount(id) - 1) * 2f);
+        if (hitRandomValue >= hitProbability)
+        {
+            Debug.Log("Attack True");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Attack False");
+            return false;
         }
     }
 }

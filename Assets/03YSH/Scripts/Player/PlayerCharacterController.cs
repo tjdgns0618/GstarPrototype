@@ -12,6 +12,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEditor.Animations;
 using UnityEngine.Rendering;
 using System.Runtime.CompilerServices;
+using UnityEditor.Rendering;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -44,8 +45,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     protected float dashCoolTime;
 
     private WaitForSeconds DASH_ANIM_TIME;
-    private WaitForSeconds DASH_RE_INPUT_TIME;
-    private WaitForSeconds DASH_TETANY_TIME;
     private Coroutine dashCoroutine;
     private Coroutine dashCoolTimeCoroutine;
     private int currentDashCount;
@@ -53,6 +52,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     PlayerCharacter pi;
     GameManager gameManager;
     public readonly int hashIsAttackAnimation = Animator.StringToHash("IsAttack");
+    public readonly int hashIsChangeAnimation = Animator.StringToHash("change");
 
     private void Start()
     {
@@ -62,30 +62,31 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         pi = PlayerCharacter.Instance;
         hasMoveAnimation = Animator.StringToHash("moveSpeed");
 
-        DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);
-        DASH_RE_INPUT_TIME = new WaitForSeconds(dashReInputTime);
-        DASH_TETANY_TIME = new WaitForSeconds(dashTetanyTime);
+        DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);    
 
         AttackState.CanReInputTime = GameManager.instance._reInputTime;
-    }   
+    }       
 
     private void Update()
     {
+        if (gameManager.isDead || gameManager.isPause)
+            return;
         GetMousePosition();
         Move();
-        // Cursor.visible = false;
-    }
-
-    private void FixedUpdate()
-    {
-
     }
 
     public void Damage(float damageTaken)
     {
+        if (gameManager.isDead || gameManager.isHit)
+            return;
+        gameManager.isHit = true;
         player.animator.ResetTrigger("hit");
         player.animator.SetTrigger("hit");
         player.OnUpdateStat(player.MaxHp, player.CurrentHp - damageTaken, player.MoveSpeed, player.DashCount);
+        if(player.CurrentHp <= 0)
+        {
+            Dead();
+        }
     }
 
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -99,12 +100,11 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         mousePosition = context.ReadValue<Vector2>();
     }
 
-
     public void OnCharacterChange(InputAction.CallbackContext context)
     {
-        if (context.performed && !player.playSkill)
+        if (context.performed && !player.isPlaySkill && player.canChange && !gameManager.isDead && !gameManager.isPause)
         {
-            if (context.control.name == "1")
+            if (context.control.name == "1" && player.characterClass != CharacterType.Warrior)
             {
                 player.weaponObjects[0].SetActive(true);
                 player.weaponObjects[1].SetActive(false);
@@ -117,13 +117,15 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 AttackState.IsAttack = false;
                 AttackState.IsBaseAttack = false;
                 player.animator.Rebind();
+                player.animator.SetTrigger(hashIsChangeAnimation);
+                player.canChange = false;
             }
-            if (context.control.name == "2")
+            if (context.control.name == "2" && player.characterClass != CharacterType.Archer)
             {
                 player.weaponObjects[0].SetActive(false);
                 player.weaponObjects[1].SetActive(true);
                 player.weaponObjects[2].SetActive(false);
-                player.characterClass = CharacterType.Archer;
+                player.characterClass = CharacterType.Archer;                
                 player.animator.runtimeAnimatorController = player.classControllers[1];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[1];
                 AttackState.comboCount = 0;
@@ -131,8 +133,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 AttackState.IsAttack = false;
                 AttackState.IsBaseAttack = false;
                 player.animator.Rebind();
+                player.animator.SetTrigger(hashIsChangeAnimation);
+                player.canChange = false;
             }
-            if (context.control.name == "3")
+            if (context.control.name == "3" && player.characterClass != CharacterType.Wizard)
             {
                 player.weaponObjects[0].SetActive(false);
                 player.weaponObjects[1].SetActive(false);
@@ -145,13 +149,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 AttackState.IsAttack = false; 
                 AttackState.IsBaseAttack = false;
                 player.animator.Rebind();
+                player.animator.SetTrigger(hashIsChangeAnimation);
+                player.canChange = false;
             }
         }
     }
 
     public void OnClickLeftMouse(InputAction.CallbackContext context)
     {
-        if (context.performed && !player.playSkill)
+        if (gameManager.isPause || gameManager.isDead)
+            return;
+
+        if (context.performed && !player.isPlaySkill)
         {
             // Debug.Log("OnClickLeftMouse");
             HandlePerformedInteraction(context);
@@ -188,19 +197,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             // Debug.Log("HoldInteraction AttackState");
             player.stateMachine.ChangeState(StateName.ATTACK);
         }
-        /*bool isAvailableAttack = !AttackState.IsBaseAttack &&
-        //                         (player.weaponManager.Weapon.ComboCount < 3);
-
-        //Debug.Log("true면 공격 가능 : " + isAvailableAttack);
-
-        //if (isAvailableAttack)
-        //{
-        //    AttackState.IsBaseAttack = true;
-        //    AttackState.isHolding = true;
-        //    AttackState.isClick = false;
-        //    Debug.Log("HoldInteraction AttackState");
-        //    player.stateMachine.ChangeState(StateName.ATTACK);
-        }*/
     }
 
     private void HandlePressInteraction()
@@ -215,51 +211,28 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
             player.stateMachine.ChangeState(StateName.ATTACK);
         }
-        /*bool isAvailableAttack = !AttackState.IsBaseAttack &&
-        //                         (player.weaponManager.Weapon.ComboCount < 3);
-
-        //Debug.Log(AttackState.IsBaseAttack + "true 이면 공격 불가능");
-
-        //if (isAvailableAttack)
-        //{
-        //    AttackState.IsBaseAttack = true;
-        //    AttackState.isHolding = false;
-        //    AttackState.isClick = true;
-        //    Debug.Log("PressInteraction AttackState");
-        //    player.stateMachine.ChangeState(StateName.ATTACK);
-        }*/
     }
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0)
         {
-            if (DashState.CurrentDashCount >= player.DashCount)
-                return;
-
             if (!DashState.IsDash)
             {
                 Debug.Log("Dash Input");
                 DashState.CurrentDashCount++;
                 dashState = player.stateMachine.GetState(StateName.DASH);
-                dashState.Init(dashPower, dashTetanyTime, dashCoolTime);
+                dashState.Init(dashPower, dashCoolTime);
                 player.stateMachine.ChangeState(StateName.DASH);
                 canMove = false;
             }
-
-            //int dashCount = player.DashCount;
-            //bool isAvailableDash = playerState != PlayerState.DASH && currentDashCount < dashCount;
-            //Debug.Log(playerState != PlayerState.DASH);
-            //Debug.Log(playerState);
-            //if (isAvailableDash)
-            //{
-            //    player.stateMachine.ChangeState(StateName.DASH);
-            //}
         }
     }
+   
+
     public void OnClickQ(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause || gameManager.isDead)
         {
             if (context.interaction is PressInteraction)
             {
@@ -269,37 +242,49 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 if (isAvailableSkill)
                 {
                     AttackState.IsSkill_Q = true;
+                    player.isPlaySkill = true;
+                    ResetAnimator();
                     player.stateMachine.ChangeState(StateName.ATTACK);
                 }
             }
         }
-
     }
     public void OnClickE(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause || gameManager.isDead)
         {
             bool isAvailableAttack = !AttackState.IsSkill_E;
 
             if (isAvailableAttack)
             {
                 AttackState.IsSkill_E = true;
+                player.isPlaySkill = true;
+                ResetAnimator();
                 player.stateMachine.ChangeState(StateName.ATTACK);
             }
         }
     }
     public void OnClickR(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.playSkill)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill! && !gameManager.isPause || gameManager.isDead)
         {
             bool isAvailableAttack = !AttackState.IsSkill_R;
 
             if (isAvailableAttack)
             {
                 AttackState.IsSkill_R = true;
+                player.isPlaySkill = true;
+                ResetAnimator();
                 player.stateMachine.ChangeState(StateName.ATTACK);
             }
         }
+    }
+
+    public void ResetAnimator()
+    {
+        player.animator.SetBool("IsSkill_Q", false);
+        player.animator.SetBool("IsSkill_E", false);
+        player.animator.SetBool("IsSkill_R", false);
     }
 
     public const float CONVERT_UNIT_VALUE = 0.01f;
@@ -340,100 +325,26 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnFinishedDash()
     {
-        if (DashState.IsDash && DashState.CurrentDashCount < player.DashCount)
-        {
-            // OnFinishedDash하고 첫번째 스테이트 변경
-            pi.stateMachine.ChangeState(StateName.DASH);
-            return;
-        }
         dashState = player.stateMachine.GetState(StateName.DASH);
         dashState.OnExitState();
         canMove = true;
+        player.animator.SetBool("canHit", true);
+
         AttackState.IsBaseAttack = false;
 
-        if (dashCoolTimeCoroutine != null)
-            StopCoroutine(dashCoolTimeCoroutine);
-        dashCoolTimeCoroutine =
-            StartCoroutine(CheckDashReInputLimitTime(DashState.dashCooltime));
+        StartCoroutine(DashCooltime());
     }
 
-    private IEnumerator CheckDashReInputLimitTime(float limitTime)
+    public IEnumerator DashCooltime()
     {
-        float timer = 0f;
-
-        while (true) {
-            timer += Time.deltaTime;
-
-            if (timer > limitTime)
-            {
-                DashState.IsDash = false;
-                DashState.CurrentDashCount = 0;
-                player.animator.ResetTrigger(DashState.Hash_DashTrigger);
-                pi.stateMachine.ChangeState(StateName.MOVE);
-                break;
-            }
-            yield return null;
-        }
+        yield return new WaitForSeconds(dashCoolTime);
+        DashState.CurrentDashCount = 0;
     }
-    #region 대쉬 구현
-    //public void Dash()
-    //{
-    //    currentDashCount++;
-
-    //    if (dashCoroutine != null && dashCoolTimeCoroutine != null)
-    //    {
-    //        StopCoroutine(dashCoroutine);
-    //        StopCoroutine(dashCoolTimeCoroutine);
-    //    }
-
-    //    dashCoroutine = StartCoroutine(DashCoroutine());
-    //}
-
-    //private IEnumerator DashCoroutine()
-    //{
-    //    int dashCount = player.DashCount;
-
-    //    player.animator.SetFloat("moveSpeed", 0f);
-    //    player.animator.SetBool("IsDashing", true);
-    //    player.animator.SetTrigger("Dash");
-    //    player.rigidbody.velocity = transform.forward * dashPower;
-
-    //    yield return DASH_ANIM_TIME;
-    //    playerState = (dashCount > 1 && currentDashCount < dashCount) ? PlayerState.NDASH : PlayerState.DASH;
-
-    //    yield return DASH_RE_INPUT_TIME;
-    //    player.animator.SetBool("IsDashing", false);
-    //    player.rigidbody.velocity = Vector3.zero;
-
-    //    yield return DASH_TETANY_TIME;
-    //    player.stateMachine.ChangeState(StateName.MOVE);
-
-    //    dashCoolTimeCoroutine = StartCoroutine(DashCoolTimeCoroutine());
-    //}
-
-    //private IEnumerator DashCoolTimeCoroutine()
-    //{
-    //    float currentTime = 0f;
-
-    //    while (true)
-    //    {
-    //        currentTime += Time.deltaTime;
-    //        if (currentTime >= dashCoolTime)
-    //        {
-    //            player.stateMachine.ChangeState(StateName.MOVE);
-    //            break;
-    //        }
-    //        yield return null;
-    //    }
-
-    //    if (currentDashCount == player.DashCount)
-    //        currentDashCount = 0;
-    //}
-    #endregion
 
     public void Dead()
     {
-
+        gameManager.isDead = true;
+        player.animator.SetTrigger("dead");
     }
 
     void GetMousePosition()

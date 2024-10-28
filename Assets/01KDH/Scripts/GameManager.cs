@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public InvenSlot[] slots;
     public ParticlePoolManager particlePoolManager;
     public UIManager uiManager;
     public EnemyPoolManager enemyPoolManager;
@@ -39,6 +41,24 @@ public class GameManager : MonoBehaviour
 
     public bool isHit = false;  // 플레이어가 피격했는지 확인하는 변수
     public bool isPause = false;
+    public bool isDead = false;
+
+    private int _itemcount;
+
+    public delegate void PlayerAttackDelegate();
+    public PlayerAttackDelegate playerattackDelegate;
+
+    public delegate void TimeActiveDelegate();   // 일정 시간마다 사용되는 아이템
+    public TimeActiveDelegate timeactiveDelegate;
+
+    public delegate void PlayerHitDelegate(Transform transform);    // 플레이어가 피격당할 때 사용되는 아이템
+    public PlayerHitDelegate playerhitDelegate;
+
+    public delegate void EnemyHitDelegate(Transform transform);   // 적이 피격당할 때 사용되는 아이템
+    public EnemyHitDelegate enemyhitDelegate;
+
+    public delegate void DieDelegate(Transform transform);   // 적이 사망할 때 사용되는 아이템
+    public DieDelegate dieDelegate;
 
     private void Awake()
     {
@@ -55,10 +75,56 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed,_dashcount);
+
+        //activeDelegate += Test2;
+        playerhitDelegate += Test;
+        playerattackDelegate += Test2;
+        enemyhitDelegate += Test;
+        dieDelegate += Test;
+        timeactiveDelegate += Test2;
     }
 
     private void Update()
     {
         //txt_gold = _gold;
+    }
+
+    public void Heal(float heal)
+    {
+        float healValue = Mathf.Clamp(_hp + heal, _hp, _maxhp);
+        _hp = healValue;
+    }
+
+    void Test(Transform transform)
+    {
+        return;
+    }
+
+    void Test2()
+    {
+        return;
+    }
+
+
+    public int FindItemCount(int id)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item != null)
+            {
+                if (slots[i].item.itemID == id)
+                {
+                    _itemcount = slots[i].itemCount;
+                    if (_itemcount <= 0)
+                        return 0;
+                }
+            }
+        }
+        return _itemcount;
+    }
+
+    public void Test()
+    {
+        return;
     }
 }

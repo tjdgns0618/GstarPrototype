@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
             damageable?.Damage(GameManager.instance._damage);
             GameObject instance = Instantiate(EffectsOnCollision, other.transform.position, Quaternion.identity);
             GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
-
+            
         }
     }
 }

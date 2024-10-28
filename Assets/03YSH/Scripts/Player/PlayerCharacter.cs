@@ -23,10 +23,6 @@ public class PlayerCharacter : MonoBehaviour
     public Animator animator { get; set; }
     public AnimatorController animatorCon { get; set; }
 
-    // public SkinnedMeshRenderer skinnedMeshRenderer;
-
-    public GameObject effectGenerator;
-
     public CharacterType characterClass;
 
     [Header("Character Meshs")]
@@ -58,8 +54,11 @@ public class PlayerCharacter : MonoBehaviour
 
     [Header("공격 콜라이더")]
     public BoxCollider attackRange;
+    [Header("교체 넉백 콜라이더")]
+    public BoxCollider changeArea;
 
-    public bool playSkill;
+    public bool isPlaySkill;
+    public bool canChange = true;
 
     private void Awake()
     {
@@ -90,6 +89,10 @@ public class PlayerCharacter : MonoBehaviour
 
     public void OnUpdateStat(float maxHp, float currentHp, float moveSpeed, int dashCount)
     {
+        GameManager.instance._maxhp = maxHp;
+        GameManager.instance._hp = currentHp;
+        GameManager.instance._movespeed = moveSpeed;
+        GameManager.instance._dashcount = dashCount;
         this.maxHp = maxHp;
         this.currentHp = currentHp;
         this.moveSpeed = moveSpeed;

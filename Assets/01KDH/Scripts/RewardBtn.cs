@@ -17,6 +17,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public Inventory _inventory;
     public RewardSlot _rewardslot;
     public PassiveItem _passiveItem;
+    public ActiveItem _activeItem;
 
     public Animator uiAnim;
 
@@ -25,6 +26,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public spawner1 _spawn;
 
     private RectTransform _rectTransform;
+
 
     private void Start()
     {
@@ -133,7 +135,74 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                         default:
                             break;
                     }
-
+                }
+                if (_rewardslot.item.itemType == Item.ItemType.active)
+                {
+                    switch (_rewardslot.item.itemID)
+                    {
+                        case 29:
+                            GameManager.instance.dieDelegate += _activeItem._01Item;
+                            break;
+                        case 30:
+                            GameManager.instance.dieDelegate += _activeItem._02Item;
+                            break;
+                        case 31:
+                            GameManager.instance.enemyhitDelegate += _activeItem._03Item;
+                            break;
+                        case 32:
+                            GameManager.instance.enemyhitDelegate += _activeItem._04Item;
+                            break;
+                        case 33:
+                            GameManager.instance.playerhitDelegate += _activeItem._05Item;
+                            break;
+                        case 34:
+                            GameManager.instance.playerattackDelegate += _activeItem._06Item;
+                            break;
+                        case 35:
+                            GameManager.instance.playerhitDelegate += _activeItem._07Item;
+                            break;
+                        case 36:
+                            TickManager._maneulT += _activeItem._08Item;
+                            break;
+                        case 37:
+                            TickManager._shieldT += _activeItem._09Item;
+                            break;
+                        case 38:
+                            TickManager._fireT += _activeItem._10Item;
+                            break;
+                        case 39:
+                            GameManager.instance.timeactiveDelegate += _activeItem._11Item;
+                            break;
+                        case 40:
+                            TickManager._godT += _activeItem._12Item;
+                            break;
+                        case 41:
+                            GameManager.instance.playerattackDelegate += _activeItem._13Item;
+                            break;
+                        case 42:
+                            GameManager.instance.playerattackDelegate += _activeItem._14Item;
+                            break;
+                        case 43:
+                            GameManager.instance.playerattackDelegate += _activeItem._15Item;
+                            break;
+                        case 44:
+                            GameManager.instance.playerattackDelegate += _activeItem._16Item;
+                            break;
+                        case 45:
+                            GameManager.instance.playerattackDelegate += _activeItem._17Item;
+                            break;
+                        case 46:
+                            //GameManager.instance.activeDelegate += _activeItem._18Item;
+                            break;
+                        case 47:
+                            TickManager._freezeT += _activeItem._19Item;
+                            break;
+                        case 48:
+                            GameManager.instance.playerattackDelegate += _activeItem._20Item;
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 _rewardslot.ClearSlot();    // 다음 웨이브 보상 때 새로운 랜덤 보상으로 바꿔야 하기에 슬롯 초기화
             }

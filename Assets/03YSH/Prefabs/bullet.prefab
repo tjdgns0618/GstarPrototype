@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6784758214664706658}
   - component: {fileID: 3340234302040158142}
   - component: {fileID: 9221278172882553701}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetname: Player
+  EffectsOnCollision: {fileID: 1153730961705006, guid: f1aeeba2f9003904da5c0a24ba150198, type: 3}
+  DestroyTimeDelay: 0
