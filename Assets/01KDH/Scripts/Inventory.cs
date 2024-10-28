@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
                         return;
                     }
                 }
-        }
+            }
 
         for (int i = 0; i < slots.Length; i++)
         {

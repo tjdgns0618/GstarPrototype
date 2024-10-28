@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class Maneul : MonoBehaviour        // 주변 적 지속피해
 {
-    private void OnCollisionEnter(Collision col)
+    GameManager gm;
+
+    void Start()
     {
-        if(col.gameObject.CompareTag("Enemy"))
+        gm = GameManager.instance;
+    }
+
+    private void OnTriggerEnter(Collider col)   // particle system collision으로 바꿔줘야함
+    {
+        if (col.gameObject.CompareTag("Enemy"))
         {
-            EnemyAI enemy = col.gameObject.GetComponent<EnemyAI>();
-            enemy.Damage(2f);
+            EnemyAI eAI = col.GetComponent<EnemyAI>();
+            if (eAI != null)
+            {
+                eAI.Damage(gm._damage * ItemDataBase.instance.Variable2(36));
+            }
         }
     }
 }

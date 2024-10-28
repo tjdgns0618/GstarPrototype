@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class DeathBoom : MonoBehaviour
 {
+    GameManager gm;
+
+    void Start()
+    {
+        gm = GameManager.instance;
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            EnemyAI eAI = col.GetComponent<EnemyAI>();
-            if (eAI != null)
+            IDamageAble<float> damageAble = col.GetComponent<IDamageAble<float>>();
+            if (damageAble != null)
             {
-                eAI.Damage(10f);
+                damageAble.Damage(gm._damage * (ItemDataBase.instance.Variable(30) + (gm.FindItemCount(30) - 1) * 0.1f));
             }
         }
     }
