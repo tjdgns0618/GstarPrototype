@@ -58,6 +58,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     void Start()
     {
         damagetextManager = DamageTextManager.instance;
+        slowT = new WaitForSeconds(slowDelay);
     }
 
     private void OnEnable()
@@ -72,11 +73,6 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     private void OnDisable()
     {
         //GameManager.instance.dieDelegate -= Test;
-    }
-
-    void Start()
-    {
-        slowT=new WaitForSeconds(slowDelay);
     }
 
     private void Update()
@@ -236,6 +232,11 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         //GameManager.instance.enemyhitDelegate(transform);
         animator.SetTrigger("hit");
         hp -= damageTaken;
+
+        Vector3 textPos = transform.position;
+        textPos.y += 1.5f;
+        damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken, textPos, false);
+
         Debug.Log(hp);
         if (hp <= 0)
         {
