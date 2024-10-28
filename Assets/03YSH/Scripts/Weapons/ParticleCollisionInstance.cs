@@ -23,10 +23,10 @@ public class ParticleCollisionInstance : MonoBehaviour
         part = GetComponent<ParticleSystem>();
     }
 
-    private void OnEnable()
-    {
-        Invoke("InActiveParticle", 5f);
-    }
+    //private void OnEnable()
+    //{
+    //    Invoke("InActiveParticle", 5f);
+    //}
 
     public void InActiveParticle()
     {

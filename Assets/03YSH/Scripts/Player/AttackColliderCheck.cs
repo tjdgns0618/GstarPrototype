@@ -15,7 +15,7 @@ public class AttackColliderCheck : MonoBehaviour
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
         if (damageAble != null)
         {
-            damageAble?.Damage(PlayerCharacter.Instance.weaponManager.Weapon.AttackDamage);
+            damageAble?.Damage(GameManager.instance._damage);
             // PlayerCharacter.Instance.weaponManager.Weapon.ItemChance();
         }
     }

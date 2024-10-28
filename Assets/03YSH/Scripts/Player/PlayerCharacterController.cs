@@ -349,14 +349,25 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     void GetMousePosition()
     {
-        Vector3 mouseWorldPosition =
-            Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.y));
+        //Vector3 mouseWorldPosition =
+        //    Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.y));
 
-        Vector3 direction = mouseWorldPosition - (transform.position - new Vector3(0f, 0f, 2.8f));
-        direction.y = 0f;
+        //Vector3 direction = mouseWorldPosition - (transform.position - new Vector3(0f, 0f, 2.8f));
+        //direction.y = 0f;
 
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = targetRotation;
+        //Quaternion targetRotation = Quaternion.LookRotation(direction);
+        //transform.rotation = targetRotation;
+
+        Ray cemeraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLength;
+        if(groundPlane.Raycast(cemeraRay, out rayLength))
+        {
+            Vector3 pointToLook = cemeraRay.GetPoint(rayLength);
+            Debug.DrawLine(cemeraRay.origin, pointToLook, Color.blue);
+
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        }
     }
 
     public void Attack()

@@ -3064,16 +3064,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314b09864c803b9428417a38cc7038bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab:
-  - {fileID: 1372988556098474, guid: 3a09def1ff2b15e42b2f8c3d2716fca2, type: 3}
-  - {fileID: 1666637062901154, guid: d1b7ec3c5379803498bdcdce2a411aac, type: 3}
-  - {fileID: 1204140190044184, guid: a925e8dfcd708b84182e150d6b173192, type: 3}
-  - {fileID: 1353782578366774, guid: 12ba41821cd488644a09f67a87fad6b5, type: 3}
   spawnPos: {fileID: 441140256}
   portal: {fileID: 952685967}
   rewardUI: {fileID: 5375799980236767569}
   waveClear: {fileID: 1940945366}
   stageClear: {fileID: 326430266}
+  bossPrefab: {fileID: 0}
   waveInfoText: {fileID: 8335460949734507039}
   stageInfoText: {fileID: 3923033488069134938}
   waveCountText: {fileID: 6476767945889163270}
@@ -3085,12 +3081,14 @@ MonoBehaviour:
   maxWaves: 5
   currentWave: 0
   currentStage: 1
-  stagePerEnemy: 3
+  totalEnemiesInWave: 0
   enemyNames:
   - Cobra
   - Wolf
   - Golem
   - Bat
+  enemies: []
+  _randomnum: 0
 --- !u!4 &221857133
 Transform:
   m_ObjectHideFlags: 0
@@ -3436,57 +3434,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e0a8d929866d04482688f4ea112b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Healingorb: 
-  Deathboom: 
-  _itemcount: 0
-  slots:
-  - {fileID: 2692187769795238341}
-  - {fileID: 1287071128}
-  - {fileID: 1176360145}
-  - {fileID: 600101836}
-  - {fileID: 1281464635}
-  - {fileID: 1699260948}
-  - {fileID: 1929008932}
-  - {fileID: 1246818811}
-  - {fileID: 1408915976}
-  - {fileID: 1931277837}
-  - {fileID: 1727782190}
-  - {fileID: 974045928}
-  - {fileID: 1276179391}
-  - {fileID: 1840882625}
-  - {fileID: 2042529249}
-  - {fileID: 1751838832}
-  - {fileID: 1368441189}
-  - {fileID: 1441797241}
-  - {fileID: 1340022034}
-  - {fileID: 2078584684}
-  - {fileID: 1990974795}
-  - {fileID: 1709662174}
-  - {fileID: 1671992330}
-  - {fileID: 1188088853}
-  - {fileID: 467939570}
-  - {fileID: 1867673165}
-  - {fileID: 1946962764}
-  - {fileID: 1353810708}
-  - {fileID: 1575296229}
-  - {fileID: 230063410}
-  - {fileID: 814164442}
-  - {fileID: 1828615933}
-  - {fileID: 2048986842}
-  - {fileID: 954610999}
-  - {fileID: 1636672359}
-  - {fileID: 791417879}
-  - {fileID: 1607825082}
-  - {fileID: 2117394635}
-  - {fileID: 1537063632}
-  - {fileID: 908917238}
   attackRandomValue: 0
   attackProbability: 0
   hitRandomValue: 0
   hitProbability: 0
   killRandomValue: 0
   killProbability: 0
-  effectObjects: []
+  spawner: {fileID: 0}
+  _player: {fileID: 0}
   chainLightning: {fileID: 264058770}
   _09item: {fileID: 0}
 --- !u!114 &264058770
@@ -8248,6 +8203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9eb9bf571205d419b506d4cd994c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slots: []
   particlePoolManager: {fileID: 1494862214}
   uiManager: {fileID: 1235205384}
   enemyPoolManager: {fileID: 1737429637}
@@ -10828,6 +10784,10 @@ PrefabInstance:
       propertyPath: effectGenerator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6574374890407462785, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
+      propertyPath: classMesh.Array.data[2]
+      value: 
+      objectReference: {fileID: 4300024, guid: e2958561779b1a748a4246b9d0c0b309, type: 3}
     - target: {fileID: 7090008304948269973, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12745,6 +12705,7 @@ MonoBehaviour:
   health_Txt: {fileID: 1041020533634025101}
   coin_Txt: {fileID: 7631177499464440033}
   spawner: {fileID: 221857132}
+  autoPotion: []
 --- !u!4 &1235205385
 Transform:
   m_ObjectHideFlags: 0

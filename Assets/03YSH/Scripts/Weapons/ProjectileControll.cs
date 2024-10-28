@@ -10,10 +10,10 @@ public class ProjectileControll : MonoBehaviour
     public GameObject EffectsOnCollision;
     public float DestroyTimeDelay;
 
-    private void OnEnable()
-    {
-        Invoke("InActiveParticle", 7f);
-    }
+    //private void OnEnable()
+    //{
+    //    Invoke("InActiveParticle", 7f);
+    //}
 
     private void OnDisable()
     {
