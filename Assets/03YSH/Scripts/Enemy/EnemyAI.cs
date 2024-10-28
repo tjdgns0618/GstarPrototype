@@ -326,7 +326,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     public void Fire()
     {
-        bullet.GetComponent<Bullet>().targetname = "Player";
+        bullet.GetComponent<EnemyBullet>().targetname = "Player";
         GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
         temp.transform.forward = transform.forward;
         //temp.transform.Rotate(new Vector3(90f, transform.rotation.y, 0f));
