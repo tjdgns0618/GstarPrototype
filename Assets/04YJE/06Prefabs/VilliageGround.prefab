@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!4 &8801790083918205159
 Transform:
@@ -125,7 +125,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5977183554280692070
 Transform:
@@ -240,7 +240,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &573298120552121246
 Transform:
@@ -374,7 +374,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8095811494245585596
 Transform:
@@ -418,7 +418,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6862147934766681173
 Transform:
@@ -472,7 +472,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6982513454999767443
 Transform:
@@ -544,6 +544,10 @@ PrefabInstance:
     - target: {fileID: 412532600830453301, guid: c4c99035667ad5f409c92d8ffe960506, type: 3}
       propertyPath: m_Name
       value: Plant_04 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 412532600830453301, guid: c4c99035667ad5f409c92d8ffe960506, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 412532600832719093, guid: c4c99035667ad5f409c92d8ffe960506, type: 3}
       propertyPath: m_Materials.Array.size
@@ -631,6 +635,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stump_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5382439116033435423, guid: 0e22f3c7c4e48f342882ac8b39372669, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5382439116035439071, guid: 0e22f3c7c4e48f342882ac8b39372669, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -671,7 +679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5290530546335810771, guid: a116595981232e24393ff4fab872d0ac, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5290530546335810771, guid: a116595981232e24393ff4fab872d0ac, type: 3}
       propertyPath: m_LocalScale.z
@@ -720,6 +728,10 @@ PrefabInstance:
     - target: {fileID: 5290530546335914227, guid: a116595981232e24393ff4fab872d0ac, type: 3}
       propertyPath: m_Name
       value: Plane_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290530546335914227, guid: a116595981232e24393ff4fab872d0ac, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -791,6 +803,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower
       objectReference: {fileID: 0}
+    - target: {fileID: 5148838409119630460, guid: 2b6d164177d1f6a49b794393d4c8dd4b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -860,6 +876,10 @@ PrefabInstance:
     - target: {fileID: 3809075776783784465, guid: adc4db0cd2e5ce842847052973fb027e, type: 3}
       propertyPath: m_Name
       value: Tree_09
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809075776783784465, guid: adc4db0cd2e5ce842847052973fb027e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -942,6 +962,10 @@ PrefabInstance:
     - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Name
       value: Grass_02 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
@@ -1033,6 +1057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01
       objectReference: {fileID: 0}
+    - target: {fileID: 7518195065243562810, guid: 613d6c601a9e50d45ace3e23f327661a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1070,6 +1098,10 @@ PrefabInstance:
     - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_Name
       value: Water (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1160,6 +1192,10 @@ PrefabInstance:
     - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_Name
       value: Water (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1295,6 +1331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_02 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -1332,6 +1372,10 @@ PrefabInstance:
     - target: {fileID: 9014547031140825374, guid: 0c8c64d3b8cc212488a236183db4c7fd, type: 3}
       propertyPath: m_Name
       value: Log_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014547031140825374, guid: 0c8c64d3b8cc212488a236183db4c7fd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9014547031140918590, guid: 0c8c64d3b8cc212488a236183db4c7fd, type: 3}
       propertyPath: m_LocalScale.x
@@ -1422,6 +1466,10 @@ PrefabInstance:
     - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_Name
       value: Water (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1545,6 +1593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_09 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4657792368768753966, guid: 33a147eca24b28e42b06bf33f97ae112, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1618,6 +1670,10 @@ PrefabInstance:
     - target: {fileID: 5262034376955157595, guid: e376a0086331c01488569f282478d8d1, type: 3}
       propertyPath: m_Name
       value: Mushroom_07 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262034376955157595, guid: e376a0086331c01488569f282478d8d1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5262034376957149851, guid: e376a0086331c01488569f282478d8d1, type: 3}
       propertyPath: m_Materials.Array.size
@@ -1704,6 +1760,10 @@ PrefabInstance:
     - target: {fileID: 5382439116033435423, guid: 0e22f3c7c4e48f342882ac8b39372669, type: 3}
       propertyPath: m_Name
       value: Stump_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5382439116033435423, guid: 0e22f3c7c4e48f342882ac8b39372669, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5382439116035439071, guid: 0e22f3c7c4e48f342882ac8b39372669, type: 3}
       propertyPath: m_Materials.Array.size
@@ -1795,6 +1855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flower_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1964796962505801132, guid: a2e55514df3f9814b99feca323051ac9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1832,6 +1896,10 @@ PrefabInstance:
     - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_Name
       value: Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1915,6 +1983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8050609926825316202, guid: 93952816048fa1242aa14c3e44caa224, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8050609926825808714, guid: 93952816048fa1242aa14c3e44caa224, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.16
@@ -1985,6 +2057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Branch
       objectReference: {fileID: 0}
+    - target: {fileID: 6202726498524880489, guid: b7d0eb5a175ce2442b90f6a644b0cd4f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6202726498525102665, guid: b7d0eb5a175ce2442b90f6a644b0cd4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.42000008
@@ -2054,6 +2130,10 @@ PrefabInstance:
     - target: {fileID: 1564222952904460581, guid: 7b1758f2eeae41f418f945fdf85883b2, type: 3}
       propertyPath: m_Name
       value: ModularWood_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564222952904460581, guid: 7b1758f2eeae41f418f945fdf85883b2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1564222952904692997, guid: 7b1758f2eeae41f418f945fdf85883b2, type: 3}
       propertyPath: m_RootOrder
@@ -2140,6 +2220,10 @@ PrefabInstance:
     - target: {fileID: 6202726498524880489, guid: b7d0eb5a175ce2442b90f6a644b0cd4f, type: 3}
       propertyPath: m_Name
       value: Branch (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202726498524880489, guid: b7d0eb5a175ce2442b90f6a644b0cd4f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6202726498525102665, guid: b7d0eb5a175ce2442b90f6a644b0cd4f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2263,6 +2347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_02 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -2353,6 +2441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_02 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -2430,6 +2522,10 @@ PrefabInstance:
     - target: {fileID: 557772382885649026, guid: 9fe979b579e17fe4ca878e23253bc3fb, type: 3}
       propertyPath: m_Name
       value: Tree_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 557772382885649026, guid: 9fe979b579e17fe4ca878e23253bc3fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2512,6 +2608,10 @@ PrefabInstance:
     - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Name
       value: Grass_02 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
@@ -2603,6 +2703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_02 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -2648,6 +2752,10 @@ PrefabInstance:
     - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_Name
       value: Water (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2722,6 +2830,10 @@ PrefabInstance:
     - target: {fileID: 6361723844059883730, guid: a0f72ac672dfb39488c1c9ac8e487459, type: 3}
       propertyPath: m_Name
       value: Stump_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361723844059883730, guid: a0f72ac672dfb39488c1c9ac8e487459, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6361723844060116210, guid: a0f72ac672dfb39488c1c9ac8e487459, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2809,6 +2921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1
@@ -2890,6 +3006,10 @@ PrefabInstance:
     - target: {fileID: 8265484491084600482, guid: b118c748e72b0504897b5a9646c95b47, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265484491084600482, guid: b118c748e72b0504897b5a9646c95b47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8265484491084957826, guid: b118c748e72b0504897b5a9646c95b47, type: 3}
       propertyPath: m_LocalScale.x
@@ -3010,6 +3130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_01
       objectReference: {fileID: 0}
+    - target: {fileID: 287429727301508080, guid: 554fcb49044607e4ead934c2f411608f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 287429727301797840, guid: 554fcb49044607e4ead934c2f411608f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.2
@@ -3049,6 +3173,10 @@ PrefabInstance:
     - target: {fileID: 287429727301797840, guid: 554fcb49044607e4ead934c2f411608f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733733462019245065, guid: 554fcb49044607e4ead934c2f411608f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3115,6 +3243,10 @@ PrefabInstance:
     - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Name
       value: Grass_02 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
@@ -3194,6 +3326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_09
       objectReference: {fileID: 0}
+    - target: {fileID: 4657792368768753966, guid: 33a147eca24b28e42b06bf33f97ae112, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3231,6 +3367,10 @@ PrefabInstance:
     - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_Name
       value: Water (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -3358,6 +3498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stump_01
       objectReference: {fileID: 0}
+    - target: {fileID: 5382439116033435423, guid: 0e22f3c7c4e48f342882ac8b39372669, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5382439116035439071, guid: 0e22f3c7c4e48f342882ac8b39372669, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -3436,6 +3580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7518195065243562810, guid: 613d6c601a9e50d45ace3e23f327661a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3462,9 +3610,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4726003405717917486, guid: dd53499f567997945813c96b631e605f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4726003405718147854, guid: dd53499f567997945813c96b631e605f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4726003405718147854, guid: dd53499f567997945813c96b631e605f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3596,6 +3748,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_02 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -3686,6 +3842,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass_02 (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 3091926781576313091, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3091926781578307523, guid: 68f765b60458dcf4b8d45abed15ccdbf, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -3723,6 +3883,10 @@ PrefabInstance:
     - target: {fileID: 8050609926825316202, guid: 93952816048fa1242aa14c3e44caa224, type: 3}
       propertyPath: m_Name
       value: Plant_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050609926825316202, guid: 93952816048fa1242aa14c3e44caa224, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8050609926825808714, guid: 93952816048fa1242aa14c3e44caa224, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3826,6 +3990,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant_04
       objectReference: {fileID: 0}
+    - target: {fileID: 412532600830453301, guid: c4c99035667ad5f409c92d8ffe960506, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 412532600832719093, guid: c4c99035667ad5f409c92d8ffe960506, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -3863,6 +4031,10 @@ PrefabInstance:
     - target: {fileID: 670180574085351172, guid: 77c1023af2e20a5459fc30be10714322, type: 3}
       propertyPath: m_Name
       value: Well
+      objectReference: {fileID: 0}
+    - target: {fileID: 670180574085351172, guid: 77c1023af2e20a5459fc30be10714322, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 670180574085651236, guid: 77c1023af2e20a5459fc30be10714322, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3945,6 +4117,10 @@ PrefabInstance:
     - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -4035,6 +4211,10 @@ PrefabInstance:
     - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_Name
       value: Water (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476400814818019622, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5476400814818120966, guid: e0a274ef27652cb48afb74e4057f5c0e, type: 3}
       propertyPath: m_LocalScale.x

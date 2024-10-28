@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
     const string _ATTACK_ANIM_TRIGGER_NAME = "attack";
     const string _RANGE_ATTACK_ANIM_TRIGGER_NAME = "shot";
+    DamageTextManager damagetextManager;
 
     float slowDelay;
     WaitForSeconds slowT;
@@ -52,6 +53,11 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         animator = GetComponent<Animator>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _originPos = transform.position;
+    }
+
+    void Start()
+    {
+        damagetextManager = DamageTextManager.instance;
     }
 
     private void OnEnable()
@@ -230,7 +236,6 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         //GameManager.instance.enemyhitDelegate(transform);
         animator.SetTrigger("hit");
         hp -= damageTaken;
-        PlayKnockback(transform.forward * -1f, 0.2f, 2f);
         Debug.Log(hp);
         if (hp <= 0)
         {
@@ -260,7 +265,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Dead()
     {
         GameManager.instance.dieDelegate(transform);
-        Debug.Log("Dead ½ÇÇà");
+        Debug.Log("Dead ì‹¤í–‰");
         isDead = true;
         enemyAttack.gameObject.GetComponent<BoxCollider>().enabled = false;
         animator.StopPlayback();
@@ -269,16 +274,16 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         animator.ResetTrigger("attack");
         animator.ResetTrigger("hit");
 
-        // »ç¸Á ¾Ö´Ï¸ŞÀÌ¼ÇÀ» °­Á¦·Î Àç»ı
+        // ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜ì„ ê°•ì œë¡œ ì¬ìƒ
         animator.Play("dead");
 
-        // »ç¸Á ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ºÎµå·´°Ô ÀüÈ¯
+        // ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜ì„ ë¶€ë“œëŸ½ê²Œ ì „í™˜
         animator.CrossFade("dead", 0.2f);
         gameObject.layer = 7;
 
         Invoke("InActiveEnemy", 3f);
         spawner.enemies.Remove(this.gameObject);
-        spawner.enemyDead();           // ½ºÆ÷³Ê¿¡ Àû »ç¸Á½Ã È£Ãâ ÇÔ¼ö
+        spawner.enemyDead();           // ìŠ¤í¬ë„ˆì— ì  ì‚¬ë§ì‹œ í˜¸ì¶œ í•¨ìˆ˜
 
         
     }

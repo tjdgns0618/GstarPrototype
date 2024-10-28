@@ -6,5 +6,6 @@ using UnityEngine;
 [ExcelAsset]
 public class ShopItemDB : ScriptableObject
 {
-	public List<ShopItemDBEntity> entities; 
+	public List<ShopItemDBEntity> entities; // Replace 'EntityType' to an actual type that is serializable.
+	public List<ShopItemDBEntity2> entities3; // Replace 'EntityType' to an actual type that is serializable.
 }
