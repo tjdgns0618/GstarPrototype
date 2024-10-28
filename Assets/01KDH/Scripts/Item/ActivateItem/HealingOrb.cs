@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealingOrb : MonoBehaviour
 {
     GameManager gm;
+
     void Start()
     {
         gm = GameManager.instance;
@@ -14,7 +15,8 @@ public class HealingOrb : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            gm.Heal(5f);
+            gm.Heal(gm._maxhp * ItemDataBase.instance.Variable2(29)*gm.FindItemCount(29));
+            gameObject.SetActive(false);
         }
     }
 }

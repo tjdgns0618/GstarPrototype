@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class spawner1 : MonoBehaviour
 {
@@ -33,10 +34,14 @@ public class spawner1 : MonoBehaviour
 
     private int enemyPerSpawn; //한 번의 주기에 생성할 enemy 수
     private int spawnedCount = 0; //생성된 enemy 카운트
-    private int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
+    public int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
     private int enemiesLeft;
 
     public string[] enemyNames;
+    
+    public List<GameObject> enemies = new List<GameObject>();
+
+    public int _randomnum;
 
     //[SerializeField]
     //private List<EnemyPoolManager.Pool> pools = new List<EnemyPoolManager.Pool>
@@ -151,6 +156,8 @@ public class spawner1 : MonoBehaviour
 
                         // Instantiate 대신 오브젝트 풀링에서 스폰
                         GameObject enemy = GameManager.instance.enemyPoolManager.GetEnemyPool(randomEnemyName);
+                        enemies.Add(enemy);
+                        _randomnum = Random.Range(0, enemies.Count);
                         enemy.transform.position = randomPosition;
                         enemy.transform.rotation = randomRotation;
 
@@ -160,7 +167,6 @@ public class spawner1 : MonoBehaviour
                     }
                 }
             }
-
             yield return new WaitForSeconds(spawnInterval);
         }
     }

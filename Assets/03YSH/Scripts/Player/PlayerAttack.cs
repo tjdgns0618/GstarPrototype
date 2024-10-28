@@ -52,7 +52,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         pi.animator.SetFloat(hashAttackSpeedAnimation, AttackSpeed);
         pi.animator.SetBool(hashIsAttackAnimation, true);
         pi.animator.SetInteger(hashAttackAnimation, ComboCount);
-        gi.activeDelegate();
+        GameManager.instance.playerattackDelegate();
         CheckAttackReInput(AttackState.CanReInputTime);
     }
 
