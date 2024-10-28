@@ -1,43 +1,25 @@
-using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     private float speed = 20.0f;
     public string targetname;
-    public GameObject hitEffectPrefab;
-    private Rigidbody rb;
-    public GameObject flash;
+    public GameObject EffectsOnCollision;
+    public float DestroyTimeDelay;
+
     private void OnEnable()
     {
-        Invoke("InActiveParticle", 5f);
+        Invoke("InActiveParticle", 7f);
     }
 
-    void Start()
+    private void OnDisable()
     {
-        rb = GetComponent<Rigidbody>();
-        if (flash != null)
-        {
-            //Instantiate flash effect on projectile position
-            var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
-            flashInstance.transform.forward = gameObject.transform.forward;
 
-            //Destroy flash effect depending on particle Duration time
-            var flashPs = flashInstance.GetComponent<ParticleSystem>();
-            if (flashPs != null)
-            {
-                Destroy(flashInstance, flashPs.main.duration);
-            }
-            else
-            {
-                var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
-                Destroy(flashInstance, flashPsParts.main.duration);
-            }
-        }
-        Destroy(gameObject, 5);
     }
+
     public void InActiveParticle()
     {
         GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
@@ -53,12 +35,11 @@ public class Bullet : MonoBehaviour
         IDamageAble<float> damageable = other.GetComponent<IDamageAble<float>>();
         if (other.tag == targetname)
         {
+            Debug.LogWarning(other.name);
             damageable?.Damage(GameManager.instance._damage);
-            if (hitEffectPrefab != null)
-            {
-                Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
-            }
-            gameObject.SetActive(false);
+            GameObject instance = Instantiate(EffectsOnCollision, other.transform.position, Quaternion.identity);
+            GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
+
         }
     }
 }
