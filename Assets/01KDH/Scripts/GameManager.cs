@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed,_dashcount);
+
         //activeDelegate += Test2;
         playerhitDelegate += Test;
         playerattackDelegate += Test2;
@@ -120,5 +121,10 @@ public class GameManager : MonoBehaviour
             }
         }
         return _itemcount;
+    }
+
+    public void Test()
+    {
+        return;
     }
 }

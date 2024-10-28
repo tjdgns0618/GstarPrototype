@@ -61,7 +61,7 @@ namespace CharacterController
 
         }
 
-        public override void Init(float dashPower, float dashTetanyTime, float dashCooltime)
+        public override void Init(float dashPower, float dashCooltime)
         {
 
         }
