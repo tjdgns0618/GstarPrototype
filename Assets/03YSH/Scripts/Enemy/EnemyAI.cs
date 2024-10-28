@@ -43,6 +43,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     const string _RANGE_ATTACK_ANIM_TRIGGER_NAME = "shot";
     DamageTextManager damagetextManager;
 
+    float slowDelay;
+    WaitForSeconds slowT;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -59,12 +62,22 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     private void OnEnable()
     {
+        //GameManager.instance.dieDelegate += Test;
         spawner = FindAnyObjectByType<spawner1>();
         isDead = false;
         hp = 20f;
         gameObject.layer = 8;
     }
 
+    private void OnDisable()
+    {
+        //GameManager.instance.dieDelegate -= Test;
+    }
+
+    void Start()
+    {
+        slowT=new WaitForSeconds(slowDelay);
+    }
 
     private void Update()
     {
@@ -220,11 +233,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Damage(float damageTaken)
     {
         if(isDead) return;
-
+        //GameManager.instance.enemyhitDelegate(transform);
         animator.SetTrigger("hit");
         hp -= damageTaken;
-        damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken, transform.position, false);
-        PlayKnockback(transform.forward * -1f, 0.2f, 1f);
         Debug.Log(hp);
         if (hp <= 0)
         {
@@ -253,7 +264,8 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     public void Dead()
     {
-        Debug.Log("Dead ½ÇÇà");
+        GameManager.instance.dieDelegate(transform);
+        Debug.Log("Dead ì‹¤í–‰");
         isDead = true;
         enemyAttack.gameObject.GetComponent<BoxCollider>().enabled = false;
         animator.StopPlayback();
@@ -262,15 +274,16 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         animator.ResetTrigger("attack");
         animator.ResetTrigger("hit");
 
-        // »ç¸Á ¾Ö´Ï¸ŞÀÌ¼ÇÀ» °­Á¦·Î Àç»ı
+        // ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜ì„ ê°•ì œë¡œ ì¬ìƒ
         animator.Play("dead");
 
-        // »ç¸Á ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ºÎµå·´°Ô ÀüÈ¯
+        // ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜ì„ ë¶€ë“œëŸ½ê²Œ ì „í™˜
         animator.CrossFade("dead", 0.2f);
         gameObject.layer = 7;
 
         Invoke("InActiveEnemy", 3f);
-        spawner.enemyDead();           // ½ºÆ÷³Ê¿¡ Àû »ç¸Á½Ã È£Ãâ ÇÔ¼ö
+        spawner.enemies.Remove(this.gameObject);
+        spawner.enemyDead();           // ìŠ¤í¬ë„ˆì— ì  ì‚¬ë§ì‹œ í˜¸ì¶œ í•¨ìˆ˜
 
         
     }
@@ -301,7 +314,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         IDamageAble<float> damageAble = collision.gameObject.GetComponent<IDamageAble<float>>();
         if (damageAble != null && collision.gameObject.tag == "Player")
         {
-            damageAble.Damage(20);
+            damageAble.Damage(GameManager.instance._damage);
         }
     }
 
@@ -316,5 +329,36 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
         temp.transform.forward = transform.forward;
         //temp.transform.Rotate(new Vector3(90f, transform.rotation.y, 0f));
+    }
+
+    public void Slow(float slow)
+    {
+        float moveSpeed = _movementSpeed;
+        float slowSpeed = _movementSpeed - slow;
+
+        _movementSpeed = slowSpeed;
+        
+        StartCoroutine(EnemySpeedReturn(moveSpeed));
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("FreezeDeBuff");
+        if (particle != null)
+        {
+            particle.transform.position = transform.position;
+            particle.transform.SetParent(this.transform);
+        }
+    }
+
+    IEnumerator EnemySpeedReturn(float speed)
+    {
+        float recovery = speed * 0.1f;
+        slowDelay = ItemDataBase.instance.Variable(47)*0.1f;
+
+        while (speed > _movementSpeed)
+        {
+            yield return slowT;
+            _movementSpeed += recovery * Time.deltaTime ;
+        }
+
+        if (speed < _movementSpeed)
+            _movementSpeed = speed;
     }
 }

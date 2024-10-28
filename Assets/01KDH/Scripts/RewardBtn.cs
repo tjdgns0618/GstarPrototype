@@ -135,7 +135,6 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                         default:
                             break;
                     }
-
                 }
                 if (_rewardslot.item.itemType == Item.ItemType.active)
                 {
@@ -148,58 +147,58 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             GameManager.instance.dieDelegate += _activeItem._02Item;
                             break;
                         case 31:
-                            GameManager.instance.hitDelegate += _activeItem._03Item;
+                            GameManager.instance.enemyhitDelegate += _activeItem._03Item;
                             break;
                         case 32:
-                            GameManager.instance.hitDelegate += _activeItem._04Item;
+                            GameManager.instance.enemyhitDelegate += _activeItem._04Item;
                             break;
                         case 33:
-                            GameManager.instance.hitDelegate += _activeItem._05Item;
+                            GameManager.instance.playerhitDelegate += _activeItem._05Item;
                             break;
                         case 34:
-                            GameManager.instance.hitDelegate += _activeItem._06Item;
+                            GameManager.instance.playerattackDelegate += _activeItem._06Item;
                             break;
                         case 35:
-                            GameManager.instance.hitDelegate += _activeItem._07Item;
+                            GameManager.instance.playerhitDelegate += _activeItem._07Item;
                             break;
                         case 36:
-                            GameManager.instance.activeDelegate += _activeItem._08Item;
+                            TickManager._maneulT += _activeItem._08Item;
                             break;
                         case 37:
-                            GameManager.instance.activeDelegate += _activeItem._09Item;
+                            TickManager._shieldT += _activeItem._09Item;
                             break;
                         case 38:
-                            GameManager.instance.activeDelegate += _activeItem._10Item;
+                            TickManager._fireT += _activeItem._10Item;
                             break;
                         case 39:
-                            GameManager.instance.activeDelegate += _activeItem._11Item;
+                            GameManager.instance.timeactiveDelegate += _activeItem._11Item;
                             break;
                         case 40:
-                            GameManager.instance.activeDelegate += _activeItem._12Item;
+                            TickManager._godT += _activeItem._12Item;
                             break;
                         case 41:
-                            GameManager.instance.activeDelegate += _activeItem._13Item;
+                            GameManager.instance.playerattackDelegate += _activeItem._13Item;
                             break;
                         case 42:
-                            GameManager.instance.activeDelegate += _activeItem._14Item;
+                            GameManager.instance.playerattackDelegate += _activeItem._14Item;
                             break;
                         case 43:
-                            GameManager.instance.activeDelegate += _activeItem._15Item;
+                            GameManager.instance.playerattackDelegate += _activeItem._15Item;
                             break;
                         case 44:
-                            GameManager.instance.activeDelegate += _activeItem._16Item;
+                            GameManager.instance.playerattackDelegate += _activeItem._16Item;
                             break;
                         case 45:
-                            GameManager.instance.activeDelegate += _activeItem._17Item;
+                            GameManager.instance.playerattackDelegate += _activeItem._17Item;
                             break;
                         case 46:
-                            GameManager.instance.activeDelegate += _activeItem._18Item;
+                            //GameManager.instance.activeDelegate += _activeItem._18Item;
                             break;
                         case 47:
-                            GameManager.instance.activeDelegate += _activeItem._19Item;
+                            TickManager._freezeT += _activeItem._19Item;
                             break;
                         case 48:
-                            GameManager.instance.activeDelegate += _activeItem._20Item;
+                            GameManager.instance.playerattackDelegate += _activeItem._20Item;
                             break;
                         default:
                             break;

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public InvenSlot[] slots;
     public ParticlePoolManager particlePoolManager;
     public UIManager uiManager;
     public EnemyPoolManager enemyPoolManager;
@@ -41,15 +43,22 @@ public class GameManager : MonoBehaviour
     public bool isPause = false;
     public bool isDead = false;
 
-    public delegate void ActiveDelegate();
-    public ActiveDelegate activeDelegate;   // attackDelegate로 바꿔야함
+    private int _itemcount;
 
-    public delegate void HitDelegate();
-    public HitDelegate hitDelegate;
+    public delegate void PlayerAttackDelegate();
+    public PlayerAttackDelegate playerattackDelegate;
 
-    public delegate void DieDelegate();
+    public delegate void TimeActiveDelegate();   // 일정 시간마다 사용되는 아이템
+    public TimeActiveDelegate timeactiveDelegate;
+
+    public delegate void PlayerHitDelegate(Transform transform);    // 플레이어가 피격당할 때 사용되는 아이템
+    public PlayerHitDelegate playerhitDelegate;
+
+    public delegate void EnemyHitDelegate(Transform transform);   // 적이 피격당할 때 사용되는 아이템
+    public EnemyHitDelegate enemyhitDelegate;
+
+    public delegate void DieDelegate(Transform transform);   // 적이 사망할 때 사용되는 아이템
     public DieDelegate dieDelegate;
-    //         GameManager.instance.dieDelegate();  (EnemyAI Dead 함수에 넣기)
 
     private void Awake()
     {
@@ -66,6 +75,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed,_dashcount);
+
+        //activeDelegate += Test2;
+        playerhitDelegate += Test;
+        playerattackDelegate += Test2;
+        enemyhitDelegate += Test;
+        dieDelegate += Test;
+        timeactiveDelegate += Test2;
     }
 
     private void Update()
@@ -75,16 +91,40 @@ public class GameManager : MonoBehaviour
 
     public void Heal(float heal)
     {
-        if(_maxhp == _hp)   // 현재체력이 가득 찼을 때
+        float healValue = Mathf.Clamp(_hp + heal, _hp, _maxhp);
+        _hp = healValue;
+    }
+
+    void Test(Transform transform)
+    {
+        return;
+    }
+
+    void Test2()
+    {
+        return;
+    }
+
+
+    public int FindItemCount(int id)
+    {
+        for (int i = 0; i < slots.Length; i++)
         {
-            return;
+            if (slots[i].item != null)
+            {
+                if (slots[i].item.itemID == id)
+                {
+                    _itemcount = slots[i].itemCount;
+                    if (_itemcount <= 0)
+                        return 0;
+                }
+            }
         }
-        if (_maxhp > _hp)   // 현재체력이 최대체력보다 낮으면서
-        {
-            if (_hp + heal > _maxhp)    // 힐을 받으면 최대체력을 넘어가는 수치일 경우
-                _hp = _maxhp;                // 현재체력은 최대체력 수치만큼
-            else                                     // 힐을 받아도 최대체력을 넘어가지 않을 경우
-                _hp = _hp + heal;           // 현재체력에서 회복 수치만큼 회복
-        }
+        return _itemcount;
+    }
+
+    public void Test()
+    {
+        return;
     }
 }

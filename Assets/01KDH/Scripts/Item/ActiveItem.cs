@@ -1,19 +1,15 @@
 using DuloGames.UI;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEditor.Progress;
+using static UnityEngine.ParticleSystem;
 
 public class ActiveItem : MonoBehaviour
 {
-    public string Healingorb;
-    public string Deathboom;
-
-    public int _itemcount;
     private Item _item;
-
-    public InvenSlot[] slots;
 
     // 공격시
     public float attackRandomValue;
@@ -28,10 +24,9 @@ public class ActiveItem : MonoBehaviour
     public float killProbability;
 
     GameManager gm;
-    ParticlePoolManager pm;
 
-    public Dictionary<string, GameObject> effectDictionary;
-    public GameObject[] effectObjects;
+    public spawner1 spawner;
+    public GameObject _player;
 
     #region 
     public ChainLightning chainLightning;
@@ -41,85 +36,68 @@ public class ActiveItem : MonoBehaviour
     private void Start()
     {
         gm = GameManager.instance;
-        pm = gm.particlePoolManager;
-
-        foreach (var item in effectObjects)
-        {
-            effectDictionary.Add(item.name, item);
-        }
-    }
-
-    void Test()
-    {
-        GameObject targetObj;
-        if (effectDictionary.TryGetValue("object name", out targetObj))
-        {
-
-        }
-    }
-
-    public int FindItemCount(int id)
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].item != null)
-            {
-                if (slots[i].item.itemID == id)
-                {
-                    _itemcount = slots[i].itemCount;
-                }
-            }
-        }
-        return _itemcount;
     }
 
     #region effect
-    public void _01Item()   //  처치 시 체력회복 오브 드랍 
+    public void _01Item(Transform transform)   //  처치 시 체력회복 오브 드랍 
     {
+        Debug.Log("01 힐링오브");
         if (GetKillRandom(29))
         {
-            Debug.Log("01010101010101010101");
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Healingorb");
+            if (particle != null)
+            {
+                particle.transform.position = transform.position;
+            }
         }
     }
-    public void _02Item()   // 처치 시 적 폭발
+    public void _02Item(Transform transform)   // 처치 시 적 폭발
     {
-        if (GetKillRandom(30))
-        {
-            pm.GetParticle(Deathboom);
-        }
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Deathboom");
+        if (particle != null)
+            {
+                particle.transform.position = transform.position;
+            }
     }
-    public void _03Item()   // 적 피격 시 폭탄 부착
+
+    public void _03Item(Transform transform)   // 적 피격 시 폭탄 부착
     {
         if (GetHitRandom(31))
         {
 
         }
     }
-    public void _04Item()   // 적 피격 시 지뢰 설치
+    public void _04Item(Transform transform)   // 적 피격 시 지뢰 설치
     {
         if (GetHitRandom(32))
         {
 
         }
     }
-    public void _05Item()   // 플레이어 피격 시 공격 방향 반사 범위 피해
+    public void _05Item(Transform transform)   // 플레이어 피격 시 공격 방향 반사 범위 피해
     {
         if (GetHitRandom(33))
         {
 
         }
     }
-    public void _06Item()   // 플레이어 피격 시 미사일 발사
+    public void _06Item()   // 공격 시 미사일 발사
     {
-        if (GetHitRandom(34))
+        if (GetHitRandom34(34))
         {
-
+            if (spawner.enemies.Count > 0)
+            {
+                GameObject particle = GameManager.instance.particlePoolManager.GetParticle("MissileUp");
+                GameObject particle2 = GameManager.instance.particlePoolManager.GetParticle("MissileDown");
+                 if (particle != null && particle2 != null)
+                 {
+                     particle.transform.position = PlayerCharacter.Instance.transform.position;
+                     particle2.transform.position = spawner.enemies[Random.Range(0, spawner.enemies.Count)].transform.position;
+                 }
+            }
         }
-        //Transform firework = gm.itempools.Get(1).transform;
-        //firework.parent = transform;
-        //firework.transform.position = PlayerCharacter.Instance.transform.position + new Vector3(0, 3, 0);
     }
-    public void _07Item()   // 플레이어 피격 시 랜덤 효과 발동
+    public void _07Item(Transform transform)   // 플레이어 피격 시 랜덤 효과 발동
     {
         if (GetHitRandom(35))
         {
@@ -128,7 +106,12 @@ public class ActiveItem : MonoBehaviour
     }
     public void _08Item()   // 일정 시간마다 마늘 효과
     {
-
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Maneul");
+        if (particle != null)
+        {
+            particle.transform.position = PlayerCharacter.Instance.transform.position;
+            particle.transform.SetParent(_player.transform);
+        }
     }
     public void _09Item()   // 방패 공전
     {
@@ -136,7 +119,17 @@ public class ActiveItem : MonoBehaviour
     }
     public void _10Item()   // 일정 시간마다 적이 있는 곳에 장판
     {
-
+        if(spawner.enemies.Count != 0)
+        {
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Fire");
+        if (particle != null)
+            {
+                if (spawner.enemies.Count > 0)
+                {
+                   particle.transform.position = spawner.enemies[Random.Range(0, spawner.enemies.Count)].transform.position;
+                }
+            }
+        }
     }
     public void _11Item()   // 일정 시간마다 주변 적 정지
     {
@@ -145,6 +138,7 @@ public class ActiveItem : MonoBehaviour
     public void _12Item()   // 일정 시간마다 짧은 무적
     {
     }
+
     public void _13Item()   // 공격 시 연쇄 번개
     {
         if (GetAttackRandom(41))
@@ -170,23 +164,43 @@ public class ActiveItem : MonoBehaviour
     {
         if (GetAttackRandom(44))
         {
-
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Wind");
+            if (particle != null)
+            {
+                particle.transform.position = PlayerCharacter.Instance.firePoint.transform.position;
+                particle.transform.rotation = PlayerCharacter.Instance.transform.rotation;
+            }
         }
     }
     public void _17Item()   // 공격 시 부메랑 발사
     {
         if (GetAttackRandom(45))
         {
-
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Boomerang");
+            if (particle != null)
+            {
+                particle.transform.position = PlayerCharacter.Instance.firePoint.transform.position;
+                particle.transform.rotation = PlayerCharacter.Instance.transform.rotation;
+            }
         }
     }
     public void _18Item()   // 캐릭터 교체 시 범위 데미지
     {
 
     }
-    public void _19Item()   // 바라보는 방향 적 슬로우
+    public void _19Item()   // 일정 시간마다 주변 적 슬로우
     {
-
+        if (spawner.enemies.Count != 0)
+        {
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Freeze");
+            if (particle != null)
+            {
+                if (spawner.enemies.Count > 0)
+                {
+                    particle.transform.position = PlayerCharacter.Instance.transform.position;
+                }
+            }
+        }
     }
     public void _20Item()   // 공격 시 튕기는 투사체 발사
     {
@@ -200,7 +214,7 @@ public class ActiveItem : MonoBehaviour
     public bool GetAttackRandom(int id)
     {
         attackRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        attackProbability = 100f - ItemDataBase.instance.Variable(id) * FindItemCount(id);
+        attackProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
         if (attackRandomValue >= attackProbability)
         {
             Debug.Log("Attack True");
@@ -216,7 +230,7 @@ public class ActiveItem : MonoBehaviour
     public bool GetHitRandom(int id)
     {
         hitRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        hitProbability = 100f - ItemDataBase.instance.Variable(id) * FindItemCount(id);
+        hitProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
         if (hitRandomValue >= hitProbability)
         {
             Debug.Log("Hit True");
@@ -232,7 +246,7 @@ public class ActiveItem : MonoBehaviour
     public bool GetKillRandom(int id)
     {
         killRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        killProbability = 100f - ItemDataBase.instance.Variable(id) * FindItemCount(id);
+        killProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
         if (killRandomValue >= killProbability)
         {
             Debug.Log("Kill True");
@@ -241,6 +255,22 @@ public class ActiveItem : MonoBehaviour
         else
         {
             Debug.Log("Kill False");
+            return false;
+        }
+    }
+
+    public bool GetHitRandom34(int id)
+    {
+        hitRandomValue = Random.Range(1f, 101f);  //1~100
+        hitProbability = 100f - (ItemDataBase.instance.Variable(id) + (GameManager.instance.FindItemCount(id) - 1) * 2f);
+        if (hitRandomValue >= hitProbability)
+        {
+            Debug.Log("Attack True");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Attack False");
             return false;
         }
     }
