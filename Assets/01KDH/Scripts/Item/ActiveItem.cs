@@ -41,15 +41,15 @@ public class ActiveItem : MonoBehaviour
     #region effect
     public void _01Item(Transform transform)   //  처치 시 체력회복 오브 드랍 
     {
-        Debug.Log("01 힐링오브");
-        if (GetKillRandom(29))
-        {
+        //Debug.Log("01 힐링오브");
+        //if (GetKillRandom(29))
+        //{
             GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Healingorb");
             if (particle != null)
             {
                 particle.transform.position = transform.position;
             }
-        }
+        //}
     }
     public void _02Item(Transform transform)   // 처치 시 적 폭발
     {

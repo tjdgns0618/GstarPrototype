@@ -15,7 +15,11 @@ public class HealingOrb : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            gm.Heal(gm._maxhp * ItemDataBase.instance.Variable2(29)*gm.FindItemCount(29));
+            Debug.Log(gm._maxhp+"置企杷びびびびびびびびびびびびびびびびびびびびびび");
+            Debug.Log(ItemDataBase.instance.Variable2(29) + "護 遁っっっっっっっっっっっっっっ");
+            Debug.Log(gm.FindItemCount(29) + "焼戚奴 鯵呪ぬぬぬぬぬぬぬぬぬぬぬぬ");
+            Debug.Log(ItemDataBase.instance.Variable2(29) * gm.FindItemCount(29) + "却戚 咽廃暗 っっっっっっっっ");
+            gm.Heal(gm._maxhp * ItemDataBase.instance.Variable2(29));
             gameObject.SetActive(false);
         }
     }

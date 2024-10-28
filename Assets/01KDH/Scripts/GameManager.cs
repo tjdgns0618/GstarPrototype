@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void Heal(float heal)
     {
+        Debug.Log(heal + "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
         float healValue = Mathf.Clamp(_hp + heal, _hp, _maxhp);
         _hp = healValue;
     }
@@ -115,8 +116,6 @@ public class GameManager : MonoBehaviour
                 if (slots[i].item.itemID == id)
                 {
                     _itemcount = slots[i].itemCount;
-                    if (_itemcount <= 0)
-                        return 0;
                 }
             }
         }

@@ -82,7 +82,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         gameManager.isHit = true;
         player.animator.ResetTrigger("hit");
         player.animator.SetTrigger("hit");
-        player.OnUpdateStat(player.MaxHp, player.CurrentHp - damageTaken, player.MoveSpeed, player.DashCount);
+        gameManager._hp -= damageTaken;
+        player.OnUpdateStat(gameManager._maxhp,gameManager._hp - damageTaken, gameManager._movespeed, gameManager._dashcount);
         if(player.CurrentHp <= 0)
         {
             Dead();
