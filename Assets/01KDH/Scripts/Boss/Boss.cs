@@ -16,9 +16,11 @@ public class Boss : MonoBehaviour, IDamageAble<float>
 {
     public BossType _bossType;
     public float _attackRange = 10f;
+    public float __attackRange;
     public float _patternRange = 12f;
     float _movementSpeed = 10f;
     bool _isDead = false;
+    bool _isAttacking;
     public bool _isFirstOn;
     public bool _isSecondOn;
     public bool _isThirdOn;
@@ -32,15 +34,11 @@ public class Boss : MonoBehaviour, IDamageAble<float>
     Animator animator;
     spawner1 spawner;
 
-    const string _NormalAttack_AnimStateName = "Die";
-    const string _FirstPatternAttack_AnimStateName = "shot01";
-    const string _SecondPatternAttack_AnimStateName = "shot01";
-    const string _ThirdPatternAttack_AnimStateName = "shot01";
-
-    const string _NormalAttack_AnimTriggerName = "Die";
-    const string _FirstPatternAttack_AnimTriggerName = "attack";
-    const string _SecondPatternAttack_AnimTriggerName = "attack";
-    const string _ThirdPatternAttack_AnimTriggerName = "attack";
+    const string _NormalAttack_AnimTriggerName = "isNormal";
+    const string _FirstPatternAttack_AnimTriggerName = "isFirst";
+    const string _SecondPatternAttack_AnimTriggerName = "isSecond";
+    const string _ThirdPatternAttack_AnimTriggerName = "isThird";
+    const string _Dead_AnimTriggerName = "bossDead";
 
     private void Awake()
     {
@@ -49,11 +47,16 @@ public class Boss : MonoBehaviour, IDamageAble<float>
         _BTRunner = new BehaviorTreeRunner(SettingBT());
     }
 
+    void Start()
+    {
+        __attackRange = _attackRange * _attackRange;
+    }
+
     private void Update()
     {
-        //if (_isDead) return;
-        //_BTRunner.Operate();
-
+        if (_isDead) return;
+        _BTRunner.Operate();
+        _detectedPlayer = PlayerCharacter.Instance.transform;
     }
 
     INode SettingBT()
@@ -66,8 +69,7 @@ public class Boss : MonoBehaviour, IDamageAble<float>
                     (
                         new List<INode>()
                         {
-                            new ActionNode(CheckPlayerWithinAttackRange),
-                            new ActionNode(CheckPlayerWithinPatternRange),
+                            new ActionNode(CheckPlayerWithinRange),
                             new AttackSelector(this),
                         }
                     ),
@@ -75,7 +77,6 @@ public class Boss : MonoBehaviour, IDamageAble<float>
                     (
                         new List<INode>()
                         {
-                            new ActionNode(CheckDetectEnemy),
                             new ActionNode(MoveToDetectEnemy),
                             new ActionNode(WormDetectEnemy),
                         }
@@ -98,23 +99,12 @@ public class Boss : MonoBehaviour, IDamageAble<float>
     }
 
     #region Attack Node
-    INode.ENodeState CheckPlayerWithinAttackRange()
+    INode.ENodeState CheckPlayerWithinRange()
     {
         if (_detectedPlayer != null)
         {
-            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_attackRange * _attackRange))
-            {
-                return INode.ENodeState.ENS_Success;
-            }
-        }
-        return INode.ENodeState.ENS_Failure;
-    }
-
-    INode.ENodeState CheckPlayerWithinPatternRange()
-    {
-        if (_detectedPlayer != null)
-        {
-            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_patternRange * _patternRange))
+            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) <= (_attackRange * _attackRange) ||
+                Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) <= (_patternRange * _patternRange))
             {
                 return INode.ENodeState.ENS_Success;
             }
@@ -126,6 +116,7 @@ public class Boss : MonoBehaviour, IDamageAble<float>
     {
         if (_detectedPlayer != null && !_isDead)
         {
+            _isAttacking = true;
             Attack();
             return INode.ENodeState.ENS_Success;
         }
@@ -167,34 +158,26 @@ public class Boss : MonoBehaviour, IDamageAble<float>
     }
     #endregion
 
+
     #region Detect & Move Node
-    INode.ENodeState CheckDetectEnemy()
-    {
-        var playerPos = PlayerCharacter.Instance.transform;
-
-        if (PlayerCharacter.Instance != null)
-        {
-            _detectedPlayer = playerPos;
-            Rotate();
-            animator.SetFloat("moveSpeed", 1);
-            return INode.ENodeState.ENS_Success;
-        }
-
-        _detectedPlayer = null;
-        animator.SetFloat("moveSpeed", 0);
-        return INode.ENodeState.ENS_Failure;
-    }
-
     INode.ENodeState MoveToDetectEnemy()
     {
         if (_detectedPlayer != null && !_isDead)
         {
-            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_attackRange * _attackRange) || _bossType == BossType.Worm)
+            if (_bossType == BossType.Worm)
+                return INode.ENodeState.ENS_Success;
+
+            if (!_isAttacking)
+            {
+                Move();
+                Rotate();
+            }
+
+            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_attackRange * _attackRange))
             {
                 return INode.ENodeState.ENS_Success;
             }
-            Move();
-            Rotate();
+
             return INode.ENodeState.ENS_Running;
         }
         return INode.ENodeState.ENS_Failure;
@@ -202,19 +185,22 @@ public class Boss : MonoBehaviour, IDamageAble<float>
 
     INode.ENodeState WormDetectEnemy()
     {
-        if (_detectedPlayer != null && !_isDead && _bossType != BossType.Worm)
+        if (_detectedPlayer != null && !_isDead && _bossType == BossType.Worm)
         {
-            if (!IsLookingAtPlayer())
+            if (!_isAttacking)
             {
-                Rotate();
-                return INode.ENodeState.ENS_Running;
+                if (!IsLookingAtPlayer())
+                {
+                    Rotate();
+                    return INode.ENodeState.ENS_Running;
+                }
             }
-            else
                 return INode.ENodeState.ENS_Success;
         }
         return INode.ENodeState.ENS_Failure;
     }
     #endregion
+
 
     public void Rotate()
     {
@@ -239,7 +225,7 @@ public class Boss : MonoBehaviour, IDamageAble<float>
     {
         if(_bossType == BossType.Worm)
         {
-            //Attack04 anim
+            animator.SetTrigger(_NormalAttack_AnimTriggerName);
             GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Poison");
             if (particle != null)
             {
@@ -265,7 +251,7 @@ public class Boss : MonoBehaviour, IDamageAble<float>
     {
         if (_bossType == BossType.Worm)
         {
-            //Attack02 anim
+            animator.SetTrigger("isFirst");
         }
         if (_bossType == BossType.Knight)
         {
@@ -284,7 +270,7 @@ public class Boss : MonoBehaviour, IDamageAble<float>
             //GroundDivein anim
 
             int rndPosX =  Random.Range(240, 261);
-           int rndPosZ =  Random.Range(-5, 26);
+            int rndPosZ =  Random.Range(-5, 26);
 
             Vector3 secondPos = new Vector3(rndPosX, 0, rndPosZ);
             transform.position = secondPos;
