@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
     public InvenSlot[] slots;
     public ParticlePoolManager particlePoolManager;
     public UIManager uiManager;
+    public CameraManager cameraManager;
     public EnemyPoolManager enemyPoolManager;
     public ItemPoolManager itempools;
+    public CooltimeManager cooltimeManager;
 
     public TMP_Text txt_gold;
 

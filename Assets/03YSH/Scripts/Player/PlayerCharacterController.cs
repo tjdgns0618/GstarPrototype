@@ -13,6 +13,8 @@ using UnityEditor.Animations;
 using UnityEngine.Rendering;
 using System.Runtime.CompilerServices;
 using UnityEditor.Rendering;
+using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -31,6 +33,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         NDASH,
     }
     protected PlayerState playerState;
+
+    public Volume _volume;
+    Vignette _vignette;
 
     [Header("대시 옵션")]
     [SerializeField, Tooltip("대쉬의 힘을 나타내는 값")]
@@ -57,6 +62,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private void Start()
     {
         gameManager = GameManager.instance;
+        _volume.profile.TryGet(out _vignette);
 
         player = GetComponent<PlayerCharacter>();
         pi = PlayerCharacter.Instance;
@@ -74,22 +80,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         GetMousePosition();
         Move();
     }
-
-    public void Damage(float damageTaken)
-    {
-        if (gameManager.isDead || gameManager.isHit)
-            return;
-        gameManager.isHit = true;
-        player.animator.ResetTrigger("hit");
-        player.animator.SetTrigger("hit");
-        gameManager._hp -= damageTaken;
-        player.OnUpdateStat(gameManager._maxhp,gameManager._hp - damageTaken, gameManager._movespeed, gameManager._dashcount);
-        if(player.CurrentHp <= 0)
-        {
-            Dead();
-        }
-    }
-
+    
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         Vector3 input = context.ReadValue<Vector3>();
@@ -233,11 +224,11 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnClickQ(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause || gameManager.isDead)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead)
         {
             if (context.interaction is PressInteraction)
             {
-                bool isAvailableSkill = !AttackState.IsSkill_Q;
+                bool isAvailableSkill = !AttackState.IsSkill_Q && gameManager.cooltimeManager.canUseSkill[player.characterClass.ToString() + 'Q'];
                 // 스킬 쿨타임 다 찼을때 isAvailableSkill true로 초기화
 
                 if (isAvailableSkill)
@@ -246,15 +237,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                     player.isPlaySkill = true;
                     ResetAnimator();
                     player.stateMachine.ChangeState(StateName.ATTACK);
+                    AttackState.isHolding = false;
+                    gameManager.cooltimeManager.UseSkill(player.characterClass.ToString(), player.characterClass.ToString() + 'Q');
                 }
             }
         }
     }
+
     public void OnClickE(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause || gameManager.isDead)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead)
         {
-            bool isAvailableAttack = !AttackState.IsSkill_E;
+            bool isAvailableAttack = !AttackState.IsSkill_E && gameManager.cooltimeManager.canUseSkill[player.characterClass.ToString() + 'E'];
 
             if (isAvailableAttack)
             {
@@ -262,14 +256,16 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.isPlaySkill = true;
                 ResetAnimator();
                 player.stateMachine.ChangeState(StateName.ATTACK);
+                AttackState.isHolding = false;
+                gameManager.cooltimeManager.UseSkill(player.characterClass.ToString(), player.characterClass.ToString() + 'E');
             }
         }
     }
     public void OnClickR(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill! && !gameManager.isPause || gameManager.isDead)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill! && !gameManager.isPause && !gameManager.isDead)
         {
-            bool isAvailableAttack = !AttackState.IsSkill_R;
+            bool isAvailableAttack = !AttackState.IsSkill_R && gameManager.cooltimeManager.canUseSkill[player.characterClass.ToString() + 'R'];
 
             if (isAvailableAttack)
             {
@@ -277,6 +273,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.isPlaySkill = true;
                 ResetAnimator();
                 player.stateMachine.ChangeState(StateName.ATTACK);
+                AttackState.isHolding = false;
+                gameManager.cooltimeManager.UseSkill(player.characterClass.ToString(), player.characterClass.ToString() + 'R');
             }
         }
     }
@@ -340,6 +338,43 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         yield return new WaitForSeconds(dashCoolTime);
         DashState.CurrentDashCount = 0;
+    }
+
+    public void Damage(float damageTaken)
+    {
+        if (gameManager.isDead || gameManager.isHit)
+            return;
+        gameManager.cameraManager.ShakeCamera(damageTaken * 0.1f, 0.3f);
+
+        StopCoroutine("TakeDamageEffect");
+        StartCoroutine("TakeDamageEffect");
+
+        gameManager.isHit = true;
+        player.animator.ResetTrigger("hit");
+        player.animator.SetTrigger("hit");
+        gameManager._hp -= damageTaken;
+        player.OnUpdateStat(gameManager._maxhp, gameManager._hp - damageTaken, gameManager._movespeed, gameManager._dashcount);
+        if (player.CurrentHp <= 0)
+        {
+            Dead();
+        }
+    }
+
+    private IEnumerator TakeDamageEffect()
+    {
+        float intensity = 0.4f;
+
+        _vignette.intensity.Override(intensity);
+
+        yield return new WaitForSeconds(0.4f);
+
+        while (intensity > 0)
+        {
+            intensity -= 0.05f;
+            if (intensity < 0) intensity = 0;
+            _vignette.intensity.Override(intensity);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     public void Dead()

@@ -14,6 +14,9 @@ public enum EnemyType
 
 public class EnemyAI : MonoBehaviour, IDamageAble<float>
 {
+    public float currentHp = 20;
+    public float maxHp = 20;
+
     public EnemyType enemyType;
     [Header("Range")]
     [SerializeField]
@@ -35,7 +38,6 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     Transform _detectedPlayer = null;
     Vector3 _originPos;
     Animator animator;
-    float hp = 20;
     public bool isDead = false;
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
@@ -45,6 +47,8 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     float slowDelay;
     WaitForSeconds slowT;
+
+    // Material hitMaterial;
 
     private void Awake()
     {
@@ -64,10 +68,11 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     private void OnEnable()
     {
         //GameManager.instance.dieDelegate += Test;
+        currentHp = maxHp;
         spawner = FindAnyObjectByType<spawner1>();
         isDead = false;
-        hp = 20f;
         gameObject.layer = 8;
+        // hitMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
     }
 
     private void OnDisable()
@@ -231,19 +236,29 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         if(isDead) return;
         //GameManager.instance.enemyhitDelegate(transform);
         animator.SetTrigger("hit");
-        hp -= damageTaken;
+        currentHp -= damageTaken;
+
+        // StopCoroutine("hitMaterialChange");
+        // StartCoroutine("hitMaterialChange");
 
         Vector3 textPos = transform.position;
         textPos.y += 1.5f;
         damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken, textPos, false);
 
-        Debug.Log(hp);
-        if (hp <= 0)
+        Debug.Log(currentHp);
+        if (currentHp <= 0)
         {
-            hp = 0;
+            currentHp = 0;
             Dead();
         }
     }
+
+    //private IEnumerator hitMaterialChange()
+    //{
+    //    hitMaterial.color = Color.red;
+    //    yield return new WaitForSeconds(0.3f);
+    //    hitMaterial.color = Color.black;
+    //}
 
     public void PlayKnockback(Vector3 direction, float duration, float strength)
     {
