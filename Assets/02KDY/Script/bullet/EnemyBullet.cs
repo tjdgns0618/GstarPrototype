@@ -1,15 +1,28 @@
-using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    private float speed = 20.0f;
+    public enum FireMode
+    {
+        Single,        // 단일 방향 발사
+        Triple,        // 삼방향 발사
+        SpreadHoming,  // 확산 후 추적
+        Homing         // 추적샷
+    }
+
+    public FireMode fireMode;           // 발사 모드 설정
+    public float speed = 20.0f;         // 총알 속도 (Inspector에서 조절 가능)
     public string targetname;
     public GameObject hitEffectPrefab;
     private Rigidbody rb;
     public GameObject flash;
+    public float destroyDelay = 5.0f;
+    public float angleOffset = 30f;     // 각도 오프셋 (삼방향 및 확산용)
+    public float homingDelay = 1.0f;    // 확산 후 추적 딜레이 시간
+    private Transform target;           // 추적할 목표
+
     private void OnEnable()
     {
         Invoke("InActiveParticle", 5f);
@@ -18,26 +31,35 @@ public class EnemyBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        target = GameObject.FindWithTag(targetname)?.transform;  // 추적할 대상 설정
+
         if (flash != null)
         {
-            //Instantiate flash effect on projectile position
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
             flashInstance.transform.forward = gameObject.transform.forward;
-
-            //Destroy flash effect depending on particle Duration time
             var flashPs = flashInstance.GetComponent<ParticleSystem>();
+
             if (flashPs != null)
-            {
                 Destroy(flashInstance, flashPs.main.duration);
-            }
             else
             {
                 var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
                 Destroy(flashInstance, flashPsParts.main.duration);
             }
         }
-        Destroy(gameObject, 5);
+
+        if (fireMode == FireMode.Triple)
+        {
+            FireTriple();
+        }
+        else if (fireMode == FireMode.SpreadHoming)
+        {
+            FireSpread();
+            StartCoroutine(StartHoming());
+        }
+        Destroy(gameObject, destroyDelay);
     }
+
     public void InActiveParticle()
     {
         GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
@@ -45,7 +67,56 @@ public class EnemyBullet : MonoBehaviour
 
     private void Update()
     {
+        if (fireMode == FireMode.Homing && target != null)
+        {
+            // 목표 방향으로 이동하는 코드
+            Vector3 direction = (target.position - transform.position).normalized;
+            Quaternion toRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * 1.0f);
+        }
+
+        // 속도에 따라 총알 이동
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    private void FireTriple()
+    {
+        GameObject bulletRight = Instantiate(gameObject, transform.position, transform.rotation);
+        bulletRight.transform.Rotate(0, angleOffset, 0);
+        bulletRight.GetComponent<EnemyBullet>().fireMode = FireMode.Single;
+
+        GameObject bulletLeft = Instantiate(gameObject, transform.position, transform.rotation);
+        bulletLeft.transform.Rotate(0, -angleOffset, 0);
+        bulletLeft.GetComponent<EnemyBullet>().fireMode = FireMode.Single;
+
+        fireMode = FireMode.Single;
+    }
+
+    private void FireSpread()
+    {
+        GameObject bulletLeft = Instantiate(gameObject, transform.position, transform.rotation);
+        bulletLeft.transform.Rotate(0, -angleOffset, 0);
+        bulletLeft.GetComponent<EnemyBullet>().fireMode = FireMode.Single;
+
+        GameObject bulletRight = Instantiate(gameObject, transform.position, transform.rotation);
+        bulletRight.transform.Rotate(0, angleOffset, 0);
+        bulletRight.GetComponent<EnemyBullet>().fireMode = FireMode.Single;
+
+        fireMode = FireMode.Single;
+    }
+
+    private IEnumerator StartHoming()
+    {
+        yield return new WaitForSeconds(homingDelay);
+
+        while (target != null)
+        {
+            Vector3 direction = (target.position - transform.position).normalized;
+            Quaternion toRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * 2.0f);
+
+            yield return null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -55,9 +126,8 @@ public class EnemyBullet : MonoBehaviour
         {
             damageable?.Damage(GameManager.instance._damage);
             if (hitEffectPrefab != null)
-            {
                 Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
-            }
+
             gameObject.SetActive(false);
         }
     }
