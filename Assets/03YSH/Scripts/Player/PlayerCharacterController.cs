@@ -15,6 +15,7 @@ using System.Runtime.CompilerServices;
 using UnityEditor.Rendering;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
+using TMPro;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -44,8 +45,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     protected float dashAnimTime;
     [SerializeField, Tooltip("대시 시작 후, 재입력 받을 수 있는 시간")]
     protected float dashReInputTime;
-    [SerializeField, Tooltip("대시 후, 경직 시간")]
-    protected float dashTetanyTime;
     [SerializeField, Tooltip("대시 재사용 대기시간")]
     protected float dashCoolTime;
 
@@ -58,6 +57,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     GameManager gameManager;
     public readonly int hashIsAttackAnimation = Animator.StringToHash("IsAttack");
     public readonly int hashIsChangeAnimation = Animator.StringToHash("change");
+
+    public Image[] characterImages;
+    public TextMeshProUGUI[] characterCooltimetexts;
 
     private void Start()
     {
@@ -111,6 +113,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                StartCoroutine(changeCooltime());
+                StartCoroutine(realChangeCool());
             }
             if (context.control.name == "2" && player.characterClass != CharacterType.Archer)
             {
@@ -127,6 +131,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                StartCoroutine(changeCooltime());
+                StartCoroutine(realChangeCool());
             }
             if (context.control.name == "3" && player.characterClass != CharacterType.Wizard)
             {
@@ -138,13 +144,45 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[2];
                 AttackState.comboCount = 0;
                 gameManager.uiManager.ChangeCharacterUI(2);
-                AttackState.IsAttack = false; 
+                AttackState.IsAttack = false;
                 AttackState.IsBaseAttack = false;
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                StartCoroutine(changeCooltime());
+                StartCoroutine(realChangeCool());
             }
         }
+    }
+
+    private IEnumerator changeCooltime()
+    {
+        player.canChange = false;
+        float cooltime = gameManager._changeCooldown;
+        while (cooltime > 0.0f)
+        {
+            cooltime -= Time.deltaTime;
+            
+            string t = TimeSpan.FromSeconds(cooltime).ToString(@"ss");
+
+            for (int i = 0; i < characterCooltimetexts.Length; i++)
+            {
+                characterCooltimetexts[i].text = string.Format("{0}", t);
+                characterImages[i].fillAmount = cooltime / gameManager._changeCooldown;
+                if (characterCooltimetexts[i].text == "00")
+                {
+                    characterCooltimetexts[i].text = "";
+                }
+            }
+            
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator realChangeCool()
+    {
+        yield return new WaitForSeconds(gameManager._changeCooldown);
+        player.canChange = true;
     }
 
     public void OnClickLeftMouse(InputAction.CallbackContext context)

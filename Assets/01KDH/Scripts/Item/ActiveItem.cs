@@ -44,7 +44,7 @@ public class ActiveItem : MonoBehaviour
         //Debug.Log("01 힐링오브");
         //if (GetKillRandom(29))
         //{
-            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Healingorb");
+            GameObject particle = gm.particlePoolManager.GetParticle("Healingorb");
             if (particle != null)
             {
                 particle.transform.position = transform.position;
@@ -53,7 +53,7 @@ public class ActiveItem : MonoBehaviour
     }
     public void _02Item(Transform transform)   // 처치 시 적 폭발
     {
-        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Deathboom");
+        GameObject particle = gm.particlePoolManager.GetParticle("Deathboom");
         if (particle != null)
             {
                 particle.transform.position = transform.position;
@@ -87,8 +87,8 @@ public class ActiveItem : MonoBehaviour
         {
             if (spawner.enemies.Count > 0)
             {
-                GameObject particle = GameManager.instance.particlePoolManager.GetParticle("MissileUp");
-                GameObject particle2 = GameManager.instance.particlePoolManager.GetParticle("MissileDown");
+                GameObject particle = gm.particlePoolManager.GetParticle("MissileUp");
+                GameObject particle2 = gm.particlePoolManager.GetParticle("MissileDown");
                  if (particle != null && particle2 != null)
                  {
                      particle.transform.position = PlayerCharacter.Instance.transform.position;
@@ -106,7 +106,7 @@ public class ActiveItem : MonoBehaviour
     }
     public void _08Item()   // 일정 시간마다 마늘 효과
     {
-        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Maneul");
+        GameObject particle = gm.particlePoolManager.GetParticle("Maneul");
         if (particle != null)
         {
             particle.transform.position = PlayerCharacter.Instance.transform.position;
@@ -121,7 +121,7 @@ public class ActiveItem : MonoBehaviour
     {
         if(spawner.enemies.Count != 0)
         {
-        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Fire");
+        GameObject particle = gm.particlePoolManager.GetParticle("Fire");
         if (particle != null)
             {
                 if (spawner.enemies.Count > 0)
@@ -157,14 +157,18 @@ public class ActiveItem : MonoBehaviour
     {
         if (GetAttackRandom(43))
         {
-
+            GameObject particle = gm.particlePoolManager.GetParticle("FireWork5");
+            if (particle != null)
+            {
+                particle.transform.position = PlayerCharacter.Instance.transform.position + Vector3.up * 2f;
+            }
         }
     }
     public void _16Item()   // 공격 시 투사체 발사
     {
         if (GetAttackRandom(44))
         {
-            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Wind");
+            GameObject particle = gm.particlePoolManager.GetParticle("Wind");
             if (particle != null)
             {
                 particle.transform.position = PlayerCharacter.Instance.firePoint.transform.position;
@@ -176,7 +180,7 @@ public class ActiveItem : MonoBehaviour
     {
         if (GetAttackRandom(45))
         {
-            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Boomerang");
+            GameObject particle = gm.particlePoolManager.GetParticle("Boomerang");
             if (particle != null)
             {
                 particle.transform.position = PlayerCharacter.Instance.firePoint.transform.position;
@@ -192,7 +196,7 @@ public class ActiveItem : MonoBehaviour
     {
         if (spawner.enemies.Count != 0)
         {
-            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Freeze");
+            GameObject particle = gm.particlePoolManager.GetParticle("Freeze");
             if (particle != null)
             {
                 if (spawner.enemies.Count > 0)
@@ -214,7 +218,7 @@ public class ActiveItem : MonoBehaviour
     public bool GetAttackRandom(int id)
     {
         attackRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        attackProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
+        attackProbability = 100f - ItemDataBase.instance.Variable(id) * gm.FindItemCount(id);
         if (attackRandomValue >= attackProbability)
         {
             Debug.Log("Attack True");
@@ -230,7 +234,7 @@ public class ActiveItem : MonoBehaviour
     public bool GetHitRandom(int id)
     {
         hitRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        hitProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
+        hitProbability = 100f - ItemDataBase.instance.Variable(id) * gm.FindItemCount(id);
         if (hitRandomValue >= hitProbability)
         {
             Debug.Log("Hit True");
@@ -246,7 +250,7 @@ public class ActiveItem : MonoBehaviour
     public bool GetKillRandom(int id)
     {
         killRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        killProbability = 100f - ItemDataBase.instance.Variable(id) * GameManager.instance.FindItemCount(id);
+        killProbability = 100f - ItemDataBase.instance.Variable(id) * gm.FindItemCount(id);
         if (killRandomValue >= killProbability)
         {
             Debug.Log("Kill True");
@@ -262,7 +266,7 @@ public class ActiveItem : MonoBehaviour
     public bool GetHitRandom34(int id)
     {
         hitRandomValue = Random.Range(1f, 101f);  //1~100
-        hitProbability = 100f - (ItemDataBase.instance.Variable(id) + (GameManager.instance.FindItemCount(id) - 1) * 2f);
+        hitProbability = 100f - (ItemDataBase.instance.Variable(id) + (gm.FindItemCount(id) - 1) * 2f);
         if (hitRandomValue >= hitProbability)
         {
             Debug.Log("Attack True");

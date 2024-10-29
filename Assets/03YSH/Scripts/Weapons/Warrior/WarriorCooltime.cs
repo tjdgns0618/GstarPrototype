@@ -1,28 +1,19 @@
-using DG.Tweening.Core.Easing;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CoolTime : MonoBehaviour
+public class WarriorCooltime : MonoBehaviour
 {
-    PlayerCharacter playerCharacter;
     public TextMeshProUGUI timer;
     public Image cooldownImage;
     public GameObject frame;
+    string skillKey = $"WarriorR";
 
-    private void Start()
+    void Update()
     {
-        playerCharacter = FindObjectOfType<PlayerCharacter>();
-    }
-
-    private void Update()
-    {
-        string skillKey = $"{playerCharacter.characterClass}{this.gameObject.name}";
-
         float cooltime = GameManager.instance.cooltimeManager.currentCoolDowns[skillKey];
         float cooltime_max = GameManager.instance.cooltimeManager.skillCoolDowns[skillKey];
 
@@ -31,7 +22,7 @@ public class CoolTime : MonoBehaviour
         string s = TimeSpan.FromSeconds(cooltime).ToString(@"ss");
         timer.text = string.Format("{0}", s);
 
-        if(timer.text == "00" && GameManager.instance.cooltimeManager.canUseSkill[skillKey])
+        if (timer.text == "00" && GameManager.instance.cooltimeManager.canUseSkill[skillKey])
         {
             timer.text = "";
             frame?.SetActive(true);
@@ -41,5 +32,4 @@ public class CoolTime : MonoBehaviour
             frame?.SetActive(false);
         }
     }
-
 }

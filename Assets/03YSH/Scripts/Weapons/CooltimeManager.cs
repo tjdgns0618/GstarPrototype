@@ -24,7 +24,7 @@ public class CooltimeManager : MonoBehaviour
 
     List<string> skillKeys;
 
-    private void Start()
+    private void Awake()
     {
         skillKeys = new List<string>(skillCoolDowns.Keys);
 
@@ -33,7 +33,6 @@ public class CooltimeManager : MonoBehaviour
             currentCoolDowns[skillName] = 0;
             canUseSkill[skillName] = true;
         }
-
     }
 
     void Update()

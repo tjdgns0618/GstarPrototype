@@ -112,6 +112,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         if (pi.characterClass == CharacterType.Warrior)
         {
             GameObject effect = pm.GetParticle(hashWarriorAttackEffect + ComboCount);
+            
             if (effect != null)
             {
                 effect.transform.position = pi.transform.position + (Vector3.up * 1f);

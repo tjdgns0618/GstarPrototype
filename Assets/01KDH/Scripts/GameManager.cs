@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public float _damage = 10f;
     public float _range = 1f;
     public float _cooldown = 0;
+    public float _changeCooldown = 3f;
     public float _attackspeed = 1f;
     public float _movespeed = 1f;
     public float _reInputTime = 1f;
