@@ -14,6 +14,8 @@ public class MapManager : MonoBehaviour
 
     public Map currentMap;
 
+    SoundManager soundManager;
+
     public enum Map
     {
         Village,
@@ -26,6 +28,7 @@ public class MapManager : MonoBehaviour
             uiManager.SetUIActive(uiManager.fieldUI, false);
         else if (currentMap == Map.Field)
             uiManager.SetUIActive(uiManager.fieldUI, true);
+        soundManager = SoundManager.instance;
     }
 
     public void OnVillage()
@@ -43,6 +46,7 @@ public class MapManager : MonoBehaviour
         //WaveManager 끄기
         waveManager.gameObject.SetActive(false);
         //사운드
+        soundManager.PlayMusic(1, 0.3f);
     }
 
     public void OnField()
@@ -60,5 +64,6 @@ public class MapManager : MonoBehaviour
         //WaveManager 켜기
         waveManager.gameObject.SetActive(true);
         //사운드
+        soundManager.PlayMusic(2, 0.3f);
     }
 }

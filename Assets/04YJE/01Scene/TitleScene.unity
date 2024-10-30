@@ -3151,8 +3151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24543cbf9189eb5408371c0211d1b2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 0}
-  bgmLists: []
+  bgmSource: {fileID: 754275883}
+  bgmClips:
+  - {fileID: 8300000, guid: 9fd777c89d5a8fd43966792bfe16a03c, type: 3}
+  - {fileID: 8300000, guid: 91be623c297538c41811fa32a6870b1e, type: 3}
+  - {fileID: 8300000, guid: 68f831007ee30c94a9bfb0e8c0f2891a, type: 3}
+  - {fileID: 8300000, guid: c1664044201376c439b476668cb16956, type: 3}
+  - {fileID: 8300000, guid: 78d48f1d6a5dcac47892e9f295ecca86, type: 3}
 --- !u!4 &754275882
 Transform:
   m_ObjectHideFlags: 0
@@ -3178,9 +3183,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8498956431445304158, guid: 1d64cc5962419004aa7bade9e15906d8, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9fd777c89d5a8fd43966792bfe16a03c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
