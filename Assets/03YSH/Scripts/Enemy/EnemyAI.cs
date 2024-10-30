@@ -79,6 +79,13 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     private void OnDisable()
     {
+        foreach (var item in GetComponentsInChildren<BladeStorm>())
+        {
+            Debug.Log("아이템 부모 초기화");
+            item.transform.SetParent(null);
+            item.gameObject.SetActive(false);
+        }
+
         //GameManager.instance.dieDelegate -= Test;
     }
 
@@ -283,7 +290,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Dead()
     {
         GameManager.instance.dieDelegate(transform);
-        
+                
         Debug.Log("Dead 실행");
         isDead = true;
         enemyAttack.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -302,9 +309,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
         Invoke("InActiveEnemy", 3f);
         spawner.enemies.Remove(this.gameObject);
-        spawner.enemyDead();           // 스포너에 적 사망시 호출 함수
-
-        
+        spawner.enemyDead();           // 스포너에 적 사망시 호출 함수        
     }
 
     public void InActiveEnemy()

@@ -16,7 +16,7 @@ public class AttackColliderCheck : MonoBehaviour
         if (damageAble != null)
         {
             damageAble?.Damage(GameManager.instance._damage);
-            GameManager.instance.enemyhitDelegate(other.gameObject.transform);
+            GameManager.instance.enemyhitDelegate(other.gameObject);
             // PlayerCharacter.Instance.weaponManager.Weapon.ItemChance();
         }
     }
