@@ -12,79 +12,55 @@ public enum BossType
 };
 
 
-public class Boss : MonoBehaviour, IDamageAble<float>
+public abstract class Boss : MonoBehaviour, IDamageAble<float>
 {
     public BossType _bossType;
-    public float _attackRange = 10f;
-    public float _patternRange = 12f;
-    float _movementSpeed = 10f;
-    bool _isDead = false;
-    public bool _isFirstOn;
-    public bool _isSecondOn;
-    public bool _isThirdOn;
+
+    protected float _attackRange;
+    protected float __attackRange;
+    protected float _patternRange;
+    protected float __patternRange;
+
+    protected bool _isDead;
+    protected bool _isAttacking;
+    protected float _hp;
+    protected float _distanceT;
+    protected float _movementSpeed;
+    protected float _rotationSpeed = 4f;
+
+    protected float _normalCoolTime;
+    protected float _firstCoolTime;
+    protected float _secondCoolTime;
 
     public Transform _shotpos;
 
     public Transform _detectedPlayer = null;
     Rigidbody _rigid;
 
-    BehaviorTreeRunner _BTRunner = null;
     Animator animator;
     spawner1 spawner;
 
-    const string _NormalAttack_AnimStateName = "Die";
-    const string _FirstPatternAttack_AnimStateName = "shot01";
-    const string _SecondPatternAttack_AnimStateName = "shot01";
-    const string _ThirdPatternAttack_AnimStateName = "shot01";
-
-    const string _NormalAttack_AnimTriggerName = "Die";
-    const string _FirstPatternAttack_AnimTriggerName = "attack";
-    const string _SecondPatternAttack_AnimTriggerName = "attack";
-    const string _ThirdPatternAttack_AnimTriggerName = "attack";
+    const string _NormalAttack_AnimTriggerName = "isNormal";
+    const string _FirstPatternAttack_AnimTriggerName = "isFirst";
+    const string _SecondPatternAttack_AnimTriggerName = "isSecond";
+    const string _ThirdPatternAttack_AnimTriggerName = "isThird";
+    const string _Dead_AnimTriggerName = "bossDead";
+    const string _WormBurrow_AnimTriggerName = "wormBurrow";
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        _BTRunner = new BehaviorTreeRunner(SettingBT());
     }
 
-    private void Update()
+    public virtual INode SettingBT()
     {
-        //if (_isDead) return;
-        //_BTRunner.Operate();
-
+        return null;
     }
 
-    INode SettingBT()
-    {
-        return new SelectorNode
-            (
-                new List<INode>()
-                {
-                    new BossSequenceNode
-                    (
-                        new List<INode>()
-                        {
-                            new ActionNode(CheckPlayerWithinAttackRange),
-                            new ActionNode(CheckPlayerWithinPatternRange),
-                            new AttackSelector(this),
-                        }
-                    ),
-                    new BossSequenceNode
-                    (
-                        new List<INode>()
-                        {
-                            new ActionNode(CheckDetectEnemy),
-                            new ActionNode(MoveToDetectEnemy),
-                            new ActionNode(WormDetectEnemy),
-                        }
-                    ),
-                }
-            );
-    }
+    
 
-    bool IsAniamtionRunning(string stateName)
+    public bool IsAniamtionRunning(string stateName)
     {
         if (animator != null)
         {
@@ -97,128 +73,12 @@ public class Boss : MonoBehaviour, IDamageAble<float>
         return false;
     }
 
-    #region Attack Node
-    INode.ENodeState CheckPlayerWithinAttackRange()
-    {
-        if (_detectedPlayer != null)
-        {
-            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_attackRange * _attackRange))
-            {
-                return INode.ENodeState.ENS_Success;
-            }
-        }
-        return INode.ENodeState.ENS_Failure;
-    }
-
-    INode.ENodeState CheckPlayerWithinPatternRange()
-    {
-        if (_detectedPlayer != null)
-        {
-            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_patternRange * _patternRange))
-            {
-                return INode.ENodeState.ENS_Success;
-            }
-        }
-        return INode.ENodeState.ENS_Failure;
-    }
-
-    public INode.ENodeState DoNormalAttack()
-    {
-        if (_detectedPlayer != null && !_isDead)
-        {
-            Attack();
-            return INode.ENodeState.ENS_Success;
-        }
-
-        return INode.ENodeState.ENS_Failure;
-    }
-
-    public INode.ENodeState DoFirstPattern()
-    {
-        if (_detectedPlayer != null && !_isDead)
-        {
-            FirstPatternAttack();
-            return INode.ENodeState.ENS_Success;
-        }
-
-        return INode.ENodeState.ENS_Failure;
-    }
-
-    public INode.ENodeState DoSecondPattern()
-    {
-        if (_detectedPlayer != null && !_isDead)
-        {
-            SecondPatternAttack();
-            return INode.ENodeState.ENS_Success;
-        }
-
-        return INode.ENodeState.ENS_Failure;
-    }
-
-    public INode.ENodeState DoThirdPattern()
-    {
-        if (_detectedPlayer != null && !_isDead)
-        {
-            ThirdPatternAttack();
-            return INode.ENodeState.ENS_Success;
-        }
-
-        return INode.ENodeState.ENS_Failure;
-    }
-    #endregion
-
-    #region Detect & Move Node
-    INode.ENodeState CheckDetectEnemy()
-    {
-        var playerPos = PlayerCharacter.Instance.transform;
-
-        if (PlayerCharacter.Instance != null)
-        {
-            _detectedPlayer = playerPos;
-            Rotate();
-            animator.SetFloat("moveSpeed", 1);
-            return INode.ENodeState.ENS_Success;
-        }
-
-        _detectedPlayer = null;
-        animator.SetFloat("moveSpeed", 0);
-        return INode.ENodeState.ENS_Failure;
-    }
-
-    INode.ENodeState MoveToDetectEnemy()
-    {
-        if (_detectedPlayer != null && !_isDead)
-        {
-            if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_attackRange * _attackRange) || _bossType == BossType.Worm)
-            {
-                return INode.ENodeState.ENS_Success;
-            }
-            Move();
-            Rotate();
-            return INode.ENodeState.ENS_Running;
-        }
-        return INode.ENodeState.ENS_Failure;
-    }
-
-    INode.ENodeState WormDetectEnemy()
-    {
-        if (_detectedPlayer != null && !_isDead && _bossType != BossType.Worm)
-        {
-            if (!IsLookingAtPlayer())
-            {
-                Rotate();
-                return INode.ENodeState.ENS_Running;
-            }
-            else
-                return INode.ENodeState.ENS_Success;
-        }
-        return INode.ENodeState.ENS_Failure;
-    }
-    #endregion
 
     public void Rotate()
     {
-        transform.LookAt(_detectedPlayer);
+        Vector3 direction = (_detectedPlayer.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
     }
 
     public bool IsLookingAtPlayer()
@@ -226,7 +86,7 @@ public class Boss : MonoBehaviour, IDamageAble<float>
         Vector3 directionToPlayer = (_detectedPlayer.position - transform.position).normalized;
         Vector3 forward = transform.forward;
 
-        return Vector3.Dot(forward, directionToPlayer) > 0.95f;
+        return Vector3.Dot(forward, directionToPlayer) > 0.99f;
     }
 
     public void Move()
@@ -237,83 +97,33 @@ public class Boss : MonoBehaviour, IDamageAble<float>
 
     public void Attack()
     {
-        if(_bossType == BossType.Worm)
-        {
-            //Attack04 anim
-            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Poison");
-            if (particle != null)
-            {
-                particle.transform.position = _shotpos.transform.position;
-                particle.transform.rotation = transform.rotation;
-            }
-        }
-        if(_bossType == BossType.Knight)
-        {
+        Shot();
+    }
 
-        }
-        if(_bossType == BossType.Bishop)
+    public void Fire()
+    {
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Poison");
+        if (particle != null)
         {
-
-        }
-        if(_bossType == BossType.Dragon)
-        {
-
+            particle.transform.position = _shotpos.transform.position;
+            particle.transform.rotation = transform.rotation;
         }
     }
 
     public void FirstPatternAttack()
     {
-        if (_bossType == BossType.Worm)
-        {
-            //Attack02 anim
-        }
-        if (_bossType == BossType.Knight)
-        {
-
-        }
-        if (_bossType == BossType.Dragon)
-        {
-
-        }
+        animator.SetTrigger(_FirstPatternAttack_AnimTriggerName);
     }
 
     public void SecondPatternAttack()
     {
-        if (_bossType == BossType.Worm)
-        {
-            //GroundDivein anim
+        animator.SetTrigger(_SecondPatternAttack_AnimTriggerName);
 
-            int rndPosX =  Random.Range(240, 261);
-           int rndPosZ =  Random.Range(-5, 26);
-
-            Vector3 secondPos = new Vector3(rndPosX, 0, rndPosZ);
-            transform.position = secondPos;
-            //GroundBreakThrough anim
-        }
-        if (_bossType == BossType.Knight)
-        {
-
-        }
-        if (_bossType == BossType.Dragon)
-        {
-
-        }
     }
 
     public void ThirdPatternAttack()
     {
-        if (_bossType == BossType.Worm)
-        {
-
-        }
-        if (_bossType == BossType.Knight)
-        {
-
-        }
-        if (_bossType == BossType.Dragon)
-        {
-
-        }
+        animator.SetTrigger(_ThirdPatternAttack_AnimTriggerName);
     }
 
     public void Damage(float damage)
@@ -323,17 +133,88 @@ public class Boss : MonoBehaviour, IDamageAble<float>
 
     public void Shot()
     {
-
+        animator.SetTrigger(_NormalAttack_AnimTriggerName);
     }
 
     public void Dead()
     {
+        _isDead = true;
+        animator.SetTrigger(_Dead_AnimTriggerName);
+    }
 
+    public void UnBorrow()
+    {
+        Vector3 groundPos = _detectedPlayer.transform.position;
+        transform.position = groundPos;
+        animator.SetTrigger(_WormBurrow_AnimTriggerName);
+    }
+
+    public bool IsInAttackRange(float distance)
+    {
+        return distance < (__attackRange);
+    }
+
+    public bool IsInPatternRange(float distance)
+    {
+        return distance < (__patternRange);
+    }
+
+    public bool CanAttack()
+    {
+        return _detectedPlayer != null && !_isDead;
+    }
+
+
+    public bool PlayerToBossDistance()
+    {
+        float playerpos = Vector3.SqrMagnitude(_detectedPlayer.position - transform.position);
+        if (CanAttack() && !IsInAttackRange(playerpos))
+        {
+            _distanceT += Time.deltaTime;
+        }
+        if (CanAttack() && IsInAttackRange(playerpos))
+        {
+            _distanceT = 0f;
+        }
+        if(_distanceT >= 8f)
+        {
+            _distanceT = 0f;
+            return true;
+        }
+        return false;
+    }
+
+
+    protected void NormalCooldown(float deltaTime)
+    {
+        if (_normalCoolTime > 0)
+        {
+            _normalCoolTime -= deltaTime; // ÄðÅ¸ÀÓ °¨¼Ò
+        }
+    }
+
+    protected void FirstCooldown(float deltaTime)
+    {
+        if (_firstCoolTime > 0)
+        {
+            _firstCoolTime -= deltaTime; // ÄðÅ¸ÀÓ °¨¼Ò
+        }
+    }
+
+    protected void SecondCooldown(float deltaTime)
+    {
+        if (_secondCoolTime > 0)
+        {
+            _secondCoolTime -= deltaTime; // ÄðÅ¸ÀÓ °¨¼Ò
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(this.transform.position, _attackRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, _patternRange);
     }
+    public abstract INode.ENodeState EvaluatePatterns();
 }
