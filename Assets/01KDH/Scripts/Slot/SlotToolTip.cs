@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 
 public class SlotToolTip : MonoBehaviour
 {

@@ -1,9 +1,11 @@
+using AssetKits.ParticleImage.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public enum EnemyType
@@ -234,10 +236,10 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Damage(float damageTaken)
     {
         if(isDead) return;
-        //GameManager.instance.enemyhitDelegate(transform);
+        
         animator.SetTrigger("hit");
         currentHp -= damageTaken;
-
+        
         // StopCoroutine("hitMaterialChange");
         // StartCoroutine("hitMaterialChange");
 
@@ -248,7 +250,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         Debug.Log(currentHp);
         if (currentHp <= 0)
         {
-            currentHp = 0;
+            currentHp = 0;            
             Dead();
         }
     }
@@ -281,6 +283,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Dead()
     {
         GameManager.instance.dieDelegate(transform);
+        
         Debug.Log("Dead 실행");
         isDead = true;
         enemyAttack.gameObject.GetComponent<BoxCollider>().enabled = false;

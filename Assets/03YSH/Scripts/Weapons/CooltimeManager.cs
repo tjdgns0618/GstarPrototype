@@ -12,7 +12,7 @@ public class CooltimeManager : MonoBehaviour
             {"WarriorR", 10.0f},
             {"ArcherQ", 4.0f},
             {"ArcherE", 7.0f},
-            {"ArcherR", 15.0f},
+            {"ArcherR", 2.0f},
             {"WizardQ", 6.0f},
             {"WizardE", 9.0f},
             {"WizardR", 20.0f}

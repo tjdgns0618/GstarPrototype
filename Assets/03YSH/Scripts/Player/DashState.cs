@@ -28,11 +28,13 @@ namespace CharacterController
         public override void OnEnterState()
         {
             Debug.Log("OnEnterState 대시 스테이트 진입");
+            PlayerCharacter.Instance.canChange = false;
             Dash();
         }
 
         private void Dash()
         {
+            IsDash = true;
             PlayerCharacter pi = PlayerCharacter.Instance; 
 
             pi.gameObject.layer = 11;
@@ -51,7 +53,9 @@ namespace CharacterController
             pi.rigidbody.velocity = Vector3.zero;
             pi.animator.SetBool(Hash_IsDashBool, false);
             AttackState.IsBaseAttack = false;
+            PlayerCharacter.Instance.canChange = true;
             pi.gameObject.layer = 6; 
+            IsDash = false;
         }
 
         public override void OnFixedUpdateState()

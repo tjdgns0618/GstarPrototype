@@ -8,11 +8,10 @@ using UnityEngine.InputSystem.Interactions;
 using UnityEngine.VFX;
 using CharacterController;
 using System.Data;
-using UnityEngine.InputSystem.XR;
+#if UNITY_EDITOR
 using UnityEditor.Animations;
+#endif
 using UnityEngine.Rendering;
-using System.Runtime.CompilerServices;
-using UnityEditor.Rendering;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 using TMPro;
@@ -262,7 +261,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnClickQ(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash)
         {
             if (context.interaction is PressInteraction)
             {
@@ -284,7 +283,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnClickE(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash)
         {
             bool isAvailableAttack = !AttackState.IsSkill_E && gameManager.cooltimeManager.canUseSkill[player.characterClass.ToString() + 'E'];
 
@@ -301,7 +300,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     public void OnClickR(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill! && !gameManager.isPause && !gameManager.isDead)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill! && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash)
         {
             bool isAvailableAttack = !AttackState.IsSkill_R && gameManager.cooltimeManager.canUseSkill[player.characterClass.ToString() + 'R'];
 

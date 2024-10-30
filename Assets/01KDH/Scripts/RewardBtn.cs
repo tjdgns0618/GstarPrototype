@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -147,7 +146,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             GameManager.instance.dieDelegate += _activeItem._02Item;
                             break;
                         case 31:
-                            GameManager.instance.enemyhitDelegate += _activeItem._03Item;
+                            TickManager._shurikenT += _activeItem._03Item;
                             break;
                         case 32:
                             GameManager.instance.enemyhitDelegate += _activeItem._04Item;
@@ -180,7 +179,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             GameManager.instance.playerattackDelegate += _activeItem._13Item;
                             break;
                         case 42:
-                            GameManager.instance.playerattackDelegate += _activeItem._14Item;
+                            GameManager.instance.enemyhitDelegate += _activeItem._14Item;
                             break;
                         case 43:
                             GameManager.instance.playerattackDelegate += _activeItem._15Item;
@@ -198,7 +197,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             TickManager._freezeT += _activeItem._19Item;
                             break;
                         case 48:
-                            GameManager.instance.playerattackDelegate += _activeItem._20Item;
+                            TickManager._starT += _activeItem._20Item;
                             break;
                         default:
                             break;

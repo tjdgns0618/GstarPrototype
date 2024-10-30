@@ -9,24 +9,32 @@ public class TickManager : MonoBehaviour
     float _fireTimer;
     float _godTimer;
     float _freezeTimer;
+    float _starTimer;
+    float _shurikenTimer;
 
     float _tickManeul;
     float _tickShield;
     float _tickFire;
     float _tickGod;
     float _tickFreeze;
+    float _tickStar;
+    float _tickShuriken;
 
     public delegate void ManeulTick();
     public delegate void ShieldTick();
     public delegate void FireTick();
     public delegate void GodTick();
     public delegate void FreezeTick();
+    public delegate void StarTick();
+    public delegate void ShurikenTick();
 
     public static ManeulTick _maneulT;
     public static ShieldTick _shieldT;
     public static FireTick _fireT;
     public static GodTick _godT;
     public static FreezeTick _freezeT;
+    public static StarTick _starT;
+    public static ShurikenTick _shurikenT;
 
 
     void Start()
@@ -36,6 +44,8 @@ public class TickManager : MonoBehaviour
         _tickFire = ItemDataBase.instance.Variable(38);
         _tickGod = ItemDataBase.instance.Variable(40);
         _tickFreeze = ItemDataBase.instance.Variable(47);
+        _tickStar = ItemDataBase.instance.Variable(48);
+        _tickShuriken = ItemDataBase.instance.Variable(31);
     }
 
     void Update()
@@ -45,6 +55,8 @@ public class TickManager : MonoBehaviour
         TickFire();
         TickGod();
         TickFreeze();
+        TickPopcorn();
+        TickShuriken();
     }
 
     public void TickManeul()
@@ -105,5 +117,29 @@ public class TickManager : MonoBehaviour
                 _freezeTimer = 0;
                 _freezeT?.Invoke();
             }
+    }
+
+    public void TickPopcorn()
+    {
+        if (_starT == null)
+            return;
+        _starTimer += Time.deltaTime;
+        if (_starTimer >= _tickStar)
+        {
+            _starTimer = 0;
+            _starT?.Invoke();
+        }
+    }
+
+    public void TickShuriken()
+    {
+        if (_shurikenT == null)
+            return;
+        _shurikenTimer += Time.deltaTime;
+        if (_shurikenTimer >= _tickShuriken)
+        {
+            _shurikenTimer = 0;
+            _shurikenT?.Invoke();
+        }
     }
 }

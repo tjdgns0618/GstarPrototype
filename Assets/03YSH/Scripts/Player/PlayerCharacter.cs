@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using CharacterController;
+#if UNITY_EDITOR
 using UnityEditor.Animations;
-using UnityEngine.UIElements;
+#endif
 
 public enum CharacterType
 {
@@ -21,7 +22,9 @@ public class PlayerCharacter : MonoBehaviour
     public StateMachine stateMachine { get; private set; }
     public new Rigidbody rigidbody { get; private set; }
     public Animator animator { get; set; }
+#if UNITY_EDITOR
     public AnimatorController animatorCon { get; set; }
+#endif
 
     public CharacterType characterClass;
 
