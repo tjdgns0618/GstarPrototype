@@ -112,7 +112,15 @@ public class spawner1 : MonoBehaviour
 
     public void SetupWave()
     {
-        if (currentStage == 1 && currentWave == maxWaves)
+        if (currentStage == 2 && currentWave == maxWaves) //보스 스테이지 조정
+        {
+            StartCoroutine(BossWave());
+            UpdateWaveInfoUI();
+            waveCountText.text = $"WAVE {currentWave}";
+            Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            return;
+        }
+        else if(currentStage == 3 && currentWave == maxWaves)
         {
             StartCoroutine(BossWave());
             UpdateWaveInfoUI();
@@ -131,7 +139,11 @@ public class spawner1 : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        if (currentStage == 1 && currentWave == maxWaves)
+        if (currentStage == 2 && currentWave == maxWaves) // 보스 스테이지 조정
+        {
+            yield break;
+        }
+        else if(currentStage == 3 && currentWave == maxWaves)
         {
             yield break;
         }

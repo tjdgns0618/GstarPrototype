@@ -31,7 +31,7 @@ public class EnemyBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        target = GameObject.FindWithTag(targetname)?.transform;  // 추적할 대상 설정
+        target = GameObject.FindWithTag(targetname)?.transform;
 
         if (flash != null)
         {
@@ -72,7 +72,7 @@ public class EnemyBullet : MonoBehaviour
             // 목표 방향으로 이동하는 코드
             Vector3 direction = (target.position - transform.position).normalized;
             Quaternion toRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * 1.0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * 2.0f); // 호밍 샷 유도율 조정
         }
 
         // 속도에 따라 총알 이동
@@ -113,7 +113,7 @@ public class EnemyBullet : MonoBehaviour
         {
             Vector3 direction = (target.position - transform.position).normalized;
             Quaternion toRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * 2.0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime * 2.0f); // 호밍 샷 유도율 조정
 
             yield return null;
         }
