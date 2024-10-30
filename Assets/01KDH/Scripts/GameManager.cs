@@ -91,7 +91,6 @@ public class GameManager : MonoBehaviour
 
     public void Heal(float heal)
     {
-        Debug.Log(heal + "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
         float healValue = Mathf.Clamp(_hp + heal, _hp, _maxhp);
         _hp = healValue;
     }

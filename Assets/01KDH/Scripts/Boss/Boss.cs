@@ -97,22 +97,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     public void Attack()
     {
-        if(_bossType == BossType.Worm)
-        {
-            Shot();
-        }
-        if(_bossType == BossType.Knight)
-        {
-
-        }
-        if(_bossType == BossType.Bishop)
-        {
-
-        }
-        if(_bossType == BossType.Dragon)
-        {
-
-        }
+        Shot();
     }
 
     public void Fire()
@@ -132,30 +117,13 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     public void SecondPatternAttack()
     {
-        if (_bossType == BossType.Worm)
-        {
-            animator.SetTrigger(_SecondPatternAttack_AnimTriggerName);
-        }
-        if (_bossType == BossType.Knight)
-        {
+        animator.SetTrigger(_SecondPatternAttack_AnimTriggerName);
 
-        }
-        if (_bossType == BossType.Bishop)
-        {
-
-        }
-        if (_bossType == BossType.Dragon)
-        {
-
-        }
     }
 
     public void ThirdPatternAttack()
     {
-        if (_bossType == BossType.Dragon)
-        {
-
-        }
+        animator.SetTrigger(_ThirdPatternAttack_AnimTriggerName);
     }
 
     public void Damage(float damage)
@@ -241,11 +209,12 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         }
     }
 
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(this.transform.position, _attackRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, _patternRange);
     }
     public abstract INode.ENodeState EvaluatePatterns();
 }

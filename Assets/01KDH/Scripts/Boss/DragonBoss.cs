@@ -14,9 +14,9 @@ public class DragonBoss : Boss
 
     private void Start()
     {
-        _attackRange = 4f;
+        _attackRange = 6f;
         __attackRange = _attackRange * _attackRange;
-        _patternRange = 8f;
+        _patternRange = 10f;
         __patternRange = _patternRange * _patternRange;
         _movementSpeed = 0f;
         _patternCount = 0f;
@@ -36,6 +36,7 @@ public class DragonBoss : Boss
         SecondCooldown(Time.deltaTime);
         if (IsAniamtionRunning(_Idle_AnimStateName) || IsAniamtionRunning(_Taunting_AnimStateName))
             _isAttacking = false;
+        Debug.Log(_patternCount);
     }
 
     public override INode SettingBT()
@@ -71,6 +72,8 @@ public class DragonBoss : Boss
             if (CheckPlayerWithinCoolTime() == INode.ENodeState.ENS_Success)
             {
                 float playerpos = Vector3.SqrMagnitude(_detectedPlayer.position - transform.position);
+                if (_patternCount >= 0f)
+                    return DoThirdPattern();
                 if (IsInAttackRange(playerpos))
                 {
                     if (_normalCoolTime <= 0f)
@@ -81,8 +84,7 @@ public class DragonBoss : Boss
                     if (_firstCoolTime <= 0f)
                         return DoFirstPattern();
                 }
-                if (_patternCount >= 4f)
-                    return DoThirdPattern();
+
 
             }
         }
@@ -91,7 +93,6 @@ public class DragonBoss : Boss
 
 
     #region Attack Node
-
     INode.ENodeState CheckPlayerWithinCoolTime()
     {
         if (CanAttack())
@@ -111,7 +112,6 @@ public class DragonBoss : Boss
             Attack();
             _isAttacking = true;
             _normalCoolTime = 3f;
-            _patternCount += 0.5f;
             return INode.ENodeState.ENS_Success;
         }
 
@@ -124,7 +124,6 @@ public class DragonBoss : Boss
         {
             FirstPatternAttack();
             _firstCoolTime = 10f;
-            _patternCount += 1f;
             return INode.ENodeState.ENS_Success;
         }
         return INode.ENodeState.ENS_Failure;
@@ -136,8 +135,7 @@ public class DragonBoss : Boss
         {
             SecondPatternAttack();
             _isAttacking = true;
-            _secondCoolTime = 3f;
-            _patternCount += 1f;
+            _secondCoolTime = 12f;
             return INode.ENodeState.ENS_Success;
         }
 
@@ -149,7 +147,6 @@ public class DragonBoss : Boss
         {
             ThirdPatternAttack();
             _isAttacking = true;
-            _patternCount = 0f;
             return INode.ENodeState.ENS_Success;
         }
 
@@ -185,6 +182,18 @@ public class DragonBoss : Boss
     public void BreathActive()
     {
         _breath.SetActive(true);
+    }
+
+    public void FinishBreath()
+    {
+        _firstCoolTime = 8f;
+    }
+
+    public void FinishPattern()
+    {
+        _patternCount++;
+        if(_patternCount >= 5f)
+           _patternCount = 0;
     }
 
 }
