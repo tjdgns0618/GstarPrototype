@@ -2,14 +2,8 @@ using CharacterController;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Unity.Collections.LowLevel.Unsafe;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Rendering;
-using static UnityEngine.ParticleSystem;
 
 public class PlayerAttack : BaseWeapon, IEffect
 {
@@ -112,6 +106,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         if (pi.characterClass == CharacterType.Warrior)
         {
             GameObject effect = pm.GetParticle(hashWarriorAttackEffect + ComboCount);
+            
             if (effect != null)
             {
                 effect.transform.position = pi.transform.position + (Vector3.up * 1f);
@@ -155,7 +150,7 @@ public class PlayerAttack : BaseWeapon, IEffect
             effect.transform.rotation = pi.transform.rotation;
             effect.transform.position = pi.firePoint.transform.position;
             if (skillType == 5)
-                effect.transform.position -= (Vector3.up * 1f) + (pi.transform.forward * -3f);
+                effect.transform.position -= (Vector3.up * 1f) + (pi.transform.forward * -1f);
         }
         if (pi.characterClass == CharacterType.Archer)
         {
@@ -188,16 +183,11 @@ public class PlayerAttack : BaseWeapon, IEffect
             }
             else if (skillType == 6)
             {
-                for (int i = 0; i < 3; i++)
-                {
                     effect = gi.particlePoolManager.GetParticle(hashArcherAttackEffect + skillType);
                     effect.transform.position = pi.firePoint.transform.position;
-                    effect.transform.rotation = pi.transform.rotation;
-                    effect.transform.position -= (Vector3.up * 1f);
-                    effect.transform.position += pi.transform.forward * 3f * i;
-                }
+                    effect.transform.position += (Vector3.up * 7f);
+                    effect.transform.position += pi.transform.forward * 2f;                
             }
-
         }
         if (pi.characterClass == CharacterType.Wizard)
         {

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering;
 using TMPro;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 
 public class RewardSlot : InvenSlot
 {

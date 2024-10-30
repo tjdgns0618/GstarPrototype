@@ -119,7 +119,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void OnEndChangeCharacter()
     {
         playerInstance.changeArea.enabled = false;
-        playerInstance.canChange = true;
     }
 
     public void AttackColliderChange()

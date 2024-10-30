@@ -17,6 +17,7 @@ public class ParticleCollisionInstance : MonoBehaviour
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
     private ParticleSystem ps;
+    public float damageMultiplier = 1;
 
     void Start()
     {
@@ -39,8 +40,8 @@ public class ParticleCollisionInstance : MonoBehaviour
         {
             IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
             int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
-            damageAble?.Damage(20f);
-            GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
+            damageAble?.Damage(GameManager.instance._damage * damageMultiplier);
+            // GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
             for (int i = 0; i < numCollisionEvents; i++)
             {
                 foreach (var effect in EffectsOnCollision)
@@ -58,7 +59,7 @@ public class ParticleCollisionInstance : MonoBehaviour
             }
             if (DestoyMainEffect == true)
             {
-                GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
+                // GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
             }
         }
     }
