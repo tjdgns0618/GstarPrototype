@@ -71,7 +71,7 @@ public class BlackSmithShop : MonoBehaviour
             else
             {
                 upgradePriceText.text = string.Format(" ");
-                upGradeText.text = string.Format("MAX");
+                upGradeText.text = string.Format("5 (MAX)");
             }
         }
     }
