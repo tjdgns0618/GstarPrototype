@@ -233,6 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6763887ded926b442ad64382e499f5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHp: 20
+  maxHp: 20
   enemyType: 1
   _detectRange: 10
   _attackRange: 8
@@ -1630,6 +1632,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5813cb8bcefbfa24fa748cc8e62b1cb7, type: 2}
+  - {fileID: 2100000, guid: 8aa01fd39893e614ca06ab729c902481, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

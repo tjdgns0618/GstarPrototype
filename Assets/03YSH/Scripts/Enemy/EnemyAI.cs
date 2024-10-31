@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     float slowDelay;
     WaitForSeconds slowT;
 
-    // Material hitMaterial;
+    Material hitMaterial;
 
     private void Awake()
     {
@@ -69,7 +69,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         spawner = FindAnyObjectByType<spawner1>();
         isDead = false;
         gameObject.layer = 8;
-        // hitMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
+        hitMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
     }
 
     private void OnDisable()
@@ -241,9 +241,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         
         animator.SetTrigger("hit");
         currentHp -= damageTaken;
-        
-        // StopCoroutine("hitMaterialChange");
-        // StartCoroutine("hitMaterialChange");
+
+        StopCoroutine("hitMaterialChange");
+        StartCoroutine("hitMaterialChange");
 
         Vector3 textPos = transform.position;
         textPos.y += 1.5f;
@@ -257,12 +257,12 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         }
     }
 
-    //private IEnumerator hitMaterialChange()
-    //{
-    //    hitMaterial.color = Color.red;
-    //    yield return new WaitForSeconds(0.3f);
-    //    hitMaterial.color = Color.black;
-    //}
+    private IEnumerator hitMaterialChange()
+    {
+        hitMaterial.color = Color.red;
+        yield return new WaitForSeconds(0.3f);
+        hitMaterial.color = Color.black;
+    }
 
     public void PlayKnockback(Vector3 direction, float duration, float strength)
     {
@@ -344,7 +344,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     public void Fire()
     {
-        bullet.GetComponent<Bullet>().targetname = "Player";
+        bullet.GetComponent<EnemyBullet>().targetname = "Player";
         GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
         temp.transform.forward = transform.forward;
         //temp.transform.Rotate(new Vector3(90f, transform.rotation.y, 0f));
