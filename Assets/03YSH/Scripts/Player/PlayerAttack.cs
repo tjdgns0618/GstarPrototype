@@ -187,7 +187,7 @@ public class PlayerAttack : BaseWeapon, IEffect
             {
                     effect = gi.particlePoolManager.GetParticle(hashArcherAttackEffect + skillType);
                     effect.transform.position = pi.firePoint.transform.position;
-                    effect.transform.position += (Vector3.up * 7f);
+                    effect.transform.position += (Vector3.up * 12f) + (PlayerCharacter.Instance.transform.forward * 3f);
                     effect.transform.position += pi.transform.forward * 2f;                
             }
         }
