@@ -14663,6 +14663,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba963996b4d7ad4cb67131919b79ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireMode: 0
+  speed: 20
   targetname: Player
   hitEffectPrefab: {fileID: 1612276239566916, guid: ab764946428361d499eb0f88769e33b7, type: 3}
   flash: {fileID: 1156591902748042, guid: 55b36a9461ee12b4b9ed1546b95e8ba4, type: 3}
+  destroyDelay: 5
+  angleOffset: 30
+  homingDelay: 1
