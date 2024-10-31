@@ -6,15 +6,23 @@ using UnityEngine.UIElements;
 public class WizardBigbang : MonoBehaviour
 {
     List<GameObject> insideEnemies = new List<GameObject>();
+    public GameObject explosiveParticle;
     string _EnemyTag = "Enemy";
     float knockbackTimer;
     float knockbackTime = 0.5f;
     float explosionTimer;
     float explosionTime = 4.7f;
 
+    private void OnEnable()
+    {
+        StopCoroutine(Explosion());
+        explosiveParticle.SetActive(false);
+        StartCoroutine(Explosion());
+    }
+
     private void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * 1f);
+        transform.Translate(Vector3.forward * Time.deltaTime * 2f);
 
         knockbackTimer += Time.deltaTime;
         explosionTimer += Time.deltaTime;
@@ -37,6 +45,12 @@ public class WizardBigbang : MonoBehaviour
             explosionTimer = 0;
             gameObject.SetActive(false);            
         }
+    }
+
+    IEnumerator Explosion()
+    {
+        yield return new WaitForSeconds(4f);
+        explosiveParticle.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

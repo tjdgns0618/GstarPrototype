@@ -257,13 +257,14 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private void HandleHoldInteraction()
     {
         bool isAvailableAttack = !AttackState.IsBaseAttack &&
-                   (player.weaponManager.Weapon.ComboCount < 3);
+                   (player.weaponManager.Weapon.ComboCount < 3) && !DashState.IsDash;
 
         if (isAvailableAttack)
         {
             AttackState.IsBaseAttack = true;
             AttackState.isHolding = true;
             AttackState.canAttack = true;
+            AttackState.IsAttack = true;
             // Debug.Log("HoldInteraction AttackState");
             player.stateMachine.ChangeState(StateName.ATTACK);
         }
@@ -272,11 +273,12 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private void HandlePressInteraction()
     {
         bool isAvailableAttack = !AttackState.IsBaseAttack &&
-                   (player.weaponManager.Weapon.ComboCount < 3);
+                   (player.weaponManager.Weapon.ComboCount < 3) && !DashState.IsDash;
 
         if (isAvailableAttack)
         {
             AttackState.IsBaseAttack = true;
+            AttackState.IsAttack = true;
             // Debug.Log("PressInteraction AttackState");
 
             player.stateMachine.ChangeState(StateName.ATTACK);
@@ -285,7 +287,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
-        if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0)
+        if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0 && !AttackState.IsAttack)
         {
             if (!DashState.IsDash)
             {

@@ -17,7 +17,7 @@ public class WizardPheonix : MonoBehaviour
     {
         // Invoke("DisableCollider", 0.5f);
         StartCoroutine(disableCollider());
-        boxCollider.transform.position = Vector3.zero;
+        boxCollider.transform.localPosition = Vector3.zero;
         boxCollider.GetComponent<BoxCollider>().enabled = true;
         isEnable = true;
     }
