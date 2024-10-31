@@ -6,19 +6,22 @@ public class DragonBoss : Boss
 {
     float _patternCount;
 
+    float _meteorRadius;
+
     BehaviorTreeRunner _BTRunner = null;
     const string _Idle_AnimStateName = "Idle";
     const string _Taunting_AnimStateName = "Taunting";
+    const string _Breath_AnimStateName = "dragonBreath";
 
     public GameObject _breath;
 
     private void Start()
     {
-        _attackRange = 6f;
+        _attackRange = 5f;
         __attackRange = _attackRange * _attackRange;
-        _patternRange = 10f;
+        _patternRange = 8f;
         __patternRange = _patternRange * _patternRange;
-        _movementSpeed = 0f;
+        _movementSpeed = 3f;
         _patternCount = 0f;
         _isDead = false;
         _isAttacking = false;
@@ -34,9 +37,8 @@ public class DragonBoss : Boss
         NormalCooldown(Time.deltaTime);
         FirstCooldown(Time.deltaTime);
         SecondCooldown(Time.deltaTime);
-        if (IsAniamtionRunning(_Idle_AnimStateName) || IsAniamtionRunning(_Taunting_AnimStateName))
-            _isAttacking = false;
-        Debug.Log(_patternCount);
+        if (IsAniamtionRunning("dragonBreath"))
+            Rotate();
     }
 
     public override INode SettingBT()
@@ -72,20 +74,20 @@ public class DragonBoss : Boss
             if (CheckPlayerWithinCoolTime() == INode.ENodeState.ENS_Success)
             {
                 float playerpos = Vector3.SqrMagnitude(_detectedPlayer.position - transform.position);
-                if (_patternCount >= 0f)
-                    return DoThirdPattern();
-                if (IsInAttackRange(playerpos))
-                {
-                    if (_normalCoolTime <= 0f)
-                        return DoNormalAttack();
-                }
-                if(IsInPatternRange(playerpos))
-                {
-                    if (_firstCoolTime <= 0f)
-                        return DoFirstPattern();
-                }
-
-
+                    if (IsInAttackRange(playerpos))
+                    {
+                        if (_normalCoolTime <= 0f)
+                            return DoNormalAttack();
+                    }
+                    if (IsInPatternRange(playerpos))
+                    {
+                        if (_firstCoolTime <= 0f)
+                            return DoFirstPattern();
+                        if (_secondCoolTime <= 0f)
+                        return DoSecondPattern();
+                    }
+                    if (_patternCount >= 4f)
+                        return DoThirdPattern();
             }
         }
         return INode.ENodeState.ENS_Failure;
@@ -110,8 +112,7 @@ public class DragonBoss : Boss
         if (CanAttack())
         {
             Attack();
-            _isAttacking = true;
-            _normalCoolTime = 3f;
+            _normalCoolTime = 2f;
             return INode.ENodeState.ENS_Success;
         }
 
@@ -123,8 +124,12 @@ public class DragonBoss : Boss
         if (CanAttack())
         {
             FirstPatternAttack();
-            _firstCoolTime = 10f;
-            return INode.ENodeState.ENS_Success;
+            _firstCoolTime = 8f;
+            if (_isAttacking)
+            {
+                Rotate();
+                return INode.ENodeState.ENS_Running;
+            }
         }
         return INode.ENodeState.ENS_Failure;
     }
@@ -134,7 +139,6 @@ public class DragonBoss : Boss
         if (CanAttack())
         {
             SecondPatternAttack();
-            _isAttacking = true;
             _secondCoolTime = 12f;
             return INode.ENodeState.ENS_Success;
         }
@@ -146,6 +150,7 @@ public class DragonBoss : Boss
         if (CanAttack())
         {
             ThirdPatternAttack();
+            _patternCount = 0;
             _isAttacking = true;
             return INode.ENodeState.ENS_Success;
         }
@@ -160,9 +165,15 @@ public class DragonBoss : Boss
     {
         if (CanAttack())
         {
+            float playerpos = Vector3.SqrMagnitude(_detectedPlayer.position - transform.position);
             if (!_isAttacking)
             {
-                if (!IsLookingAtPlayer())
+                if (!IsLookingAtPlayer() && IsInPatternRange(playerpos))
+                {
+                    Rotate();
+                    return INode.ENodeState.ENS_Running;
+                }
+                if(!IsInPatternRange(playerpos))
                 {
                     Rotate();
                     Move();
@@ -192,8 +203,6 @@ public class DragonBoss : Boss
     public void FinishPattern()
     {
         _patternCount++;
-        if(_patternCount >= 5f)
-           _patternCount = 0;
     }
 
 }
