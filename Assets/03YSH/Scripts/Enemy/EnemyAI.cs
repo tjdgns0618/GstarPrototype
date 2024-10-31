@@ -35,7 +35,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     Transform _detectedPlayer = null;
     Vector3 _originPos;
     Animator animator;
-    float hp = 20;
+    float initialHp = 40;
+    float currentHp = 20;
+    public float enemyDamage = 10;
     public bool isDead = false;
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
@@ -66,13 +68,28 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         //GameManager.instance.dieDelegate += Test;
         spawner = FindAnyObjectByType<spawner1>();
         isDead = false;
-        hp = 20f;
+        currentHp = (float)(initialHp * (spawner.currentStage+0.2*spawner.currentWave));
+        enemyDamage = CalculateAttackDamage(spawner.currentStage);
+        //currentHp = Mathf.Floor(initialHp * Mathf.Tan(spawner.currentStage) / 24) + spawner.currentWave;
+        Debug.Log(currentHp);
         gameObject.layer = 8;
     }
 
     private void OnDisable()
     {
         //GameManager.instance.dieDelegate -= Test;
+    }
+
+    float CalculateAttackDamage(int stage)
+    {
+        if(stage == 1)
+        {
+            return 10;
+        }
+        else
+        {
+            return Mathf.Round(CalculateAttackDamage(stage - 1) * 1.3f);
+        }
     }
 
     private void Update()
@@ -231,16 +248,16 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         if(isDead) return;
         //GameManager.instance.enemyhitDelegate(transform);
         animator.SetTrigger("hit");
-        hp -= damageTaken;
+        currentHp -= damageTaken;
 
         Vector3 textPos = transform.position;
         textPos.y += 1.5f;
         damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken, textPos, false);
 
-        Debug.Log(hp);
-        if (hp <= 0)
+        Debug.Log(currentHp);
+        if (currentHp <= 0)
         {
-            hp = 0;
+            currentHp = 0;
             Dead();
         }
     }
@@ -327,6 +344,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Fire()
     {
         bullet.GetComponent<EnemyBullet>().targetname = "Player";
+        bullet.GetComponent<EnemyBullet>().damage = enemyDamage;
         GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
         temp.transform.forward = transform.forward;
         //temp.transform.Rotate(new Vector3(90f, transform.rotation.y, 0f));

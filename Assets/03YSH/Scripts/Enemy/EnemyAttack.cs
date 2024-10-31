@@ -8,6 +8,8 @@ public class EnemyAttack : MonoBehaviour
 {
     BoxCollider boxCollider;
 
+    EnemyAI enemyAI;
+
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -19,10 +21,15 @@ public class EnemyAttack : MonoBehaviour
         boxCollider.enabled = false;
     }
 
+    private void OnEnable()
+    {
+        enemyAI = GetComponentInParent<EnemyAI>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
         if (other.tag == "Player")
-            damageAble?.Damage(20);
+            damageAble?.Damage(enemyAI.enemyDamage);
     }
 }
