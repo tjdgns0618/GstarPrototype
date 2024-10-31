@@ -13,6 +13,7 @@ public class spawner1 : MonoBehaviour
     public GameObject waveClear;
     public GameObject stageClear;
     public GameObject bossPrefab;
+    public GameObject bossPrefab2;
     //public GameObject playerPrefab;
     public TMP_Text waveInfoText;
     public TMP_Text stageInfoText;
@@ -205,10 +206,20 @@ public class spawner1 : MonoBehaviour
 
     void SpawnBoss() //보스 소환
     {
-        Vector3 bossSpawnPosition = GetRandomPosition();
-        GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
-        enemiesLeft = 1; // 보스 몬스터 1마리
-        Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+        if (currentStage == 2 && currentWave == maxWaves)
+        {
+            Vector3 bossSpawnPosition = GetRandomPosition();
+            GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
+            enemiesLeft = 1; // 보스 몬스터 1마리
+            Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+        }
+        else if (currentStage == 3 && currentWave == maxWaves)
+        {
+            Vector3 bossSpawnPosition = GetRandomPosition();
+            GameObject boss = Instantiate(bossPrefab2, bossSpawnPosition, Quaternion.identity);
+            enemiesLeft = 1; // 보스 몬스터 1마리
+            Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+        }
     }
 
     // 다른 적들과의 거리를 계산하여 겹치지 않도록 체크하는 함수
