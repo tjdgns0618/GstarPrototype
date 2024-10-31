@@ -27,6 +27,7 @@ public class spawner1 : MonoBehaviour
     public int maxWaves = 5; //최대 웨이브 수
     public int currentWave = 0; //현재 웨이브
 
+    public int initialStage = 0;
     public int currentStage = 1; //현재 스테이지
 
     private int enemyPerSpawn; //한 번의 주기에 생성할 enemy 수
@@ -50,9 +51,9 @@ public class spawner1 : MonoBehaviour
         enemyDead += OnEnemyDeath;     // 이벤트 등록
     }
 
-    void Start()
+    private void Start()
     {
-        wInterval= new WaitForSeconds(spawnInterval);
+        wInterval = new WaitForSeconds(spawnInterval);
         StartWave();
     }
 

@@ -22,10 +22,10 @@ public class EnemyBullet : MonoBehaviour
     public float angleOffset = 30f;     // 각도 오프셋 (삼방향 및 확산용)
     public float homingDelay = 1.0f;    // 확산 후 추적 딜레이 시간
     private Transform target;           // 추적할 목표
+    public float damage;
 
     private void OnEnable()
     {
-        Invoke("InActiveParticle", 5f);
     }
 
     void Start()
@@ -58,11 +58,6 @@ public class EnemyBullet : MonoBehaviour
             StartCoroutine(StartHoming());
         }
         Destroy(gameObject, destroyDelay);
-    }
-
-    public void InActiveParticle()
-    {
-        GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
     }
 
     private void Update()
@@ -124,7 +119,7 @@ public class EnemyBullet : MonoBehaviour
         IDamageAble<float> damageable = other.GetComponent<IDamageAble<float>>();
         if (other.tag == targetname)
         {
-            damageable?.Damage(GameManager.instance._damage);
+            damageable?.Damage(damage);
             if (hitEffectPrefab != null)
                 Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
 

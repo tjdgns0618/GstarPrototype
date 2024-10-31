@@ -7,10 +7,12 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     BoxCollider boxCollider;
+    EnemyAI enemyAI;
 
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
+        enemyAI = GetComponentInParent<EnemyAI>();
     }
 
     private void Start()
@@ -23,6 +25,6 @@ public class EnemyAttack : MonoBehaviour
     {
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
         if (other.tag == "Player")
-            damageAble?.Damage(20);
+            damageAble?.Damage(enemyAI.damage);
     }
 }
