@@ -35,6 +35,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     Transform _detectedPlayer = null;
     Vector3 _originPos;
     Animator animator;
+    AudioSource hitSound;
     public bool isDead = false;
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
@@ -65,6 +66,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     private void OnEnable()
     {
         //GameManager.instance.dieDelegate += Test;
+        hitSound = GetComponent<AudioSource>();
         currentHp = maxHp;
         spawner = FindAnyObjectByType<spawner1>();
         isDead = false;
@@ -240,6 +242,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         if(isDead) return;
         
         animator.SetTrigger("hit");
+        hitSound.Play();
         currentHp -= damageTaken;
 
         StopCoroutine("hitMaterialChange");
