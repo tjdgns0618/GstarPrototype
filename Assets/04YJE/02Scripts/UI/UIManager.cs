@@ -169,7 +169,7 @@ public class UIManager : MonoBehaviour
 
     public void SetHPText()
     {
-        health_Txt.text = string.Format("{0}/{1}", gameManager._hp, gameManager._maxhp);
+        health_Txt.text = string.Format("{0}/{1}", Mathf.Ceil(gameManager._hp), Mathf.Ceil(gameManager._maxhp));
     }
 
     public void SetCoinText()
