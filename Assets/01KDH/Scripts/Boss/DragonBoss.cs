@@ -14,6 +14,13 @@ public class DragonBoss : Boss
     const string _Breath_AnimStateName = "dragonBreath";
 
     public GameObject _breath;
+    public GameObject _head;
+
+
+    AudioSource _audioSource;
+    public AudioClip _meteorSound;
+    public AudioClip _idleSound;
+    public AudioClip _groundSound;
 
     private void Start()
     {
@@ -27,6 +34,7 @@ public class DragonBoss : Boss
         _isAttacking = false;
         _hp = 200f;
         _BTRunner = new BehaviorTreeRunner(SettingBT());
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -83,7 +91,7 @@ public class DragonBoss : Boss
                     {
                         if (_firstCoolTime <= 0f)
                             return DoFirstPattern();
-                        if (_secondCoolTime <= 0f)
+                        if (_secondCoolTime <= 0f && _firstCoolTime > 0f)
                         return DoSecondPattern();
                     }
                     if (_patternCount >= 4f)
@@ -205,4 +213,29 @@ public class DragonBoss : Boss
         _patternCount++;
     }
 
+    public void HeadAttack()
+    {
+        _head.SetActive(true);
+    }
+
+    public void HeadAttackEnd()
+    {
+        _head.SetActive(false);
+    }
+
+    public void IdleSound()
+    {
+        _audioSource.clip = _idleSound;
+        _audioSource.Play();
+    }
+    public void MeteorStart()
+    {
+        _audioSource.clip = _meteorSound;
+        _audioSource.Play();
+    }
+    public void GroundStart()
+    {
+        _audioSource.clip = _groundSound;
+        _audioSource.Play();
+    }
 }

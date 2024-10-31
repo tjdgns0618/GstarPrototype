@@ -133,6 +133,10 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     public void FirstPatternAttack()
     {
         animator.SetTrigger(_FirstPatternAttack_AnimTriggerName);
+        if (_bossType == BossType.Dragon)
+        {
+
+        }
     }
 
     public void SecondPatternAttack()
