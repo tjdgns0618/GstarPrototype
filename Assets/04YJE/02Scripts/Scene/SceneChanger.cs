@@ -24,6 +24,7 @@ public class SceneChanger : MonoBehaviour
 
     public void LoadTitleScene()
     {
+        Time.timeScale = 1.0f;
         fadeInOut.FadeOut();
         StartCoroutine(_LoadTitleScene());
     }
@@ -39,7 +40,6 @@ public class SceneChanger : MonoBehaviour
         yield return fadeTime;
 
         SceneManager.LoadScene(0);
-        Time.timeScale = 1.0f;
         soundManager.PlayMusic(0, 2f);
     }
     IEnumerator _LoadTutorialScene()
