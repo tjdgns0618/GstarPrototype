@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 199135089733451208}
   - component: {fileID: 54218369727422460}
   - component: {fileID: 135535602245615578}
-  - component: {fileID: 3961714404069655586}
+  - component: {fileID: -6602758420988475696}
   m_Layer: 0
   m_Name: BatBullet
   m_TagString: Bullet
@@ -4964,7 +4964,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3961714404069655586
+--- !u!114 &-6602758420988475696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4973,12 +4973,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1381080491605798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ece472c180655d4e8541e31b3c59f06, type: 3}
+  m_Script: {fileID: 11500000, guid: dba963996b4d7ad4cb67131919b79ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetname: Player
-  hitEffectPrefab: {fileID: 1348390491135638, guid: d7d554880214e644bbbbfc89aa884b26, type: 3}
-  flash: {fileID: 1716391117806116, guid: 6c45d61ea68f82b4eb2c7f1ff7fdcb81, type: 3}
+  hitEffectPrefab: {fileID: 1089465354904564, guid: f0855940e22dbcd4aad5ca152a089348, type: 3}
+  flash: {fileID: 1367524815892938, guid: 40f5e004d2504a04db181f5453658776, type: 3}
 --- !u!1 &1523578673615170
 GameObject:
   m_ObjectHideFlags: 0
