@@ -37,15 +37,17 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     public Transform _detectedPlayer = null;
     Rigidbody _rigid;
 
+    Vector3 _rndPosition;
+
     Animator animator;
     spawner1 spawner;
 
-    const string _NormalAttack_AnimTriggerName = "isNormal";
-    const string _FirstPatternAttack_AnimTriggerName = "isFirst";
-    const string _SecondPatternAttack_AnimTriggerName = "isSecond";
-    const string _ThirdPatternAttack_AnimTriggerName = "isThird";
-    const string _Dead_AnimTriggerName = "bossDead";
-    const string _WormBurrow_AnimTriggerName = "wormBurrow";
+    public const string _NormalAttack_AnimTriggerName = "isNormal";
+    public const string _FirstPatternAttack_AnimTriggerName = "isFirst";
+    public const string _SecondPatternAttack_AnimTriggerName = "isSecond";
+    public const string _ThirdPatternAttack_AnimTriggerName = "isThird";
+    public const string _Dead_AnimTriggerName = "bossDead";
+    public const string _WormBurrow_AnimTriggerName = "wormBurrow";
 
     private void Awake()
     {
@@ -102,11 +104,29 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     public void Fire()
     {
-        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Poison");
-        if (particle != null)
+        if(_bossType == BossType.Worm)
         {
-            particle.transform.position = _shotpos.transform.position;
-            particle.transform.rotation = transform.rotation;
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Poison");
+            if (particle != null)
+            {
+                particle.transform.position = _shotpos.transform.position;
+                particle.transform.rotation = transform.rotation;
+            }
+        }
+        if (_bossType == BossType.Dragon)
+        {
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Meteor");
+            if (particle != null)
+            {
+                particle.transform.position = _detectedPlayer.transform.position;
+
+                for(int i = 0; i < 30; i++)
+                {
+                    RandomNumber();
+                    GameObject particle2 = GameManager.instance.particlePoolManager.GetParticle("Meteor2");
+                    particle2.transform.position = _rndPosition;
+                }
+            }
         }
     }
 
@@ -118,7 +138,6 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     public void SecondPatternAttack()
     {
         animator.SetTrigger(_SecondPatternAttack_AnimTriggerName);
-
     }
 
     public void ThirdPatternAttack()
@@ -151,19 +170,18 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     public bool IsInAttackRange(float distance)
     {
-        return distance < (__attackRange);
+        return distance <= (__attackRange);
     }
 
     public bool IsInPatternRange(float distance)
     {
-        return distance < (__patternRange);
+        return distance <= (__patternRange);
     }
 
     public bool CanAttack()
     {
         return _detectedPlayer != null && !_isDead;
     }
-
 
     public bool PlayerToBossDistance()
     {
@@ -183,6 +201,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         }
         return false;
     }
+
 
 
     protected void NormalCooldown(float deltaTime)
@@ -208,6 +227,47 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
             _secondCoolTime -= deltaTime; // ÄðÅ¸ÀÓ °¨¼Ò
         }
     }
+
+    public Vector3 RandomNumber()
+    {
+        float rndX = Random.Range(-9f, 9f);
+        float rndZ = Random.Range(-9f, 9f);
+
+        _rndPosition = new Vector3(_detectedPlayer.transform.position.x + rndX, _detectedPlayer.transform.position.y, _detectedPlayer.transform.position.x + rndZ);
+        return _rndPosition;
+    }
+
+    private IEnumerator SpawnParticles()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("CrashFire");
+            if (particle != null)
+            {
+                float rndY = Random.Range(0f, 180f);
+                particle.transform.position = _detectedPlayer.transform.position;
+                particle.transform.rotation = Quaternion.Euler(0, rndY, 0);
+            }
+
+            yield return new WaitForSeconds(0.5f); // Wait for 1 second before the next spawn
+        }
+    }
+
+    public void DragonGroundPattern()
+    {
+        StartCoroutine(SpawnParticles());
+    }
+
+    public void PatternStart()
+    {
+        _isAttacking = true;
+    }
+    public void PatternEnd()
+    {
+        _isAttacking = false;
+    }
+
+
 
     private void OnDrawGizmos()
     {
