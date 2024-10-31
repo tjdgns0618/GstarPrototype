@@ -51,6 +51,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private Coroutine dashCoroutine;
     private Coroutine dashCoolTimeCoroutine;
     private int currentDashCount;
+    private bool isMove = false;
     public static bool canMove = true;
     PlayerCharacter pi;
     GameManager gameManager;
@@ -59,6 +60,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public Image[] characterImages;
     public TextMeshProUGUI[] characterCooltimetexts;
+    public GameObject[] WarriorSkillIcons;
+    public GameObject[] ArcherSkillIcons;
+    public GameObject[] WizardSkillIcons;
 
     private void Start()
     {
@@ -102,6 +106,19 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.weaponObjects[0].SetActive(true);
                 player.weaponObjects[1].SetActive(false);
                 player.weaponObjects[2].SetActive(false);
+                foreach(var icon in WarriorSkillIcons)
+                {
+                    icon.SetActive(true);
+                }
+                foreach (var icon in ArcherSkillIcons)
+                {
+                    icon.SetActive(false);
+                }
+                foreach (var icon in WizardSkillIcons)
+                {
+                    icon.SetActive(false);
+                }
+
                 player.characterClass = CharacterType.Warrior;
                 player.animator.runtimeAnimatorController = player.classControllers[0];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[0];
@@ -120,6 +137,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.weaponObjects[0].SetActive(false);
                 player.weaponObjects[1].SetActive(true);
                 player.weaponObjects[2].SetActive(false);
+                foreach (var icon in WarriorSkillIcons)
+                {
+                    icon.SetActive(false);
+                }
+                foreach (var icon in ArcherSkillIcons)
+                {
+                    icon.SetActive(true);
+                }
+                foreach (var icon in WizardSkillIcons)
+                {
+                    icon.SetActive(false);
+                }
                 player.characterClass = CharacterType.Archer;                
                 player.animator.runtimeAnimatorController = player.classControllers[1];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[1];
@@ -138,6 +167,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.weaponObjects[0].SetActive(false);
                 player.weaponObjects[1].SetActive(false);
                 player.weaponObjects[2].SetActive(true);
+                foreach (var icon in WarriorSkillIcons)
+                {
+                    icon.SetActive(false);
+                }
+                foreach (var icon in ArcherSkillIcons)
+                {
+                    icon.SetActive(false);
+                }
+                foreach (var icon in WizardSkillIcons)
+                {
+                    icon.SetActive(true);
+                }
                 player.characterClass = CharacterType.Wizard;
                 player.animator.runtimeAnimatorController = player.classControllers[2];
                 player.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = player.classMesh[2];
@@ -356,6 +397,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         if (animationPlaySpeed < 0f) animationPlaySpeed = 0f;
 
         pi.animator.SetFloat("moveSpeed", animationPlaySpeed);
+
         #endregion
     }
 

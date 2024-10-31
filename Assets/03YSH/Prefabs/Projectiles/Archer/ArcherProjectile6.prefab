@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1168529248583268}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -984,7 +984,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1
+        scalar: 2
         minScalar: 0
         maxCurve:
           serializedVersion: 2
@@ -3860,7 +3860,7 @@ ParticleSystem:
     radiusScale: 0.0001
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 256
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4956,7 +4956,7 @@ AudioSource:
   m_GameObject: {fileID: 1168529248583268}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4830584997086789795, guid: 1d64cc5962419004aa7bade9e15906d8, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0f806d9f8ebdc0c4990726f6cdfae22e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5

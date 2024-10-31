@@ -34,7 +34,8 @@ public class PlayerCharacter : MonoBehaviour
     public RuntimeAnimatorController[] classControllers;
     [Header("Character WeaponObjects")]
     public GameObject[] weaponObjects;
-
+    [Header("Character AnimatorMask")]
+    public AvatarMask walkMask;
 
     private static PlayerCharacter instance;
 
