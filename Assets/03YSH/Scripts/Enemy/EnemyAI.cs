@@ -35,6 +35,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     Transform _detectedPlayer = null;
     Vector3 _originPos;
     Animator animator;
+    public float damage = 10;
     public bool isDead = false;
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
     const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
@@ -65,8 +66,24 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     private void OnEnable()
     {
         //GameManager.instance.dieDelegate += Test;
-        currentHp = maxHp;
+        damage = 10;
+        maxHp = 40;
         spawner = FindAnyObjectByType<spawner1>();
+
+        if (spawner.currentStage != 1)
+            currentHp = (maxHp * (spawner.currentStage + spawner.currentWave * 0.2f));
+        else
+            currentHp = maxHp;
+
+        if (spawner.currentStage != 1)
+        {
+            for (int i = 0; i < spawner.currentStage; i++)
+            {
+                damage *= 1.3f;
+                Mathf.Round(damage);
+            }
+        }
+
         isDead = false;
         gameObject.layer = 8;
         hitMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
@@ -345,6 +362,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Fire()
     {
         bullet.GetComponent<EnemyBullet>().targetname = "Player";
+        bullet.GetComponent<EnemyBullet>().damage = damage;
         GameObject temp = Instantiate(bullet, shotPosition.position, Quaternion.identity);
         temp.transform.forward = transform.forward;
         //temp.transform.Rotate(new Vector3(90f, transform.rotation.y, 0f));
