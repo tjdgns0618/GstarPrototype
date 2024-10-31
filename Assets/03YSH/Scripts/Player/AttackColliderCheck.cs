@@ -10,6 +10,7 @@ public class AttackColliderCheck : MonoBehaviour
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
         if (damageAble != null)
         {
+            Debug.Log(other.name);
             damageAble?.Damage(GameManager.instance._damage);
             GameManager.instance.enemyhitDelegate(other.gameObject);
             damageAble.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);

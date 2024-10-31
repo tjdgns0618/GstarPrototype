@@ -10326,6 +10326,7 @@ GameObject:
   - component: {fileID: 1126953504083964575}
   - component: {fileID: 8648709782821526233}
   - component: {fileID: 1208599546600721647}
+  - component: {fileID: 860066112599654478}
   m_Layer: 0
   m_Name: Polygonal Dragon Red
   m_TagString: Enemy
@@ -10388,6 +10389,10 @@ MonoBehaviour:
   _shotpos: {fileID: 6992260692238369637}
   _detectedPlayer: {fileID: 0}
   _breath: {fileID: 767750206272517480}
+  _head: {fileID: 2720751551991421189}
+  _meteorSound: {fileID: 8300000, guid: 1025af35f59d28141b65a268e6bacc24, type: 3}
+  _idleSound: {fileID: 8300000, guid: 84a778bf14feb08428c2da98bf241faf, type: 3}
+  _groundSound: {fileID: 8300000, guid: 9986a9c7429025942a2320c0849a375f, type: 3}
 --- !u!136 &1208599546600721647
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10411,6 +10416,33 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &860066112599654478
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728535632334919360}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1779351697250860800
 GameObject:
   m_ObjectHideFlags: 0
@@ -15773,6 +15805,100 @@ Transform:
   - {fileID: 777314598184900542}
   m_Father: {fileID: 5705048098566585646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2720751551991421189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4978004642944437880}
+  - component: {fileID: 8340806323046728641}
+  - component: {fileID: 4483938448789900229}
+  - component: {fileID: 5444713830361596865}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4978004642944437880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720751551991421189}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3210680811241892783}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8340806323046728641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720751551991421189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09fb5b2a7c6283e4a8c19c19a50c2e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4483938448789900229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720751551991421189}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &5444713830361596865
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720751551991421189}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2772567323810716492
 GameObject:
   m_ObjectHideFlags: 0
@@ -16003,8 +16129,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3210680811241892783}
-  - component: {fileID: 4921187475978775358}
-  - component: {fileID: 5408444452074540111}
   m_Layer: 0
   m_Name: RigHeadGizmo
   m_TagString: Untagged
@@ -16024,42 +16148,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.5455563, z: 1.5677156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4978004642944437880}
   m_Father: {fileID: 3263494713422286256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4921187475978775358
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3618057277836236791}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5408444452074540111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3618057277836236791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09fb5b2a7c6283e4a8c19c19a50c2e88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3627877173306611405
 GameObject:
   m_ObjectHideFlags: 0

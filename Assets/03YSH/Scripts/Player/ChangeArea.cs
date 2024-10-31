@@ -11,7 +11,7 @@ public class ChangeArea : MonoBehaviour
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
         if (damageAble != null && other.CompareTag(enemyTag))
         {
-            other.GetComponent<EnemyAI>().PlayKnockback(other.transform.forward * -1f, 0.4f, 5f);
+            other.GetComponent<EnemyAI>().PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.4f, 5f);
         }
     }
 }

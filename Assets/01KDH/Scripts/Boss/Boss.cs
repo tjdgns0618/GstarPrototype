@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -41,6 +42,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     Animator animator;
     spawner1 spawner;
+    DamageTextManager damagetextManager;
 
     public const string _NormalAttack_AnimTriggerName = "isNormal";
     public const string _FirstPatternAttack_AnimTriggerName = "isFirst";
@@ -53,6 +55,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     {
         _rigid = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        damagetextManager = FindAnyObjectByType<DamageTextManager>();
     }
 
     public virtual INode SettingBT()
@@ -151,7 +154,23 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     public void Damage(float damage)
     {
+        if (_isDead) return;
 
+        animator.SetTrigger("hit");
+        // hitSound.Play();
+        _hp -= damage;
+
+
+        Vector3 textPos = transform.position;
+        textPos.y += 1.5f;
+        damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damage, textPos, false);
+
+        Debug.Log(_hp);
+        if (_hp <= 0)
+        {
+            _hp = 0;
+            Dead();
+        }
     }
 
     public void Shot()

@@ -285,6 +285,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     public void PlayKnockback(Vector3 direction, float duration, float strength)
     {
+        if (this.gameObject.layer == 13)
+            return;
+
         StartCoroutine(Knockback(direction, duration, strength));
     }
 
@@ -350,9 +353,14 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     private void OnCollisionEnter(Collision collision)
     {
         IDamageAble<float> damageAble = collision.gameObject.GetComponent<IDamageAble<float>>();
+        if(this.gameObject.layer == 13)
+        {
+            return;
+        }
+
         if (damageAble != null && collision.gameObject.tag == "Player")
         {
-            damageAble.Damage(GameManager.instance._damage);
+            damageAble.Damage(damage);
         }
     }
 
