@@ -22,7 +22,7 @@ public class AutoPotion : MonoBehaviour         //자동 회복 시켜주는 스크립트
 
     private void Update()
     {
-        if (gm._hp <= HealthThreshold() && isAble)
+        if (CheckHealthThreshold() && isAble)
         {
             shopitem.ActivateItemAbility();
             recoveryCount--;
@@ -49,8 +49,15 @@ public class AutoPotion : MonoBehaviour         //자동 회복 시켜주는 스크립트
         activeFrame.SetActive(false);
     }
 
-    public float HealthThreshold() //피가 일정 수치가 되었는지 확인
+    public bool CheckHealthThreshold() //피가 일정 수치가 되었는지 확인
     {
-        return gm._maxhp * 0.01f * shopitem.recoveryThreshold;
+        if(shopitem != null)
+        {
+            if (gm._hp <= gm._maxhp * 0.01f * shopitem.recoveryThreshold)
+                return true;
+            else
+                return false;
+        }
+        return false;
     }
 }

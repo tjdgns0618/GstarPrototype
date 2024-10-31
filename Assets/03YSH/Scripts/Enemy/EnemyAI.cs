@@ -242,7 +242,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         if(isDead) return;
         
         animator.SetTrigger("hit");
-        hitSound.Play();
+        // hitSound.Play();
         currentHp -= damageTaken;
 
         StopCoroutine("hitMaterialChange");

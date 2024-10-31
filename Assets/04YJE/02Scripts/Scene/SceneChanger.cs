@@ -30,15 +30,8 @@ public class SceneChanger : MonoBehaviour
 
     public void LoadTutorialScene()
     {
-
-    }
-
-    IEnumerator _LoadMainScene()
-    {
-        yield return fadeTime;
-
-        SceneManager.LoadScene(1);
-        soundManager.PlayMusic(1, 2f);
+        fadeInOut.FadeOut();
+        StartCoroutine(_LoadTutorialScene());
     }
 
     IEnumerator _LoadTitleScene()
@@ -49,11 +42,22 @@ public class SceneChanger : MonoBehaviour
         Time.timeScale = 1.0f;
         soundManager.PlayMusic(0, 2f);
     }
-
     IEnumerator _LoadTutorialScene()
     {
         yield return fadeTime;
 
+        SceneManager.LoadScene(1);
+        soundManager.PlayMusic(1, 2f);
         //로드씬함수 호출
     }
+
+    IEnumerator _LoadMainScene()
+    {
+        yield return fadeTime;
+
+        SceneManager.LoadScene(2);
+        soundManager.PlayMusic(1, 2f);
+    }
+
+
 }
