@@ -39,7 +39,7 @@ public class WarriorCrackSkill2 : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             damageable?.Damage(GameManager.instance._damage * damagePercentage);
-
+            damageable?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
             var instance = GameManager.instance.particlePoolManager.GetParticle("Yellow Flash");
             instance.transform.position = other.transform.position;
             if (!UseWorldSpacePosition) instance.transform.parent = transform;

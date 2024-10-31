@@ -66,7 +66,7 @@ public class ActiveItem : MonoBehaviour
         }
     }
 
-    public void _04Item(Transform transform)   // 적 피격 시 지뢰 설치
+    public void _04Item(GameObject target)   // 적 피격 시 지뢰 설치
     {
         if (GetHitRandom(32))
         {
@@ -148,7 +148,7 @@ public class ActiveItem : MonoBehaviour
             chainLightning.UseItem();
         }
     }
-    public void _14Item(Transform transform)   //  공격 시 범위 피격
+    public void _14Item(GameObject target)   //  공격 시 블레이드를 몸에 심음
     {
         // if (GetAttackRandom(42))
         Debug.Log("14번 아이템");
@@ -156,7 +156,7 @@ public class ActiveItem : MonoBehaviour
             GameObject particle = gm.particlePoolManager.GetParticle("BladeStorm");
             if (particle != null)
             {
-                particle.transform.SetParent(transform);
+                particle.GetComponent<BladeStorm>().target = target;
                 particle.transform.localPosition = Vector3.zero;
             }
         }

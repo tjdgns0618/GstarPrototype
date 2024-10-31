@@ -217,4 +217,9 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         Gizmos.DrawWireSphere(this.transform.position, _patternRange);
     }
     public abstract INode.ENodeState EvaluatePatterns();
+
+    public void PlayKnockback(Vector3 direction, float knockbackPower, float knockbackDuration)
+    {
+
+    }
 }

@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     public delegate void PlayerHitDelegate(Transform transform);    // 플레이어가 피격당할 때 사용되는 아이템
     public PlayerHitDelegate playerhitDelegate;
 
-    public delegate void EnemyHitDelegate(Transform transform);   // 적이 피격당할 때 사용되는 아이템
+    public delegate void EnemyHitDelegate(GameObject target);   // 적이 피격당할 때 사용되는 아이템
     public EnemyHitDelegate enemyhitDelegate;
 
     public delegate void DieDelegate(Transform transform);   // 적이 사망할 때 사용되는 아이템
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         //activeDelegate += Test2;
         playerhitDelegate += Test;
         playerattackDelegate += Test2;
-        enemyhitDelegate += Test;
+        enemyhitDelegate += Test3;
         dieDelegate += Test;
         timeactiveDelegate += Test2;
     }
@@ -107,7 +107,10 @@ public class GameManager : MonoBehaviour
     {
         return;
     }
-
+    void Test3(GameObject target)
+    {
+        return;
+    }
 
     public int FindItemCount(int id)
     {

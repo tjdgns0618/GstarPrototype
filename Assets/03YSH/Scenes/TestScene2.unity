@@ -3350,7 +3350,7 @@ MonoBehaviour:
   waveCountText: {fileID: 6476767945889163270}
   spawnRadius: 10
   minDistancefromPlayer: 5
-  firstWaveEnemy: 5
+  firstWaveEnemy: 10
   spawnInterval: 3
   waveInterval: 1
   maxWaves: 5
@@ -11825,11 +11825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4047415224661216195, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
       propertyPath: m_Size.z
-      value: 2
+      value: 2.5949306
       objectReference: {fileID: 0}
     - target: {fileID: 4047415224661216195, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
       propertyPath: m_Center.z
-      value: 0
+      value: 0.29746532
       objectReference: {fileID: 0}
     - target: {fileID: 6574374890407462785, guid: e30d9e479f1ea0148b201e0faeed160d, type: 3}
       propertyPath: canChange
@@ -15918,7 +15918,7 @@ MonoBehaviour:
   - {fileID: 1168065043843762, guid: 2581bb28cefdab44f87c96d3cee21e43, type: 3}
   - {fileID: 1878987882032996, guid: a1ef11747ecf6c044a1603cc0c3b5695, type: 3}
   - {fileID: 1427661989262336, guid: cdf344f8a6d4401498262decc685d7aa, type: 3}
-  - {fileID: 1481587283673810, guid: 7fc5b4fd0c6b1dc4ca03c3b557b67fac, type: 3}
+  - {fileID: 1481587283673810, guid: f5dd7d7affdbcd840b224e66635befac, type: 3}
   - {fileID: 1764308443362498, guid: 2d9c2ec146aad5e418e28ed1df9fa848, type: 3}
   - {fileID: 1168529248583268, guid: 0a50bf355d2e3b243b660c2b82b6498a, type: 3}
   - {fileID: 3244775856695447552, guid: 479d619b6cff5c543aa58b80990c6e57, type: 3}
@@ -15932,7 +15932,7 @@ MonoBehaviour:
   - {fileID: 1819066416490906, guid: ee0e16978f587694d87a0d6d4427f365, type: 3}
   - {fileID: 1107296871017770, guid: b70f87c202c52124a9cd19e4ddcec309, type: 3}
   - {fileID: 1233043069084803275, guid: 8b9afae0d5358254ebd17b21cf6b9961, type: 3}
-  - {fileID: 1878987882032996, guid: cd9fb464b769aa744a01229307e70836, type: 3}
+  - {fileID: 1217668729914568, guid: da9ece9bfded655498b016b9fa7a453c, type: 3}
   - {fileID: 1481932562201786, guid: e7c86389cc709824f93bee6e9cb56caf, type: 3}
   - {fileID: 1648509489993130, guid: a0eae450517716a43b858bdd3f03a3ae, type: 3}
   - {fileID: 1606962605102688511, guid: 8863e840df49d6146ae455369c2e3314, type: 3}
@@ -28108,25 +28108,9 @@ MonoBehaviour:
   - {fileID: 495214254}
   - {fileID: 1932497752}
   allItems:
-  - {fileID: 11400000, guid: 567676a4780f97f438b1bd85d105d1b1, type: 2}
-  - {fileID: 11400000, guid: cd6ac6ba73418b04db25313074dbb293, type: 2}
-  - {fileID: 11400000, guid: 3c0a6ddfb94fde24bae534af7cb829f7, type: 2}
-  - {fileID: 11400000, guid: 3865ae54a5658a34ca4fcf42a351b593, type: 2}
-  - {fileID: 11400000, guid: 1576955dd1e17a943880e2afa4187d4d, type: 2}
-  - {fileID: 11400000, guid: 14f5763ea3ce52249af4dc889c050cb8, type: 2}
-  - {fileID: 11400000, guid: 906b4e965dc93ce4cb5707dc4cc54ff4, type: 2}
-  - {fileID: 11400000, guid: 41ad69b12a4ba264a93dbf03de2cc7ed, type: 2}
-  - {fileID: 11400000, guid: db228415e5f83e94bb26e735dc650276, type: 2}
-  - {fileID: 11400000, guid: f3ee24384384e2144a6062a3313823e3, type: 2}
-  - {fileID: 11400000, guid: e251faeb70a50f14390d259236bd4c58, type: 2}
-  - {fileID: 11400000, guid: 884c8a3bb573cdb4aba86ba8aefdf698, type: 2}
-  - {fileID: 11400000, guid: fec367c0c2e3b88499a37193221fd593, type: 2}
-  - {fileID: 11400000, guid: d9a9c597aaea9894fbc381d9edc1582a, type: 2}
-  - {fileID: 11400000, guid: 2a9befc2aec89df4abd6d1e9727bae36, type: 2}
-  - {fileID: 11400000, guid: 30712034fc8fdce42a6367b601626601, type: 2}
-  - {fileID: 11400000, guid: c89d79594acf9a04aa8cdb6f03fe710c, type: 2}
   - {fileID: 11400000, guid: ffe47164087c8264d9699af947e69455, type: 2}
   - {fileID: 11400000, guid: 4b5cacdf04e738b4a9bca2b1f42e969e, type: 2}
+  - {fileID: 11400000, guid: 567676a4780f97f438b1bd85d105d1b1, type: 2}
 --- !u!114 &3541861247488651933
 MonoBehaviour:
   m_ObjectHideFlags: 0

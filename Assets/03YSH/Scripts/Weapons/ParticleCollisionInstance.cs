@@ -10,14 +10,17 @@ public class ParticleCollisionInstance : MonoBehaviour
     public float DestroyTimeDelay = 5;
     public bool UseWorldSpacePosition;
     public float Offset = 0;
+    public Vector3 transformOffset = new Vector3(0,0,0);
     public Vector3 rotationOffset = new Vector3(0,0,0);
     public bool useOnlyRotationOffset = true;
     public bool UseFirePointRotation;
     public bool DestoyMainEffect = true;
+    public bool rotationZero = false;
     private ParticleSystem part;
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
     private ParticleSystem ps;
     public float damageMultiplier = 1;
+
 
     void Start()
     {
@@ -46,7 +49,7 @@ public class ParticleCollisionInstance : MonoBehaviour
             {
                 foreach (var effect in EffectsOnCollision)
                 {
-                    var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset, Quaternion.identity) as GameObject;
+                    var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset + transformOffset, Quaternion.identity) as GameObject;
                     if (!UseWorldSpacePosition) instance.transform.parent = transform;
                     if (UseFirePointRotation) { instance.transform.LookAt(transform.position); }
                     else if (rotationOffset != Vector3.zero && useOnlyRotationOffset) { instance.transform.rotation = Quaternion.Euler(rotationOffset); }
@@ -54,6 +57,10 @@ public class ParticleCollisionInstance : MonoBehaviour
                     {
                         instance.transform.LookAt(collisionEvents[i].intersection + collisionEvents[i].normal);
                         instance.transform.rotation *= Quaternion.Euler(rotationOffset);
+                    }
+                    if (rotationZero)
+                    {
+                        instance.transform.rotation = Quaternion.Euler(Vector3.zero);
                     }
                 }
             }

@@ -149,7 +149,9 @@ public class PlayerAttack : BaseWeapon, IEffect
             effect = gi.particlePoolManager.GetParticle(hashWarriorAttackEffect + skillType);
             effect.transform.rotation = pi.transform.rotation;
             effect.transform.position = pi.firePoint.transform.position;
-            if (skillType == 5)
+            if (skillType == 4)
+                effect.transform.position += (Vector3.up * 1f);
+            else if (skillType == 5)
                 effect.transform.position -= (Vector3.up * 1f) + (pi.transform.forward * -1f);
         }
         if (pi.characterClass == CharacterType.Archer)

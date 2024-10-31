@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 
-public class WarriorSkillTriggerCheck : MonoBehaviour
+public class WarriorSkillQ : MonoBehaviour
 {
-    [SerializeField]private float speed = 20.0f;
-
-    private void Update()
+    SphereCollider sphereCollider;
+    private void OnEnable()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.enabled = true;
+        transform.localPosition = Vector3.zero;
+    }
+
+    void Update()
+    {
+        transform.Translate(Vector3.forward * Time.deltaTime * 10f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,7 +22,7 @@ public class WarriorSkillTriggerCheck : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
-            damageAble?.Damage(GameManager.instance._damage * 2F);
+            damageAble?.Damage(GameManager.instance._damage * 1f);
             damageAble?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
         }
     }

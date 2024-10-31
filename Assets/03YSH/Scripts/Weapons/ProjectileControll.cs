@@ -36,6 +36,7 @@ public class ProjectileControll : MonoBehaviour
         {
             Debug.LogWarning(other.name);
             damageable?.Damage(GameManager.instance._damage);
+            damageable?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
             GameObject instance = Instantiate(EffectsOnCollision, other.transform.position, Quaternion.identity);
             GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
             
