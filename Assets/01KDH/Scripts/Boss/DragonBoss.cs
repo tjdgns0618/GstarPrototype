@@ -75,9 +75,23 @@ public class DragonBoss : Boss
     }
 
 
-    public override INode.ENodeState EvaluatePatterns()
+
+    #region Attack Node
+    INode.ENodeState CheckPlayerWithinCoolTime()
     {
         if (CanAttack())
+        {
+            if (_normalCoolTime <= 0f || _firstCoolTime <= 0f || _secondCoolTime <= 0f || _patternCount >= 4f)
+            {
+                return INode.ENodeState.ENS_Success; // 공격 가능
+            }
+        }
+        return INode.ENodeState.ENS_Failure;
+    }
+
+    public override INode.ENodeState EvaluatePatterns()
+    {
+        if (CanAttack()&& !_isAttacking)
         {
             if (CheckPlayerWithinCoolTime() == INode.ENodeState.ENS_Success)
             {
@@ -92,7 +106,7 @@ public class DragonBoss : Boss
                         if (_firstCoolTime <= 0f)
                             return DoFirstPattern();
                         if (_secondCoolTime <= 0f && _firstCoolTime > 0f)
-                        return DoSecondPattern();
+                            return DoSecondPattern();
                     }
                     if (_patternCount >= 4f)
                         return DoThirdPattern();
@@ -101,19 +115,6 @@ public class DragonBoss : Boss
         return INode.ENodeState.ENS_Failure;
     }
 
-
-    #region Attack Node
-    INode.ENodeState CheckPlayerWithinCoolTime()
-    {
-        if (CanAttack())
-        {
-            if (_normalCoolTime <= 0f || _firstCoolTime <= 0f || _secondCoolTime <= 0f || _patternCount >= 4f)
-            {
-                return INode.ENodeState.ENS_Success; // 공격 가능
-            }
-        }
-        return INode.ENodeState.ENS_Failure;
-    }
 
     public INode.ENodeState DoNormalAttack()
     {

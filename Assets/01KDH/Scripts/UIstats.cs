@@ -14,9 +14,6 @@ public class UIstats : MonoBehaviour
     public TextMeshProUGUI critchanceT;
     public TextMeshProUGUI critdmgT;
     public TextMeshProUGUI regenhpT;
-    public TextMeshProUGUI dashcountT;
-    public TextMeshProUGUI skillcountT;
-    public TextMeshProUGUI ultcountT;
 
     void Update()
     {
@@ -29,8 +26,5 @@ public class UIstats : MonoBehaviour
         critchanceT.text = GameManager.instance._critchance.ToString() + "%";
         critdmgT.text = GameManager.instance._critdmg.ToString() + "%";
         regenhpT.text = GameManager.instance._lifegen.ToString();
-        dashcountT.text = "최대 " + GameManager.instance._dashcount.ToString()+"회";
-        skillcountT.text = "최대 " + GameManager.instance._skillcount.ToString() + "회";
-        ultcountT.text = "최대 " + GameManager.instance._ultcount.ToString() + "회";
     }
 }

@@ -2485,7 +2485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4205835698289562
 Transform:
   m_ObjectHideFlags: 0
@@ -2650,6 +2650,7 @@ MonoBehaviour:
   enemyAttack: {fileID: 7020532898957201498}
   bullet: {fileID: 1481244868773408, guid: ff231465c08761e46991539bf38105b4, type: 3}
   shotPosition: {fileID: 7657947939584649653}
+  damage: 10
   isDead: 0
 --- !u!1 &1698306973309258
 GameObject:

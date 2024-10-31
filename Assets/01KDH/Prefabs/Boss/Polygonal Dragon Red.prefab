@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 37902177673299064}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigNeck5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1660723447177047946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingRing2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6851411636979224727}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigSpine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6231272593913651389}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRFrontLegFoot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7629258318769871785}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7019562057968911156}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigSpine4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7146470028947642136}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8106909167509938558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingIndex2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5160076272960744709}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingIndex1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 840169878920325517}
   - component: {fileID: 3876090774954104484}
   - component: {fileID: 3619482236106749729}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5063,7 +5063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6992260692238369637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5095,7 +5095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6644576734094060549}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5128,7 +5128,8 @@ GameObject:
   - component: {fileID: 2035559610536078055}
   - component: {fileID: 7491362039750620150}
   - component: {fileID: 7883263142931136726}
-  m_Layer: 0
+  - component: {fileID: 7199492624150903783}
+  m_Layer: 8
   m_Name: Flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9963,6 +9964,102 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!82 &7199492624150903783
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767750206272517480}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 4830584997086789795, guid: 1d64cc5962419004aa7bade9e15906d8, type: 2}
+  m_audioClip: {fileID: 8300000, guid: f02c5aea04dd72d469e48a58ca73045e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &833764232462504034
 GameObject:
   m_ObjectHideFlags: 0
@@ -9972,7 +10069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 265168931653292199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWing2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10003,7 +10100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3660438838344533095}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingPinky2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10034,7 +10131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3263494713422286256}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10110,7 +10207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 285433010091874730}
   - component: {fileID: 5598784351069545802}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Polygonal Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10261,7 +10358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6023590336036543107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingIndex1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10292,7 +10389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6290945458605863049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWing2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10324,10 +10421,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5292027531954792255}
   - component: {fileID: 1126953504083964575}
+  - component: {fileID: 1890260384474396488}
   - component: {fileID: 8648709782821526233}
   - component: {fileID: 1208599546600721647}
   - component: {fileID: 860066112599654478}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Polygonal Dragon Red
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -10373,6 +10471,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &1890260384474396488
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728535632334919360}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 4830584997086789795, guid: 1d64cc5962419004aa7bade9e15906d8, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &8648709782821526233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10452,7 +10646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6349584330411824148}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRBackLegFoot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10483,7 +10677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9093141467793685462}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRibcage001Bone001Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10514,7 +10708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4717603716458445761}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10546,7 +10740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5705048098566585646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLFrontLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10578,7 +10772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8586436733739646119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRFrontLegFoot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10609,7 +10803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3605625000198076384}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLBackLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10641,7 +10835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8804468929157583626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingThumb2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10674,7 +10868,7 @@ GameObject:
   - component: {fileID: 842895454716671179}
   - component: {fileID: 665838687118587800}
   - component: {fileID: 594554926154591905}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire_glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15523,7 +15717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7521879998510568844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15555,7 +15749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5823079110624297105}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRBackLegFoot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15587,7 +15781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2252665382130742121}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15619,7 +15813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3701335700099430502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingPinky1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15650,7 +15844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1233524752635963754}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigNeck3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15682,7 +15876,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7561266061923296000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15714,7 +15908,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8363796171803804856}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRBackLeg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15746,7 +15940,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491689182242003238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRibcage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15782,7 +15976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016051059859607773}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLFrontLeg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15817,13 +16011,14 @@ GameObject:
   - component: {fileID: 8340806323046728641}
   - component: {fileID: 4483938448789900229}
   - component: {fileID: 5444713830361596865}
-  m_Layer: 0
+  - component: {fileID: 6052417074624071906}
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4978004642944437880
 Transform:
   m_ObjectHideFlags: 0
@@ -15866,7 +16061,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -15899,6 +16094,102 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!82 &6052417074624071906
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2720751551991421189}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 4830584997086789795, guid: 1d64cc5962419004aa7bade9e15906d8, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 543d8e553dc0dfe45b08678ebbf8109f, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2772567323810716492
 GameObject:
   m_ObjectHideFlags: 0
@@ -15908,7 +16199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3952128745105103630}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail4Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15939,7 +16230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7499475092596712418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRBackLegAnkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15971,7 +16262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 948158001820974057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRFrontLegAnkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16003,7 +16294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5498321542639367633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLBackLeg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16035,7 +16326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8164354463414162772}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRFrontLeg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16067,7 +16358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5675020141944023971}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingPinky2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16098,7 +16389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5279467494581775864}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingRing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16129,7 +16420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3210680811241892783}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigHeadGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16161,7 +16452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2880638733323244154}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingPalmGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16192,7 +16483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3911128671754279105}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16223,7 +16514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6486431663725227394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16255,7 +16546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1207604875267434041}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRibcageGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16286,7 +16577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7405173584941188162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16318,7 +16609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4998797133127974811}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRibcage001Bone001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16349,7 +16640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9098596826913408579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16381,7 +16672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3218194169153118384}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail7Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16412,7 +16703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7324685534096965954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLFrontLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16443,7 +16734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5892849516566814194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16474,7 +16765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1041612163488342265}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16505,7 +16796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1920435408278836059}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingThumb1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16536,7 +16827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3462798400844002551}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16568,7 +16859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6758104266653484881}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLBackLegFoot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16601,7 +16892,7 @@ GameObject:
   - component: {fileID: 1145493670362495255}
   - component: {fileID: 2114414514117483401}
   - component: {fileID: 7368708835833534203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sparkles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21396,7 +21687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8382263985130651801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21427,7 +21718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9095980276034159355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail9Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21458,7 +21749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5044065204856482882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21489,7 +21780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1607992989770863560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingRing2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21520,7 +21811,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5754237405086120702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigPelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21555,7 +21846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8604053142236818213}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigNeck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21587,7 +21878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8002855076677178546}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLFrontLegFoot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21619,7 +21910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8504670941183172587}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRFrontLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21650,7 +21941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3652615833173490290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingRing1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21681,7 +21972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 596235944134157940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21712,7 +22003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6700213200660851217}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigNeck2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21744,7 +22035,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 653363817920365453}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingRing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21776,7 +22067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7435012910913133862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21808,7 +22099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1573831296902380604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21840,7 +22131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4347264618101818281}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingIndex2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21871,7 +22162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7778222436158805745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWing1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21902,7 +22193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8246244389134961638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRFrontLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21934,7 +22225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6307461093874328349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21966,7 +22257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3726543556397508356}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLBackLegAnkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21998,7 +22289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2065371469513962718}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22030,7 +22321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5705306327318479030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingRing1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22061,7 +22352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3076516489803007174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail3Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22092,7 +22383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3063778744978601509}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigNeck6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22124,7 +22415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3934576616878045671}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingPalmGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22155,7 +22446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 184252970533830619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigNeck4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22187,7 +22478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 301232318485086792}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigSpine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22219,7 +22510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8831502518816681022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail8Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22250,7 +22541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6377127862371559112}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail6Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22281,7 +22572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9221830039956032483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWing1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22312,7 +22603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407801370902163260}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingPinky2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22343,7 +22634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 777314598184900542}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLFrontLegAnkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22375,7 +22666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2511505061383763618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigPelvisGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22406,7 +22697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7207241328049734409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRBackLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22437,7 +22728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3492423131234900293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRBackLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22469,7 +22760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3217980265181036127}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigSpine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22501,7 +22792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4762954975392428520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLBackLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22532,7 +22823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1792669396776525996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail10Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22563,7 +22854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 419764888176435989}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22598,7 +22889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8710340772020276998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22630,7 +22921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1783361317233421169}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22662,7 +22953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8480361574886420712}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingThumb1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22693,7 +22984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3463229877457630424}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22725,7 +23016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3172507112065252621}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail5Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22756,7 +23047,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5779707728796716068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22788,7 +23079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3679480396999164556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLBackLegFoot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22820,7 +23111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4872206734732185808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22852,7 +23143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5465338905859038580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail12Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22883,7 +23174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3278037770447621970}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22915,7 +23206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3341297044695124296}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLFrontLegFoot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22946,7 +23237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9151266248161236221}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22978,7 +23269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8286115032030916766}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23010,7 +23301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5574010883698096777}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingPinky1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23042,7 +23333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1099288426158545175}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23073,7 +23364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4001771157412591627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingThumb2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23109,7 +23400,7 @@ GameObject:
   - component: {fileID: 2441657412382250867}
   - component: {fileID: 2084531497465806594}
   - component: {fileID: 8091654181990174766}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27935,7 +28226,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -27962,7 +28253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4219137776753327530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27994,7 +28285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997103121948406173}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigLWingPinky1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28025,7 +28316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8614151400911973493}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigRWingPalm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28060,7 +28351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6706951301548292834}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail11Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28091,7 +28382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5847388901755473612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RigTail2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

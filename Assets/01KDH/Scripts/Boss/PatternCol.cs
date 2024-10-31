@@ -1,15 +1,35 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PatternCol : MonoBehaviour
 {
-    private void OnCollisionStay(Collision collision)
+    private bool isIn = false;
+    private IDamageAble<float> player;
+
+    private void Update()
     {
-        if(collision.collider.gameObject.CompareTag("Player"))
+        if (isIn)
         {
-            var component = collision.collider.gameObject.GetComponent<IDamageAble<float>>();
-            component.Damage(GameManager.instance._maxhp * 0.02f);
+            player.Damage(GameManager.instance._maxhp * 0.02f);
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isIn = true;
+            player = other.GetComponent<IDamageAble<float>>();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isIn = false;
         }
     }
 }

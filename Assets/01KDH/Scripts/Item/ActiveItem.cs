@@ -84,8 +84,6 @@ public class ActiveItem : MonoBehaviour
 
     public void _06Item()   // 공격 시 미사일 발사
     {
-        if (GetHitRandom34(34))
-        {
             if (spawner.enemies.Count > 0)
             {
                 GameObject particle = gm.particlePoolManager.GetParticle("MissileUp");
@@ -96,7 +94,6 @@ public class ActiveItem : MonoBehaviour
                      particle2.transform.position = spawner.enemies[Random.Range(0, spawner.enemies.Count)].transform.position;
                  }
             }
-        }
     }
 
     public void _07Item(Transform transform)   // 플레이어 피격 시 랜덤 효과 발동

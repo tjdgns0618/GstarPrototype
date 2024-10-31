@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public EnemyPoolManager enemyPoolManager;
     public ItemPoolManager itempools;
     public CooltimeManager cooltimeManager;
+    public spawner1 spawner;
 
     public TMP_Text txt_gold;
 

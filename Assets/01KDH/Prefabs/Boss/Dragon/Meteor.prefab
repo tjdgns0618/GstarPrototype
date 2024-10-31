@@ -68452,6 +68452,7 @@ GameObject:
   - component: {fileID: 2342718393313268445}
   - component: {fileID: 30858016122557036}
   - component: {fileID: 8773433239210244627}
+  - component: {fileID: 1494006778443969565}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Untagged
@@ -68499,7 +68500,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -73393,10 +73394,10 @@ AudioSource:
   m_GameObject: {fileID: 6097680461774031693}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4830584997086789795, guid: 1d64cc5962419004aa7bade9e15906d8, type: 2}
   m_audioClip: {fileID: 8300000, guid: 640497f2589cc26499ee347fa4ec86ca, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.387
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -73480,6 +73481,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1494006778443969565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6097680461774031693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce996bfd8f48444ea7d4c5695c80b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7152949768894967952
 GameObject:
   m_ObjectHideFlags: 0
@@ -78391,8 +78404,6 @@ GameObject:
   - component: {fileID: 3868946851360787722}
   - component: {fileID: 2939694990058850114}
   - component: {fileID: 1256429733078004373}
-  - component: {fileID: 81025476983069280}
-  - component: {fileID: 8162554270448090258}
   m_Layer: 0
   m_Name: CraterGlow
   m_TagString: Untagged
@@ -83300,39 +83311,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &81025476983069280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7321988246606038545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c335febc4c33ad744aaf00b81509ab70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &8162554270448090258
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7321988246606038545}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.4, y: 1, z: 3.4}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7441421434858909202
 GameObject:
   m_ObjectHideFlags: 0

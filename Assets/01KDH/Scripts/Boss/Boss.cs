@@ -180,8 +180,11 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     public void Dead()
     {
+        this.gameObject.layer = 7;
         _isDead = true;
         animator.SetTrigger(_Dead_AnimTriggerName);
+        GameManager.instance.spawner.enemies.Remove(this.gameObject);
+        GameManager.instance.spawner.enemyDead();
     }
 
     public void UnBorrow()

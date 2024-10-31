@@ -8,6 +8,7 @@ public class ProjectileControll : MonoBehaviour
     public string targetname;
     public GameObject EffectsOnCollision;
     public float DestroyTimeDelay;
+    public float damagePercentage = 1;
 
     //private void OnEnable()
     //{
@@ -35,11 +36,10 @@ public class ProjectileControll : MonoBehaviour
         if (other.tag == targetname)
         {
             Debug.LogWarning(other.name);
-            damageable?.Damage(GameManager.instance._damage);
+            damageable?.Damage(GameManager.instance._damage * damagePercentage);
             damageable?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
             GameObject instance = Instantiate(EffectsOnCollision, other.transform.position, Quaternion.identity);
-            GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
-            
+            // GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);            
         }
     }
 }
