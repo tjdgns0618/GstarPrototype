@@ -212,6 +212,7 @@ public class spawner1 : MonoBehaviour
             Vector3 bossSpawnPosition = GetRandomPosition();
             GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
+            enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
         }
         else if (currentStage == 2 && currentWave == 2)
@@ -219,6 +220,7 @@ public class spawner1 : MonoBehaviour
             Vector3 bossSpawnPosition = GetRandomPosition();
             GameObject boss = Instantiate(bossPrefab2, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
+            enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
         }
     }
