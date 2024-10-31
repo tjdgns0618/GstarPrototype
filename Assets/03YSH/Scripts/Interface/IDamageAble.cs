@@ -6,4 +6,6 @@ public interface IDamageAble<T> {
     void Dead();
     void Attack();
     void Shot();
+
+    void PlayKnockback(UnityEngine.Vector3 direction, float knockbackPower, float knockbackDuration);
 }

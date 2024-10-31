@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class AttackColliderCheck : MonoBehaviour
 {
-    private void Start()
-    {
-        // PlayerCharacter.Instance.weaponManager.Weapon.ItemChance += test1;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
@@ -17,13 +12,8 @@ public class AttackColliderCheck : MonoBehaviour
         {
             damageAble?.Damage(GameManager.instance._damage);
             GameManager.instance.enemyhitDelegate(other.gameObject);
-            // PlayerCharacter.Instance.weaponManager.Weapon.ItemChance();
+            damageAble.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
         }
-    }
-
-    public void test1()
-    {
-        Debug.Log("1");
     }
 
 }

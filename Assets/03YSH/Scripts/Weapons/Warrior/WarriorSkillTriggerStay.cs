@@ -16,7 +16,7 @@ public class WarriorSkillTriggerStay : MonoBehaviour
 
     private void Update()
     {
-        transform.position = PlayerCharacter.Instance.transform.position + Vector3.up * 1f;
+        transform.position = PlayerCharacter.Instance.transform.position + Vector3.up * 2f;
         transform.localScale = new Vector3(3, 1, 3);
 
         hitTimer += Time.deltaTime;
@@ -26,6 +26,7 @@ public class WarriorSkillTriggerStay : MonoBehaviour
             for (int i = 0; i < insideEnemies.Count; i++)
             {
                 insideEnemies[i]?.GetComponent<IDamageAble<float>>().Damage(GameManager.instance._damage * 0.2f);
+                insideEnemies[i]?.GetComponent<IDamageAble<float>>().PlayKnockback(insideEnemies[i].transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
             }
             hitTimer = 0;
         }

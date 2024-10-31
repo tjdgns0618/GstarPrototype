@@ -452,4 +452,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
 
     }
+
+    public void PlayKnockback(Vector3 direction, float knockbackPower, float knockbackDuration)
+    {
+
+    }
 }
