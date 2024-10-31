@@ -68,6 +68,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         //GameManager.instance.dieDelegate += Test;
         damage = 10;
         maxHp = 40;
+        currentHp = maxHp;
         spawner = FindAnyObjectByType<spawner1>();
 
         if (spawner.currentStage != 1)
@@ -257,6 +258,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         if(isDead) return;
         
         animator.SetTrigger("hit");
+        hitSound.Play();
         currentHp -= damageTaken;
 
         StopCoroutine("hitMaterialChange");

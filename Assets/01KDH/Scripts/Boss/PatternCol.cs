@@ -8,7 +8,6 @@ public class PatternCol : MonoBehaviour
     {
         if(collision.collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log("abbbababababababababa");
             var component = collision.collider.gameObject.GetComponent<IDamageAble<float>>();
             component.Damage(GameManager.instance._maxhp * 0.02f);
         }
