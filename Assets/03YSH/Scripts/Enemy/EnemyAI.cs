@@ -69,21 +69,21 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         damage = 10;
         maxHp = 40;
         currentHp = maxHp;
-        spawner = FindAnyObjectByType<spawner1>();
 
-        if (spawner.currentStage != 1)
-            currentHp = (maxHp * (spawner.currentStage + spawner.currentWave * 0.2f));
+        if (GameManager.instance.spawner.currentStage != 1)
+            currentHp = (maxHp * (GameManager.instance.spawner.currentStage + GameManager.instance.spawner.currentWave * 0.2f));
         else
             currentHp = maxHp;
 
-        if (spawner.currentStage != 1)
+        if (GameManager.instance.spawner.currentStage != 1)
         {
-            for (int i = 0; i < spawner.currentStage; i++)
+            for (int i = 0; i < GameManager.instance.spawner.currentStage; i++)
             {
                 damage *= 1.3f;
                 Mathf.Round(damage);
             }
         }
+
 
         isDead = false;
         gameObject.layer = 8;
@@ -325,8 +325,8 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         gameObject.layer = 7;
 
         Invoke("InActiveEnemy", 3f);
-        spawner.enemies.Remove(this.gameObject);
-        spawner.enemyDead();           // 스포너에 적 사망시 호출 함수        
+        GameManager.instance.spawner.enemies.Remove(this.gameObject);
+        GameManager.instance.spawner.enemyDead();           // 스포너에 적 사망시 호출 함수        
     }
 
     public void InActiveEnemy()

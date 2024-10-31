@@ -226,4 +226,10 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         uiAnim.SetTrigger("isOnTrigger");
     }
 
+    public void GoldRewardGet()
+    {
+        GameManager.instance._gold += 10000;
+    }
+
+
 }

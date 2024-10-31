@@ -5534,7 +5534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4427419308633302
 Transform:
   m_ObjectHideFlags: 0
@@ -5650,6 +5650,7 @@ MonoBehaviour:
   enemyAttack: {fileID: 6349498154092349840}
   bullet: {fileID: 0}
   shotPosition: {fileID: 0}
+  damage: 10
   isDead: 0
 --- !u!1 &1812846230441316
 GameObject:
