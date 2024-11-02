@@ -129,8 +129,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                GameManager.instance.isHit = false;
                 StartCoroutine(changeCooltime());
                 StartCoroutine(realChangeCool());
+                
             }
             if (context.control.name == "2" && player.characterClass != CharacterType.Archer)
             {
@@ -159,6 +161,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                GameManager.instance.isHit = false;
                 StartCoroutine(changeCooltime());
                 StartCoroutine(realChangeCool());
             }
@@ -189,6 +192,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                GameManager.instance.isHit = false;
                 StartCoroutine(changeCooltime());
                 StartCoroutine(realChangeCool());
             }
