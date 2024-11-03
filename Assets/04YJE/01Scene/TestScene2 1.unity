@@ -3307,6 +3307,7 @@ MonoBehaviour:
   waveClear: {fileID: 1940945366}
   stageClear: {fileID: 326430266}
   bossPrefab: {fileID: 1317515324939390, guid: d49b84b73c7023447b852e15196ce96f, type: 3}
+  bossPrefab2: {fileID: 0}
   waveInfoText: {fileID: 8335460949734507039}
   stageInfoText: {fileID: 3923033488069134938}
   waveCountText: {fileID: 6476767945889163270}
@@ -3317,6 +3318,7 @@ MonoBehaviour:
   waveInterval: 1
   maxWaves: 5
   currentWave: 0
+  initialStage: 0
   currentStage: 1
   totalEnemiesInWave: 0
   enemyNames:
@@ -8605,6 +8607,7 @@ MonoBehaviour:
   enemyPoolManager: {fileID: 1737429637}
   itempools: {fileID: 98979236}
   cooltimeManager: {fileID: 0}
+  spawner: {fileID: 0}
   txt_gold: {fileID: 7631177499464440033}
   _maxhp: 500
   _hp: 500
@@ -20575,9 +20578,6 @@ MonoBehaviour:
   critchanceT: {fileID: 2089436162}
   critdmgT: {fileID: 546532015}
   regenhpT: {fileID: 490007923}
-  dashcountT: {fileID: 1726995288}
-  skillcountT: {fileID: 793091953}
-  ultcountT: {fileID: 1317110153}
 --- !u!1 &1940945366
 GameObject:
   m_ObjectHideFlags: 0
@@ -22829,7 +22829,7 @@ GameObject:
   - component: {fileID: 8265764955491901975}
   - component: {fileID: 8239600436830388630}
   m_Layer: 5
-  m_Name: Profile_UI
+  m_Name: Statistics_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23943,7 +23943,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8fddddfd714b5d8429a45d19271eda8f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af8c64bbfa8aaaf4495e119161cd87a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -29005,7 +29005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4666c832fbbee3e46892a3ac14811e3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a28b370c332f24f4e9a40a632831c74a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -29222,7 +29222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 940a5e8e00ab848458b037162b41dc22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89e0bd45172bf5c4e93a560e83a0df54, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -30988,7 +30988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 43dc5d0b85f69a8448ecd4bb50842eac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 432eaeddf9ee8b14baca567646eeead1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31276,7 +31276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 940a5e8e00ab848458b037162b41dc22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a28b370c332f24f4e9a40a632831c74a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31622,7 +31622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d8e8c066c8aaf845ac7e112a3f4c419, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63cd3bb7c831aab148360da51f056f2d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -33513,7 +33513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 84f4c7ad368d9f1479b9195cda6c4dbe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 587877b2db0a55c48ba6a7883d074462, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
