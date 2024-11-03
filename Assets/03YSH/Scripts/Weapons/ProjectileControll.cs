@@ -9,6 +9,7 @@ public class ProjectileControll : MonoBehaviour
     public GameObject EffectsOnCollision;
     public float DestroyTimeDelay;
     public float damagePercentage = 1;
+    public bool isBaseAttack = false;
 
     //private void OnEnable()
     //{
@@ -37,6 +38,8 @@ public class ProjectileControll : MonoBehaviour
         {
             Debug.LogWarning(other.name);
             damageable?.Damage(GameManager.instance._damage * damagePercentage);
+            if(isBaseAttack)
+                GameManager.instance.enemyhitDelegate(other.gameObject);
             damageable?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
             GameObject instance = Instantiate(EffectsOnCollision, other.transform.position, Quaternion.identity);
             // GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);            
