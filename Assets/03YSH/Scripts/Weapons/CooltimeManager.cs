@@ -7,15 +7,15 @@ using UnityEngine.TextCore.Text;
 public class CooltimeManager : MonoBehaviour
 {
     public Dictionary<string, float> skillCoolDowns = new Dictionary<string, float>{
-            {"WarriorQ", 3.0f},
-            {"WarriorE", 5.0f},
-            {"WarriorR", 10.0f},
-            {"ArcherQ", 4.0f},
-            {"ArcherE", 7.0f},
-            {"ArcherR", 2.0f},
-            {"WizardQ", 6.0f},
-            {"WizardE", 9.0f},
-            {"WizardR", 20.0f}
+            {"WarriorQ", 0f},
+            {"WarriorE", 0f},
+            {"WarriorR", 0f},
+            {"ArcherQ",  0f},
+            {"ArcherE",  0f},
+            {"ArcherR",  0f},
+            {"WizardQ",  0f},
+            {"WizardE",  0f},
+            {"WizardR",  0f}
     };
     public Dictionary<string, float> currentCoolDowns = new Dictionary<string, float>();
     public Dictionary<string, bool> canUseSkill = new Dictionary<string, bool>();
@@ -27,6 +27,8 @@ public class CooltimeManager : MonoBehaviour
     private void Awake()
     {
         skillKeys = new List<string>(skillCoolDowns.Keys);
+
+        SetCoolTimes();
 
         foreach (var skillName in skillKeys)
         {
@@ -55,14 +57,22 @@ public class CooltimeManager : MonoBehaviour
 
     }
 
+    public void SetCoolTimes()
+    {
+        for (int i = 0; i < skillCoolDowns.Count; i++)
+        {
+            skillCoolDowns[skillKeys[i]] = GameManager.instance.cooltimes[i] * GameManager.instance._skillCooltimePercent;
+        }
+    }
+
     public void UseSkill(string characterType, string skillName)
     {
         if (skillCoolDowns.ContainsKey(skillName) && currentCoolDowns[skillName] <= 0)
         {
             // 스킬 사용 가능하면 쿨타임 시작
-            currentCoolDowns[skillName] = skillCoolDowns[skillName];
+            currentCoolDowns[skillName] = skillCoolDowns[skillName] * GameManager.instance._skillCooltimePercent;
             canUseSkill[skillName] = false;
-            Debug.Log($"{characterType}의 {skillName} 스킬 사용! 쿨타임: {skillCoolDowns[skillName]}초");
+            Debug.Log($"{characterType}의 {skillName} 스킬 사용! 쿨타임: {skillCoolDowns[skillName] * GameManager.instance._skillCooltimePercent}초");
         }
         else
         {
