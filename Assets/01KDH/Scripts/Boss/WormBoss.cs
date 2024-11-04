@@ -156,4 +156,20 @@ public class WormBoss : Boss
         return INode.ENodeState.ENS_Failure;
     }
     #endregion
+
+    protected void FirstCooldown(float deltaTime)
+    {
+        if (_firstCoolTime > 0)
+        {
+            _firstCoolTime -= deltaTime; // 쿨타임 감소
+        }
+    }
+
+    protected void SecondCooldown(float deltaTime)
+    {
+        if (_secondCoolTime > 0)
+        {
+            _secondCoolTime -= deltaTime; // 쿨타임 감소
+        }
+    }
 }
