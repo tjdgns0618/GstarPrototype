@@ -3,29 +3,28 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class WormBoss : Boss
+public class BishopBoss : Boss
 {
     BehaviorTreeRunner _BTRunner = null;
     const string _Idle_AnimStateName = "Idle";
     const string _Taunting_AnimStateName = "Taunting";
 
     AudioSource _audioSource;
-    public AudioClip _normalSound;
-    public AudioClip _groundSound;
-    public AudioClip _tauntSound;
 
-    public GameObject _head;
-    public GameObject _groundParticle;
+
+    public GameObject _spear;
 
     private void Start()
     {
-        _attackRange = 10f;
+        _attackRange = 3f;
         __attackRange = _attackRange * _attackRange;
+        _patternRange = 6f;
+        __patternRange = _patternRange * _patternRange;
         _movementSpeed = 0f;
         _isDead = false;
         _isAttacking = false;
         _hp = 150f;
-        _BTRunner = new BehaviorTreeRunner(SettingBT()); 
+        _BTRunner = new BehaviorTreeRunner(SettingBT());
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -37,7 +36,7 @@ public class WormBoss : Boss
         NormalCooldown(Time.deltaTime);
         FirstCooldown(Time.deltaTime);
         SecondCooldown(Time.deltaTime);
-        if (IsAniamtionRunning(_Idle_AnimStateName) || IsAniamtionRunning(_Taunting_AnimStateName))
+        if (IsAniamtionRunning(_Idle_AnimStateName))
             _isAttacking = false;
     }
 
@@ -69,21 +68,24 @@ public class WormBoss : Boss
 
     public override INode.ENodeState EvaluatePatterns()
     {
-        if (CanAttack())
+        if (CanAttack() && !_isAttacking)
         {
-            if(CheckPlayerWithinCoolTime() == INode.ENodeState.ENS_Success)
+            if (CheckPlayerWithinCoolTime() == INode.ENodeState.ENS_Success)
             {
                 float playerpos = Vector3.SqrMagnitude(_detectedPlayer.position - transform.position);
-                if(IsInAttackRange(playerpos))
+                if (IsInAttackRange(playerpos))
+                {
+                    if (_normalCoolTime <= 0f)
+                        return DoNormalAttack();
+                }
+                if(!IsInAttackRange(playerpos) && IsInPatternRange(playerpos))
                 {
                     if (_firstCoolTime <= 0f)
                         return DoFirstPattern();
                 }
-                else
+                if(!IsInAttackRange(playerpos) && !IsInPatternRange(playerpos))
                 {
-                    if (_normalCoolTime <= 0f)
-                        return DoNormalAttack();
-                    if (_secondCoolTime <= 0f && PlayerToBossDistance())
+                    if (_secondCoolTime <= 0f)
                         return DoSecondPattern();
                 }
 
@@ -113,7 +115,7 @@ public class WormBoss : Boss
         {
             Attack();
             _isAttacking = true;
-            _normalCoolTime = 2f;
+            _normalCoolTime = 3f;
             return INode.ENodeState.ENS_Success;
         }
 
@@ -125,8 +127,9 @@ public class WormBoss : Boss
         if (CanAttack())
         {
             FirstPatternAttack();
+            Fire();
             _isAttacking = true;
-            _firstCoolTime = 2f;
+            _firstCoolTime = 10f;
             return INode.ENodeState.ENS_Success;
         }
 
@@ -139,7 +142,7 @@ public class WormBoss : Boss
         {
             SecondPatternAttack();
             _isAttacking = true;
-            _secondCoolTime = 3f;
+            _secondCoolTime = 15f;
             return INode.ENodeState.ENS_Success;
         }
 
@@ -153,47 +156,40 @@ public class WormBoss : Boss
     {
         if (CanAttack())
         {
+            float playerpos = Vector3.SqrMagnitude(_detectedPlayer.position - transform.position);
             if (!_isAttacking)
             {
-                if (!IsLookingAtPlayer())
+                if (!IsLookingAtPlayer() && IsInAttackRange(playerpos))
                 {
                     Rotate();
                     return INode.ENodeState.ENS_Running;
                 }
+                if (!IsInAttackRange(playerpos))
+                {
+                    Rotate();
+                    Move();
+                    return INode.ENodeState.ENS_Running;
+                }
+                if (IsLookingAtPlayer() || Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (__attackRange)
+                                       || Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (__patternRange))
+                {
+                    return INode.ENodeState.ENS_Success;
+                }
             }
-            return INode.ENodeState.ENS_Success;
         }
         return INode.ENodeState.ENS_Failure;
     }
     #endregion
 
-    public void HeadAttack()
+    public void SpearAttack()
     {
-        _head.SetActive(true);
+        _spear.SetActive(true);
     }
 
-    public void HeadAttackEnd()
+    public void SpearAttackEnd()
     {
-        _head.SetActive(false);
-    }
-
-    public void NormalStart()
-    {
-        _audioSource.clip = _normalSound;
-        _audioSource.Play();
-    }
-
-    public void GroundStart()
-    {
-        _audioSource.clip = _groundSound;
-        _audioSource.Play();
-        _groundParticle.SetActive(true);
-    }
-
-    public void TauntStart()
-    {
-        _audioSource.clip = _tauntSound;
-        _audioSource.Play();
+        _spear.SetActive(false);
     }
 
 }
+
