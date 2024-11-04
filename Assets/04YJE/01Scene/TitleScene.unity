@@ -663,7 +663,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 136685841}
         m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
-        m_MethodName: SetSFXVolumeFromSlider
+        m_MethodName: SetSFXVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -809,6 +809,7 @@ MonoBehaviour:
   slider:
   - {fileID: 166403486}
   - {fileID: 86208133}
+  - {fileID: 1557578162}
 --- !u!1 &144218698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,7 +1244,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 136685841}
         m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
-        m_MethodName: SetBGMVolumeFromSlider
+        m_MethodName: SetBGMVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6777,7 +6778,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 136685841}
         m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
-        m_MethodName: SetSFXVolumeFromSlider
+        m_MethodName: SetITEMVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
