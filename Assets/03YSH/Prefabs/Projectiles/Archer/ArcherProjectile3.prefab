@@ -18513,7 +18513,7 @@ ParticleSystem:
     radiusScale: 0.001
     collidesWith:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 8448
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -19512,6 +19512,7 @@ MonoBehaviour:
   DestoyMainEffect: 1
   rotationZero: 0
   damageMultiplier: 1
+  isBaseAttack: 1
 --- !u!199 &199367582972894178
 ParticleSystemRenderer:
   serializedVersion: 6

@@ -101,7 +101,7 @@ public class WormBoss : Boss
         {
             if (_normalCoolTime <= 0f || _firstCoolTime <= 0f || _secondCoolTime <= 0f)
             {
-                return INode.ENodeState.ENS_Success; // °ø°İ °¡´É
+                return INode.ENodeState.ENS_Success; // ê³µê²© ê°€ëŠ¥
             }
         }
         return INode.ENodeState.ENS_Failure;
@@ -167,6 +167,7 @@ public class WormBoss : Boss
     }
     #endregion
 
+
     public void HeadAttack()
     {
         _head.SetActive(true);
@@ -194,6 +195,23 @@ public class WormBoss : Boss
     {
         _audioSource.clip = _tauntSound;
         _audioSource.Play();
+    }
+
+
+    protected void FirstCooldown(float deltaTime)
+    {
+        if (_firstCoolTime > 0)
+        {
+            _firstCoolTime -= deltaTime; // ì¿¨íƒ€ì„ ê°ì†Œ
+        }
+    }
+
+    protected void SecondCooldown(float deltaTime)
+    {
+        if (_secondCoolTime > 0)
+        {
+            _secondCoolTime -= deltaTime; // ì¿¨íƒ€ì„ ê°ì†Œ
+        }
     }
 
 }

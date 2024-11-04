@@ -9,7 +9,8 @@ public enum BossType
     Worm,
     Knight,
     Bishop,
-    Dragon
+    Dragon,
+    Warewolf
 };
 
 
