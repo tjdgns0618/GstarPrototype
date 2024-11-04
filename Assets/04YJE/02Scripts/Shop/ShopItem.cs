@@ -74,7 +74,6 @@ public class ShopItem : MonoBehaviour
         gm._damage += attackDamage;
         gm._critdmg += criticalDamage;
         gm._critchance += criticalRate;
-        gm._dashcount += (int)dashCoolTime;
         //아이템 쿨타임 감소, 대쉬 쿨타임 감소 추가
     }
 }

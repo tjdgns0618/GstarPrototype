@@ -14826,7 +14826,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 4736
@@ -14853,6 +14853,7 @@ MonoBehaviour:
   EffectsOnCollision: {fileID: 7634420434017284396, guid: 5ec6448eb8c41394082b7168f74ecefc, type: 3}
   DestroyTimeDelay: 0
   damagePercentage: 0.8
+  isBaseAttack: 1
 --- !u!82 &3131306899301515476
 AudioSource:
   m_ObjectHideFlags: 0

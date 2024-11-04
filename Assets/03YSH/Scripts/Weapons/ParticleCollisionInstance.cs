@@ -20,6 +20,7 @@ public class ParticleCollisionInstance : MonoBehaviour
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
     private ParticleSystem ps;
     public float damageMultiplier = 1;
+    public bool isBaseAttack = false;
 
 
     void Start()
@@ -44,6 +45,9 @@ public class ParticleCollisionInstance : MonoBehaviour
             IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
             int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
             damageAble?.Damage(GameManager.instance._damage * damageMultiplier);
+            if(isBaseAttack)
+                GameManager.instance.enemyhitDelegate(other.gameObject);
+            GameManager.instance.enemyhitDelegate(other.gameObject);
             // GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
             for (int i = 0; i < numCollisionEvents; i++)
             {
