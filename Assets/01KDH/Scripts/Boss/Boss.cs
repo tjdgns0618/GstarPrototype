@@ -117,6 +117,11 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
                 particle.transform.rotation = transform.rotation;
             }
         }
+        if (_bossType == BossType.Bishop)
+        {
+            StartCoroutine(SpawnParticles());
+
+        }
         if (_bossType == BossType.Dragon)
         {
             GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Meteor");
@@ -137,10 +142,6 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     public void FirstPatternAttack()
     {
         animator.SetTrigger(_FirstPatternAttack_AnimTriggerName);
-        if (_bossType == BossType.Dragon)
-        {
-
-        }
     }
 
     public void SecondPatternAttack()
@@ -264,20 +265,49 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         return _rndPosition;
     }
 
+    public void ShadowAttack()
+    {
+        GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Shadow");
+        if (particle != null)
+        {
+            particle.transform.position = _shotpos.transform.position;
+            particle.transform.rotation = _shotpos.rotation;
+        }
+    }
+
     private IEnumerator SpawnParticles()
     {
-        for (int i = 0; i < 4; i++)
+        if(_bossType == BossType.Dragon)
         {
-            GameObject particle = GameManager.instance.particlePoolManager.GetParticle("CrashFire");
-            if (particle != null)
+            for (int i = 0; i < 4; i++)
             {
-                float rndY = Random.Range(0f, 180f);
-                particle.transform.position = _detectedPlayer.transform.position;
-                particle.transform.rotation = Quaternion.Euler(0, rndY, 0);
+                GameObject particle = GameManager.instance.particlePoolManager.GetParticle("CrashFire");
+                if (particle != null)
+                {
+                    float rndY = Random.Range(0f, 180f);
+                    particle.transform.position = _detectedPlayer.transform.position;
+                    particle.transform.rotation = Quaternion.Euler(0, rndY, 0);
+                }
+
+                yield return new WaitForSeconds(0.5f); // Wait for 1 second before the next spawn
+            }
+        }
+        if(_bossType == BossType.Bishop)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                GameObject particle = GameManager.instance.particlePoolManager.GetParticle("DarkRing");
+                if (particle != null)
+                {
+                    int rndRotY = Random.Range(0, 361);
+                    particle.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+                    particle.transform.rotation = Quaternion.Euler(0, rndRotY, 0);
+                }
+                yield return new WaitForSeconds(0.15f);
             }
 
-            yield return new WaitForSeconds(0.5f); // Wait for 1 second before the next spawn
         }
+
     }
 
     public void DragonGroundPattern()
