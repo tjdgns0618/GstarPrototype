@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class WareWolfBoss : Boss
@@ -19,7 +16,6 @@ public class WareWolfBoss : Boss
     public GameObject bullet;
     public Transform shotPosition;
 
-    spawner1 spawner;
     Rigidbody rigid;
     BehaviorTreeRunner _BTRunner = null;
     Vector3 _originPos;
@@ -27,13 +23,10 @@ public class WareWolfBoss : Boss
     public float damage = 10;
     public bool isDead = false;
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
-    const string _RANGE_ATTACK_ANIM_STATE_NAME = "shot01";
     const string _ATTACK_ANIM_TRIGGER_NAME = "attack";
     const string _FIRSTPATTERN_ANIM_TRIGGER_NAME = "isFirst";
     const string _SECONDPATTERN_ANIM_TRIGGER_NAME = "isSecond";
     const string _STING_ANIM_TRIGGER_NAME = "sting";
-    const string _RANGE_ATTACK_ANIM_TRIGGER_NAME = "shot";
-    DamageTextManager damagetextManager;
     bool canAttack = true;
     bool canMove = true;
     bool isSting = false;
@@ -72,8 +65,6 @@ public class WareWolfBoss : Boss
 
         isDead = false;
         gameObject.layer = 8;
-        damagetextManager = DamageTextManager.instance;
-        _detectedPlayer = PlayerCharacter.Instance.transform;
     }
 
     private void OnDisable()
