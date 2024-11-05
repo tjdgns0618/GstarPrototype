@@ -148,14 +148,14 @@ public class spawner1 : MonoBehaviour
             yield break;
         }
 
-        int enemiesToSpawn = totalEnemiesInWave; // 남은 적의 수
-        int enemiesInThisBatch; // 이번 배치에서 생성할 적의 수
+        int enemiesToSpawn = totalEnemiesInWave;
+        int halfEnemies = enemiesToSpawn / 2; // 한 번에 나올 몬스터 수를 반으로 나눔
 
-        while (enemiesToSpawn > 0)
+        for (int batch = 0; batch < 2; batch++) // 두 번에 나누어 생성
         {
-            enemiesInThisBatch = Mathf.Min(firstWaveEnemy, enemiesToSpawn);
+            int enemiesInThisBatch = halfEnemies; // 이번 배치에서 생성할 적의 수
 
-            for (int i = 0; i < enemiesInThisBatch; i++)
+            while (enemiesInThisBatch > 0)
             {
                 if (spawnedCount >= totalEnemiesInWave) break;
 
@@ -165,23 +165,21 @@ public class spawner1 : MonoBehaviour
                 {
                     if (!IsPositionOccupied(randomPosition))
                     {
-                        // enemyPrefab 리스트에서 랜덤한 프리팹 선택
                         string randomEnemyName = enemyNames[Random.Range(0, enemyNames.Length)];
-
                         Quaternion randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
 
-                        // Instantiate 대신 오브젝트 풀링에서 스폰
                         GameObject enemy = GameManager.instance.enemyPoolManager.GetEnemyPool(randomEnemyName);
                         enemies.Add(enemy);
-                        _randomnum = Random.Range(0, enemies.Count);
                         enemy.transform.position = randomPosition;
                         enemy.transform.rotation = randomRotation;
 
                         spawnedCount++;
-                        enemiesToSpawn--;
+                        enemiesInThisBatch--;
                     }
                 }
             }
+
+            // 다음 배치 전 대기 시간 추가
             yield return new WaitForSeconds(spawnInterval);
         }
     }
