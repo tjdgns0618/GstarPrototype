@@ -50,7 +50,6 @@ public class Boomerang : MonoBehaviour
 
             _moveMent = reflectVec.normalized;
             _startPos = transform.position;
-            Debug.Log("asdfasdfasdfasdfasdfasdfasdf");
         }
     }
 }

@@ -39,6 +39,7 @@ public class ChainLightning : MonoBehaviour
         }
 
         aDelay = new WaitForSeconds(attackDelay);
+        targetRange = 20f;
     }
 
     public void UseItem()
@@ -87,7 +88,8 @@ public class ChainLightning : MonoBehaviour
             // 현재 타겟과 연결하는 라인 그리기
             DrawLine(targetedEnemies.Count == 0 ? player.position : targetedEnemies.Last().transform.position, currentTarget.transform.position);
 
-            currentTarget.Damage(GameManager.instance._damage * 10f); // 적에게 현재 공격력*10의 피해를 입힘
+            currentTarget.Damage(GameManager.instance._damage * (ItemDataBase.instance.Variable(41) + (ItemDataBase.instance.Variable2(41) * 
+                (GameManager.instance.FindItemCount(41)-1))));
             GameObject particle = Instantiate(hitParticlePrefab, currentTarget.transform.position, Quaternion.identity); // 피격 파티클 생성
             activeParticles[currentTarget] = particle; // 현재 적과 파티클 연결
 

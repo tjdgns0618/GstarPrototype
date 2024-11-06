@@ -158,7 +158,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     {
         if (_isDead) return;
 
-        animator.SetTrigger("hit");
+        // animator.SetTrigger("hit");
         // hitSound.Play();
         _hp -= damage;
 

@@ -32,11 +32,20 @@ public class UVscroll : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        EnemyAI eAI = other.GetComponent<EnemyAI>();
-        Debug.Log(other.name);
-        if (eAI != null)
+        //EnemyAI eAI = other.GetComponent<EnemyAI>();
+        //Debug.Log(other.name);
+        //if (eAI != null)
+        //{
+        //    eAI.Damage(gm._damage * ItemDataBase.instance.Variable2(34));
+        //}
+
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            eAI.Damage(gm._damage * ItemDataBase.instance.Variable2(34));
+            IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
+            if (damageAble != null)
+            {
+                damageAble.Damage(gm._damage * (ItemDataBase.instance.Variable(34) + ItemDataBase.instance.Variable2(34) * (gm.FindItemCount(34) - 1)));
+            }
         }
     }
 

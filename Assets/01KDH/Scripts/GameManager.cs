@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void Heal(float heal)
     {
-        float healValue = Mathf.Clamp(_hp + heal, _hp, _maxhp);
+        float healValue = Mathf.Clamp(_hp + heal, 0, _maxhp);
         _hp = healValue;
     }
 
@@ -135,7 +135,6 @@ public class GameManager : MonoBehaviour
         }
         return _itemcount;
     }
-
     public void Test()
     {
         return;

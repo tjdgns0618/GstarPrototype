@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    GameManager gm;
+    public GameObject col;
+
+    WaitForSeconds coltime;
 
     void Start()
     {
-        gm = GameManager.instance;
+        coltime = new WaitForSeconds(0.3f);
     }
 
-    private void OnTriggerEnter(Collider col)   // particle system collision¿∏∑Œ πŸ≤„¡‡æﬂ«‘
+    private void OnEnable()
     {
-        if (col.gameObject.CompareTag("Enemy"))
+        StartCoroutine(ColCorutine());
+    }
+
+    IEnumerator ColCorutine()
+    {
+        while (true)
         {
-            IDamageAble<float> damageAble = col.GetComponent<IDamageAble<float>>();
-            // EnemyAI eAI = col.GetComponent<EnemyAI>();
-            if (damageAble != null)
-            {
-                damageAble.Damage(1f);
-            }
+            col.SetActive(true);
+            yield return coltime;
+            col.SetActive(false);
+            yield return coltime;
         }
     }
 }

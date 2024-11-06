@@ -381,7 +381,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void Slow(float slow)
     {
         float moveSpeed = _movementSpeed;
-        float slowSpeed = _movementSpeed - slow;
+        float slowSpeed = _movementSpeed * slow;
 
         _movementSpeed = slowSpeed;
         
@@ -397,7 +397,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     IEnumerator EnemySpeedReturn(float speed)
     {
         float recovery = speed * 0.1f;
-        slowDelay = ItemDataBase.instance.Variable(47)*0.1f;
+        slowDelay = (ItemDataBase.instance.Variable(47)-1)*0.1f;
 
         while (speed > _movementSpeed)
         {
