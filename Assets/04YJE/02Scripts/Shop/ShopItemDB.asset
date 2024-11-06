@@ -30,8 +30,8 @@ MonoBehaviour:
     DashCoolTime: 0
     ItemCoolTimeDropRate: 0
   - ItemID: 1001
-    ItemName: "\uB2EC\uCF64\uD55C \uD3EC\uB3C4"
-    ItemInfo: "\uCCB4\uB825 500 \uD68C\uBCF5"
+    ItemName: "\uB2EC\uB2EC\uD55C \uD3EC\uB3C4"
+    ItemInfo: "\uCCB4\uB825 50 \uD68C\uBCF5"
     Price: 700
     MaxLevel: 0
     AttackDamage: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     IsAuto: 0
     RecoveryThreshold: 0
     RecoveryCount: 0
-    HP: 500
+    HP: 50
     HPRate: 0
     CriticalDamage: 0
     CriticalRate: 0
@@ -70,8 +70,8 @@ MonoBehaviour:
     AttackDamage: 0
     Deffence: 0
     IsAuto: 1
-    RecoveryThreshold: 15
-    RecoveryCount: 1
+    RecoveryThreshold: 0
+    RecoveryCount: 0
     HP: 0
     HPRate: 10
     CriticalDamage: 0
@@ -87,9 +87,9 @@ MonoBehaviour:
     AttackDamage: 0
     Deffence: 0
     IsAuto: 1
-    RecoveryThreshold: 10
-    RecoveryCount: 1
-    HP: 500
+    RecoveryThreshold: 0
+    RecoveryCount: 0
+    HP: 1000
     HPRate: 0
     CriticalDamage: 0
     CriticalRate: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
     DashCoolTime: 0
     ItemCoolTimeDropRate: 0
   - ItemID: 1300
-    ItemName: "\uACF5\uACA9\uB825 \uC99D\uAC00 \uCC45"
+    ItemName: "\uACF5\uACA9\uB825 \uC99D\uAC00 \uC2A4\uD06C\uB864"
     ItemInfo: "\uACF5\uACA9\uB825 2 \uC99D\uAC00"
     Price: 2000
     MaxLevel: 10
@@ -176,7 +176,7 @@ MonoBehaviour:
     DashCoolTime: 0
     ItemCoolTimeDropRate: 0
   - ItemID: 1301
-    ItemName: "\uBC29\uC5B4\uB825 \uC99D\uAC00 \uCC45"
+    ItemName: "\uBC29\uC5B4\uB825 \uC99D\uAC00 \uC2A4\uD06C\uB864"
     ItemInfo: "\uBC29\uC5B4\uB825 5 \uC99D\uAC00"
     Price: 1000
     MaxLevel: 10
@@ -241,7 +241,7 @@ MonoBehaviour:
     ItemCoolTimeDropRate: 0
   - ItemID: 1305
     ItemName: "\uB300\uC2DC \uC7AC\uC0AC\uC6A9 \uB300\uAE30\uC2DC\uAC04 \uAC10\uC18C
-      \uCC45"
+      \uBC18\uC9C0"
     ItemInfo: "\uB300\uC2DC \uC7AC\uC0AC\uC6A9 \uB300\uAE30\uC2DC\uAC04 0.3\uCD08
       \uAC10\uC18C"
     Price: 3000
@@ -259,7 +259,7 @@ MonoBehaviour:
     ItemCoolTimeDropRate: 0
   - ItemID: 1306
     ItemName: "\uC544\uC774\uD15C \uC7AC\uC0AC\uC6A9 \uB300\uAE30\uC2DC\uAC04 \uAC10\uC18C
-      \uCC45"
+      \uBC18\uC9C0"
     ItemInfo: "\uC544\uC774\uD15C \uC7AC\uC0AC\uC6A9 \uB300\uAE30\uC2DC\uAC04 0.5%
       \uAC10\uC18C"
     Price: 10000
@@ -288,3 +288,6 @@ MonoBehaviour:
   - UpgradeLevel: 4
     SuccessRate: 1
     Price: 200000
+  - UpgradeLevel: 5
+    SuccessRate: 0.4
+    Price: 400000

@@ -18,9 +18,6 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha0))
-            ShakeCamera(1f, 4f);
-
         if (shakeTimer > 0)
         {
             shakeTimer -= Time.deltaTime;

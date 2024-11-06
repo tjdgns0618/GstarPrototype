@@ -21,7 +21,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha4))
+        if(Input.GetKeyDown(KeyCode.Alpha8))
             LoadEndingCutScene();
     }
 
@@ -60,6 +60,7 @@ public class SceneChanger : MonoBehaviour
 
         fadeInOut = FindObjectOfType<FadeInOut>();
         SceneManager.LoadScene(3);
+        soundManager.PlayMusic(5, 2f);
     }
 
     IEnumerator _LoadTitleScene()
