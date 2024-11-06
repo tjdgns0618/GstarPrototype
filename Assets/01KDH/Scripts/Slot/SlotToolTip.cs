@@ -29,7 +29,7 @@ public class SlotToolTip : MonoBehaviour
         var itemData = itemDatabase.GetItem(_item.itemID);
         if(itemData.HasValue)
         {
-            float itemVariable = itemData.Value.itemVariable_index;
+            float itemVariable = itemData.Value.text1_index;
             txt_Itemeffect.text = string.Format(_item.itemEffect, itemVariable * _count);
         }
     }
