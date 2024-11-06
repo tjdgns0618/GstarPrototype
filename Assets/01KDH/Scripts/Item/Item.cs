@@ -16,6 +16,9 @@ public class Item : ScriptableObject
         cooldown,
         attackspeedA,
         attackspeedM,
+        movespeedA,
+        movespeedM,
+        maxhpM,
         normal
     }
     public int itemID; // 아이템 고유번호(랜덤 생성을 위해 필요한 변수)
