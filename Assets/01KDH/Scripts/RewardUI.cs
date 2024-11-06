@@ -45,6 +45,18 @@ public class RewardUI : MonoBehaviour
         {
             itemList.RemoveAll(item => item.itemType2 == Item.ItemType2.attackspeedM);
         }
+        if(GameManager.instance._movespeed >= 350f)
+        {
+            itemList.RemoveAll(item => item.itemType2 == Item.ItemType2.movespeedA);
+        }
+        if(GameManager.instance._movespeed <= 250f)
+        {
+            itemList.RemoveAll(item => item.itemType2 == Item.ItemType2.movespeedM);
+        }
+        if(GameManager.instance._maxhp >= 750f)
+        {
+            itemList.RemoveAll(item => item.itemType2 == Item.ItemType2.maxhpM);
+        }
 
         while (rewarditems.Count < count && itemList.Count > 0)        // 중복되지 않는 랜덤 아이템을 선택
         {
