@@ -47,8 +47,6 @@ public class ParticleCollisionInstance : MonoBehaviour
             damageAble?.Damage(GameManager.instance._damage * damageMultiplier);
             if(isBaseAttack)
                 GameManager.instance.enemyhitDelegate(other.gameObject);
-            GameManager.instance.enemyhitDelegate(other.gameObject);
-            // GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
             for (int i = 0; i < numCollisionEvents; i++)
             {
                 foreach (var effect in EffectsOnCollision)

@@ -6943,6 +6943,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots: []
+  cooltimes:
+  - 5
+  - 8
+  - 15
+  - 10
+  - 6
+  - 15
+  - 4
+  - 10
+  - 25
   particlePoolManager: {fileID: 1494862214}
   uiManager: {fileID: 1235205384}
   cameraManager: {fileID: 2010012743}
@@ -6965,8 +6975,9 @@ MonoBehaviour:
   _critdmg: 150
   _lifesteal: 0
   _lifegen: 0
-  _dashcount: 2
-  _skillcount: 1
+  _skillCooltimePercent: 1
+  _dashPower: 3
+  _dashCool: 3
   _ultcount: 1
   _revivecount: 0
   isHit: 0
