@@ -30,7 +30,7 @@ public class spawner1 : MonoBehaviour
     public int currentWave = 0; //현재 웨이브
 
     public int initialStage = 0;
-    public int currentStage = 1; //현재 스테이지
+    public int currentStage = 0; //현재 스테이지
 
     private int enemyPerSpawn; //한 번의 주기에 생성할 enemy 수
     private int spawnedCount = 0; //생성된 enemy 카운트
@@ -56,10 +56,16 @@ public class spawner1 : MonoBehaviour
     private void Start()
     {
         wInterval = new WaitForSeconds(spawnInterval);
+        // StartWave();
+    }
+
+    public void IncreaseStageInVillage()
+    {
+        currentStage++;
         StartWave();
     }
 
-    void StartWave()
+    public void StartWave()
     {
         Time.timeScale = 1;
         StartCoroutine(WaveSystem());
@@ -311,17 +317,19 @@ public class spawner1 : MonoBehaviour
         enemiesLeft--;
         UpdateWaveInfoUI();
     }
+
     void UpdateWaveInfoUI()
     {
         waveInfoText.text = $"남은 적  {enemiesLeft}";
     }
+
     public void increaseStage()
     {
-        portal.SetActive(false);
         currentStage++;
         stageInfoText.text = $"STAGE {currentStage}";
         currentWave = 0;
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
+        portal.SetActive(false);
     }
 }

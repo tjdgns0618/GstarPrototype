@@ -48,8 +48,7 @@ public class WareWolfBoss : Boss
     void Start()
     {
         slowT = new WaitForSeconds(slowDelay);
-        _detectedPlayer = PlayerCharacter.Instance.transform;
-
+        
         _hp = 50f;
     }
 
@@ -83,6 +82,7 @@ public class WareWolfBoss : Boss
     {
         if (isDead) return;
         _BTRunner.Operate();
+        _detectedPlayer = PlayerCharacter.Instance.transform;
         FirstCooldown(Time.deltaTime);
         SecondCooldown(Time.deltaTime);
     }

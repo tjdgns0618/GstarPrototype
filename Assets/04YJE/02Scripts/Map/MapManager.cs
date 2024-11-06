@@ -44,7 +44,7 @@ public class MapManager : MonoBehaviour
         //WAVE UI 끄기
         uiManager.SetUIActive(uiManager.fieldUI, false);
         //WaveManager 끄기
-        waveManager.gameObject.SetActive(false);
+        // waveManager.gameObject.SetActive(false);
         //사운드
         soundManager.PlayMusic(1, 0.3f);
     }
@@ -63,6 +63,7 @@ public class MapManager : MonoBehaviour
         uiManager.SetUIActive(uiManager.fieldUI, true);
         //WaveManager 켜기
         waveManager.gameObject.SetActive(true);
+        waveManager.increaseStage();
         //사운드
         soundManager.PlayMusic(2, 0.3f);
     }

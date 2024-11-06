@@ -1,3 +1,4 @@
+using CharacterController;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,11 +40,11 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void NextWave()
     {
         _rectTransform.anchoredPosition = new Vector3(-356, _rectTransform.anchoredPosition.y, 0);
-        if (_spawn.currentWave <= _spawn.maxWaves)   // ¾ÆÁ÷ ½ºÅ×ÀÌÁö°¡ ÁøÇà Áß ÀÌ¶ó¸é
+        if (_spawn.currentWave <= _spawn.maxWaves)   // ì•„ì§ ìŠ¤í…Œì´ì§€ê°€ ì§„í–‰ ì¤‘ ì´ë¼ë©´
         {
-            if (_rewardslot.item != null) // ½½·Ô¿¡ ¾ÆÀÌÅÛÀÌ ÀÖÀ» °æ¿ì
+            if (_rewardslot.item != null) // ìŠ¬ë¡¯ì— ì•„ì´í…œì´ ìžˆì„ ê²½ìš°
             {
-                _inventory.AcquireItem(_rewardslot.item, _rewardslot.itemCount); // ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛ Ãß°¡
+                _inventory.AcquireItem(_rewardslot.item, _rewardslot.itemCount); // ì¸ë²¤í† ë¦¬ì— ì•„ì´í…œ ì¶”ê°€
                 if (_rewardslot.item.itemType == Item.ItemType.passive)
                 {
                     switch (_rewardslot.item.itemID)
@@ -235,16 +236,17 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             break;
                     }
                 }
-                _rewardslot.ClearSlot();    // ´ÙÀ½ ¿þÀÌºê º¸»ó ¶§ »õ·Î¿î ·£´ý º¸»óÀ¸·Î ¹Ù²ã¾ß ÇÏ±â¿¡ ½½·Ô ÃÊ±âÈ­
+                _rewardslot.ClearSlot();    // ë‹¤ìŒ ì›¨ì´ë¸Œ ë³´ìƒ ë•Œ ìƒˆë¡œìš´ ëžœë¤ ë³´ìƒìœ¼ë¡œ ë°”ê¿”ì•¼ í•˜ê¸°ì— ìŠ¬ë¡¯ ì´ˆê¸°í™”
             }
-        rewardUI.SetActive(false);    // º¸»ó Ã¢À» ´Ý°í
-        waveStart.SendMessage("StartWave");   // StartWave ÇÔ¼ö ½ÇÇà
+            rewardUI.SetActive(false);    // ë³´ìƒ ì°½ì„ ë‹«ê³ 
+            DashState.CurrentDashCount = 0;
+            waveStart.SendMessage("StartWave");   // StartWave í•¨ìˆ˜ ì‹¤í–‰
             Time.timeScale = 1;
-            reUI.AddRewardRandomItems(items);   // »õ·Î¿î ¾ÆÀÌÅÛÀ» º¸»ó ½½·Ô¿¡ Ãß°¡
+            reUI.AddRewardRandomItems(items);   // ìƒˆë¡œìš´ ì•„ì´í…œì„ ë³´ìƒ ìŠ¬ë¡¯ì— ì¶”ê°€
         }
-        else  // ½ºÅ×ÀÌÁö°¡ ³¡³µ´Ù¸é,
+        else  // ìŠ¤í…Œì´ì§€ê°€ ëë‚¬ë‹¤ë©´,
         {
-            rewardUI.SetActive(false);    // Ã¢¸¸ ´Ý±â
+            rewardUI.SetActive(false);    // ì°½ë§Œ ë‹«ê¸°
         }
     }
 

@@ -447,6 +447,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         if (gameManager.isDead || gameManager.isHit)
             return;
+        //if (gameManager.canRebirth)
+        //{
+        //    gameManager._hp = gameManager._maxhp;
+        //}
         gameManager.cameraManager.ShakeCamera(damageTaken * 0.1f, 0.3f);
 
         StopCoroutine("TakeDamageEffect");
