@@ -46,7 +46,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         pi.animator.SetBool(hashIsAttackAnimation, true);
         pi.animator.SetInteger(hashAttackAnimation, ComboCount);
         GameManager.instance.playerattackDelegate();
-        CheckAttackReInput(AttackState.CanReInputTime);
+        CheckAttackReInput(GameManager.instance._reInputTime);
     }
 
     public override void Skill(BaseState state)

@@ -72,8 +72,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
         DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);    
 
-        AttackState.CanReInputTime = GameManager.instance._reInputTime;
         DashState.CurrentDashCount = 0;
+
+        AttackState.CanReInputTime = GameManager.instance._reInputTime;
     }       
 
     private void Update()
@@ -417,7 +418,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             return;
 
         #region #캐릭터 움직임 구현
-        float curretnMoveSpeed = player.MoveSpeed * CONVERT_UNIT_VALUE;
+        float curretnMoveSpeed = gameManager._movespeed * CONVERT_UNIT_VALUE;
         float animationPlaySpeed = DEFAULT_ANIMATION_PLAYSPEED *
                                     GetAnimationSyncWithMovement(curretnMoveSpeed);
 
@@ -446,6 +447,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         if (gameManager.isDead || gameManager.isHit)
             return;
+        //if (gameManager.canRebirth)
+        //{
+        //    gameManager._hp = gameManager._maxhp;
+        //}
         gameManager.cameraManager.ShakeCamera(damageTaken * 0.1f, 0.3f);
 
         StopCoroutine("TakeDamageEffect");

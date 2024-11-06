@@ -41,10 +41,10 @@ public class RewardSlot : InvenSlot
 
         _rewardName.text = _item.name;
 
-        float itemVariable = ItemDataBase.instance.Variable(item.itemID);
-        float itemVariable2 = ItemDataBase.instance.Variable2(item.itemID);
-        float itemVariable3 = ItemDataBase.instance.Variable3(item.itemID);
-        float itemVariable4 = ItemDataBase.instance.Variable4(item.itemID);
+        float itemVariable = ItemDataBase.instance.Itemtext(item.itemID);
+        float itemVariable2 = ItemDataBase.instance.Itemtext2(item.itemID);
+        float itemVariable3 = ItemDataBase.instance.Itemtext3(item.itemID);
+        float itemVariable4 = ItemDataBase.instance.Itemtext4(item.itemID);
 
         _rewardEffect.text = string.Format(_item.itemEffect, itemVariable, itemVariable2, itemVariable3, itemVariable4);
 

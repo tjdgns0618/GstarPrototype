@@ -26,17 +26,19 @@ public class GameManager : MonoBehaviour
 
     public float _damage = 10f;
     public float _range = 1f;
-    public float _cooldown = 0;
     public float _changeCooldown = 3f;
     public float _attackspeed = 1f;
     public float _movespeed = 1f;
     public float _reInputTime = 1f;
 
     public float _critchance = 10f;
-    public float _critdmg = 150f;
+    public float _critdmg = 1.5f;
 
     public float _lifesteal = 0f;
     public float _lifegen = 0f;
+
+    public float criticalRandomValue;
+    public float criticalProbability;
 
     public float _skillCooltimePercent = 1f;
     [Header("대시 옵션")]
@@ -97,10 +99,26 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //txt_gold = _gold;
-        if(_attackspeed >= 9f)
+        if(_attackspeed <= 2.5f)
+            _attackspeed = 2.5f;
+        if (_attackspeed >= 9f)
             _attackspeed = 9f;
         if(_skillCooltimePercent <= 0.5f)
             _skillCooltimePercent = 0.5f;
+        if(_damage <= 5)
+            _damage = 5;
+        if (_movespeed <= 250f)
+            _movespeed = 250f;
+        if (_movespeed >= 500f)
+            _movespeed = 500f;
+        if(_reInputTime >= 3f)
+            _reInputTime = 3f;
+        if(_reInputTime <= 0.5f)
+            _reInputTime = 0.5f;
+        if(_critchance >= 100f)
+            _critchance = 100f;
+        if(_critchance <= 0f)
+            _critchance = 0f;
     }
 
     public void Heal(float heal)
@@ -140,5 +158,19 @@ public class GameManager : MonoBehaviour
     public void Test()
     {
         return;
+    }
+
+    public bool Critical()
+    {
+        criticalRandomValue = Random.Range(1f, 101f);
+        criticalProbability = 100f - _critchance;
+        if (criticalRandomValue >= criticalProbability)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

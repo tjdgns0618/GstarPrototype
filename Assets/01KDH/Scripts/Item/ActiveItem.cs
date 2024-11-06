@@ -73,18 +73,12 @@ public class ActiveItem : MonoBehaviour
 
     public void _04Item(GameObject target)   // 적 피격 시 지뢰 설치
     {
-        if (GetHitRandom(32))
-        {
 
-        }
     }
 
     public void _05Item(Transform transform)   // 플레이어 피격 시 공격 방향 반사 범위 피해
     {
-        if (GetHitRandom(33))
-        {
 
-        }
     }
 
     public void _06Item()   // 공격 시 미사일 발사
@@ -106,10 +100,7 @@ public class ActiveItem : MonoBehaviour
 
     public void _07Item(Transform transform)   // 플레이어 피격 시 랜덤 효과 발동
     {
-        if (GetHitRandom(35))
-        {
 
-        }
     }
     public void _08Item()   // 일정 시간마다 마늘 효과
     {
@@ -169,7 +160,7 @@ public class ActiveItem : MonoBehaviour
     }
     public void _15Item()   // 공격 시 실드 발사
     {
-        if (GetAttackRandom(43))
+        if (FixRandom(43))
         {
             GameObject particle = gm.particlePoolManager.GetParticle("FireWork5");
             if (particle != null)
@@ -192,15 +183,12 @@ public class ActiveItem : MonoBehaviour
     }
     public void _17Item()   // 공격 시 부메랑 발사
     {
-        if (GetAttackRandom(45))
-        {
             GameObject particle = gm.particlePoolManager.GetParticle("Boomerang");
             if (particle != null)
             {
                 particle.transform.position = PlayerCharacter.Instance.firePoint.transform.position;
                 particle.transform.rotation = PlayerCharacter.Instance.transform.rotation;
             }
-        }
     }
     public void _18Item()   // 캐릭터 교체 시 범위 데미지
     {
@@ -230,69 +218,6 @@ public class ActiveItem : MonoBehaviour
     }
     #endregion
 
-    public bool GetAttackRandom(int id)
-    {
-        attackRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        attackProbability = 100f - ItemDataBase.instance.Variable(id) * gm.FindItemCount(id);
-        if (attackRandomValue >= attackProbability)
-        {
-            Debug.Log("Attack True");
-            return true;
-        }
-        else
-        {
-            Debug.Log("Attack False");
-            return false;
-        }
-    }
-
-    public bool GetHitRandom(int id)
-    {
-        hitRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        hitProbability = 100f - ItemDataBase.instance.Variable(id) * gm.FindItemCount(id);
-        if (hitRandomValue >= hitProbability)
-        {
-            Debug.Log("Hit True");
-            return true;
-        }
-        else
-        {
-            Debug.Log("Hit False");
-            return false;
-        }
-    }
-
-    public bool GetKillRandom(int id)
-    {
-        killRandomValue = Random.Range(1f, 101f);  //1~100 (95~100)
-        killProbability = 100f - ItemDataBase.instance.Variable(id) * gm.FindItemCount(id);
-        if (killRandomValue >= killProbability)
-        {
-            Debug.Log("Kill True");
-            return true;
-        }
-        else
-        {
-            Debug.Log("Kill False");
-            return false;
-        }
-    }
-
-    public bool GetHitRandom34(int id)
-    {
-        hitRandomValue = Random.Range(1f, 101f);  //1~100
-        hitProbability = 100f - (ItemDataBase.instance.Variable(id) + (gm.FindItemCount(id) - 1) * 2f);
-        if (hitRandomValue >= hitProbability)
-        {
-            Debug.Log("Attack True");
-            return true;
-        }
-        else
-        {
-            Debug.Log("Attack False");
-            return false;
-        }
-    }
 
     public bool FixRandom(int id)
     {
@@ -321,4 +246,5 @@ public class ActiveItem : MonoBehaviour
             return false;
         }
     }
+
 }

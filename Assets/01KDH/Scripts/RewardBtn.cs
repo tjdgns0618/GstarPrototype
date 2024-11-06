@@ -1,3 +1,4 @@
+using CharacterController;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static GameManager;
+using static TickManager;
 
 public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -38,11 +40,11 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void NextWave()
     {
         _rectTransform.anchoredPosition = new Vector3(-356, _rectTransform.anchoredPosition.y, 0);
-        if (_spawn.currentWave <= _spawn.maxWaves)   // ¾ÆÁ÷ ½ºÅ×ÀÌÁö°¡ ÁøÇà Áß ÀÌ¶ó¸é
+        if (_spawn.currentWave <= _spawn.maxWaves)   // ì•„ì§ ìŠ¤í…Œì´ì§€ê°€ ì§„í–‰ ì¤‘ ì´ë¼ë©´
         {
-            if (_rewardslot.item != null) // ½½·Ô¿¡ ¾ÆÀÌÅÛÀÌ ÀÖÀ» °æ¿ì
+            if (_rewardslot.item != null) // ìŠ¬ë¡¯ì— ì•„ì´í…œì´ ìžˆì„ ê²½ìš°
             {
-                _inventory.AcquireItem(_rewardslot.item, _rewardslot.itemCount); // ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛ Ãß°¡
+                _inventory.AcquireItem(_rewardslot.item, _rewardslot.itemCount); // ì¸ë²¤í† ë¦¬ì— ì•„ì´í…œ ì¶”ê°€
                 if (_rewardslot.item.itemType == Item.ItemType.passive)
                 {
                     switch (_rewardslot.item.itemID)
@@ -143,36 +145,50 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                     switch (_rewardslot.item.itemID)
                     {
                         case 29:
-                            GameManager.instance.dieDelegate += _activeItem._01Item;
+                            if (GameManager.instance.dieDelegate == null
+                            || !GameManager.instance.dieDelegate.GetInvocationList().Contains((DieDelegate)_activeItem._01Item))
+                                GameManager.instance.dieDelegate += _activeItem._01Item;
                             break;
                         case 30:
-                            GameManager.instance.dieDelegate += _activeItem._02Item;
+                            if (GameManager.instance.dieDelegate == null
+                            || !GameManager.instance.dieDelegate.GetInvocationList().Contains((DieDelegate)_activeItem._02Item))
+                                GameManager.instance.dieDelegate += _activeItem._02Item;
                             break;
                         case 31:
-                            TickManager._shurikenT += _activeItem._03Item;
+                            if (TickManager._shurikenT == null || !TickManager._shurikenT.GetInvocationList().Contains((ShurikenTick)_activeItem._03Item)) 
+                                TickManager._shurikenT += _activeItem._03Item;
                             break;
                         case 32:
-                            GameManager.instance.enemyhitDelegate += _activeItem._04Item;
+                            if (GameManager.instance.enemyhitDelegate == null
+                            || !GameManager.instance.enemyhitDelegate.GetInvocationList().Contains((EnemyHitDelegate)_activeItem._04Item))
+                                GameManager.instance.enemyhitDelegate += _activeItem._04Item;
                             break;
                         case 33:
-                            GameManager.instance.playerhitDelegate += _activeItem._05Item;
+                            if (GameManager.instance.playerhitDelegate == null
+                            || !GameManager.instance.playerhitDelegate.GetInvocationList().Contains((PlayerHitDelegate)_activeItem._05Item))
+                                GameManager.instance.playerhitDelegate += _activeItem._05Item;
                             break;
                         case 34:
-                            if(GameManager.instance.playerattackDelegate == null 
-                         || !GameManager.instance.playerattackDelegate.GetInvocationList().Contains((PlayerAttackDelegate)_activeItem._06Item))
-                            GameManager.instance.playerattackDelegate += _activeItem._06Item;
+                            if (GameManager.instance.playerattackDelegate == null
+                            || !GameManager.instance.playerattackDelegate.GetInvocationList().Contains((PlayerAttackDelegate)_activeItem._06Item))
+                                GameManager.instance.playerattackDelegate += _activeItem._06Item;
                             break;
                         case 35:
-                            GameManager.instance.playerhitDelegate += _activeItem._07Item;
+                            if (GameManager.instance.playerhitDelegate == null
+                            || !GameManager.instance.playerhitDelegate.GetInvocationList().Contains((PlayerHitDelegate)_activeItem._07Item))
+                                GameManager.instance.playerhitDelegate += _activeItem._07Item;
                             break;
                         case 36:
-                            TickManager._maneulT += _activeItem._08Item;
+                            if (TickManager._maneulT == null || !TickManager._maneulT.GetInvocationList().Contains((ManeulTick)_activeItem._08Item))
+                                TickManager._maneulT += _activeItem._08Item;
                             break;
                         case 37:
-                            TickManager._shieldT += _activeItem._09Item;
+                            if (TickManager._shieldT == null || !TickManager._shieldT.GetInvocationList().Contains((ShieldTick)_activeItem._09Item))
+                                TickManager._shieldT += _activeItem._09Item;
                             break;
                         case 38:
-                            TickManager._fireT += _activeItem._10Item;
+                            if (TickManager._fireT == null || !TickManager._fireT.GetInvocationList().Contains((FireTick)_activeItem._10Item))
+                                TickManager._fireT += _activeItem._10Item;
                             break;
                         case 39:
                             GameManager.instance.timeactiveDelegate += _activeItem._11Item;
@@ -186,40 +202,51 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                                 GameManager.instance.playerattackDelegate += _activeItem._13Item;
                             break;
                         case 42:
-                            GameManager.instance.enemyhitDelegate += _activeItem._14Item;
+                            if (GameManager.instance.enemyhitDelegate == null
+                            || !GameManager.instance.enemyhitDelegate.GetInvocationList().Contains((EnemyHitDelegate)_activeItem._14Item))
+                                GameManager.instance.enemyhitDelegate += _activeItem._14Item;
                             break;
                         case 43:
-                            GameManager.instance.playerattackDelegate += _activeItem._15Item;
+                            if (GameManager.instance.playerattackDelegate == null
+                            || !GameManager.instance.playerattackDelegate.GetInvocationList().Contains((PlayerAttackDelegate)_activeItem._15Item))
+                                GameManager.instance.playerattackDelegate += _activeItem._15Item;
                             break;
                         case 44:
-                            GameManager.instance.playerattackDelegate += _activeItem._16Item;
+                            if (GameManager.instance.playerattackDelegate == null
+                            || !GameManager.instance.playerattackDelegate.GetInvocationList().Contains((PlayerAttackDelegate)_activeItem._16Item))
+                                GameManager.instance.playerattackDelegate += _activeItem._16Item;
                             break;
                         case 45:
-                            GameManager.instance.playerattackDelegate += _activeItem._17Item;
+                            if (GameManager.instance.playerattackDelegate == null
+                            || !GameManager.instance.playerattackDelegate.GetInvocationList().Contains((PlayerAttackDelegate)_activeItem._17Item))
+                                GameManager.instance.playerattackDelegate += _activeItem._17Item;
                             break;
                         case 46:
                             //GameManager.instance.activeDelegate += _activeItem._18Item;
                             break;
                         case 47:
-                            TickManager._freezeT += _activeItem._19Item;
+                            if (TickManager._freezeT == null || !TickManager._freezeT.GetInvocationList().Contains((FreezeTick)_activeItem._19Item))
+                                TickManager._freezeT += _activeItem._19Item;
                             break;
                         case 48:
-                            TickManager._starT += _activeItem._20Item;
+                            if (TickManager._starT == null || !TickManager._starT.GetInvocationList().Contains((StarTick)_activeItem._20Item))
+                                TickManager._starT += _activeItem._20Item;
                             break;
                         default:
                             break;
                     }
                 }
-                _rewardslot.ClearSlot();    // ´ÙÀ½ ¿þÀÌºê º¸»ó ¶§ »õ·Î¿î ·£´ý º¸»óÀ¸·Î ¹Ù²ã¾ß ÇÏ±â¿¡ ½½·Ô ÃÊ±âÈ­
+                _rewardslot.ClearSlot();    // ë‹¤ìŒ ì›¨ì´ë¸Œ ë³´ìƒ ë•Œ ìƒˆë¡œìš´ ëžœë¤ ë³´ìƒìœ¼ë¡œ ë°”ê¿”ì•¼ í•˜ê¸°ì— ìŠ¬ë¡¯ ì´ˆê¸°í™”
             }
-        rewardUI.SetActive(false);    // º¸»ó Ã¢À» ´Ý°í
-        waveStart.SendMessage("StartWave");   // StartWave ÇÔ¼ö ½ÇÇà
+            rewardUI.SetActive(false);    // ë³´ìƒ ì°½ì„ ë‹«ê³ 
+            DashState.CurrentDashCount = 0;
+            waveStart.SendMessage("StartWave");   // StartWave í•¨ìˆ˜ ì‹¤í–‰
             Time.timeScale = 1;
-            reUI.AddRewardRandomItems(items);   // »õ·Î¿î ¾ÆÀÌÅÛÀ» º¸»ó ½½·Ô¿¡ Ãß°¡
+            reUI.AddRewardRandomItems(items);   // ìƒˆë¡œìš´ ì•„ì´í…œì„ ë³´ìƒ ìŠ¬ë¡¯ì— ì¶”ê°€
         }
-        else  // ½ºÅ×ÀÌÁö°¡ ³¡³µ´Ù¸é,
+        else  // ìŠ¤í…Œì´ì§€ê°€ ëë‚¬ë‹¤ë©´,
         {
-            rewardUI.SetActive(false);    // Ã¢¸¸ ´Ý±â
+            rewardUI.SetActive(false);    // ì°½ë§Œ ë‹«ê¸°
         }
     }
 

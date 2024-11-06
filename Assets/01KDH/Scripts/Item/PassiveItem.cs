@@ -15,7 +15,7 @@ public class PassiveItem : MonoBehaviour
 
     public void _01Pitem()
     {
-        gm._cooldown -= ItemDataBase.instance.Variable(0);
+        gm._skillCooltimePercent -= ItemDataBase.instance.Variable(0);
     }   
     public void _02Pitem()
     {
@@ -35,11 +35,11 @@ public class PassiveItem : MonoBehaviour
     }   
     public void _06Pitem()
     {
-        gm._critdmg += ItemDataBase.instance.Variable(5);
+
     }
     public void _07Pitem()
     {
-        gm._critchance += ItemDataBase.instance.Variable(6);
+
     } 
     public void _08Pitem()
     {
@@ -50,38 +50,35 @@ public class PassiveItem : MonoBehaviour
     } 
     public void _09Pitem()
     {
-
+        gm._damage += ItemDataBase.instance.Variable(6) * gm._damage;
     }  
     public void _10Pitem()
     {
-        gm._range = ItemDataBase.instance.Variable(9);
+
     }
     public void _11Pitem()
     {
         gm._damage += ItemDataBase.instance.Variable(10);
         gm._attackspeed -= ItemDataBase.instance.Variable2(10);
-        gm._cooldown += ItemDataBase.instance.Variable3(10);
+        gm._skillCooltimePercent += ItemDataBase.instance.Variable3(10);
     }    
     public void _12Pitem()
     {
         gm._damage -= ItemDataBase.instance.Variable(11);
         gm._attackspeed += ItemDataBase.instance.Variable2(11);
-        gm._cooldown -= ItemDataBase.instance.Variable3(11);
     }   
     public void _13Pitem()
     {
-
+        gm._damage -= ItemDataBase.instance.Variable(12);
+        gm._skillCooltimePercent -= ItemDataBase.instance.Variable3(12);
     }   
     public void _14Pitem()
     {
-        gm._ultcount += ItemDataBase.instance.Variable(13);
+
     }   
     public void _15Pitem()
     {
-        // 토템 무시할 때
-        gm._damage += ItemDataBase.instance.Variable(14);
-        gm._attackspeed += ItemDataBase.instance.Variable2(14);
-        gm._cooldown += ItemDataBase.instance.Variable3(14);
+
     } 
     public void _16Pitem()
     {
@@ -95,8 +92,7 @@ public class PassiveItem : MonoBehaviour
     }   
     public void _18Pitem()
     {
-        gm._maxhp -= ItemDataBase.instance.Variable(17);
-        gm._lifesteal += ItemDataBase.instance.Variable(17);
+
     }  
     public void _19Pitem()
     {
@@ -136,8 +132,7 @@ public class PassiveItem : MonoBehaviour
     }    
     public void _27Pitem()
     {
-        // 처치시 최대 50
-        gm._attackspeed += ItemDataBase.instance.Variable(26);
+
     }    
     public void _28Pitem()
     {

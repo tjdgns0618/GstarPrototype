@@ -66,7 +66,7 @@ public class Totem : MonoBehaviour                                  // 토템에 상
                 return;
             case 2:
                 gm._attackspeed -= 0.2f;
-                gm._cooldown -= 2f;
+                gm._skillCooltimePercent -= 2f;
                 Debug.Log("몸이 둔해진 것 같다.");
                  return;
                 case 3:
@@ -74,7 +74,7 @@ public class Totem : MonoBehaviour                                  // 토템에 상
                 return;
             case 4:
                 gm._attackspeed += 0.3f;
-                gm._cooldown += 4f;
+                gm._skillCooltimePercent += 4f;
                 Debug.Log("몸이 가벼워졌다.");
                 return;
             case 5:
@@ -83,7 +83,7 @@ public class Totem : MonoBehaviour                                  // 토템에 상
                 return;
             case 6:
                 gm._attackspeed += 0.5f;
-                gm._cooldown += 6f;
+                gm._skillCooltimePercent += 6f;
                 gm._damage += 10f;
                 Debug.Log("신의 힘에 가까워진 기분이 든다.");
                 return;
