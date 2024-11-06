@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
-
 public class spawner1 : MonoBehaviour
 {
     public Transform spawnPos; //스폰 중심 위치
