@@ -1,3 +1,4 @@
+using CharacterController;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -158,9 +159,9 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             GameManager.instance.playerhitDelegate += _activeItem._05Item;
                             break;
                         case 34:
-                            if(GameManager.instance.playerattackDelegate == null 
+                            if (GameManager.instance.playerattackDelegate == null
                          || !GameManager.instance.playerattackDelegate.GetInvocationList().Contains((PlayerAttackDelegate)_activeItem._06Item))
-                            GameManager.instance.playerattackDelegate += _activeItem._06Item;
+                                GameManager.instance.playerattackDelegate += _activeItem._06Item;
                             break;
                         case 35:
                             GameManager.instance.playerhitDelegate += _activeItem._07Item;
@@ -212,8 +213,9 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 }
                 _rewardslot.ClearSlot();    // 다음 웨이브 보상 때 새로운 랜덤 보상으로 바꿔야 하기에 슬롯 초기화
             }
-        rewardUI.SetActive(false);    // 보상 창을 닫고
-        waveStart.SendMessage("StartWave");   // StartWave 함수 실행
+            rewardUI.SetActive(false);    // 보상 창을 닫고
+            DashState.CurrentDashCount = 0;
+            waveStart.SendMessage("StartWave");   // StartWave 함수 실행
             Time.timeScale = 1;
             reUI.AddRewardRandomItems(items);   // 새로운 아이템을 보상 슬롯에 추가
         }
