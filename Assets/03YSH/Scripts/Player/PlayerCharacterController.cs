@@ -37,15 +37,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public Volume _volume;
     Vignette _vignette;
 
-    [Header("대시 옵션")]
-    [SerializeField, Tooltip("대쉬의 힘을 나타내는 값")]
-    protected float dashPower;
     [SerializeField, Tooltip("대시 모션 시간")]
     protected float dashAnimTime;
-    [SerializeField, Tooltip("대시 시작 후, 재입력 받을 수 있는 시간")]
-    protected float dashReInputTime;
-    [SerializeField, Tooltip("대시 재사용 대기시간")]
-    protected float dashCoolTime;
 
     private WaitForSeconds DASH_ANIM_TIME;
     private Coroutine dashCoroutine;
@@ -76,6 +69,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);    
 
         AttackState.CanReInputTime = GameManager.instance._reInputTime;
+        DashState.CurrentDashCount = 0;
     }       
 
     private void Update()
@@ -129,8 +123,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                GameManager.instance.isHit = false;
                 StartCoroutine(changeCooltime());
                 StartCoroutine(realChangeCool());
+                
             }
             if (context.control.name == "2" && player.characterClass != CharacterType.Archer)
             {
@@ -159,6 +155,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                GameManager.instance.isHit = false;
                 StartCoroutine(changeCooltime());
                 StartCoroutine(realChangeCool());
             }
@@ -189,6 +186,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
+                GameManager.instance.isHit = false;
                 StartCoroutine(changeCooltime());
                 StartCoroutine(realChangeCool());
             }
@@ -294,7 +292,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 Debug.Log("Dash Input");
                 DashState.CurrentDashCount++;
                 dashState = player.stateMachine.GetState(StateName.DASH);
-                dashState.Init(dashPower, dashCoolTime);
+                dashState.Init(gameManager._dashPower, gameManager._dashCool);
                 player.stateMachine.ChangeState(StateName.DASH);
                 canMove = false;
             }
@@ -417,7 +415,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public IEnumerator DashCooltime()
     {
-        yield return new WaitForSeconds(dashCoolTime);
+        yield return new WaitForSeconds(gameManager._dashCool);
         DashState.CurrentDashCount = 0;
     }
 
@@ -433,7 +431,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         gameManager.isHit = true;
         player.animator.ResetTrigger("hit");
         player.animator.SetTrigger("hit");
-        player.OnUpdateStat(gameManager._maxhp, gameManager._hp - damageTaken, gameManager._movespeed, gameManager._dashcount);
+        player.OnUpdateStat(gameManager._maxhp, gameManager._hp - damageTaken, gameManager._movespeed);
         if (player.CurrentHp <= 0)
         {
             Dead();

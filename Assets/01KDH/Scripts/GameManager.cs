@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public InvenSlot[] slots;
+    public float[] cooltimes;
     public ParticlePoolManager particlePoolManager;
     public UIManager uiManager;
     public CameraManager cameraManager;
@@ -37,8 +38,13 @@ public class GameManager : MonoBehaviour
     public float _lifesteal = 0f;
     public float _lifegen = 0f;
 
-    public int _dashcount = 2;
-    public float _skillcount = 1;
+    public float _skillCooltimePercent = 1f;
+    [Header("대시 옵션")]
+    [SerializeField, Tooltip("대쉬의 힘을 나타내는 값")]
+    public float _dashPower = 3f;
+    [SerializeField, Tooltip("대시 쿨타임")]
+    public float _dashCool = 3f;
+
     public float _ultcount = 1;
 
     public float _revivecount = 0;
@@ -78,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed,_dashcount);
+        PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed);
 
         //activeDelegate += Test2;
         playerhitDelegate += Test;
@@ -91,11 +97,13 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //txt_gold = _gold;
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            cooltimes[0] -= 1;
     }
 
     public void Heal(float heal)
     {
-        float healValue = Mathf.Clamp(_hp + heal, _hp, _maxhp);
+        float healValue = Mathf.Clamp(_hp + heal, 0, _maxhp);
         _hp = healValue;
     }
 
@@ -127,7 +135,6 @@ public class GameManager : MonoBehaviour
         }
         return _itemcount;
     }
-
     public void Test()
     {
         return;

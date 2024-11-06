@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
+    GameManager gm;
+
+    private void Start()
+    {
+        gm = GameManager.instance;
+    }
+
     private void Update()
     {
         transform.Translate(Vector3.forward*Time.deltaTime*8f);
@@ -12,10 +19,10 @@ public class Wind : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            EnemyAI eAI = col.GetComponent<EnemyAI>();
-            if (eAI != null)
+            IDamageAble<float> damageAble = col.GetComponent<IDamageAble<float>>();
+            if (damageAble != null)
             {
-                eAI.Damage(0.5f);
+                damageAble.Damage(gm._damage * (ItemDataBase.instance.Variable(44) + (ItemDataBase.instance.Variable2(44) * (gm.FindItemCount(44) - 1))));
             }
         }
     }

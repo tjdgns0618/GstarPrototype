@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class WormBoss : Boss
@@ -7,6 +8,14 @@ public class WormBoss : Boss
     BehaviorTreeRunner _BTRunner = null;
     const string _Idle_AnimStateName = "Idle";
     const string _Taunting_AnimStateName = "Taunting";
+
+    AudioSource _audioSource;
+    public AudioClip _normalSound;
+    public AudioClip _groundSound;
+    public AudioClip _tauntSound;
+
+    public GameObject _head;
+    public GameObject _groundParticle;
 
     private void Start()
     {
@@ -16,7 +25,8 @@ public class WormBoss : Boss
         _isDead = false;
         _isAttacking = false;
         _hp = 150f;
-        _BTRunner = new BehaviorTreeRunner(SettingBT());
+        _BTRunner = new BehaviorTreeRunner(SettingBT()); 
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -91,7 +101,7 @@ public class WormBoss : Boss
         {
             if (_normalCoolTime <= 0f || _firstCoolTime <= 0f || _secondCoolTime <= 0f)
             {
-                return INode.ENodeState.ENS_Success; // ∞¯∞› ∞°¥…
+                return INode.ENodeState.ENS_Success; // Í≥µÍ≤© Í∞ÄÎä•
             }
         }
         return INode.ENodeState.ENS_Failure;
@@ -156,4 +166,52 @@ public class WormBoss : Boss
         return INode.ENodeState.ENS_Failure;
     }
     #endregion
+
+
+    public void HeadAttack()
+    {
+        _head.SetActive(true);
+    }
+
+    public void HeadAttackEnd()
+    {
+        _head.SetActive(false);
+    }
+
+    public void NormalStart()
+    {
+        _audioSource.clip = _normalSound;
+        _audioSource.Play();
+    }
+
+    public void GroundStart()
+    {
+        _audioSource.clip = _groundSound;
+        _audioSource.Play();
+        _groundParticle.SetActive(true);
+    }
+
+    public void TauntStart()
+    {
+        _audioSource.clip = _tauntSound;
+        _audioSource.Play();
+    }
+
+
+    protected void FirstCooldown(float deltaTime)
+    {
+        if (_firstCoolTime > 0)
+        {
+            _firstCoolTime -= deltaTime; // Ïø®ÌÉÄÏûÑ Í∞êÏÜå
+        }
+    }
+
+    protected void SecondCooldown(float deltaTime)
+    {
+        if (_secondCoolTime > 0)
+        {
+            _secondCoolTime -= deltaTime; // Ïø®ÌÉÄÏûÑ Í∞êÏÜå
+        }
+    }
+
 }

@@ -91,16 +91,14 @@ public class PlayerCharacter : MonoBehaviour
         stateMachine?.FixedUpdateState();
     }
 
-    public void OnUpdateStat(float maxHp, float currentHp, float moveSpeed, int dashCount)
+    public void OnUpdateStat(float maxHp, float currentHp, float moveSpeed)
     {
         GameManager.instance._maxhp = maxHp;
         GameManager.instance._hp = currentHp;
         GameManager.instance._movespeed = moveSpeed;
-        GameManager.instance._dashcount = dashCount;
         this.maxHp = maxHp;
         this.currentHp = currentHp;
         this.moveSpeed = moveSpeed;
-        this.dashCount = dashCount;
     }
 
     private void InitStateMachine()

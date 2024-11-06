@@ -20,6 +20,12 @@ public class ActiveItem : MonoBehaviour
     public float killRandomValue;
     public float killProbability;
 
+    public int fixRandomValue;
+    public float fixProbability;
+
+    public float variableRandomValue;
+    public float variableProbability;
+
     GameManager gm;
 
     public spawner1 spawner;
@@ -38,15 +44,14 @@ public class ActiveItem : MonoBehaviour
     #region effect
     public void _01Item(Transform transform)   //  처치 시 체력회복 오브 드랍 
     {
-        //Debug.Log("01 힐링오브");
-        //if (GetKillRandom(29))
-        //{
+        if (VariableRandom(29))
+        {
             GameObject particle = gm.particlePoolManager.GetParticle("Healingorb");
             if (particle != null)
             {
                 particle.transform.position = transform.position;
             }
-        //}
+        }
     }
     public void _02Item(Transform transform)   // 처치 시 적 폭발
     {
@@ -57,7 +62,7 @@ public class ActiveItem : MonoBehaviour
             }
     }
 
-    public void _03Item()   // 적 피격 시 폭탄 부착
+    public void _03Item()   // 일정 시간마다 수리검 소환
     {
         if (spawner.enemies.Count != 0)
         {
@@ -84,16 +89,19 @@ public class ActiveItem : MonoBehaviour
 
     public void _06Item()   // 공격 시 미사일 발사
     {
+        if(FixRandom(34))
+        {
             if (spawner.enemies.Count > 0)
             {
                 GameObject particle = gm.particlePoolManager.GetParticle("MissileUp");
                 GameObject particle2 = gm.particlePoolManager.GetParticle("MissileDown");
-                 if (particle != null && particle2 != null)
-                 {
-                     particle.transform.position = PlayerCharacter.Instance.transform.position;
-                     particle2.transform.position = spawner.enemies[Random.Range(0, spawner.enemies.Count)].transform.position;
-                 }
+                if (particle != null && particle2 != null)
+                {
+                    particle.transform.position = PlayerCharacter.Instance.transform.position;
+                    particle2.transform.position = spawner.enemies[Random.Range(0, spawner.enemies.Count)].transform.position;
+                }
             }
+        }
     }
 
     public void _07Item(Transform transform)   // 플레이어 피격 시 랜덤 효과 발동
@@ -140,25 +148,26 @@ public class ActiveItem : MonoBehaviour
 
     public void _13Item()   // 공격 시 연쇄 번개
     {
-        if (GetAttackRandom(41))
+        if (FixRandom(41))
         {
             chainLightning.UseItem();
         }
     }
     public void _14Item(GameObject target)   //  공격 시 블레이드를 몸에 심음
     {
-        // if (GetAttackRandom(42))
-        Debug.Log("14번 아이템");
+        if (FixRandom(42))
         {
-            GameObject particle = gm.particlePoolManager.GetParticle("BladeStorm");
-            if (particle != null)
             {
-                particle.GetComponent<BladeStorm>().target = target;
-                particle.transform.localPosition = Vector3.zero;
+                GameObject particle = gm.particlePoolManager.GetParticle("BladeStorm");
+                if (particle != null)
+                {
+                    particle.GetComponent<BladeStorm>().target = target;
+                    particle.transform.localPosition = Vector3.zero;
+                }
             }
         }
     }
-    public void _15Item()   // 공격 시 범위 장판 
+    public void _15Item()   // 공격 시 실드 발사
     {
         if (GetAttackRandom(43))
         {
@@ -169,9 +178,9 @@ public class ActiveItem : MonoBehaviour
             }
         }
     }
-    public void _16Item()   // 공격 시 투사체 발사
+    public void _16Item()   // 공격 시 회오리 발사
     {
-        if (GetAttackRandom(44))
+        if (FixRandom(44))
         {
             GameObject particle = gm.particlePoolManager.GetParticle("Wind");
             if (particle != null)
@@ -281,6 +290,34 @@ public class ActiveItem : MonoBehaviour
         else
         {
             Debug.Log("Attack False");
+            return false;
+        }
+    }
+
+    public bool FixRandom(int id)
+    {
+        fixRandomValue = Random.Range(1, 101);
+        fixProbability = 100 - (ItemDataBase.instance.Variable3(id));
+        if (fixRandomValue >= fixProbability)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool VariableRandom(int id)
+    {
+        variableRandomValue = Random.Range(1f, 101f);
+        variableProbability = 100f - (ItemDataBase.instance.Variable2(id) + (ItemDataBase.instance.Variable3(id)*(gm.FindItemCount(id)-1)));
+        if (variableRandomValue >= variableProbability)
+        {
+            return true;
+        }
+        else
+        {
             return false;
         }
     }

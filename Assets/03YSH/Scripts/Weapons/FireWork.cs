@@ -59,7 +59,7 @@ public class FireWork : MonoBehaviour
 
             foreach (GameObject enemy in enemies)
             {
-                if (!enemy.GetComponent<EnemyAI>().isDead)
+                if (enemy.layer != 7)
                 {
                     float distance = Vector3.Distance(transform.position, enemy.transform.position);
                     if (distance < closestDistance)
@@ -106,7 +106,8 @@ public class FireWork : MonoBehaviour
         if (other.tag == "Enemy")
         {
             IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
-            damageAble?.Damage(GameManager.instance._damage);
+            damageAble?.Damage(GameManager.instance._damage * ItemDataBase.instance.Variable(43) +
+                               (ItemDataBase.instance.Variable2(43) * (GameManager.instance.FindItemCount(43) - 1)));
             GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);
         }
     }

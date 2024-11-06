@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TickManager : MonoBehaviour
 {
+    GameManager gm;
+
     float _maneulTimer;
     float _shieldTimer;
     float _fireTimer;
@@ -39,6 +41,7 @@ public class TickManager : MonoBehaviour
 
     void Start()
     {
+        gm = GameManager.instance;
         _tickManeul = ItemDataBase.instance.Variable(36);
         _tickShield = ItemDataBase.instance.Variable(37);
         _tickFire = ItemDataBase.instance.Variable(38);
@@ -64,7 +67,7 @@ public class TickManager : MonoBehaviour
         if (_maneulT == null) 
             return;
         _maneulTimer += Time.deltaTime;
-        if (_maneulTimer >= _tickManeul)
+        if (_maneulTimer >= _tickManeul - (ItemDataBase.instance.Variable2(36) * gm.FindItemCount(36) - 1))
         {
             _maneulTimer = 0;
             _maneulT?.Invoke();
@@ -136,7 +139,7 @@ public class TickManager : MonoBehaviour
         if (_shurikenT == null)
             return;
         _shurikenTimer += Time.deltaTime;
-        if (_shurikenTimer >= _tickShuriken)
+        if (_shurikenTimer >= _tickShuriken - (ItemDataBase.instance.Variable2(31) * (gm.FindItemCount(31) - 1)))
         {
             _shurikenTimer = 0;
             _shurikenT?.Invoke();
