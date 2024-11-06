@@ -16,6 +16,12 @@ public class SceneChanger : MonoBehaviour
         fadeInOut = FindObjectOfType<FadeInOut>();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+            LoadEndingCutScene();
+    }
+
     public void LoadMainScene()
     {
         fadeInOut.FadeOut();
@@ -33,6 +39,12 @@ public class SceneChanger : MonoBehaviour
     {
         fadeInOut.FadeOut();
         StartCoroutine(_LoadTutorialScene());
+    }
+
+    public void LoadEndingCutScene()
+    {
+        fadeInOut = FindObjectOfType<FadeInOut>();
+        SceneManager.LoadScene(3);
     }
 
     IEnumerator _LoadTitleScene()
