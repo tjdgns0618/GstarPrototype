@@ -26,17 +26,19 @@ public class GameManager : MonoBehaviour
 
     public float _damage = 10f;
     public float _range = 1f;
-    public float _cooldown = 0;
     public float _changeCooldown = 3f;
     public float _attackspeed = 1f;
     public float _movespeed = 1f;
     public float _reInputTime = 1f;
 
     public float _critchance = 10f;
-    public float _critdmg = 150f;
+    public float _critdmg = 1.5f;
 
     public float _lifesteal = 0f;
     public float _lifegen = 0f;
+
+    public float criticalRandomValue;
+    public float criticalProbability;
 
     public float _skillCooltimePercent = 1f;
     [Header("대시 옵션")]
@@ -138,5 +140,19 @@ public class GameManager : MonoBehaviour
     public void Test()
     {
         return;
+    }
+
+    public bool Critical()
+    {
+        criticalRandomValue = Random.Range(1f, 101f);
+        criticalProbability = 100f - _critchance;
+        if (criticalRandomValue >= criticalProbability)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

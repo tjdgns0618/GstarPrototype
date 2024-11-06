@@ -12,6 +12,11 @@ public struct ItemSheetDB
     public float itemVariable2_index;
     public float itemVariable3_index;
     public float itemVariable4_index;
+
+    public float text1_index;
+    public float text2_index;
+    public float text3_index;
+    public float text4_index;
 }
 
 public class ItemDataBase : MonoBehaviour
@@ -48,6 +53,12 @@ public class ItemDataBase : MonoBehaviour
             _itemSheets[i].itemVariable2_index = _itemDB.Sheet1[i].itemVariable2;
             _itemSheets[i].itemVariable3_index = _itemDB.Sheet1[i].itemVariable3;
             _itemSheets[i].itemVariable4_index = _itemDB.Sheet1[i].itemVariable4;
+
+            _itemSheets[i].text1_index = _itemDB.Sheet1[i].text1;
+            _itemSheets[i].text2_index = _itemDB.Sheet1[i].text2;
+            _itemSheets[i].text3_index = _itemDB.Sheet1[i].text3;
+            _itemSheets[i].text4_index = _itemDB.Sheet1[i].text4;
+
         }
     }
 
@@ -76,5 +87,22 @@ public class ItemDataBase : MonoBehaviour
     public float Variable4(int itemid)
     {
         return _itemDB.Sheet1[itemid].itemVariable4;
+    }
+
+    public float Itemtext(int itemid)
+    {
+        return _itemDB.Sheet1[itemid].text1;
+    }
+    public float Itemtext2(int itemid)
+    {
+        return _itemDB.Sheet1[itemid].text2;
+    }
+    public float Itemtext3(int itemid)
+    {
+        return _itemDB.Sheet1[itemid].text3;
+    }
+    public float Itemtext4(int itemid)
+    {
+        return _itemDB.Sheet1[itemid].text4;
     }
 }
