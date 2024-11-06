@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public GameObject bullet;
     public Transform shotPosition;
 
+    AudioSource audioSource;
     spawner1 spawner;
     Rigidbody rigid;
     BehaviorTreeRunner _BTRunner = null;
@@ -258,7 +259,8 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         if(isDead) return;
         
         animator.SetTrigger("hit");
-        // hitSound.Play();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
         currentHp -= damageTaken;
 
         StopCoroutine("hitMaterialChange");
@@ -268,7 +270,6 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         textPos.y += 1.5f;
         damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken, textPos, false);
 
-        Debug.Log(currentHp);
         if (currentHp <= 0)
         {
             currentHp = 0;            
