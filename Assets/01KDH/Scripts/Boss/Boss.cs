@@ -339,4 +339,9 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     {
 
     }
+
+    public void DeadActiveFalse()
+    {
+        gameObject.SetActive(false);
+    }
 }

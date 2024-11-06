@@ -13,8 +13,10 @@ public class FireWork : MonoBehaviour
     private bool isTracking = false;        // 적을 추적하는 단계인지 여부
     private Animator animator;
 
+    AudioSource audio;
     private void OnEnable()
     {
+        audio = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         animator.Rebind();
         isTracking = false;
@@ -105,6 +107,7 @@ public class FireWork : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            audio.Play();
             IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
             damageAble?.Damage(GameManager.instance._damage * ItemDataBase.instance.Variable(43) +
                                (ItemDataBase.instance.Variable2(43) * (GameManager.instance.FindItemCount(43) - 1)));
