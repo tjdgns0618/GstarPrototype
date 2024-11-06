@@ -4286,14 +4286,16 @@ MonoBehaviour:
   waveClear: {fileID: 1940945366}
   stageClear: {fileID: 326430266}
   bossPrefab: {fileID: 519989254357271549, guid: b6294453763793643b0b14e23f4c9e3d, type: 3}
-  bossPrefab2: {fileID: 1728535632334919360, guid: dd75171fdbb334f4a80246f2ce97627b, type: 3}
+  bossPrefab2: {fileID: 1082841484513167430, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
+  bossPrefab3: {fileID: 3436323935842355564, guid: a860700c54ceb70458582f4280f5e4c2, type: 3}
+  bossPrefab4: {fileID: 1728535632334919360, guid: dd75171fdbb334f4a80246f2ce97627b, type: 3}
   waveInfoText: {fileID: 8335460949734507039}
   stageInfoText: {fileID: 3923033488069134938}
   waveCountText: {fileID: 6476767945889163270}
-  spawnRadius: 10
-  minDistancefromPlayer: 5
+  spawnRadius: 33
+  minDistancefromPlayer: 28
   firstWaveEnemy: 10
-  spawnInterval: 3
+  spawnInterval: 5
   waveInterval: 1
   maxWaves: 5
   currentWave: 0
@@ -42082,63 +42084,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &8590932068042126231
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1082841484513167430, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_Name
-      value: WerewolfPADefault
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.1284316
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0000019073486
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.63554215
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.013838087
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9999043
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 181.586
-      objectReference: {fileID: 0}
-    - target: {fileID: 8037128687214935704, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f95007f785348eb4686b8cba76603ac1, type: 3}
 --- !u!224 &8593624476940824990
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42967,4 +42912,3 @@ SceneRoots:
   - {fileID: 1015620982}
   - {fileID: 736685654}
   - {fileID: 1006257247}
-  - {fileID: 8590932068042126231}

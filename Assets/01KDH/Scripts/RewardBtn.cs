@@ -35,7 +35,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void NextWave()
     {
         _rectTransform.anchoredPosition = new Vector3(-356, _rectTransform.anchoredPosition.y, 0);
-        if (_spawn.currentWave < _spawn.maxWaves)   // 아직 스테이지가 진행 중 이라면
+        if (_spawn.currentWave <= _spawn.maxWaves)   // 아직 스테이지가 진행 중 이라면
         {
             if (_rewardslot.item != null) // 슬롯에 아이템이 있을 경우
             {
@@ -207,7 +207,8 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             }
         rewardUI.SetActive(false);    // 보상 창을 닫고
         waveStart.SendMessage("StartWave");   // StartWave 함수 실행
-        reUI.AddRewardRandomItems(items);   // 새로운 아이템을 보상 슬롯에 추가
+            Time.timeScale = 1;
+            reUI.AddRewardRandomItems(items);   // 새로운 아이템을 보상 슬롯에 추가
         }
         else  // 스테이지가 끝났다면,
         {

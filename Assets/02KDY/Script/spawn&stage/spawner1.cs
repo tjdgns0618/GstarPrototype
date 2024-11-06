@@ -14,6 +14,8 @@ public class spawner1 : MonoBehaviour
     public GameObject stageClear;
     public GameObject bossPrefab;
     public GameObject bossPrefab2;
+    public GameObject bossPrefab3;
+    public GameObject bossPrefab4;
     //public GameObject playerPrefab;
     public TMP_Text waveInfoText;
     public TMP_Text stageInfoText;
@@ -76,7 +78,7 @@ public class spawner1 : MonoBehaviour
                 stageClear.SetActive(true);
                 Invoke("StageClear", 2f);
                 portal.SetActive(true);
-                Time.timeScale = 1;
+                Debug.Log("마지막 웨이브");
                 //토템 추가 예정   
             }
             else
@@ -84,6 +86,7 @@ public class spawner1 : MonoBehaviour
                 waveClear.SetActive(true);
                 Invoke("RewardTerm", 2f);
                 //rewardUI.AddRewardRandomItems(rewardUI.allItems);
+                Debug.Log("보상창");
             }
         }
     }
@@ -96,6 +99,8 @@ public class spawner1 : MonoBehaviour
     }
     public void StageClear()
     {
+        Time.timeScale = 0;
+        rewardUI.SetActive(true);
         stageClear.SetActive(false);
     }
     IEnumerator WaveSystem() //웨이브 시스템
@@ -112,7 +117,7 @@ public class spawner1 : MonoBehaviour
 
     public void SetupWave()
     {
-        if (currentStage == 2 && currentWave == 1) //보스 스테이지 조정
+        if (currentStage == 2 && currentWave == maxWaves) //보스 스테이지 조정
         {
             StartCoroutine(BossWave());
             UpdateWaveInfoUI();
@@ -120,7 +125,23 @@ public class spawner1 : MonoBehaviour
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
             return;
         }
-        else if(currentStage == 2 && currentWave == 2)
+        else if(currentStage == 4 && currentWave == maxWaves)
+        {
+            StartCoroutine(BossWave());
+            UpdateWaveInfoUI();
+            waveCountText.text = $"WAVE {currentWave}";
+            Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            return;
+        }
+        else if (currentStage == 6 && currentWave == maxWaves)
+        {
+            StartCoroutine(BossWave());
+            UpdateWaveInfoUI();
+            waveCountText.text = $"WAVE {currentWave}";
+            Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            return;
+        }
+        else if (currentStage == 8 && currentWave == maxWaves)
         {
             StartCoroutine(BossWave());
             UpdateWaveInfoUI();
@@ -139,11 +160,19 @@ public class spawner1 : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        if (currentStage == 2 && currentWave == 1) // 보스 스테이지 조정
+        if (currentStage == 2 && currentWave == maxWaves) // 보스 스테이지 조정
         {
             yield break;
         }
-        else if(currentStage == 2 && currentWave == 2)
+        else if(currentStage == 4 && currentWave == maxWaves)
+        {
+            yield break;
+        }
+        else if(currentStage == 6 && currentWave == maxWaves)
+        {
+            yield break;
+        }
+        else if(currentStage == 8 && currentWave == maxWaves)
         {
             yield break;
         }
@@ -193,19 +222,15 @@ public class spawner1 : MonoBehaviour
         yield return new WaitUntil(() => enemiesLeft == 0);
 
         Debug.Log("보스 처치 완료. 스테이지 클리어");
-
-        if (currentStage == 1)
+        if(currentStage == 8 && currentWave == maxWaves)
         {
-            stageClear.SetActive(true);
-            Invoke("StageClear", 2f);
-            portal.SetActive(true);
-            Time.timeScale = 1;
+            // 엔딩씬 추가
         }
     }
 
     void SpawnBoss() //보스 소환
     {
-        if (currentStage == 2 && currentWave == 1)
+        if (currentStage == 2 && currentWave == maxWaves) //2스테이지
         {
             Vector3 bossSpawnPosition = GetRandomPosition();
             GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
@@ -213,10 +238,26 @@ public class spawner1 : MonoBehaviour
             enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
         }
-        else if (currentStage == 2 && currentWave == 2)
+        else if (currentStage == 4 && currentWave == maxWaves) //4스테이지
         {
             Vector3 bossSpawnPosition = GetRandomPosition();
             GameObject boss = Instantiate(bossPrefab2, bossSpawnPosition, Quaternion.identity);
+            enemiesLeft = 1; // 보스 몬스터 1마리
+            enemies.Add(boss);
+            Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+        }
+        else if (currentStage == 6 && currentWave == maxWaves) //6스테이지
+        {
+            Vector3 bossSpawnPosition = GetRandomPosition();
+            GameObject boss = Instantiate(bossPrefab3, bossSpawnPosition, Quaternion.identity);
+            enemiesLeft = 1; // 보스 몬스터 1마리
+            enemies.Add(boss);
+            Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+        }
+        else if (currentStage == 8 && currentWave == maxWaves) //8스테이지
+        {
+            Vector3 bossSpawnPosition = GetRandomPosition();
+            GameObject boss = Instantiate(bossPrefab4, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");

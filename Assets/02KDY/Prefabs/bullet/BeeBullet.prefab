@@ -4965,10 +4965,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireMode: 0
-  speed: 20
+  speed: 15
   targetname: Player
   hitEffectPrefab: {fileID: 1153730961705006, guid: f1aeeba2f9003904da5c0a24ba150198, type: 3}
   flash: {fileID: 1373498804365708, guid: 1be2572052efd584296895036cceb277, type: 3}
+  destroyDelay: 5
   angleOffset: 30
-  burstDelay: 0.5
   homingDelay: 1
+  damage: 0
