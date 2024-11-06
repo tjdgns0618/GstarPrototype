@@ -19,11 +19,8 @@ public class ChainLightning : MonoBehaviour
 
     WaitForSeconds aDelay;
 
-    AudioSource audio;
-
     private void Start()
     {
-        audio = GetComponent<AudioSource>();
         // 라인 렌더러 컴포넌트를 추가하고 초기 설정
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.startWidth = 0.9f; // 시작 두께
@@ -93,7 +90,6 @@ public class ChainLightning : MonoBehaviour
 
             currentTarget.Damage(GameManager.instance._damage * (ItemDataBase.instance.Variable(41) + (ItemDataBase.instance.Variable2(41) * 
                 (GameManager.instance.FindItemCount(41)-1))));
-            audio.Play();
             GameObject particle = Instantiate(hitParticlePrefab, currentTarget.transform.position, Quaternion.identity); // 피격 파티클 생성
             activeParticles[currentTarget] = particle; // 현재 적과 파티클 연결
 
