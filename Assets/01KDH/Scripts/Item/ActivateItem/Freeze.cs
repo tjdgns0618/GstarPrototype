@@ -11,7 +11,7 @@ public class Freeze : MonoBehaviour
             EnemyAI eAI = col.GetComponent<EnemyAI>();
             if (eAI != null)
             {
-                eAI.Slow(ItemDataBase.instance.Variable2(47));
+                eAI.Slow(ItemDataBase.instance.Variable2(47) + (ItemDataBase.instance.Variable3(47) * (GameManager.instance.FindItemCount(47) - 1)));
             }
         }
     }

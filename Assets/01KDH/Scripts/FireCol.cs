@@ -2,19 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wind : MonoBehaviour
+public class FireCol : MonoBehaviour
 {
     GameManager gm;
 
-    private void Start()
+    void Start()
     {
         gm = GameManager.instance;
     }
 
-    private void Update()
-    {
-        transform.Translate(Vector3.forward*Time.deltaTime*8f);
-    }
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Enemy"))
@@ -22,7 +18,7 @@ public class Wind : MonoBehaviour
             IDamageAble<float> damageAble = col.GetComponent<IDamageAble<float>>();
             if (damageAble != null)
             {
-                damageAble.Damage(gm._damage * (ItemDataBase.instance.Variable(44) + (ItemDataBase.instance.Variable2(44) * (gm.FindItemCount(44) - 1))));
+                damageAble.Damage(gm._damage * (ItemDataBase.instance.Variable2(38) + (ItemDataBase.instance.Variable3(38) * (gm.FindItemCount(38) - 1))));
             }
         }
     }

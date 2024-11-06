@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static GameManager;
 
 public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -155,6 +158,8 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             GameManager.instance.playerhitDelegate += _activeItem._05Item;
                             break;
                         case 34:
+                            if(GameManager.instance.playerattackDelegate == null 
+                         || !GameManager.instance.playerattackDelegate.GetInvocationList().Contains((PlayerAttackDelegate)_activeItem._06Item))
                             GameManager.instance.playerattackDelegate += _activeItem._06Item;
                             break;
                         case 35:
@@ -176,7 +181,9 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             TickManager._godT += _activeItem._12Item;
                             break;
                         case 41:
-                            GameManager.instance.playerattackDelegate += _activeItem._13Item;
+                            if (GameManager.instance.playerattackDelegate == null
+                            || !GameManager.instance.playerattackDelegate.GetInvocationList().Contains((PlayerAttackDelegate)_activeItem._13Item))
+                                GameManager.instance.playerattackDelegate += _activeItem._13Item;
                             break;
                         case 42:
                             GameManager.instance.enemyhitDelegate += _activeItem._14Item;

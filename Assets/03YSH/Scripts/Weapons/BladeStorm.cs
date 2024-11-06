@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BladeStorm : MonoBehaviour
 {
-    public float damagePercentage = 0.1f;
     float timer = 0;
     float duration = 0.5f;
     public GameObject target;
@@ -30,7 +29,8 @@ public class BladeStorm : MonoBehaviour
         if (timer >= duration)
         {
             timer = 0;
-            target.GetComponent<EnemyAI>().Damage(GameManager.instance._damage * damagePercentage);
+            target.GetComponent<IDamageAble<float>>().Damage(GameManager.instance._damage * (ItemDataBase.instance.Variable(42) +
+                                                            (ItemDataBase.instance.Variable2(42) * (GameManager.instance.FindItemCount(42) - 1))));
         }        
     }
 }

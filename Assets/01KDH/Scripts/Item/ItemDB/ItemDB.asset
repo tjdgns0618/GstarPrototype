@@ -204,20 +204,20 @@ MonoBehaviour:
     itemVariable4: 0
   - itemID: 29
     itemText: "\uC801 \uCC98\uCE58\uC2DC \uCCB4\uB825\uD68C\uBCF5\uC624\uBE0C \uB4DC\uB78D"
-    itemVariable: 5
-    itemVariable2: 0.05
-    itemVariable3: 0
+    itemVariable: 0.05
+    itemVariable2: 5
+    itemVariable3: 1
     itemVariable4: 0
   - itemID: 30
     itemText: "\uC801 \uCC98\uCE58 \uC2DC \uC801 \uD3ED\uBC1C"
-    itemVariable: 0.15
-    itemVariable2: 0
+    itemVariable: 0.2
+    itemVariable2: 0.05
     itemVariable3: 0
     itemVariable4: 0
   - itemID: 31
     itemText: "\uC77C\uC815 \uC2DC\uAC04\uB9C8\uB2E4 \uC218\uB9AC\uAC80 \uC18C\uD658"
-    itemVariable: 3
-    itemVariable2: 0
+    itemVariable: 5
+    itemVariable2: 0.1
     itemVariable3: 0
     itemVariable4: 0
   - itemID: 32
@@ -234,10 +234,11 @@ MonoBehaviour:
     itemVariable3: 0
     itemVariable4: 0
   - itemID: 34
-    itemText: "\uACF5\uACA9 \uC2DC \uD655\uB960\uB85C \uD3ED\uC8FD \uBC1C\uC0AC"
-    itemVariable: 100
-    itemVariable2: 0.15
-    itemVariable3: 0
+    itemText: "\uACF5\uACA9 \uC2DC \uB79C\uB364\uD55C \uC801\uC5D0\uAC8C \uBC94\uC704\uD615
+      \uD3ED\uC8FD \uBC1C\uC0AC"
+    itemVariable: 0.25
+    itemVariable2: 0.04
+    itemVariable3: 10
     itemVariable4: 0
   - itemID: 35
     itemText: "\uD53C\uACA9\uC2DC \uBC1C\uB3D9\uD615 \uD6A8\uACFC \uB79C\uB364 \uBC1C\uB3D9"
@@ -249,8 +250,8 @@ MonoBehaviour:
     itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uCE90\uB9AD\uD130 \uC8FC\uBCC0
       \uC9C0\uC18D\uD53C\uD574 \uC6D0 \uC0DD\uC131"
     itemVariable: 10
-    itemVariable2: 0.15
-    itemVariable3: 0
+    itemVariable2: 0.2
+    itemVariable3: 0.5
     itemVariable4: 0
   - itemID: 37
     itemText: "\uBC29\uD328\uAC00 \uC0DD\uC131\uB418\uC5B4 \uD50C\uB808\uC774\uC5B4
@@ -263,8 +264,8 @@ MonoBehaviour:
     itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uC801\uC774 \uC788\uB294\uACF3\uC5D0
       \uC7A5\uD310"
     itemVariable: 10
-    itemVariable2: 0
-    itemVariable3: 0
+    itemVariable2: 0.3
+    itemVariable3: 0.05
     itemVariable4: 0
   - itemID: 39
     itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uC8FC\uBCC0\uC801 \uC815\uC9C0"
@@ -280,33 +281,34 @@ MonoBehaviour:
     itemVariable4: 0
   - itemID: 41
     itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uC5F0\uC1C4\uBC88\uAC1C"
-    itemVariable: 5
-    itemVariable2: 0
-    itemVariable3: 0
+    itemVariable: 0.4
+    itemVariable2: 0.1
+    itemVariable3: 10
     itemVariable4: 0
   - itemID: 42
-    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uBC94\uC704\uD53C\uACA9(\uC5EC\uB798\uC2E0\uC7A5)"
-    itemVariable: 100
-    itemVariable2: 0
-    itemVariable3: 0
+    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uC801\uC5D0\uAC8C
+      \uCE7C\uBC14\uB78C \uBD80\uCC29"
+    itemVariable: 0.2
+    itemVariable2: 0.05
+    itemVariable3: 20
     itemVariable4: 0
   - itemID: 43
-    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uBC94\uC704 \uC7A5\uD310"
-    itemVariable: 5
-    itemVariable2: 0
-    itemVariable3: 0
+    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uC2E4\uB4DC \uBC1C\uC0AC"
+    itemVariable: 0.35
+    itemVariable2: 0.05
+    itemVariable3: 10
     itemVariable4: 0
   - itemID: 44
-    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uD22C\uC0AC\uCCB4
+    itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uD68C\uC624\uB9AC
       \uBC1C\uC0AC"
-    itemVariable: 5
-    itemVariable2: 0
-    itemVariable3: 0
+    itemVariable: 0.25
+    itemVariable2: 0.1
+    itemVariable3: 20
     itemVariable4: 0
   - itemID: 45
     itemText: "\uACF5\uACA9\uC2DC \uD655\uB960\uC801\uC73C\uB85C \uB418\uB3CC\uC544\uC624\uB294
       \uD22C\uC0AC\uCCB4 \uBC1C\uC0AC"
-    itemVariable: 5
+    itemVariable: 0
     itemVariable2: 0
     itemVariable3: 0
     itemVariable4: 0
@@ -319,14 +321,14 @@ MonoBehaviour:
   - itemID: 47
     itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uCE90\uB9AD\uD130 \uC8FC\uBCC0
       \uC801 \uC2AC\uB85C\uC6B0"
-    itemVariable: 10
-    itemVariable2: 4
-    itemVariable3: 0
+    itemVariable: 15
+    itemVariable2: 0.25
+    itemVariable3: 0.05
     itemVariable4: 0
   - itemID: 48
     itemText: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uB370\uBBF8\uC9C0\uB97C \uC785\uD788\uB294
-      \uC870\uAC01\uC744 \uBC1C\uC0AC"
-    itemVariable: 2
-    itemVariable2: 0
-    itemVariable3: 0
+      \uBCC4\uAC00\uB8E8 \uBC1C\uC0AC"
+    itemVariable: 3
+    itemVariable2: 0.1
+    itemVariable3: 0.03
     itemVariable4: 0

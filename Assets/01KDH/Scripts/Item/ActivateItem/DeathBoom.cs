@@ -18,7 +18,7 @@ public class DeathBoom : MonoBehaviour
             IDamageAble<float> damageAble = col.GetComponent<IDamageAble<float>>();
             if (damageAble != null)
             {
-                damageAble.Damage(gm._damage * (ItemDataBase.instance.Variable(30) + (gm.FindItemCount(30) - 1) * 0.1f));
+                damageAble.Damage(gm._damage * (ItemDataBase.instance.Variable(30) + ItemDataBase.instance.Variable2(30) * (gm.FindItemCount(30)-1)));
             }
         }
     }
