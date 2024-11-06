@@ -80,7 +80,6 @@ public class spawner1 : MonoBehaviour
             {           
                 stageClear.SetActive(true);
                 Invoke("StageClear", 2f);
-                portal.SetActive(true);
                 Debug.Log("마지막 웨이브");
                 //토템 추가 예정   
             }
@@ -102,6 +101,7 @@ public class spawner1 : MonoBehaviour
     }
     public void StageClear()
     {
+        portal.SetActive(true);
         Time.timeScale = 0;
         rewardUI.SetActive(true);
         stageClear.SetActive(false);
