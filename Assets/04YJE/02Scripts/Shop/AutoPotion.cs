@@ -24,7 +24,9 @@ public class AutoPotion : MonoBehaviour         //자동 회복 시켜주는 스크립트
     {
         if (CheckHealthThreshold() && isAble)
         {
-            shopitem.ActivateItemAbility();
+            if(shopitem != null)
+                shopitem.ActivateItemAbility();
+
             recoveryCount--;
 
             if (recoveryCount <= 0)
@@ -33,20 +35,23 @@ public class AutoPotion : MonoBehaviour         //자동 회복 시켜주는 스크립트
     }
     private void InitRecoveryCount()
     {
-        recoveryCount = shopitem.recoveryCount;
+        if(shopitem != null)
+            recoveryCount = shopitem.recoveryCount;
     }
 
     public void SetAblePotion()
     {
         isAble = true;
-        activeFrame.SetActive(true);
+        if (activeFrame != null)
+            activeFrame.SetActive(true);
         InitRecoveryCount();
     }
 
     public void SetDisablePotion()
     {
         isAble = false;
-        activeFrame.SetActive(false);
+        if(activeFrame != null)
+            activeFrame.SetActive(false);
     }
 
     public bool CheckHealthThreshold() //피가 일정 수치가 되었는지 확인

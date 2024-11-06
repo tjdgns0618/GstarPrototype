@@ -34,6 +34,7 @@ public class Wall : MonoBehaviour
 
     void SetWallAlphaValue(float value)
     {
+        value = Mathf.Clamp(value, 0, 1);
         wallMat.SetFloat("_DotsAlpha", value);
     }
 

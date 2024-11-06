@@ -10,8 +10,11 @@ public class SceneChanger : MonoBehaviour
     FadeInOut fadeInOut;
     WaitForSeconds fadeTime = new WaitForSeconds(2f);
 
+    bool isLoading = false;
+
     private void Start()
     {
+        isLoading = false;
         soundManager = SoundManager.instance;
         fadeInOut = FindObjectOfType<FadeInOut>();
     }
@@ -24,12 +27,18 @@ public class SceneChanger : MonoBehaviour
 
     public void LoadMainScene()
     {
+        if (isLoading)
+            return;
+
         fadeInOut.FadeOut();
         StartCoroutine(_LoadMainScene());
     }
 
     public void LoadTitleScene()
     {
+        if (isLoading)
+            return;
+
         Time.timeScale = 1.0f;
         fadeInOut.FadeOut();
         StartCoroutine(_LoadTitleScene());
@@ -37,18 +46,25 @@ public class SceneChanger : MonoBehaviour
 
     public void LoadTutorialScene()
     {
+        if (isLoading)
+            return;
+
         fadeInOut.FadeOut();
         StartCoroutine(_LoadTutorialScene());
     }
 
     public void LoadEndingCutScene()
     {
+        if (isLoading)
+            return;
+
         fadeInOut = FindObjectOfType<FadeInOut>();
         SceneManager.LoadScene(3);
     }
 
     IEnumerator _LoadTitleScene()
     {
+        isLoading = true;
         yield return fadeTime;
 
         SceneManager.LoadScene(0);
@@ -56,6 +72,7 @@ public class SceneChanger : MonoBehaviour
     }
     IEnumerator _LoadTutorialScene()
     {
+        isLoading = true;
         yield return fadeTime;
 
         SceneManager.LoadScene(1);
@@ -65,6 +82,7 @@ public class SceneChanger : MonoBehaviour
 
     IEnumerator _LoadMainScene()
     {
+        isLoading = true;
         yield return fadeTime;
 
         SceneManager.LoadScene(2);
