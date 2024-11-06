@@ -30,7 +30,8 @@ public class SceneChanger : MonoBehaviour
         if (isLoading)
             return;
 
-        fadeInOut.FadeOut();
+        if (fadeInOut != null)
+            fadeInOut.FadeOut();
         StartCoroutine(_LoadMainScene());
     }
 
@@ -40,7 +41,8 @@ public class SceneChanger : MonoBehaviour
             return;
 
         Time.timeScale = 1.0f;
-        fadeInOut.FadeOut();
+        if (fadeInOut != null)
+            fadeInOut.FadeOut();
         StartCoroutine(_LoadTitleScene());
     }
 
@@ -49,7 +51,8 @@ public class SceneChanger : MonoBehaviour
         if (isLoading)
             return;
 
-        fadeInOut.FadeOut();
+        if (fadeInOut != null)
+            fadeInOut.FadeOut();
         StartCoroutine(_LoadTutorialScene());
     }
 
@@ -58,7 +61,8 @@ public class SceneChanger : MonoBehaviour
         if (isLoading)
             return;
 
-        fadeInOut = FindObjectOfType<FadeInOut>();
+        if (fadeInOut != null)
+            fadeInOut = FindObjectOfType<FadeInOut>();
         SceneManager.LoadScene(3);
         soundManager.PlayMusic(5, 2f);
     }

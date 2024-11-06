@@ -9322,7 +9322,6 @@ MonoBehaviour:
   _gold: 0
   _damage: 10
   _range: 1
-  _cooldown: 0
   _changeCooldown: 3
   _attackspeed: 3
   _movespeed: 350
@@ -9331,6 +9330,8 @@ MonoBehaviour:
   _critdmg: 150
   _lifesteal: 0
   _lifegen: 0
+  criticalRandomValue: 0
+  criticalProbability: 0
   _skillCooltimePercent: 1
   _dashPower: 3
   _dashCool: 3
@@ -9763,13 +9764,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhpT: {fileID: 359885210}
   damageT: {fileID: 1359550230}
-  rangeT: {fileID: 1000930079}
   coolT: {fileID: 460091793}
   attackspeedT: {fileID: 262763241}
   movespeedT: {fileID: 80597198}
   critchanceT: {fileID: 1133280532}
   critdmgT: {fileID: 1238082384}
-  regenhpT: {fileID: 180364785}
 --- !u!114 &803160893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22314,7 +22313,7 @@ MonoBehaviour:
         m_MethodName: ClosePopup
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 1553464316}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

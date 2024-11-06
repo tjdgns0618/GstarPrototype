@@ -49,6 +49,7 @@ public class spawner1 : MonoBehaviour
     public Action enemyDead;
 
     WaitForSeconds wInterval;
+    SceneChanger sceneChanger;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class spawner1 : MonoBehaviour
     {
         soundManager = SoundManager.instance;
         wInterval = new WaitForSeconds(spawnInterval);
+        sceneChanger = FindObjectOfType<SceneChanger>();
         // StartWave();
     }
 
@@ -233,7 +235,7 @@ public class spawner1 : MonoBehaviour
         Debug.Log("보스 처치 완료. 스테이지 클리어");
         if (currentStage == 8 && currentWave == maxWaves)
         {
-            // 엔딩씬 추가
+            sceneChanger.LoadEndingCutScene();
         }
     }
 
