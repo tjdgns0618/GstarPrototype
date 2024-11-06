@@ -57,6 +57,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public GameObject[] ArcherSkillIcons;
     public GameObject[] WizardSkillIcons;
 
+    public TextMeshProUGUI dashTimer;
+    public Image dashCooltimerImage;
+    float dashCoolTimer = 0;
+
     private void Start()
     {
         gameManager = GameManager.instance;
@@ -290,6 +294,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             if (!DashState.IsDash)
             {
                 Debug.Log("Dash Input");
+                StartCoroutine(realDashCool());
+                StartCoroutine(DashCooltime());
                 DashState.CurrentDashCount++;
                 dashState = player.stateMachine.GetState(StateName.DASH);
                 dashState.Init(gameManager._dashPower, gameManager._dashCool);
@@ -298,7 +304,32 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             }
         }
     }
-   
+
+    IEnumerator DashCooltime()
+    {
+        dashCoolTimer = gameManager._dashCool;
+        while (dashCoolTimer > 0.0f)
+        {
+            dashCoolTimer -= Time.deltaTime;
+            dashCooltimerImage.fillAmount = dashCoolTimer / gameManager._dashCool;
+
+            string t = TimeSpan.FromSeconds(dashCoolTimer).ToString(@"ss");
+            dashTimer.text = string.Format("{0}", t);
+
+            if (dashTimer.text == "00")
+            {
+                dashTimer.text = "";
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator realDashCool()
+    {
+        yield return new WaitForSeconds(gameManager._dashCool);
+        DashState.CurrentDashCount = 0;
+    }
 
     public void OnClickQ(InputAction.CallbackContext context)
     {
@@ -407,17 +438,9 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         dashState.OnExitState();
         canMove = true;
         player.animator.SetBool("canHit", true);
-
         AttackState.IsBaseAttack = false;
-
-        StartCoroutine(DashCooltime());
     }
 
-    public IEnumerator DashCooltime()
-    {
-        yield return new WaitForSeconds(gameManager._dashCool);
-        DashState.CurrentDashCount = 0;
-    }
 
     public void Damage(float damageTaken)
     {

@@ -22,6 +22,7 @@ public class ParticleCollisionInstance : MonoBehaviour
     public int itemID;
     public float damageMultiplier = 1;
     public bool isBaseAttack = false;
+    public bool isItem = true;
 
 
     void Start()
@@ -40,11 +41,15 @@ public class ParticleCollisionInstance : MonoBehaviour
         {
             IDamageAble<float> damageAble = other.GetComponent<IDamageAble<float>>();
             int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
-            damageAble?.Damage(GameManager.instance._damage * (ItemDataBase.instance.Variable2(itemID) +
+            if (isItem)
+                damageAble?.Damage(GameManager.instance._damage * (ItemDataBase.instance.Variable2(itemID) +
                                   (ItemDataBase.instance.Variable3(itemID) * (GameManager.instance.FindItemCount(itemID) - 1))));
-
-            if (isBaseAttack)
-                GameManager.instance.enemyhitDelegate(other.gameObject);
+            else
+            {
+                damageAble?.Damage(GameManager.instance._damage * damageMultiplier);
+                if (isBaseAttack)
+                    GameManager.instance.enemyhitDelegate(other.gameObject);
+            }
             for (int i = 0; i < numCollisionEvents; i++)
             {
                 foreach (var effect in EffectsOnCollision)

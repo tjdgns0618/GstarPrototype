@@ -97,8 +97,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //txt_gold = _gold;
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            cooltimes[0] -= 1;
+        if(_attackspeed >= 9f)
+            _attackspeed = 9f;
+        if(_skillCooltimePercent <= 0.5f)
+            _skillCooltimePercent = 0.5f;
     }
 
     public void Heal(float heal)
