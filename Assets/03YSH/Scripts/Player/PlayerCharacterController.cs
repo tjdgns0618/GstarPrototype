@@ -69,6 +69,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         DASH_ANIM_TIME = new WaitForSeconds(dashAnimTime);    
 
         AttackState.CanReInputTime = GameManager.instance._reInputTime;
+        DashState.CurrentDashCount = 0;
     }       
 
     private void Update()
