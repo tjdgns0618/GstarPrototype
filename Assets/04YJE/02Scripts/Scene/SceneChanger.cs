@@ -19,12 +19,6 @@ public class SceneChanger : MonoBehaviour
         fadeInOut = FindObjectOfType<FadeInOut>();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha8))
-            LoadEndingCutScene();
-    }
-
     public void LoadMainScene()
     {
         if (isLoading)
