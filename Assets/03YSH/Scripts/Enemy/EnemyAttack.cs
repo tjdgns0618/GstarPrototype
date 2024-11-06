@@ -12,10 +12,10 @@ public class EnemyAttack : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
-        enemyAI = GetComponentInParent<EnemyAI>();
+        enemyAI = GetComponentInParent<EnemyAI>();       
     }
 
-    private void Start()
+    public void Start()
     {
         boxCollider.isTrigger = true;
         boxCollider.enabled = false;

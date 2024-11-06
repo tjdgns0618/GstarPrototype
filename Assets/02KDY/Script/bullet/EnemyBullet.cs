@@ -18,20 +18,22 @@ public class EnemyBullet : MonoBehaviour
     public GameObject hitEffectPrefab;
     private Rigidbody rb;
     public GameObject flash;
-    public float destroyDelay = 5.0f;
+    public float destroyDelay = 10.0f;
     public float angleOffset = 30f;     // 각도 오프셋 (삼방향 및 확산용)
     public float homingDelay = 1.0f;    // 확산 후 추적 딜레이 시간
     private Transform target;           // 추적할 목표
     public float damage;
 
+
     private void OnEnable()
     {
     }
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         target = GameObject.FindWithTag(targetname)?.transform;
+
 
         if (flash != null)
         {
