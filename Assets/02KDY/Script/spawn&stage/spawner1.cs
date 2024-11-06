@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
+
 public class spawner1 : MonoBehaviour
 {
     public Transform spawnPos; //스폰 중심 위치
@@ -30,17 +30,15 @@ public class spawner1 : MonoBehaviour
     public int currentWave = 0; //현재 웨이브
 
     public int initialStage = 0;
-    public int currentStage = 1; //현재 스테이지
+    public int currentStage = 0; //현재 스테이지
 
     private int enemyPerSpawn; //한 번의 주기에 생성할 enemy 수
     private int spawnedCount = 0; //생성된 enemy 카운트
     public int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
     private int enemiesLeft;
 
-    SoundManager soundManager;
-
     public string[] enemyNames;
-
+    
     public List<GameObject> enemies = new List<GameObject>();
 
     public int _randomnum;
@@ -57,12 +55,17 @@ public class spawner1 : MonoBehaviour
 
     private void Start()
     {
-        soundManager = SoundManager.instance;
         wInterval = new WaitForSeconds(spawnInterval);
         // StartWave();
     }
 
-    void StartWave()
+    public void IncreaseStageInVillage()
+    {
+        currentStage++;
+        StartWave();
+    }
+
+    public void StartWave()
     {
         Time.timeScale = 1;
         StartCoroutine(WaveSystem());
@@ -71,21 +74,25 @@ public class spawner1 : MonoBehaviour
     void OnEnemyDeath()                     //살아있는 적의 수가 0이 되면 NextWave 함수 호출
     {
         spawnedCount--;
+        Debug.Log(enemiesLeft);
         UpdateWaveInfoUI();
         OnEnemyDestroyed();
         if (enemiesLeft == 0)
         {
-            if (currentWave == maxWaves)
-            {
+            if(currentWave == maxWaves)
+            {           
                 stageClear.SetActive(true);
                 Invoke("StageClear", 2f);
-                //토템 추가 예정
+                portal.SetActive(true);
+                Debug.Log("마지막 웨이브");
+                //토템 추가 예정   
             }
             else
             {
                 waveClear.SetActive(true);
                 Invoke("RewardTerm", 2f);
                 //rewardUI.AddRewardRandomItems(rewardUI.allItems);
+                Debug.Log("보상창");
             }
         }
     }
@@ -98,7 +105,6 @@ public class spawner1 : MonoBehaviour
     }
     public void StageClear()
     {
-        portal.SetActive(true);
         Time.timeScale = 0;
         rewardUI.SetActive(true);
         stageClear.SetActive(false);
@@ -123,16 +129,14 @@ public class spawner1 : MonoBehaviour
             UpdateWaveInfoUI();
             waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
-            soundManager.PlayMusic(4);
             return;
         }
-        else if (currentStage == 4 && currentWave == maxWaves)
+        else if(currentStage == 4 && currentWave == maxWaves)
         {
             StartCoroutine(BossWave());
             UpdateWaveInfoUI();
             waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
-            soundManager.PlayMusic(4);
             return;
         }
         else if (currentStage == 6 && currentWave == maxWaves)
@@ -141,7 +145,6 @@ public class spawner1 : MonoBehaviour
             UpdateWaveInfoUI();
             waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
-            soundManager.PlayMusic(4);
             return;
         }
         else if (currentStage == 8 && currentWave == maxWaves)
@@ -150,13 +153,10 @@ public class spawner1 : MonoBehaviour
             UpdateWaveInfoUI();
             waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
-            soundManager.PlayMusic(4);
             return;
         }
-        if(currentStage != 7 || currentStage != 8)
-            enemyPerSpawn = (firstWaveEnemy + currentStage * currentWave * 4) % 2 == 0 ?
-                (firstWaveEnemy + currentStage * currentWave * 4) : (firstWaveEnemy + currentStage * currentWave * 4) - 1; //웨이브마다 생성할 몬스터 수 증가 ex)firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
-        totalEnemiesInWave = enemyPerSpawn;
+        enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가 ex)firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
+        totalEnemiesInWave = enemyPerSpawn; 
         spawnedCount = 0;
         enemiesLeft = totalEnemiesInWave;
         UpdateWaveInfoUI();
@@ -170,22 +170,19 @@ public class spawner1 : MonoBehaviour
         {
             yield break;
         }
-        else if (currentStage == 4 && currentWave == maxWaves)
+        else if(currentStage == 4 && currentWave == maxWaves)
         {
             yield break;
         }
-        else if (currentStage == 6 && currentWave == maxWaves)
+        else if(currentStage == 6 && currentWave == maxWaves)
         {
             yield break;
         }
-        else if (currentStage == 8 && currentWave == maxWaves)
+        else if(currentStage == 8 && currentWave == maxWaves)
         {
             yield break;
         }
-        if ((currentStage == 3 || currentStage == 5 || currentStage == 7) && currentWave == 1)
-        {
-            soundManager.PlayMusic(2);
-        }
+
         int enemiesToSpawn = totalEnemiesInWave;
         int halfEnemies = enemiesToSpawn / 2; // 한 번에 나올 몬스터 수를 반으로 나눔
 
@@ -231,7 +228,7 @@ public class spawner1 : MonoBehaviour
         yield return new WaitUntil(() => enemiesLeft == 0);
 
         Debug.Log("보스 처치 완료. 스테이지 클리어");
-        if (currentStage == 8 && currentWave == maxWaves)
+        if(currentStage == 8 && currentWave == maxWaves)
         {
             // 엔딩씬 추가
         }
@@ -242,7 +239,7 @@ public class spawner1 : MonoBehaviour
         if (currentStage == 2 && currentWave == maxWaves) //2스테이지
         {
             Vector3 bossSpawnPosition = GetRandomPosition();
-            GameObject boss = Instantiate(bossPrefab2, bossSpawnPosition, Quaternion.identity);
+            GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
@@ -320,17 +317,19 @@ public class spawner1 : MonoBehaviour
         enemiesLeft--;
         UpdateWaveInfoUI();
     }
+
     void UpdateWaveInfoUI()
     {
         waveInfoText.text = $"남은 적  {enemiesLeft}";
     }
+
     public void increaseStage()
     {
-        portal.SetActive(false);
         currentStage++;
         stageInfoText.text = $"STAGE {currentStage}";
         currentWave = 0;
         Debug.Log($"stage increase to {currentStage}");
         StartWave();
+        portal.SetActive(false);
     }
 }
