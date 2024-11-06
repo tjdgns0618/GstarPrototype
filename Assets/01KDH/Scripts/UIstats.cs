@@ -12,6 +12,7 @@ public class UIstats : MonoBehaviour
     public TextMeshProUGUI movespeedT;
     public TextMeshProUGUI critchanceT;
     public TextMeshProUGUI critdmgT;
+    public TextMeshProUGUI regenhpT;
 
     void Update()
     {
@@ -22,5 +23,6 @@ public class UIstats : MonoBehaviour
         movespeedT.text = GameManager.instance._movespeed.ToString();
         critchanceT.text = GameManager.instance._critchance.ToString() + "%";
         critdmgT.text = (GameManager.instance._critdmg*100f).ToString() + "%";
+        regenhpT.text = GameManager.instance._lifegen.ToString();
     }
 }

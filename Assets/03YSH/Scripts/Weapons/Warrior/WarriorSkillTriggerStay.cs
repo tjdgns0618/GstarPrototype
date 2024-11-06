@@ -27,10 +27,7 @@ public class WarriorSkillTriggerStay : MonoBehaviour
             {
                 insideEnemies[i]?.GetComponent<IDamageAble<float>>().Damage(GameManager.instance._damage * 1f);
                 if (insideEnemies[i].layer == 13)
-                {
-                    insideEnemies[i] = null;
                     continue;
-                }
                 insideEnemies[i]?.GetComponent<IDamageAble<float>>().PlayKnockback(insideEnemies[i].transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
             }
             hitTimer = 0;

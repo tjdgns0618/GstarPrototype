@@ -16,5 +16,7 @@ public class Item_5 : MonoBehaviour
 
             missile.transform.position = player.transform.position;
         }
+        if(player==null)
+            Debug.LogError("Player reference is not assigned!"); 
     }
 }
