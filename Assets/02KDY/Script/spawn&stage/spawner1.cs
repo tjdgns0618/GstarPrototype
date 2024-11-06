@@ -37,6 +37,8 @@ public class spawner1 : MonoBehaviour
     public int totalEnemiesInWave; //현재 웨이브에서 생성할 enemy의 전체 수
     private int enemiesLeft;
 
+    SoundManager soundManager;
+
     public string[] enemyNames;
     
     public List<GameObject> enemies = new List<GameObject>();
@@ -55,6 +57,7 @@ public class spawner1 : MonoBehaviour
 
     private void Start()
     {
+        soundManager = SoundManager.instance;
         wInterval = new WaitForSeconds(spawnInterval);
         StartWave();
     }
@@ -123,6 +126,7 @@ public class spawner1 : MonoBehaviour
             UpdateWaveInfoUI();
             waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            soundManager.PlayMusic(4);
             return;
         }
         else if(currentStage == 4 && currentWave == maxWaves)
@@ -131,6 +135,7 @@ public class spawner1 : MonoBehaviour
             UpdateWaveInfoUI();
             waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            soundManager.PlayMusic(4);
             return;
         }
         else if (currentStage == 6 && currentWave == maxWaves)
@@ -139,6 +144,7 @@ public class spawner1 : MonoBehaviour
             UpdateWaveInfoUI();
             waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            soundManager.PlayMusic(4);
             return;
         }
         else if (currentStage == 8 && currentWave == maxWaves)
@@ -147,6 +153,7 @@ public class spawner1 : MonoBehaviour
             UpdateWaveInfoUI();
             waveCountText.text = $"WAVE {currentWave}";
             Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            soundManager.PlayMusic(4);
             return;
         }
         enemyPerSpawn = firstWaveEnemy * currentWave * currentStage; //웨이브마다 생성할 몬스터 수 증가 ex)firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
@@ -176,7 +183,10 @@ public class spawner1 : MonoBehaviour
         {
             yield break;
         }
-
+        if((currentStage == 3 || currentStage == 5 || currentStage == 7) && currentWave == 1)
+        {
+            soundManager.PlayMusic(2);
+        }
         int enemiesToSpawn = totalEnemiesInWave;
         int halfEnemies = enemiesToSpawn / 2; // 한 번에 나올 몬스터 수를 반으로 나눔
 
