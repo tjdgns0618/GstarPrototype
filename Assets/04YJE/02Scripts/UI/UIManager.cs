@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> openPopups = new List<GameObject>();
 
-    public GameObject statWindow;
     public GameObject pauseWindow;
     public GameObject fieldUI;
 
@@ -75,18 +74,12 @@ public class UIManager : MonoBehaviour
                 CloseLastOpenedPopup();
             else
             {
+                if (spawner != null)                    
+                    if (spawner.isReceivingReward)      //웨이브 클리어 후 보상 받는 중이라면 리턴
+                        return;
+
                 OpenPopup(pauseWindow);
             }
-        }
-
-        //플레이어 정보 열고 닫기
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            SetUIActive(statWindow, true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Tab))
-        {
-            SetUIActive(statWindow, false);
         }
     }
 

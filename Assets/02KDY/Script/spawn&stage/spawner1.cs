@@ -51,6 +51,8 @@ public class spawner1 : MonoBehaviour
     WaitForSeconds wInterval;
     SceneChanger sceneChanger;
 
+    public bool isReceivingReward = false;          //보상 받고 있는지 확인
+
     private void Awake()
     {
         enemyDead += OnEnemyDeath;     // 이벤트 등록
@@ -66,6 +68,7 @@ public class spawner1 : MonoBehaviour
 
     void StartWave()
     {
+        isReceivingReward = false;
         Time.timeScale = 1;
         StartCoroutine(WaveSystem());
     }
@@ -79,12 +82,15 @@ public class spawner1 : MonoBehaviour
         {
             if (currentWave == maxWaves)
             {
+                isReceivingReward = true;
+
                 stageClear.SetActive(true);
                 Invoke("StageClear", 2f);
                 //토템 추가 예정
             }
             else
             {
+                isReceivingReward = true;
                 waveClear.SetActive(true);
                 Invoke("RewardTerm", 2f);
                 //rewardUI.AddRewardRandomItems(rewardUI.allItems);
