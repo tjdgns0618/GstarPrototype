@@ -97,10 +97,26 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //txt_gold = _gold;
-        if(_attackspeed >= 9f)
+        if(_attackspeed <= 2.5f)
+            _attackspeed = 2.5f;
+        if (_attackspeed >= 9f)
             _attackspeed = 9f;
         if(_skillCooltimePercent <= 0.5f)
             _skillCooltimePercent = 0.5f;
+        if(_damage <= 5)
+            _damage = 5;
+        if (_movespeed <= 250f)
+            _movespeed = 250f;
+        if (_movespeed >= 500f)
+            _movespeed = 500f;
+        if(_reInputTime >= 3f)
+            _reInputTime = 3f;
+        if(_reInputTime <= 0.5f)
+            _reInputTime = 0.5f;
+        if(_critchance >= 100f)
+            _critchance = 100f;
+        if(_critchance <= 0f)
+            _critchance = 0f;
     }
 
     public void Heal(float heal)
