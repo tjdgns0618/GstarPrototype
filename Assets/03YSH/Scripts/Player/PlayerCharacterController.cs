@@ -98,8 +98,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnCharacterChange(InputAction.CallbackContext context)
     {
-        if (context.performed && !player.isPlaySkill && player.canChange && !gameManager.isDead && !gameManager.isPause
-            && !DashState.IsDash)
+        if (context.performed && !player.isPlaySkill && player.canChange && !gameManager.isDead && !gameManager.isPause)
         {
             if (context.control.name == "1" && player.characterClass != CharacterType.Warrior)
             {

@@ -4993,7 +4993,7 @@ MonoBehaviour:
   waveCountText: {fileID: 6476767945889163270}
   spawnRadius: 30
   minDistancefromPlayer: 25
-  firstWaveEnemy: 200
+  firstWaveEnemy: 10
   spawnInterval: 5
   waveInterval: 1
   maxWaves: 5
@@ -12429,7 +12429,7 @@ MonoBehaviour:
   cooltimes:
   - 5
   - 8
-  - 7
+  - 1
   - 10
   - 6
   - 15
@@ -12447,12 +12447,12 @@ MonoBehaviour:
   _maxhp: 5000
   _hp: 5000
   _gold: 0
-  _damage: 40
+  _damage: 80
   _range: 1
   _changeCooldown: 3
   _attackspeed: 3
   _movespeed: 350
-  _reInputTime: 1
+  _reInputTime: 1.5
   _critchance: 10
   _critdmg: 150
   _lifesteal: 0

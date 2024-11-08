@@ -40,7 +40,7 @@ public class WarriorSkillTriggerStay : MonoBehaviour
 
     private void OnEnable()
     {
-        insideEnemies.Clear();
+        insideEnemies = new List<GameObject>();
     }
 
     private void OnDisable()

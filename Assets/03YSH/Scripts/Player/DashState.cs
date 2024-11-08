@@ -53,7 +53,7 @@ namespace CharacterController
             pi.rigidbody.velocity = Vector3.zero;
             pi.animator.SetBool(Hash_IsDashBool, false);
             AttackState.IsBaseAttack = false;
-            // PlayerCharacter.Instance.canChange = true;
+            PlayerCharacter.Instance.canChange = true;
             pi.gameObject.layer = 6; 
             IsDash = false;
         }
