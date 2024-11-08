@@ -91,6 +91,7 @@ public class UIManager : MonoBehaviour
             SetUIActive(popup, true);
             openPopups.Add(popup);
             gameManager.isPause = true;
+            gameManager.isOnUI = true;
         }
 
         if (popup == pauseWindow)
@@ -107,13 +108,17 @@ public class UIManager : MonoBehaviour
             {
                 SetUIActive(popup, true);
                 openPopups.Add(popup);
-                gameManager.isPause = true;
+                gameManager.isOnUI = true;
             }
             else 
             {
                 SetUIActive(popup, false);
                 openPopups.Remove(popup);
-                gameManager.isPause = false;
+
+                if (openPopups.Count <= 0)
+                {
+                    gameManager.isOnUI = false;
+                }
             }
     }
 
@@ -133,7 +138,10 @@ public class UIManager : MonoBehaviour
         }
 
         if (openPopups.Count <= 0)
+        {
             gameManager.isPause = false;
+            gameManager.isOnUI = false;
+        }
     }
 
     //가장 최근에 열린 팝업창 닫기

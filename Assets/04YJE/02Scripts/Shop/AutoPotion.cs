@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class AutoPotion : MonoBehaviour         //자동 회복 시켜주는 스크립트
 {
-    public GameObject activeFrame;
-    public GameObject disableFrame;
     public ShopItem shopitem;
     [HideInInspector] public bool isAble;       //전투맵에서 마을로 오면 true, 전투맵에서 한번 피 회복하면 false
 
@@ -42,16 +40,12 @@ public class AutoPotion : MonoBehaviour         //자동 회복 시켜주는 스크립트
     public void SetAblePotion()
     {
         isAble = true;
-        if (activeFrame != null)
-            activeFrame.SetActive(true);
         InitRecoveryCount();
     }
 
     public void SetDisablePotion()
     {
         isAble = false;
-        if(activeFrame != null)
-            activeFrame.SetActive(false);
     }
 
     public bool CheckHealthThreshold() //피가 일정 수치가 되었는지 확인

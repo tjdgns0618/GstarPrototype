@@ -10,8 +10,6 @@ public class Shop : MonoBehaviour
     [SerializeField] private ShopItemDB shopitemDB;
     [SerializeField] private ShopItem[] shopItems;
 
-    [SerializeField] private int adjustIndex;
-
     [SerializeField] private GameObject messageBox;
     [SerializeField] private TMP_Text message;
 
@@ -29,28 +27,34 @@ public class Shop : MonoBehaviour
     {
         gm = GameManager.instance;
 
-        for (int i = 0; i < shopItems.Length; ++i)
+        int index = 0;
+
+        for (int i = 0; i < shopitemDB.entities.Count; ++i)
         {
             //상점 아이템 데이터 불러오기 및 초기화
-            if (shopItems[i].itemID == shopitemDB.entities[i + adjustIndex].ItemID)
+            if (shopItems[index].itemID == shopitemDB.entities[i].ItemID)
             {
-                shopItems[i].itemName = shopitemDB.entities[i + adjustIndex].ItemName;
-                shopItems[i].itemInfo = shopitemDB.entities[i + adjustIndex].ItemInfo;
-                shopItems[i].price = shopitemDB.entities[i + adjustIndex].Price;
-                shopItems[i].maxLevel = shopitemDB.entities[i + adjustIndex].MaxLevel;
-                shopItems[i].attackDamage = shopitemDB.entities[i + adjustIndex].AttackDamage;
-                shopItems[i].diffence = shopitemDB.entities[i + adjustIndex].Deffence;
-                shopItems[i].isAutoPotion = shopitemDB.entities[i + adjustIndex].IsAuto;
-                shopItems[i].recoveryThreshold = shopitemDB.entities[i + adjustIndex].RecoveryThreshold;
-                shopItems[i].recoveryCount = shopitemDB.entities[i + adjustIndex].RecoveryCount;
-                shopItems[i].hp = shopitemDB.entities[i + adjustIndex].HP;
-                shopItems[i].hpRate = shopitemDB.entities[i + adjustIndex].HPRate;
-                shopItems[i].criticalDamage = shopitemDB.entities[i + adjustIndex].CriticalDamage;
-                shopItems[i].criticalRate = shopitemDB.entities[i + adjustIndex].CriticalRate;
-                shopItems[i].dashCoolTime = shopitemDB.entities[i + adjustIndex].DashCoolTime;
-                shopItems[i].itemCoolTimeDropRate = shopitemDB.entities[i + adjustIndex].ItemCoolTimeDropRate;
+                shopItems[index].itemName = shopitemDB.entities[i].ItemName;
+                shopItems[index].itemInfo = shopitemDB.entities[i].ItemInfo;
+                shopItems[index].price = shopitemDB.entities[i].Price;
+                shopItems[index].maxLevel = shopitemDB.entities[i].MaxLevel;
+                shopItems[index].attackDamage = shopitemDB.entities[i].AttackDamage;
+                shopItems[index].isAutoPotion = shopitemDB.entities[i].IsAuto;
+                shopItems[index].recoveryThreshold = shopitemDB.entities[i].RecoveryThreshold;
+                shopItems[index].recoveryCount = shopitemDB.entities[i].RecoveryCount;
+                shopItems[index].hp = shopitemDB.entities[i].HP;
+                shopItems[index].hpRate = shopitemDB.entities[i].HPRate;
+                shopItems[index].criticalDamage = shopitemDB.entities[i].CriticalDamage;
+                shopItems[index].criticalRate = shopitemDB.entities[i].CriticalRate;
+                shopItems[index].dashCoolTime = shopitemDB.entities[i].DashCoolTime;
+                shopItems[index].itemCoolTimeDropRate = shopitemDB.entities[i].ItemCoolTimeDropRate;
+                          
+                shopItems[index].SetShop(this);
 
-                shopItems[i].SetShop(this);
+                index++;
+
+                if (index == shopItems.Length)
+                    break;
             }
         }
     }
@@ -104,12 +108,10 @@ public class Shop : MonoBehaviour
             if (selectedShopItemID == 1100)
             {
                 autopotion[0].SetAblePotion();
-                autopotion[0].disableFrame.SetActive(false);
             }
             else if (selectedShopItemID == 1101)
             {
                 autopotion[1].SetAblePotion();
-                autopotion[1].disableFrame.SetActive(false);
             }
         }
     }
