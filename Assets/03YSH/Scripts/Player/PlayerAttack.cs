@@ -24,7 +24,7 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public int skillType;
 
-    [Header("¹ß»çÃ¼")]
+    [Header("ë°œì‚¬ì²´")]
     public GameObject[] projectiles;
 
     [SerializeField]
@@ -168,15 +168,15 @@ public class PlayerAttack : BaseWeapon, IEffect
             {
                 for (int i = -1; i < 2; i++)
                 {
-                    // ÆÄÆ¼Å¬À» °¡Á®¿É´Ï´Ù.
+                    // íŒŒí‹°í´ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
                     effect = gi.particlePoolManager.GetParticle(hashArcherAttackEffect + skillType);
 
                     if (effect != null)
                     {
-                        // ¹ß»çÃ¼ÀÇ È¸ÀüÀ» ¼³Á¤ÇÕ´Ï´Ù.
+                        // ë°œì‚¬ì²´ì˜ íšŒì „ì„ ì„¤ì •í•©ë‹ˆë‹¤.
                         Quaternion rotation = pi.transform.rotation * Quaternion.Euler(0, 30 * i, 0);
 
-                        // ¹ß»çÃ¼ÀÇ À§Ä¡¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+                        // ë°œì‚¬ì²´ì˜ ìœ„ì¹˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
                         effect.transform.position = pi.firePoint.transform.position;
                         effect.transform.rotation = rotation;
                     }
@@ -219,7 +219,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         float startTime = Time.time;
         Debug.Log($"Object {effect.name} created at {startTime}");
 
-        // ¿ÀºêÁ§Æ®°¡ ºñÈ°¼ºÈ­µÉ ¶§±îÁö ´ë±âÇÕ´Ï´Ù.
+        // ì˜¤ë¸Œì íŠ¸ê°€ ë¹„í™œì„±í™”ë  ë•Œê¹Œì§€ ëŒ€ê¸°í•©ë‹ˆë‹¤.
         while (effect.activeSelf)
         {
             yield return null;

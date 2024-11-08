@@ -32,7 +32,9 @@ public class ShopItem : MonoBehaviour
 
     public bool isAutoPotion;
     public bool isItemUnbuyable;
-    protected GameManager gm;
+    public bool isBuffItem;
+
+    GameManager gm;
 
     private void Start()
     {
@@ -75,5 +77,8 @@ public class ShopItem : MonoBehaviour
         gm._critdmg += criticalDamage;
         gm._critchance += criticalRate;
         //아이템 쿨타임 감소, 대쉬 쿨타임 감소 추가
+
+        if (itemID < 1300)
+            isBuffItem = true;
     }
 }

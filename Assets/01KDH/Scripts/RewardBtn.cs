@@ -191,7 +191,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                                 TickManager._fireT += _activeItem._10Item;
                             break;
                         case 39:
-                            GameManager.instance.timeactiveDelegate += _activeItem._11Item;
+                            //GameManager.instance.timeactiveDelegate += _activeItem._11Item;
                             break;
                         case 40:
                             TickManager._godT += _activeItem._12Item;
@@ -263,7 +263,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void GoldRewardGet()
     {
-        GameManager.instance._gold += 10000;
+        GameManager.instance._gold += 15000;
     }
 
 

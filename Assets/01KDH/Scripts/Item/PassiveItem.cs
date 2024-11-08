@@ -50,7 +50,7 @@ public class PassiveItem : MonoBehaviour
     } 
     public void _09Pitem()
     {
-        gm._damage += ItemDataBase.instance.Variable(6) * gm._damage;
+        gm._damage += ItemDataBase.instance.Variable(8) * gm._damage;
     }  
     public void _10Pitem()
     {
@@ -88,7 +88,7 @@ public class PassiveItem : MonoBehaviour
     public void _17Pitem()
     {
         gm._maxhp -= ItemDataBase.instance.Variable(16);
-        // gm._goldbonus += 0.15f;
+        //gm._goldbonus += 0.15f;
     }   
     public void _18Pitem()
     {
