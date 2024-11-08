@@ -66,6 +66,12 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     private void OnEnable()
     {
+        if (this.gameObject.layer == 13)
+        {
+            hitMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
+            return;
+        }
+
         //GameManager.instance.dieDelegate += Test;
         damage = 10;
         maxHp = 40;
@@ -200,13 +206,27 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         {
             _detectedPlayer = overlapColliders[0].transform;
             Rotate();
-            animator.SetFloat("moveSpeed", 1);
+            if (HasParameter(animator, "moveSpeed"))
+                animator.SetFloat("moveSpeed", 1);
             return INode.ENodeState.ENS_Success;
         }
 
         _detectedPlayer = null;
-        animator.SetFloat("moveSpeed", 0);
+        if (HasParameter(animator, "moveSpeed"))
+            animator.SetFloat("moveSpeed", 0);
         return INode.ENodeState.ENS_Failure;
+    }
+
+    bool HasParameter(Animator animator, string paramName)
+    {
+        foreach (AnimatorControllerParameter param in animator.parameters)
+        {
+            if (param.name == paramName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     INode.ENodeState MoveToDetectEnemy()
@@ -260,9 +280,9 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         
         animator.SetTrigger("hit");
         audioSource = GetComponent<AudioSource>();
-        audioSource.Play();
-        
-
+        if (audioSource != null && audioSource.clip != null)
+            audioSource.Play();
+        currentHp -= damageTaken;
         StopCoroutine("hitMaterialChange");
         StartCoroutine("hitMaterialChange");
 

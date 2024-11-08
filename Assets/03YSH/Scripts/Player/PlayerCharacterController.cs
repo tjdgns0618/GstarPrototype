@@ -60,6 +60,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public TextMeshProUGUI dashTimer;
     public Image dashCooltimerImage;
     float dashCoolTimer = 0;
+    public static float changeCool = 0;
 
     private void Start()
     {
@@ -81,6 +82,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         if (gameManager.isDead || gameManager.isPause)
             return;
+                  
         GetMousePosition();
         Move();
     }
@@ -98,7 +100,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnCharacterChange(InputAction.CallbackContext context)
     {
-        if (context.performed && !player.isPlaySkill && player.canChange && !gameManager.isDead && !gameManager.isPause)
+        if (context.performed && !player.isPlaySkill && player.canChange && !gameManager.isDead && !gameManager.isPause
+            && !DashState.IsDash)
         {
             if (context.control.name == "1" && player.characterClass != CharacterType.Warrior)
             {
@@ -201,17 +204,17 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     private IEnumerator changeCooltime()
     {
         player.canChange = false;
-        float cooltime = gameManager._changeCooldown;
-        while (cooltime > 0.0f)
+        changeCool = gameManager._changeCooldown;
+        while (changeCool > 0.0f)
         {
-            cooltime -= Time.deltaTime;
+            changeCool -= Time.deltaTime;
             
-            string t = TimeSpan.FromSeconds(cooltime).ToString(@"ss");
+            string t = TimeSpan.FromSeconds(changeCool).ToString(@"ss");
 
             for (int i = 0; i < characterCooltimetexts.Length; i++)
             {
                 characterCooltimetexts[i].text = string.Format("{0}", t);
-                characterImages[i].fillAmount = cooltime / gameManager._changeCooldown;
+                characterImages[i].fillAmount = changeCool / gameManager._changeCooldown;
                 if (characterCooltimetexts[i].text == "00")
                 {
                     characterCooltimetexts[i].text = "";
@@ -290,7 +293,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
-        if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0 && !AttackState.IsAttack)
+        if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0 && !AttackState.IsAttack
+            && !player.isPlaySkill)
         {
             if (!DashState.IsDash)
             {
@@ -491,14 +495,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     void GetMousePosition()
     {
-        //Vector3 mouseWorldPosition =
-        //    Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.y));
-
-        //Vector3 direction = mouseWorldPosition - (transform.position - new Vector3(0f, 0f, 2.8f));
-        //direction.y = 0f;
-
-        //Quaternion targetRotation = Quaternion.LookRotation(direction);
-        //transform.rotation = targetRotation;
 
         Ray cemeraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
@@ -506,7 +502,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         if(groundPlane.Raycast(cemeraRay, out rayLength))
         {
             Vector3 pointToLook = cemeraRay.GetPoint(rayLength);
-            Debug.DrawLine(cemeraRay.origin, pointToLook, Color.blue);
 
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
         }

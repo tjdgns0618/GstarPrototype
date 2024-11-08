@@ -21,11 +21,10 @@ public abstract class BaseWeapon : MonoBehaviour
     public delegate void Action();
     public Action ItemChance;
 
-    public void SetWeaponData(float attackDamage, float attackSpeed, float attackRange)
+    public void SetWeaponData(float attackDamage, float attackSpeed)
     {
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed; 
-        this.attackRange = attackRange;
     }
 
 

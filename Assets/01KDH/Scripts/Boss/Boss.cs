@@ -41,9 +41,9 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     Vector3 _rndPosition;
 
-    Animator animator;
+    public Animator animator;
     spawner1 spawner;
-    DamageTextManager damagetextManager;
+    public DamageTextManager damagetextManager;
 
     public const string _NormalAttack_AnimTriggerName = "isNormal";
     public const string _FirstPatternAttack_AnimTriggerName = "isFirst";
@@ -63,8 +63,6 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     {
         return null;
     }
-
-    
 
     public bool IsAniamtionRunning(string stateName)
     {
@@ -108,7 +106,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     public void Fire()
     {
-        if(_bossType == BossType.Worm)
+        if (_bossType == BossType.Worm)
         {
             GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Poison");
             if (particle != null)
@@ -129,7 +127,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
             {
                 particle.transform.position = _detectedPlayer.transform.position;
 
-                for(int i = 0; i < 30; i++)
+                for (int i = 0; i < 30; i++)
                 {
                     RandomNumber();
                     GameObject particle2 = GameManager.instance.particlePoolManager.GetParticle("Meteor2");
@@ -222,7 +220,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         {
             _distanceT = 0f;
         }
-        if(_distanceT >= 8f)
+        if (_distanceT >= 8f)
         {
             _distanceT = 0f;
             return true;
@@ -277,7 +275,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
 
     private IEnumerator SpawnParticles()
     {
-        if(_bossType == BossType.Dragon)
+        if (_bossType == BossType.Dragon)
         {
             for (int i = 0; i < 4; i++)
             {
@@ -292,7 +290,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
                 yield return new WaitForSeconds(0.5f); // Wait for 1 second before the next spawn
             }
         }
-        if(_bossType == BossType.Bishop)
+        if (_bossType == BossType.Bishop)
         {
             for (int i = 0; i < 20; i++)
             {
@@ -324,7 +322,20 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         _isAttacking = false;
     }
 
+    public void IsClose(string name,bool isClose)
+    {
+        animator.SetBool(name, isClose);
+    }
 
+    public void SetFloatAnim(string name, float value)
+    {
+        animator.SetFloat(name, value);
+    }
+
+    public void AttackTrigger(string name)
+    {
+        animator.SetTrigger(name);
+    }
 
     private void OnDrawGizmos()
     {

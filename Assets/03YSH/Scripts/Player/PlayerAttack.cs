@@ -24,7 +24,7 @@ public class PlayerAttack : BaseWeapon, IEffect
 
     public int skillType;
 
-    [Header("¹ß»çÃ¼")]
+    [Header("ë°œì‚¬ì²´")]
     public GameObject[] projectiles;
 
     [SerializeField]
@@ -35,7 +35,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         pi = PlayerCharacter.Instance;
         gi = GameManager.instance;
         pm = gi.particlePoolManager;
-        SetWeaponData(gi._damage, gi._attackspeed, 10);
+        SetWeaponData(gi._damage, gi._attackspeed);
     }
 
     public override void Attack(BaseState state)
@@ -45,7 +45,8 @@ public class PlayerAttack : BaseWeapon, IEffect
         pi.animator.SetFloat(hashAttackSpeedAnimation, gi._attackspeed);
         pi.animator.SetBool(hashIsAttackAnimation, true);
         pi.animator.SetInteger(hashAttackAnimation, ComboCount);
-        GameManager.instance.playerattackDelegate();
+        if(GameManager.instance.spawner.enemies != null)
+            GameManager.instance.playerattackDelegate();
         CheckAttackReInput(GameManager.instance._reInputTime);
     }
 
@@ -113,7 +114,8 @@ public class PlayerAttack : BaseWeapon, IEffect
                 effect.transform.rotation = pi.transform.rotation;
                 if (ComboCount == 3)
                 {
-                    effect.transform.position += (transform.forward * 1.5f);
+                    effect.transform.position += (transform.forward * 0.5f);
+                    effect.transform.position += (transform.up * -1.5f);
                     effect.transform.Rotate(new Vector3(0f, 250f, 60f));
                 }
                 else
@@ -166,20 +168,17 @@ public class PlayerAttack : BaseWeapon, IEffect
             {
                 for (int i = -1; i < 2; i++)
                 {
-                    // ÆÄÆ¼Å¬À» °¡Á®¿É´Ï´Ù.
+                    // íŒŒí‹°í´ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
                     effect = gi.particlePoolManager.GetParticle(hashArcherAttackEffect + skillType);
 
                     if (effect != null)
                     {
-                        // ¹ß»çÃ¼ÀÇ È¸ÀüÀ» ¼³Á¤ÇÕ´Ï´Ù.
+                        // ë°œì‚¬ì²´ì˜ íšŒì „ì„ ì„¤ì •í•©ë‹ˆë‹¤.
                         Quaternion rotation = pi.transform.rotation * Quaternion.Euler(0, 30 * i, 0);
 
-                        // ¹ß»çÃ¼ÀÇ À§Ä¡¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+                        // ë°œì‚¬ì²´ì˜ ìœ„ì¹˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
                         effect.transform.position = pi.firePoint.transform.position;
                         effect.transform.rotation = rotation;
-
-                        // È°¼ºÈ­, ºñÈ°¼ºÈ­ ½Ã°£Ã¼Å©
-                        // StartCoroutine(DebugObjectLifetime(effect));
                     }
                 }
             }
@@ -220,7 +219,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         float startTime = Time.time;
         Debug.Log($"Object {effect.name} created at {startTime}");
 
-        // ¿ÀºêÁ§Æ®°¡ ºñÈ°¼ºÈ­µÉ ¶§±îÁö ´ë±âÇÕ´Ï´Ù.
+        // ì˜¤ë¸Œì íŠ¸ê°€ ë¹„í™œì„±í™”ë  ë•Œê¹Œì§€ ëŒ€ê¸°í•©ë‹ˆë‹¤.
         while (effect.activeSelf)
         {
             yield return null;
