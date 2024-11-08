@@ -16,9 +16,9 @@ public class ProjectileControll : MonoBehaviour
     //    Invoke("InActiveParticle", 7f);
     //}
 
-    private void OnDisable()
+    private void OnEnable()
     {
-
+        Invoke("InActiveParticle", DestroyTimeDelay);
     }
 
     public void InActiveParticle()
@@ -36,7 +36,6 @@ public class ProjectileControll : MonoBehaviour
         IDamageAble<float> damageable = other.GetComponent<IDamageAble<float>>();
         if (other.tag == targetname)
         {
-            Debug.LogWarning(other.name);
             damageable?.Damage(GameManager.instance._damage * damagePercentage);
             if(isBaseAttack)
                 GameManager.instance.enemyhitDelegate(other.gameObject);
