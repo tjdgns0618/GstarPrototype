@@ -250,7 +250,7 @@ public class spawner1 : MonoBehaviour
         if (currentStage == 2 && currentWave == maxWaves) //2스테이지
         {
             Vector3 bossSpawnPosition = GetRandomPosition();
-            GameObject boss = Instantiate(bossPrefab2, bossSpawnPosition, Quaternion.identity);
+            GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");

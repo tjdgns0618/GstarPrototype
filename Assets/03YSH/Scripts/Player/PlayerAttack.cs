@@ -45,7 +45,8 @@ public class PlayerAttack : BaseWeapon, IEffect
         pi.animator.SetFloat(hashAttackSpeedAnimation, gi._attackspeed);
         pi.animator.SetBool(hashIsAttackAnimation, true);
         pi.animator.SetInteger(hashAttackAnimation, ComboCount);
-        GameManager.instance.playerattackDelegate();
+        if(GameManager.instance.spawner.enemies != null)
+            GameManager.instance.playerattackDelegate();
         CheckAttackReInput(GameManager.instance._reInputTime);
     }
 

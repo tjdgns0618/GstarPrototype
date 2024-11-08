@@ -19,7 +19,6 @@ public class WareWolfBoss : Boss
     Rigidbody rigid;
     BehaviorTreeRunner _BTRunner = null;
     Vector3 _originPos;
-    Animator animator;
     public float damage = 10;
     public bool isDead = false;
     const string _MELEE_ATTACK_ANIM_STATE_NAME = "attack01";
@@ -39,8 +38,9 @@ public class WareWolfBoss : Boss
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        enemyAttack = GetComponentInChildren<WarewolfAttack>();
+        damagetextManager = FindAnyObjectByType<DamageTextManager>();
         animator = GetComponent<Animator>();
+        enemyAttack = GetComponentInChildren<WarewolfAttack>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _originPos = transform.position;
     }
@@ -48,13 +48,14 @@ public class WareWolfBoss : Boss
     void Start()
     {
         slowT = new WaitForSeconds(slowDelay);
-        
-        _hp = 50f;
+
+        _hp = 15000f;
     }
 
     private void OnEnable()
     {
         //GameManager.instance.dieDelegate += Test;
+        
         damage = 10;
         maxHp = 40;
         currentHp = maxHp;
@@ -106,7 +107,6 @@ public class WareWolfBoss : Boss
                     (
                         new List<INode>()
                         {
-                            new ActionNode(CheckDetectEnemy),
                             new ActionNode(MoveToDetectEnemy),
                         }
                     )
@@ -157,18 +157,17 @@ public class WareWolfBoss : Boss
     }
     #endregion
 
-    #region Detect & Move Node
     INode.ENodeState CheckDetectEnemy()
     {
         if (_detectedPlayer != null)
         {
             Rotate();
-            animator.SetFloat("moveSpeed", 1);
+            SetFloatAnim("moveSpeed", 1);
             return INode.ENodeState.ENS_Success;
         }
 
         _detectedPlayer = null;
-        animator.SetFloat("moveSpeed", 0);
+        SetFloatAnim("moveSpeed", 0);
         return INode.ENodeState.ENS_Failure;
     }
 
@@ -178,26 +177,16 @@ public class WareWolfBoss : Boss
         {
             if (Vector3.SqrMagnitude(_detectedPlayer.position - transform.position) < (_attackRange * _attackRange))
             {
-                animator.SetBool("isClose", true);
+                IsClose("isClose", true);
                 return INode.ENodeState.ENS_Success;
             }
-            animator.SetBool("isClose", false);
+            IsClose("isClose", false);
             Rotate();
             Move();
             return INode.ENodeState.ENS_Running;
         }
         return INode.ENodeState.ENS_Failure;
     }
-
-    #endregion
-
-
-    //private IEnumerator hitMaterialChange()
-    //{
-    //    hitMaterial.color = Color.red;
-    //    yield return new WaitForSeconds(0.3f);
-    //    hitMaterial.color = Color.black;
-    //}
 
     IEnumerator AttackDelay()
     {
@@ -264,26 +253,27 @@ public class WareWolfBoss : Boss
     public void WarewolfBaseAttack()
     {
         canMove = false;
-        animator.SetTrigger(_ATTACK_ANIM_TRIGGER_NAME);
+        AttackTrigger(_ATTACK_ANIM_TRIGGER_NAME);
     }
 
     public void WarewolfFirstPattern()
     {
         canMove = false;
-        animator.SetTrigger(_FIRSTPATTERN_ANIM_TRIGGER_NAME);
+        AttackTrigger(_FIRSTPATTERN_ANIM_TRIGGER_NAME);
         _firstCoolTime = 8f;
     }
 
     public void WarewolfSecondPattern()
     {
         canMove = false;
-        animator.SetTrigger(_SECONDPATTERN_ANIM_TRIGGER_NAME);        
+        AttackTrigger(_SECONDPATTERN_ANIM_TRIGGER_NAME);
     }
 
     public void WarewolfTeleport()
     {
         GameObject instance = GameManager.instance.particlePoolManager.GetParticle("TeleportFog");
-        instance.transform.position = this.transform.position;
+        Vector3 FogPosition = this.transform.position;
+        instance.transform.position = FogPosition;
         StartCoroutine(Teleport());
     }
 
@@ -291,7 +281,7 @@ public class WareWolfBoss : Boss
     {
         this.transform.position = new Vector3(1000f, 1000f, 1000f);
         yield return new WaitForSeconds(1f);
-        this.transform.position = -_detectedPlayer.transform.forward * 5f;
+        transform.position = PlayerCharacter.Instance.transform.position - PlayerCharacter.Instance.transform.forward * 4f;
         this.transform.LookAt(_detectedPlayer);
         WarewolfStingPattern();
     }
@@ -299,7 +289,7 @@ public class WareWolfBoss : Boss
     public void WarewolfStingPattern()
     {
         isSting = true;
-        animator.SetTrigger(_STING_ANIM_TRIGGER_NAME);
+        AttackTrigger(_STING_ANIM_TRIGGER_NAME);
         _secondCoolTime = 10f;
     }
 
