@@ -20,12 +20,11 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text txt_gold;
 
-    public float _maxhp = 100f;
-    public float _hp = 100f;
-    public int _gold = 0;
+    public float _maxhp;
+    public float _hp;
+    public int _gold;
 
-    public float _damage = 10f;
-    public float _range = 1f;
+    public float _damage;
     public float _changeCooldown = 3f;
     public float _attackspeed = 1f;
     public float _movespeed = 1f;
@@ -34,7 +33,6 @@ public class GameManager : MonoBehaviour
     public float _critchance = 10f;
     public float _critdmg = 1.5f;
 
-    public float _lifesteal = 0f;
     public float _lifegen = 0f;
 
     public float criticalRandomValue;
@@ -88,17 +86,14 @@ public class GameManager : MonoBehaviour
     {
         PlayerCharacter.Instance.OnUpdateStat(_maxhp, _hp, _movespeed);
 
-        //activeDelegate += Test2;
         playerhitDelegate += Test;
         playerattackDelegate += Test2;
         enemyhitDelegate += Test3;
         dieDelegate += Test;
-        timeactiveDelegate += Test2;
     }
 
     private void Update()
     {
-        //txt_gold = _gold;
         if(_attackspeed <= 2.5f)
             _attackspeed = 2.5f;
         if (_attackspeed >= 9f)
@@ -155,11 +150,6 @@ public class GameManager : MonoBehaviour
         }
         return _itemcount;
     }
-    public void Test()
-    {
-        return;
-    }
-
     public bool Critical()
     {
         criticalRandomValue = Random.Range(1f, 101f);

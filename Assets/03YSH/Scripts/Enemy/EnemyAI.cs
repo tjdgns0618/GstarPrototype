@@ -261,15 +261,23 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         animator.SetTrigger("hit");
         audioSource = GetComponent<AudioSource>();
         audioSource.Play();
-        currentHp -= damageTaken;
+        
 
         StopCoroutine("hitMaterialChange");
         StartCoroutine("hitMaterialChange");
 
         Vector3 textPos = transform.position;
         textPos.y += 1.5f;
-        damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken, textPos, false);
-
+        if(GameManager.instance.Critical())
+        {
+            damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken * GameManager.instance._critdmg, textPos, true);
+            currentHp -= damageTaken * GameManager.instance._critdmg;
+        }
+        else
+        {
+            damagetextManager.GetDamageTextObject().GetComponent<DamageText>().Init(damageTaken, textPos, false);
+            currentHp -= damageTaken;
+        }
         if (currentHp <= 0)
         {
             currentHp = 0;            

@@ -35,7 +35,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         pi = PlayerCharacter.Instance;
         gi = GameManager.instance;
         pm = gi.particlePoolManager;
-        SetWeaponData(gi._damage, gi._attackspeed, gi._range);
+        SetWeaponData(gi._damage, gi._attackspeed, 10);
     }
 
     public override void Attack(BaseState state)
