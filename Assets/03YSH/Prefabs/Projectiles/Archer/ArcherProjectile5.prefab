@@ -120,7 +120,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -4967,8 +4967,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetname: Enemy
   EffectsOnCollision: {fileID: 1120835270511274, guid: 33cfc2755a55b7e4c86c9d7018efbaaa, type: 3}
-  DestroyTimeDelay: 0
+  DestroyTimeDelay: 5
   damagePercentage: 1
+  isBaseAttack: 0
 --- !u!82 &-4011481064201142990
 AudioSource:
   m_ObjectHideFlags: 0

@@ -40,9 +40,8 @@ public class WarriorCrackSkill2 : MonoBehaviour
         {
             damageable?.Damage(GameManager.instance._damage * damagePercentage);
             damageable?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
-            var instance = GameManager.instance.particlePoolManager.GetParticle("Yellow Flash");
+            var instance = GameManager.instance.particlePoolManager.GetParticle("YellowFlash");
             instance.transform.position = other.transform.position;
-            if (!UseWorldSpacePosition) instance.transform.parent = transform;
             if (UseFirePointRotation) { instance.transform.LookAt(transform.position); }
             else if (rotationOffset != Vector3.zero && useOnlyRotationOffset) { instance.transform.rotation = Quaternion.Euler(rotationOffset); }
             else

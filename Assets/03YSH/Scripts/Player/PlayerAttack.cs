@@ -35,7 +35,7 @@ public class PlayerAttack : BaseWeapon, IEffect
         pi = PlayerCharacter.Instance;
         gi = GameManager.instance;
         pm = gi.particlePoolManager;
-        SetWeaponData(gi._damage, gi._attackspeed, gi._range);
+        SetWeaponData(gi._damage, gi._attackspeed);
     }
 
     public override void Attack(BaseState state)
@@ -113,7 +113,8 @@ public class PlayerAttack : BaseWeapon, IEffect
                 effect.transform.rotation = pi.transform.rotation;
                 if (ComboCount == 3)
                 {
-                    effect.transform.position += (transform.forward * 1.5f);
+                    effect.transform.position += (transform.forward * 0.5f);
+                    effect.transform.position += (transform.up * -1.5f);
                     effect.transform.Rotate(new Vector3(0f, 250f, 60f));
                 }
                 else
@@ -177,9 +178,6 @@ public class PlayerAttack : BaseWeapon, IEffect
                         // 발사체의 위치를 설정합니다.
                         effect.transform.position = pi.firePoint.transform.position;
                         effect.transform.rotation = rotation;
-
-                        // 활성화, 비활성화 시간체크
-                        // StartCoroutine(DebugObjectLifetime(effect));
                     }
                 }
             }

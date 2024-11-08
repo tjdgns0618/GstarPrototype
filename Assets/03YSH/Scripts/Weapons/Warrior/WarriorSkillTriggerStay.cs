@@ -5,48 +5,21 @@ using UnityEngine;
 public class WarriorSkillTriggerStay : MonoBehaviour
 {
     string _EnemyTag = "Enemy";
-    float hitTimer;
-    float hitTime = 0.5f;
+    float hitTime = 0.2f;
+    BoxCollider boxCollider;
 
     IDamageAble<float> damageAble;
-
-    List<GameObject> insideEnemies;
-
-    Coroutine timerCheck;
 
     private void Update()
     {
         transform.position = PlayerCharacter.Instance.transform.position + Vector3.up * 2f;
         transform.localScale = new Vector3(3, 1, 3);
-
-        hitTimer += Time.deltaTime;
-
-        if (hitTime <= hitTimer)
-        {
-            for (int i = 0; i < insideEnemies.Count; i++)
-            {
-                insideEnemies[i]?.GetComponent<IDamageAble<float>>().Damage(GameManager.instance._damage * 1f);
-                if (insideEnemies[i].layer == 13)
-                {
-                    insideEnemies[i] = null;
-                    continue;
-                }
-                insideEnemies[i]?.GetComponent<IDamageAble<float>>().PlayKnockback(insideEnemies[i].transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
-            }
-            hitTimer = 0;
-        }
-
     }
 
     private void OnEnable()
     {
-        insideEnemies.Clear();
-    }
-
-    private void OnDisable()
-    {
-        if(insideEnemies != null)
-            insideEnemies.Clear();
+        boxCollider = GetComponent<BoxCollider>();
+        StartCoroutine(ColCoroutine());
     }
 
     private void OnParticleSystemStopped()
@@ -60,16 +33,22 @@ public class WarriorSkillTriggerStay : MonoBehaviour
             Destroy(other.gameObject);
 
         if (other.CompareTag("Enemy"))
-        {            
-            insideEnemies.Add(other.gameObject);
+        {
+            damageAble = other.GetComponent<IDamageAble<float>>();
+            damageAble?.Damage(GameManager.instance._damage * 0.2f);
+            if(other.gameObject.layer != 13 || other.gameObject.layer != 7)
+                damageAble?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.1f, 0.1f);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    IEnumerator ColCoroutine()
     {
-        if (other.CompareTag("Enemy"))
+        while (true)
         {
-            insideEnemies.Remove(other.gameObject);
+            boxCollider.enabled = true;
+            yield return new WaitForSeconds(hitTime);
+            boxCollider.enabled = false;
+            yield return new WaitForSeconds(hitTime);
         }
     }
 
