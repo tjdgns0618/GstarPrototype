@@ -30,6 +30,9 @@ public class WareWolfBoss : Boss
     bool canMove = true;
     bool isSting = false;
 
+    public AudioClip[] audioClips;
+    AudioSource audioSource;
+
     float slowDelay;
     WaitForSeconds slowT;
 
@@ -43,6 +46,7 @@ public class WareWolfBoss : Boss
         enemyAttack = GetComponentInChildren<WarewolfAttack>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _originPos = transform.position;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -202,6 +206,20 @@ public class WareWolfBoss : Boss
     public void InActiveEnemy()
     {
         gameObject.SetActive(false);
+    }
+
+    public void PlayAttackSound(int num)
+    {
+        audioSource.clip = audioClips[num];
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
+    public void PlayLoopSound()
+    {
+        audioSource.clip = audioClips[2];
+        audioSource.loop = true;
+        audioSource.Play();
     }
 
     public void AttackStart()
