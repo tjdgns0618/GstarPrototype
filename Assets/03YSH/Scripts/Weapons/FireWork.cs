@@ -12,8 +12,7 @@ public class FireWork : MonoBehaviour
     private Vector3 targetPosition;         // 적의 위치
     private bool isTracking = false;        // 적을 추적하는 단계인지 여부
     private Animator animator;
-
-    AudioSource audio;
+    new AudioSource audio;
     private void OnEnable()
     {
         audio = GetComponent<AudioSource>();
