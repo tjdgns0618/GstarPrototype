@@ -1,34 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Shop : MonoBehaviour
+public class BaseShop : MonoBehaviour
 {
-    [SerializeField] private ShopItemDB shopitemDB;
-    [SerializeField] private ShopItem[] shopItems;
+    public ShopItemDB shopitemDB;
+    public ShopItem[] shopItems;
 
-    [SerializeField] private GameObject messageBox;
-    [SerializeField] private TMP_Text message;
+    public GameObject messageBox;
+    public TMP_Text message;
 
     public TMP_Text gold_Txt;
     public Image showImage;
 
-    private int selectedShopItemID;
+    public ShopItem selectedShopItem;
 
-    public AutoPotion[] autopotion;
+    [HideInInspector] public GameManager gm;
+    [HideInInspector] public UIManager uiManager;
 
-    private GameManager gm;
-    public UIManager uiManager;
-
-    private void Start()
+    virtual public void Start()
     {
         gm = GameManager.instance;
+        uiManager = FindObjectOfType<UIManager>();
+        LoadShopItemData();
     }
 
-    public void ShopItemInit()
+    public void Update()
+    {
+        gold_Txt.text = gm._gold + " Gold";
+
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            TestGold();
+        }
+    }
+
+    public void LoadShopItemData()
     {
         int index = 0;
 
@@ -52,7 +61,7 @@ public class Shop : MonoBehaviour
                 shopItems[index].dashCoolTime = shopitemDB.entities[i].DashCoolTime;
                 shopItems[index].itemCoolTimeDropRate = shopitemDB.entities[i].ItemCoolTimeDropRate;
 
-                //shopItems[index].SetShop(this);
+                shopItems[index].SetShop(this);
 
                 index++;
 
@@ -62,70 +71,57 @@ public class Shop : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        gold_Txt.text = gm._gold + " Gold";
-
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            TestGold();
-        }
-    }
-
-    public void GoldTrade(int _cost_gold)   
+    public void GoldTrade(int _cost_gold)
     {
         gm._gold -= _cost_gold;
     }
 
-    public void SelectShopItem(int shopitemID)
+    public void SelectShopItem(ShopItem _shopitem)
     {
-        selectedShopItemID = shopitemID;
+        selectedShopItem = _shopitem;
+    }
+
+    virtual public bool CheckCanBuyMoreItems()
+    {
+        return false;
     }
 
     public void BuySelectedShopItem()
     {
-        ShopItem selectedItem = FindShopItem(selectedShopItemID);
-
-        if (selectedItem.isItemUnbuyable || 
-            (!selectedItem.isAutoPotion && gm._hp == gm._maxhp &&(selectedItem.hp > 0 || selectedItem.hpRate > 0)))
+        if (!CheckCanBuyMoreItems())
         {
             OpenMessageBox("더 이상 구매할 수 없습니다.");
             return;
         }
 
         //골드 줄어들기
-        if (gm._gold < selectedItem.price)
+        if (gm._gold < selectedShopItem.price)
         {
             OpenMessageBox("돈이 부족합니다.");
             return;
         }
 
-        GoldTrade(selectedItem.price);
+        GoldTrade(selectedShopItem.price);
+        BuyItem();
+    }
 
-        //구매 성공 및 아이템 효과 작용
-        //if (!selectedItem.isAutoPotion)
-            //selectedItem.ActivateItemAbility();
-        //else
-        //{
-        //    FindShopItem(selectedShopItemID).isItemUnbuyable = true;
+    virtual public void BuyItem()
+    {
+        
+    }
 
-        //    if (selectedShopItemID == 1100)
-        //    {
-        //        autopotion[0].SetAblePotion();
-        //    }
-        //    else if (selectedShopItemID == 1101)
-        //    {
-        //        autopotion[1].SetAblePotion();
-        //    }
-        //}
+    public void OpenMessageBox(string text)
+    {
+        message.text = text;
+        uiManager.OpenPopup(messageBox);
     }
 
     private ShopItem FindShopItem(int itemID)
     {
-        foreach(var item in shopItems)
+        foreach (var item in shopItems)
         {
             if (item.itemID == itemID)
-            { 
+            {
                 return item;
             }
         }
@@ -137,7 +133,7 @@ public class Shop : MonoBehaviour
     {
         if (gm._hp > _cost_hp)
         {
-            gm._hp -=  _cost_hp;
+            gm._hp -= _cost_hp;
         }
         else
         {
@@ -153,11 +149,5 @@ public class Shop : MonoBehaviour
     public void TestHp()
     {
         gm._hp -= 10;
-    }
-
-    public void OpenMessageBox(string text)
-    {
-        message.text = text;
-        uiManager.OpenPopup(messageBox);
     }
 }

@@ -11481,14 +11481,12 @@ MonoBehaviour:
   _hp: 5000
   _gold: 0
   _damage: 80
-  _range: 1
   _changeCooldown: 3
   _attackspeed: 3
   _movespeed: 350
   _reInputTime: 1.5
   _critchance: 10
   _critdmg: 150
-  _lifesteal: 0
   _lifegen: 0
   criticalRandomValue: 0
   criticalProbability: 0
@@ -11601,6 +11599,10 @@ PrefabInstance:
       propertyPath: shopitem
       value: 
       objectReference: {fileID: 855034156}
+    - target: {fileID: 2757726627990281466, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2890861100700069053, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -11608,6 +11610,10 @@ PrefabInstance:
     - target: {fileID: 2944816436329061318, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280979509888035779, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3930130402321347562, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
       propertyPath: shopitem
