@@ -54,8 +54,9 @@ public class ParticleCollisionInstance : MonoBehaviour
             {
                 foreach (var effect in EffectsOnCollision)
                 {
-                    var instance = Instantiate(effect, collisionEvents[i].intersection + collisionEvents[i].normal * Offset + transformOffset, Quaternion.identity) as GameObject;
-                    if (!UseWorldSpacePosition) instance.transform.parent = transform;
+                    GameObject instance = GameManager.instance.particlePoolManager.GetParticle(EffectsOnCollision[0].name);
+                    instance.transform.position = collisionEvents[i].intersection + collisionEvents[i].normal * Offset;
+
                     if (UseFirePointRotation) { instance.transform.LookAt(transform.position); }
                     else if (rotationOffset != Vector3.zero && useOnlyRotationOffset) { instance.transform.rotation = Quaternion.Euler(rotationOffset); }
                     else

@@ -76,13 +76,18 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
         DashState.CurrentDashCount = 0;
 
         AttackState.CanReInputTime = GameManager.instance._reInputTime;
-    }       
+    }
 
     private void Update()
     {
-        if (gameManager.isDead || gameManager.isPause)
+        if (gameManager.isDead || gameManager.isPause || gameManager.isOnUI)
+        {
+            player.rigidbody.angularVelocity = Vector3.zero;
+            player.rigidbody.velocity = Vector3.zero;
+            player.animator.SetFloat("moveSpeed", 0);
             return;
-                  
+        }
+
         GetMousePosition();
         Move();
     }
@@ -95,6 +100,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnRotate(InputAction.CallbackContext context)
     {
+        if(gameManager.isOnUI)
+        {
+            return;
+        }
         mousePosition = context.ReadValue<Vector2>();
     }
 
@@ -495,7 +504,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     void GetMousePosition()
     {
-
         Ray cemeraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayLength;

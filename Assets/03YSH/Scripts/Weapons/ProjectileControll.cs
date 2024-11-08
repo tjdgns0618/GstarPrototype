@@ -35,7 +35,8 @@ public class ProjectileControll : MonoBehaviour
             if(isBaseAttack)
                 GameManager.instance.enemyhitDelegate(other.gameObject);
             damageable?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.2f, 0.2f);
-            GameObject instance = Instantiate(EffectsOnCollision, other.transform.position, Quaternion.identity);
+            GameObject instance = GameManager.instance.particlePoolManager.GetParticle(EffectsOnCollision.name);
+            instance.transform.position = other.transform.position;
             // GameManager.instance.particlePoolManager.ReturnParticle(this.gameObject);            
         }
     }
