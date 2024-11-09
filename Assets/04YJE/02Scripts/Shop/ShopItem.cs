@@ -13,6 +13,7 @@ public class ShopItem : MonoBehaviour
     public string itemName;
     public string itemInfo;
     public int price;
+    public int maxHP;
     public int maxLevel;
     public float attackDamage;
     public float diffence;

@@ -30,8 +30,8 @@ public class Wizard : BaseShop
             return false;
     }
 
-    override public void BuyItem()
+    override public void BuySelectedShopItem()
     {
-        selectedShopItem.ActivateItemAbility();
+        statItemDic[selectedShopItem].ApplyStat();
     }
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class Inn : BaseShop
 {
     public BuffItem[] buffItems;
+    public AutoPotion[] autoPotions;
     public Dictionary<ShopItem, BuffItem> buffItemDic = new Dictionary<ShopItem, BuffItem>();
+    public Dictionary<ShopItem, AutoPotion> potionDic = new Dictionary<ShopItem, AutoPotion>();
 
     override public void Start()
     {
@@ -14,6 +16,11 @@ public class Inn : BaseShop
         for(int i = 0; i < buffItems.Length; i++)
         {
             buffItemDic.Add(buffItems[i].shopitem, buffItems[i]);
+        }
+
+        for (int j = 0; j < buffItems.Length; j++)
+        {
+            potionDic.Add(autoPotions[j].shopitem, autoPotions[j]);
         }
     }
 
@@ -28,11 +35,11 @@ public class Inn : BaseShop
         return true;
     }
 
-    override public void BuyItem()
+    override public void BuySelectedShopItem()
     {
         if (selectedShopItem.isAutoPotion)      //자동회복 아이템이라면 즉시 회복하지 않고 사용 가능한 상태로 변경
         {
-            selectedShopItem.GetComponent<AutoPotion>().SetAblePotion();
+            potionDic[selectedShopItem].SetAblePotion();
         }
         else if (selectedShopItem.isBuffItem)        // 버프아이템이라면 버프 활성화 상태로 변경
         {

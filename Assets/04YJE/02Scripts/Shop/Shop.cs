@@ -39,7 +39,7 @@ public class Shop : MonoBehaviour
             {
                 shopItems[index].itemName = shopitemDB.entities[i].ItemName;
                 shopItems[index].itemInfo = shopitemDB.entities[i].ItemInfo;
-                shopItems[index].price = shopitemDB.entities[i].Price;
+                //shopItems[index].price = shopitemDB.entities[i].Price;
                 shopItems[index].maxLevel = shopitemDB.entities[i].MaxLevel;
                 shopItems[index].attackDamage = shopitemDB.entities[i].AttackDamage;
                 shopItems[index].isAutoPotion = shopitemDB.entities[i].IsAuto;

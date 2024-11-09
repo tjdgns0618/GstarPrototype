@@ -7,5 +7,5 @@ using UnityEngine;
 public class ShopItemDB : ScriptableObject
 {
 	public List<ShopItemDBEntity> entities;
-	public List<ShopItemDBEntity2> entities3; 
+	public List<ShopItemDBEntity2> entities3;
 }

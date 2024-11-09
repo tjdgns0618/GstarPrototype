@@ -91,7 +91,7 @@ public class BlackSmithShop : MonoBehaviour
                 return;
             }
 
-            if (selectedSlot.itemCount >= 5)
+            if (selectedSlot.itemCount >= 5 && !CheckItemUpgradeable(selectedSlot.item))
             {
                 OpenMessageBox("더 이상 강화할 수 없습니다.");
                 return;
@@ -130,5 +130,57 @@ public class BlackSmithShop : MonoBehaviour
         inventory.EnchantItem(selectedSlot.item, 1);
         OpenMessageBox("강화를 성공하였습니다!");
         UpdateSelectedItemUpgradeInfo();
+    }
+
+
+
+    public bool CheckItemUpgradeable(Item item)
+    {
+        bool canUpgrade = true;
+
+        if (GameManager.instance._skillCooltimePercent <= 0.5)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.cooldown ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._attackspeed >= 9)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.attackspeedA ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._attackspeed <= 2.5f)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.attackspeedM ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._movespeed >= 350f)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.movespeedA ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._movespeed <= 250f)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.movespeedM ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._maxhp >= 750f)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.maxhpM ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+
+        return canUpgrade;
     }
 }

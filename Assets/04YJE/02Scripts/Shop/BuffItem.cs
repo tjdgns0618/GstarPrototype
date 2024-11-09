@@ -9,29 +9,22 @@ public class BuffItem : MonoBehaviour
 
     public bool isOnBuff;
 
-    GameManager gm;
-
-    private void Start()
-    {
-        gm = GameManager.instance;
-    }
-
     public void ActivateBuff()
     {
-        gm._damage += shopitem.attackDamage;
-        gm._critdmg += shopitem.criticalDamage;
-        gm._critchance += shopitem.criticalRate;
+        gameObject.SetActive(true);
+        GameManager.instance._damage += shopitem.attackDamage;
+        GameManager.instance._critdmg += shopitem.criticalDamage;
+        GameManager.instance._critchance += shopitem.criticalRate;
 
         shopitem.isItemUnbuyable = true;
         isOnBuff = true;
-        gameObject.SetActive(true);
     }
 
     public void DeactivateBuff()
     {
-        gm._damage -= shopitem.attackDamage;
-        gm._critdmg -= shopitem.criticalDamage;
-        gm._critchance -= shopitem.criticalRate;
+        GameManager.instance._damage -= shopitem.attackDamage;
+        GameManager.instance._critdmg -= shopitem.criticalDamage;
+        GameManager.instance._critchance -= shopitem.criticalRate;
 
         shopitem.isItemUnbuyable = false;
         isOnBuff = false;

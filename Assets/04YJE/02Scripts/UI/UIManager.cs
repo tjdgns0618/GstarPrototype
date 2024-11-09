@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject pauseWindow;
     public GameObject fieldUI;
+    public GameObject stat;
 
     //Ä³¸¯ÅÍ ¼±ÅÃ UI
     [Header("Select_Character_UI")]
@@ -38,9 +39,6 @@ public class UIManager : MonoBehaviour
     [Header("Manager")]
     public spawner1 spawner;
     private GameManager gameManager;
-
-    [Header("AutoPotion")]
-    public AutoPotion[] autoPotion;
 
     private void Start()
     {
@@ -81,6 +79,15 @@ public class UIManager : MonoBehaviour
                 OpenPopup(pauseWindow);
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            SetUIActive(stat, true);
+        }
+        else if(Input.GetKeyUp(KeyCode.Tab))
+        {
+            SetUIActive(stat, false);
+        }
     }
 
     //UIÆË¾÷Ã¢ ¿­±â
@@ -99,27 +106,6 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0f;
             gameManager.isPause = true;
         }
-    }
-
-    public void OpenOrClosePopup(GameObject popup)
-    {
-        if (popup != null)
-            if(!openPopups.Contains(popup))
-            {
-                SetUIActive(popup, true);
-                openPopups.Add(popup);
-                gameManager.isOnUI = true;
-            }
-            else 
-            {
-                SetUIActive(popup, false);
-                openPopups.Remove(popup);
-
-                if (openPopups.Count <= 0)
-                {
-                    gameManager.isOnUI = false;
-                }
-            }
     }
 
     //UIÆË¾÷Ã¢ ´Ý±â

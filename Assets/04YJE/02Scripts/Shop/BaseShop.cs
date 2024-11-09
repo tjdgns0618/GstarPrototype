@@ -48,7 +48,8 @@ public class BaseShop : MonoBehaviour
             {
                 shopItems[index].itemName = shopitemDB.entities[i].ItemName;
                 shopItems[index].itemInfo = shopitemDB.entities[i].ItemInfo;
-                shopItems[index].price = shopitemDB.entities[i].Price;
+                shopItems[index].price = shopitemDB.entities[i].BasePrice;
+                shopItems[index].maxHP = shopitemDB.entities[i].MaxHP;
                 shopItems[index].maxLevel = shopitemDB.entities[i].MaxLevel;
                 shopItems[index].attackDamage = shopitemDB.entities[i].AttackDamage;
                 shopItems[index].isAutoPotion = shopitemDB.entities[i].IsAuto;
@@ -86,7 +87,7 @@ public class BaseShop : MonoBehaviour
         return false;
     }
 
-    public void BuySelectedShopItem()
+    public void TryBuySelectedShopItem()
     {
         if (!CheckCanBuyMoreItems())
         {
@@ -102,10 +103,10 @@ public class BaseShop : MonoBehaviour
         }
 
         GoldTrade(selectedShopItem.price);
-        BuyItem();
+        BuySelectedShopItem();
     }
 
-    virtual public void BuyItem()
+    virtual public void BuySelectedShopItem()
     {
         
     }
