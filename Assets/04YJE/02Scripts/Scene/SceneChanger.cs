@@ -10,6 +10,7 @@ public class SceneChanger : MonoBehaviour
     FadeInOut fadeInOut;
     WaitForSeconds fadeTime = new WaitForSeconds(2f);
 
+    [SerializeField]
     bool isLoading = false;
 
     private void Start()
@@ -24,6 +25,7 @@ public class SceneChanger : MonoBehaviour
         if (isLoading)
             return;
 
+        Time.timeScale = 1.0f;
         if (fadeInOut != null)
             fadeInOut.FadeOut();
         StartCoroutine(_LoadMainScene());
