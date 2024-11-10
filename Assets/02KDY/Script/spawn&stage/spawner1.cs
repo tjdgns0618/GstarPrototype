@@ -41,6 +41,8 @@ public class spawner1 : MonoBehaviour
 
     public string[] enemyNames;
 
+    public Slider bossHpSlider;
+
     public List<GameObject> enemies = new List<GameObject>();
 
     public int _randomnum;
@@ -254,6 +256,7 @@ public class spawner1 : MonoBehaviour
         if (currentStage == 2 && currentWave == maxWaves) //2스테이지
         {
             Vector3 bossSpawnPosition = GetRandomPosition();
+            bossHpSlider.transform.parent.gameObject.SetActive(true);
             GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
@@ -262,6 +265,7 @@ public class spawner1 : MonoBehaviour
         else if (currentStage == 4 && currentWave == maxWaves) //4스테이지
         {
             Vector3 bossSpawnPosition = GetRandomPosition();
+            bossHpSlider.transform.parent.gameObject.SetActive(true);
             GameObject boss = Instantiate(bossPrefab2, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
@@ -270,6 +274,7 @@ public class spawner1 : MonoBehaviour
         else if (currentStage == 6 && currentWave == maxWaves) //6스테이지
         {
             Vector3 bossSpawnPosition = GetRandomPosition();
+            bossHpSlider.transform.parent.gameObject.SetActive(true);
             GameObject boss = Instantiate(bossPrefab3, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
@@ -278,6 +283,7 @@ public class spawner1 : MonoBehaviour
         else if (currentStage == 8 && currentWave == maxWaves) //8스테이지
         {
             Vector3 bossSpawnPosition = GetRandomPosition();
+            bossHpSlider.transform.parent.gameObject.SetActive(true);
             GameObject boss = Instantiate(bossPrefab4, bossSpawnPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);

@@ -23,6 +23,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
 
     [SerializeField]
     float _movementSpeed = 10f;
+    float _initmovementSpeed;
     [SerializeField]
     EnemyAttack enemyAttack;
     
@@ -56,6 +57,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         animator = GetComponent<Animator>();
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _originPos = transform.position;
+        _initmovementSpeed = _movementSpeed;
     }
 
     void Start()
@@ -71,7 +73,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
             hitMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
             return;
         }
-
+        _movementSpeed = _initmovementSpeed;
         //GameManager.instance.dieDelegate += Test;
         damage = 10;
         maxHp = 40;
@@ -90,7 +92,6 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
                 Mathf.Round(damage);
             }
         }
-
 
         isDead = false;
         gameObject.layer = 8;

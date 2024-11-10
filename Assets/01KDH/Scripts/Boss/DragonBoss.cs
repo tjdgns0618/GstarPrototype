@@ -35,6 +35,9 @@ public class DragonBoss : Boss
         _hp = 1000f;
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _audioSource = GetComponent<AudioSource>();
+
+        GameManager.instance.spawner.bossHpSlider.maxValue = _hp;
+        GameManager.instance.spawner.bossHpSlider.value = _hp;
     }
 
     private void Update()

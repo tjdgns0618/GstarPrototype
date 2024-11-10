@@ -159,7 +159,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         // animator.SetTrigger("hit");
         // hitSound.Play();
         _hp -= damage;
-
+        GameManager.instance.spawner.bossHpSlider.value -= damage;
 
         Vector3 textPos = transform.position;
         textPos.y += 1.5f;
@@ -168,6 +168,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         Debug.Log(_hp);
         if (_hp <= 0)
         {
+            GameManager.instance.spawner.bossHpSlider.value = 0;
             _hp = 0;
             Dead();
         }
@@ -182,6 +183,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
     {
         this.gameObject.layer = 7;
         _isDead = true;
+        GameManager.instance.spawner.bossHpSlider.transform.parent.gameObject.SetActive(false);
         animator.SetTrigger(_Dead_AnimTriggerName);
         GameManager.instance.spawner.enemies.Remove(this.gameObject);
         GameManager.instance.spawner.enemyDead();

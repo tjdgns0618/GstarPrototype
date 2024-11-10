@@ -52,8 +52,11 @@ public class WareWolfBoss : Boss
     void Start()
     {
         slowT = new WaitForSeconds(slowDelay);
-
+        
         _hp = 15000f;
+
+        GameManager.instance.spawner.bossHpSlider.maxValue = _hp;
+        GameManager.instance.spawner.bossHpSlider.value = _hp;
     }
 
     private void OnEnable()
@@ -308,7 +311,7 @@ public class WareWolfBoss : Boss
     {
         isSting = true;
         AttackTrigger(_STING_ANIM_TRIGGER_NAME);
-        _secondCoolTime = 10f;
+        _secondCoolTime = 12f;
     }
 
 

@@ -28,6 +28,9 @@ public class BishopBoss : Boss
         _hp = 600f;
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _audioSource = GetComponent<AudioSource>();
+
+        GameManager.instance.spawner.bossHpSlider.maxValue = _hp;
+        GameManager.instance.spawner.bossHpSlider.value = _hp;
     }
 
     private void Update()
