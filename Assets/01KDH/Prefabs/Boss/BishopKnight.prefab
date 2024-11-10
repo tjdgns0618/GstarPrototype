@@ -555,6 +555,10 @@ MonoBehaviour:
   _bossType: 2
   _shotpos: {fileID: 5714708434175943412}
   _detectedPlayer: {fileID: 0}
+  animator: {fileID: 0}
+  damagetextManager: {fileID: 0}
+  _taunt: {fileID: 8300000, guid: c3532dbcb5d19bc4cad8da95a78a7719, type: 3}
+  _normal: {fileID: 8300000, guid: 2117fa14ac5dda44794fc9c957573011, type: 3}
   _spear: {fileID: 5645380979254899175}
 --- !u!82 &2577873569384393823
 AudioSource:
@@ -567,7 +571,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4830584997086789795, guid: 1d64cc5962419004aa7bade9e15906d8, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

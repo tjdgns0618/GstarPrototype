@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PassiveItem : MonoBehaviour
@@ -54,7 +55,7 @@ public class PassiveItem : MonoBehaviour
     }  
     public void _10Pitem()
     {
-
+        gm._lifegen += ItemDataBase.instance.Variable2(9);
     }
     public void _11Pitem()
     {
@@ -74,7 +75,7 @@ public class PassiveItem : MonoBehaviour
     }   
     public void _14Pitem()
     {
-
+        gm._goldBonus += ItemDataBase.instance.Variable(13);
     }   
     public void _15Pitem()
     {
