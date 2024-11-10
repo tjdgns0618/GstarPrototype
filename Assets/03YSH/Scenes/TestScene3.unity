@@ -12691,33 +12691,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
---- !u!114 &791178052 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3930130402321347562, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
-  m_PrefabInstance: {fileID: 791178051}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4140fdb7f69637419f01a086ef54ec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &791178053 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 74387523134180814, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
   m_PrefabInstance: {fileID: 791178051}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &791178054 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4836652805657343905, guid: 8a2ddf2e9a102f346bc2a96d792b2544, type: 3}
-  m_PrefabInstance: {fileID: 791178051}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4140fdb7f69637419f01a086ef54ec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &791417877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13640,11 +13618,11 @@ PrefabInstance:
     - target: {fileID: 2608470021274986498, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: autopotion.Array.data[0]
       value: 
-      objectReference: {fileID: 791178054}
+      objectReference: {fileID: 0}
     - target: {fileID: 2608470021274986498, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: autopotion.Array.data[1]
       value: 
-      objectReference: {fileID: 791178052}
+      objectReference: {fileID: 0}
     - target: {fileID: 2772457739350622590, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: _inventory
       value: 
@@ -14096,11 +14074,11 @@ PrefabInstance:
     - target: {fileID: 9183273418121089554, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: autopotion.Array.data[0]
       value: 
-      objectReference: {fileID: 791178054}
+      objectReference: {fileID: 0}
     - target: {fileID: 9183273418121089554, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: autopotion.Array.data[1]
       value: 
-      objectReference: {fileID: 791178052}
+      objectReference: {fileID: 0}
     - target: {fileID: 9217012141354556256, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: _inventory
       value: 
@@ -19881,6 +19859,7 @@ MonoBehaviour:
   openPopups: []
   pauseWindow: {fileID: 268447371}
   fieldUI: {fileID: 6878873752747153160}
+  stat: {fileID: 0}
   characterSelectionUI:
   - {fileID: 3288315537621770439}
   - {fileID: 3207392296191134188}
@@ -19893,9 +19872,6 @@ MonoBehaviour:
   health_Txt: {fileID: 1041020533634025101}
   coin_Txt: {fileID: 7631177499464440033}
   spawner: {fileID: 221857132}
-  autoPotion:
-  - {fileID: 791178054}
-  - {fileID: 791178052}
 --- !u!4 &1235205385
 Transform:
   m_ObjectHideFlags: 0

@@ -101,6 +101,8 @@ public class spawner1 : MonoBehaviour
     public void RewardTerm()
     {
         Time.timeScale = 0;
+        GameManager.instance.isPause = true;
+        GameManager.instance.isOnUI = true;
         rewardUI.SetActive(true);
         waveClear.SetActive(false);
     }
@@ -108,6 +110,8 @@ public class spawner1 : MonoBehaviour
     {
         portal.SetActive(true);
         Time.timeScale = 0;
+        GameManager.instance.isPause = true;
+        GameManager.instance.isOnUI = true;
         rewardUI.SetActive(true);
         stageClear.SetActive(false);
     }

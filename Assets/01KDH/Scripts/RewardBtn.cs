@@ -242,6 +242,9 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             DashState.CurrentDashCount = 0;
             waveStart.SendMessage("StartWave");   // StartWave 함수 실행
             Time.timeScale = 1;
+            GameManager.instance.isPause = false;
+            GameManager.instance.isOnUI = false;
+            
             reUI.AddRewardRandomItems(items);   // 새로운 아이템을 보상 슬롯에 추가
         }
         else  // 스테이지가 끝났다면,

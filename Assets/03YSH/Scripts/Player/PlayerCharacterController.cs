@@ -94,6 +94,8 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     
     public void OnMoveInput(InputAction.CallbackContext context)
     {
+        if(gameManager.isOnUI)
+            return;
         Vector3 input = context.ReadValue<Vector3>();
         direction = new Vector3(input.x, 0f, input.z);
     }
@@ -110,7 +112,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public void OnCharacterChange(InputAction.CallbackContext context)
     {
         if (context.performed && !player.isPlaySkill && player.canChange && !gameManager.isDead && !gameManager.isPause
-            && !DashState.IsDash)
+            && !DashState.IsDash && !gameManager.isOnUI)
         {
             if (context.control.name == "1" && player.characterClass != CharacterType.Warrior)
             {
@@ -242,7 +244,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnClickLeftMouse(InputAction.CallbackContext context)
     {
-        if (gameManager.isPause || gameManager.isDead)
+        if (gameManager.isPause || gameManager.isDead || gameManager.isOnUI)
             return;
 
         if (context.performed && !player.isPlaySkill)
@@ -303,7 +305,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     public void OnDashInput(InputAction.CallbackContext context)
     {
         if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0 && !AttackState.IsAttack
-            && !player.isPlaySkill)
+            && !player.isPlaySkill && !gameManager.isOnUI)
         {
             if (!DashState.IsDash)
             {
@@ -347,7 +349,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnClickQ(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash && !gameManager.isOnUI)
         {
             if (context.interaction is PressInteraction)
             {
@@ -369,7 +371,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnClickE(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash && !gameManager.isOnUI)
         {
             bool isAvailableAttack = !AttackState.IsSkill_E && gameManager.cooltimeManager.canUseSkill[player.characterClass.ToString() + 'E'];
 
@@ -386,7 +388,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     }
     public void OnClickR(InputAction.CallbackContext context)
     {
-        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill! && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash)
+        if (context.performed && !AttackState.IsBaseAttack && !player.isPlaySkill! && !gameManager.isPause && !gameManager.isDead && !DashState.IsDash && !gameManager.isOnUI)
         {
             bool isAvailableAttack = !AttackState.IsSkill_R && gameManager.cooltimeManager.canUseSkill[player.characterClass.ToString() + 'R'];
 
@@ -427,7 +429,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void Move()
     {
-        if (!canMove)
+        if (!canMove || gameManager.isOnUI)
             return;
 
         #region #캐릭터 움직임 구현
