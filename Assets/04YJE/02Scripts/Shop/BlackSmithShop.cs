@@ -15,6 +15,9 @@ public class BlackSmithShop : MonoBehaviour
     public GameObject messageBox;
     public TMP_Text message;
     public Inventory inventory;
+    public Animator successAnimator;
+    public AudioSource audioSource;
+    public AudioClip successClip;
 
     [SerializeField] private UIManager uiManager;
     [SerializeField] private ShopItemDB shopitemDB;
@@ -37,10 +40,10 @@ public class BlackSmithShop : MonoBehaviour
     public void ShowUpgradeGuideText()
     {
         upgradeGuideText[0].text =
-           string.Format("1 -> 2 °­È­ ¼º°ø È®·ü {0}%\n"
-                       + "2 -> 3 °­È­ ¼º°ø È®·ü {1}%\n"
-                       + "3 -> 4 °­È­ ¼º°ø È®·ü {2}%\n"
-                       + "4 -> 5 °­È­ ¼º°ø È®·ü {3}%\n",
+           string.Format("1 -> 2 ê°•í™” ì„±ê³µ í™•ë¥  {0}%\n"
+                       + "2 -> 3 ê°•í™” ì„±ê³µ í™•ë¥  {1}%\n"
+                       + "3 -> 4 ê°•í™” ì„±ê³µ í™•ë¥  {2}%\n"
+                       + "4 -> 5 ê°•í™” ì„±ê³µ í™•ë¥  {3}%\n",
                        shopitemDB.entities3[0].SuccessRate,
                        shopitemDB.entities3[1].SuccessRate,
                        shopitemDB.entities3[2].SuccessRate,
@@ -91,13 +94,13 @@ public class BlackSmithShop : MonoBehaviour
                 return;
             if (gm._gold < price)
             {
-                OpenMessageBox("µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
+                OpenMessageBox("ëˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
                 return;
             }
 
-            if (selectedSlot.itemCount >= 5)
+            if (selectedSlot.itemCount >= 5 || !CheckItemUpgradeable(selectedSlot.item))
             {
-                OpenMessageBox("´õ ÀÌ»ó °­È­ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+                OpenMessageBox("ë” ì´ìƒ ê°•í™”í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                 return;
             }
                 
@@ -126,12 +129,13 @@ public class BlackSmithShop : MonoBehaviour
 
     public void UpgradeFail()
     {
-        Debug.Log("¾÷±×·¹ÀÌµå ½ÇÆĞ");
+        OpenMessageBox("ê°•í™”ë¥¼ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
     }
 
     public void UpgradeSuccess()
     {
         inventory.EnchantItem(selectedSlot.item, 1);
+
         if (selectedSlot.item.itemType == Item.ItemType.passive)
         {
             switch (selectedSlot.item.itemID)
@@ -228,7 +232,66 @@ public class BlackSmithShop : MonoBehaviour
                     break;
             }
         }
-            OpenMessageBox("°­È­¸¦ ¼º°øÇÏ¿´½À´Ï´Ù!");
+            OpenMessageBox("ê°•í™”ë¥¼ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤!");
+            successAnimator.SetTrigger("UpgradeSuccess");
             UpdateSelectedItemUpgradeInfo();
     }
+
+
+
+    public bool CheckItemUpgradeable(Item item)
+    {
+        bool canUpgrade = true;
+
+        if (GameManager.instance._skillCooltimePercent <= 0.5)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.cooldown ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._attackspeed >= 9)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.attackspeedA ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._attackspeed <= 2.5f)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.attackspeedM ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._movespeed >= 350f)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.movespeedA ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._movespeed <= 250f)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.movespeedM ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+        if (GameManager.instance._maxhp >= 750f)
+        {
+            canUpgrade = item.itemType2 == Item.ItemType2.maxhpM ? false : true;
+
+            if (!canUpgrade)
+                return canUpgrade;
+        }
+
+        return canUpgrade;
+    }
+
+    public void PlaySuccessSFX()
+    {
+        audioSource.PlayOneShot(successClip);
+    }
 }
+

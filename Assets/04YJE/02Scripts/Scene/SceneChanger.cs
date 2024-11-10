@@ -56,7 +56,7 @@ public class SceneChanger : MonoBehaviour
             return;
 
         if (fadeInOut != null)
-            fadeInOut = FindObjectOfType<FadeInOut>();
+            fadeInOut.FadeOut();
         SceneManager.LoadScene(3);
         soundManager.PlayMusic(5, 2f);
     }
@@ -76,7 +76,6 @@ public class SceneChanger : MonoBehaviour
 
         SceneManager.LoadScene(1);
         soundManager.PlayMusic(1, 2f);
-        //로드씬함수 호출
     }
 
     IEnumerator _LoadMainScene()

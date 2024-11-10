@@ -13,6 +13,7 @@ public class ShopItem : MonoBehaviour
     public string itemName;
     public string itemInfo;
     public int price;
+    public int maxHP;
     public int maxLevel;
     public float attackDamage;
     public float diffence;
@@ -25,7 +26,7 @@ public class ShopItem : MonoBehaviour
     public float dashCoolTime;
     public float itemCoolTimeDropRate;
     
-    protected Shop shop;
+    protected BaseShop shop;
     public TMP_Text itemNameText;
     public TMP_Text itemInfoText;
     public TMP_Text itemPriceText;
@@ -40,7 +41,12 @@ public class ShopItem : MonoBehaviour
     {
         gm = GameManager.instance;
         SetShopItemData();
-        isAutoPotion = itemID == 1100 || itemID == 1101 ? true : false;
+
+        if (itemID == 1100 || itemID == 1101)
+            isAutoPotion = true;
+
+        if (itemID >= 1200 && itemID < 1300)
+            isBuffItem = true;
     }
 
     //아이템 이름, 정보, 가격 표시
@@ -60,11 +66,11 @@ public class ShopItem : MonoBehaviour
     //선택된 아이템을 바꿈
     public void SelectedShopItemChange()
     {
-        shop.SelectShopItem(itemID);
+        shop.SelectShopItem(this);
     }
 
     //Shop 설정
-    public void SetShop(Shop _shop)
+    public void SetShop(BaseShop _shop)
     {
         shop = _shop;
     }
@@ -73,12 +79,10 @@ public class ShopItem : MonoBehaviour
     {
         gm.Heal(hp);
         gm.Heal(gm._maxhp / 100 * hpRate);
+        //최대 hp증가
         gm._damage += attackDamage;
         gm._critdmg += criticalDamage;
         gm._critchance += criticalRate;
-        //아이템 쿨타임 감소, 대쉬 쿨타임 감소 추가
-
-        if (itemID < 1300)
-            isBuffItem = true;
+        gm._dashCool -= dashCoolTime;
     }
 }
