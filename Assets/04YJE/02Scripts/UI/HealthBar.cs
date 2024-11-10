@@ -25,8 +25,8 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        UpdateHealthSlider(gameManager._hp);
-        UpdateEaseHealthSlider(gameManager._hp);
+        UpdateHealthSlider();
+        UpdateEaseHealthSlider();
 
         
         //if (Input.GetKeyUp(KeyCode.UpArrow))
@@ -48,18 +48,25 @@ public class HealthBar : MonoBehaviour
     }
     //테스트용--끝
 
-    public void UpdateHealthSlider(float hp)
+    public void UpdateHealthSlider()
     {
         if (healthSlider != null)
-            healthSlider.value = hp;
+        {
+            healthSlider.maxValue = gameManager._maxhp;
+            healthSlider.value = gameManager._hp;
+        }
     }
 
-    public void UpdateEaseHealthSlider(float hp)
+    public void UpdateEaseHealthSlider()
     {
         if (easeHealthSlider != null)
-            if (easeHealthSlider.value > hp)
-                easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, hp, lerpSpeed);
+        {
+            easeHealthSlider.maxValue = healthSlider.maxValue;
+
+            if (easeHealthSlider.value > gameManager._hp)
+                easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, gameManager._hp, lerpSpeed);
             else
-                easeHealthSlider.value = hp;
+                easeHealthSlider.value = gameManager._hp;
+        }
     }
 }
