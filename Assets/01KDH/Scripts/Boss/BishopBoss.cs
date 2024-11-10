@@ -11,6 +11,8 @@ public class BishopBoss : Boss
 
     AudioSource _audioSource;
 
+    public AudioClip _taunt;
+    public AudioClip _normal;
 
     public GameObject _spear;
 
@@ -189,6 +191,18 @@ public class BishopBoss : Boss
     public void SpearAttackEnd()
     {
         _spear.SetActive(false);
+    }
+
+    public void RingStart()
+    {
+        _audioSource.clip = _taunt;
+        _audioSource.Play();
+    }
+
+    public void NormalAttackStart()
+    {
+        _audioSource.clip = _normal;
+        _audioSource.Play();
     }
 
 }

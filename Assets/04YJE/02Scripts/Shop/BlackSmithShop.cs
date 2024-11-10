@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static TickManager;
 
 public class BlackSmithShop : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class BlackSmithShop : MonoBehaviour
     [SerializeField] private ShopItemDB shopitemDB;
     private InvenSlot selectedSlot;
     private GameManager gm;
+
+    public PassiveItem passive;
 
     private void Start()
     {
@@ -128,7 +132,103 @@ public class BlackSmithShop : MonoBehaviour
     public void UpgradeSuccess()
     {
         inventory.EnchantItem(selectedSlot.item, 1);
-        OpenMessageBox("강화를 성공하였습니다!");
-        UpdateSelectedItemUpgradeInfo();
+        if (selectedSlot.item.itemType == Item.ItemType.passive)
+        {
+            switch (selectedSlot.item.itemID)
+            {
+                case 0:
+                    passive._01Pitem();
+                    break;
+                case 1:
+                    passive._02Pitem();
+                    break;
+                case 2:
+                    passive._03Pitem();
+                    break;
+                case 3:
+                    passive._04Pitem();
+                    break;
+                case 4:
+                    passive._05Pitem();
+                    break;
+                case 5:
+                    passive._06Pitem();
+                    break;
+                case 6:
+                    passive._07Pitem();
+                    break;
+                case 7:
+                    passive._08Pitem();
+                    break;
+                case 8:
+                    passive._09Pitem();
+                    break;
+                case 9:
+                    passive._10Pitem();
+                    TickManager._regenT += GameManager.instance.LifeGen;
+                    break;
+                case 10:
+                    passive._11Pitem();
+                    break;
+                case 11:
+                    passive._12Pitem();
+                    break;
+                case 12:
+                    passive._13Pitem();
+                    break;
+                case 13:
+                    passive._14Pitem();
+                    break;
+                case 14:
+                    passive._15Pitem();
+                    break;
+                case 15:
+                    passive._16Pitem();
+                    break;
+                case 16:
+                    passive._17Pitem();
+                    break;
+                case 17:
+                    passive._18Pitem();
+                    break;
+                case 18:
+                    passive._19Pitem();
+                    break;
+                case 19:
+                    passive._20Pitem();
+                    break;
+                case 20:
+                    passive._21Pitem();
+                    break;
+                case 21:
+                    passive._22Pitem();
+                    break;
+                case 22:
+                    passive._23Pitem();
+                    break;
+                case 23:
+                    passive._24Pitem();
+                    break;
+                case 24:
+                    passive._25Pitem();
+                    break;
+                case 25:
+                    passive._26Pitem();
+                    break;
+                case 26:
+                    passive._27Pitem();
+                    break;
+                case 27:
+                    passive._28Pitem();
+                    break;
+                case 28:
+                    passive._29Pitem();
+                    break;
+                default:
+                    break;
+            }
+        }
+            OpenMessageBox("강화를 성공하였습니다!");
+            UpdateSelectedItemUpgradeInfo();
     }
 }
