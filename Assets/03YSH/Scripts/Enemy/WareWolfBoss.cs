@@ -53,7 +53,7 @@ public class WareWolfBoss : Boss
     {
         slowT = new WaitForSeconds(slowDelay);
         
-        _hp = 15000f;
+        _hp = 8000f;
 
         GameManager.instance.spawner.bossHpSlider.maxValue = _hp;
         GameManager.instance.spawner.bossHpSlider.value = _hp;

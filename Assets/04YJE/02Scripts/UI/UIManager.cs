@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseWindow;
     public GameObject fieldUI;
     public GameObject stat;
+    public GameObject gameOverPanel;
 
     //캐릭터 선택 UI
     [Header("Select_Character_UI")]
