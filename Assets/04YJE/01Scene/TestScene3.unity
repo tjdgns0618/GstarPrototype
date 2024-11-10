@@ -4042,7 +4042,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 84edfec7460dbf44e9a7a016475060e4, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -12215,7 +12215,7 @@ MonoBehaviour:
   _maxhp: 10
   _hp: 10
   _gold: 0
-  _goldBonus: 0
+  _goldBonus: 1
   _damage: 80
   _changeCooldown: 3
   _attackspeed: 3
@@ -15092,6 +15092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ddd16119a16794ab2b251d22370172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoading: 0
 --- !u!1 &950946761
 GameObject:
   m_ObjectHideFlags: 0
