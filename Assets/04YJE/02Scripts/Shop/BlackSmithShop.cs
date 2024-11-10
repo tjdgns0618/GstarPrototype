@@ -25,6 +25,7 @@ public class BlackSmithShop : MonoBehaviour
     private GameManager gm;
 
     public PassiveItem passive;
+    public ShieldController shieldController;
 
     private void Start()
     {
@@ -231,6 +232,10 @@ public class BlackSmithShop : MonoBehaviour
                     break;
             }
         }
+
+            if (selectedSlot.item.itemID == 37)
+                shieldController.UseItem();
+
             OpenMessageBox("강화를 성공하였습니다!");
             successAnimator.SetTrigger("UpgradeSuccess");
             UpdateSelectedItemUpgradeInfo();
