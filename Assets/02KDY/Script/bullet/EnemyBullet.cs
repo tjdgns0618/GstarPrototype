@@ -23,7 +23,7 @@ public class EnemyBullet : MonoBehaviour
     public float homingDelay = 1.0f;    // 확산 후 추적 딜레이 시간
     private Transform target;           // 추적할 목표
     public float damage;
-
+    GameManager instance;
     private void OnEnable()
     {
     }
@@ -35,17 +35,8 @@ public class EnemyBullet : MonoBehaviour
 
         if (flash != null)
         {
-            var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
-            flashInstance.transform.forward = gameObject.transform.forward;
-            var flashPs = flashInstance.GetComponent<ParticleSystem>();
-
-            if (flashPs != null)
-                Destroy(flashInstance, flashPs.main.duration);
-            else
-            {
-                var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
-                Destroy(flashInstance, flashPsParts.main.duration);
-            }
+            GameObject instance = GameManager.instance.particlePoolManager.GetParticle(flash.name);
+            instance.transform.forward = gameObject.transform.forward;
         }
 
         if (fireMode == FireMode.Triple)
@@ -121,8 +112,10 @@ public class EnemyBullet : MonoBehaviour
         {
             damageable?.Damage(damage);
             if (hitEffectPrefab != null)
-                Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
-
+            {
+                GameObject instance = GameManager.instance.particlePoolManager.GetParticle(hitEffectPrefab.name);
+                instance.transform.position = transform.position;
+            }
             gameObject.SetActive(false);
         }
     }

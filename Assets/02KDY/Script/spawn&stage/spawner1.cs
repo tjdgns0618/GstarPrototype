@@ -255,39 +255,39 @@ public class spawner1 : MonoBehaviour
     {
         if (currentStage == 2 && currentWave == maxWaves) //2스테이지
         {
-            Vector3 bossSpawnPosition = GetRandomPosition();
+            Vector3 randomPosition = GetRandomPosition();
             bossHpSlider.transform.parent.gameObject.SetActive(true);
-            GameObject boss = Instantiate(bossPrefab, bossSpawnPosition, Quaternion.identity);
+            GameObject boss = Instantiate(bossPrefab, randomPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
-            Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+            Debug.Log($"보스 몬스터가 {randomPosition} 위치에 소환되었습니다!");
         }
         else if (currentStage == 4 && currentWave == maxWaves) //4스테이지
         {
-            Vector3 bossSpawnPosition = GetRandomPosition();
+            Vector3 randomPosition = GetRandomPosition();
             bossHpSlider.transform.parent.gameObject.SetActive(true);
-            GameObject boss = Instantiate(bossPrefab2, bossSpawnPosition, Quaternion.identity);
+            GameObject boss = Instantiate(bossPrefab2, randomPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
-            Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+            Debug.Log($"보스 몬스터가 {randomPosition} 위치에 소환되었습니다!");
         }
         else if (currentStage == 6 && currentWave == maxWaves) //6스테이지
         {
-            Vector3 bossSpawnPosition = GetRandomPosition();
+            Vector3 randomPosition = GetRandomPosition();
             bossHpSlider.transform.parent.gameObject.SetActive(true);
-            GameObject boss = Instantiate(bossPrefab3, bossSpawnPosition, Quaternion.identity);
+            GameObject boss = Instantiate(bossPrefab3, randomPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
-            Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+            Debug.Log($"보스 몬스터가 {randomPosition} 위치에 소환되었습니다!");
         }
         else if (currentStage == 8 && currentWave == maxWaves) //8스테이지
         {
-            Vector3 bossSpawnPosition = GetRandomPosition();
+            Vector3 randomPosition = GetRandomPosition();
             bossHpSlider.transform.parent.gameObject.SetActive(true);
-            GameObject boss = Instantiate(bossPrefab4, bossSpawnPosition, Quaternion.identity);
+            GameObject boss = Instantiate(bossPrefab4, randomPosition, Quaternion.identity);
             enemiesLeft = 1; // 보스 몬스터 1마리
             enemies.Add(boss);
-            Debug.Log($"보스 몬스터가 {bossSpawnPosition} 위치에 소환되었습니다!");
+            Debug.Log($"보스 몬스터가 {randomPosition} 위치에 소환되었습니다!");
         }
     }
 
