@@ -22,7 +22,7 @@ public class BishopBoss : Boss
         __attackRange = _attackRange * _attackRange;
         _patternRange = 6f;
         __patternRange = _patternRange * _patternRange;
-        _movementSpeed = 0f;
+        _movementSpeed = 5f;
         _isDead = false;
         _isAttacking = false;
         _hp = 600f;

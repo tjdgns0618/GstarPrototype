@@ -175,7 +175,9 @@ public class GameManager : MonoBehaviour
 
     public void LifeGen()
     {
-        if (_maxhp <= _hp)
+        if (_maxhp > _hp)
             _hp += _lifegen;
+        if (_hp > _maxhp)
+            _hp = _maxhp;
     }
 }

@@ -19,6 +19,14 @@ public class Poison : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col)
     {
+        Debug.Log(col.gameObject.name);
+
+        if (col.gameObject.CompareTag("Player"))
+        {
+            IDamageAble<float> damageAble = col.GetComponent<IDamageAble<float>>();
+            damageAble.Damage(GameManager.instance._maxhp * 0.02f);
+            gameObject.SetActive(false);
+        }
         if (col.gameObject.CompareTag("Ground"))
         {
             GameObject particle = GameManager.instance.particlePoolManager.GetParticle("Fog");
@@ -26,12 +34,6 @@ public class Poison : MonoBehaviour
             {
                 particle.transform.position = transform.position;
             }
-            gameObject.SetActive(false);
-        }
-        if(col.gameObject.CompareTag("Player"))
-        {
-            IDamageAble<float> damageAble = col.GetComponent<IDamageAble<float>>();
-            damageAble.Damage(GameManager.instance._maxhp * 0.02f);
             gameObject.SetActive(false);
         }
     }

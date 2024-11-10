@@ -43,6 +43,8 @@ public class ShieldController : MonoBehaviour
     private void RotateShields()
     {
         Vector3 playerPosition = PlayerCharacter.Instance.transform.position; // 플레이어 위치
+        playerPosition.y += 1f;
+
 
         for (int i = 0; i < _shields.Count; i++)
         {
