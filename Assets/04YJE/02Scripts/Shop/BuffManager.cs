@@ -16,20 +16,20 @@ public class BuffManager : MonoBehaviour
         gm = GameManager.instance;
     }
 
-    public void ActivateBuff(int itemNum)
+    public void ActivateBuff(int _itemID)
     {
-        int index = FindShopItemIndex(itemNum);
+        int index = FindShopItemIndex(_itemID);
 
         gm._damage += shopitem[index].attackDamage;
         gm._critdmg += shopitem[index].criticalDamage;
         gm._critchance += shopitem[index].criticalRate;
 
-        isOnBuff[itemNum] = true;
+        isOnBuff[_itemID] = true;
     }
 
-    public void RemoveBuff(int itemNum)
+    public void RemoveBuff(int _itemID)
     {
-        int index = FindShopItemIndex(itemNum);
+        int index = FindShopItemIndex(_itemID);
 
         if (isOnBuff[index] == true)
         {
@@ -37,17 +37,17 @@ public class BuffManager : MonoBehaviour
             gm._critdmg -= shopitem[index].criticalDamage;
             gm._critchance -= shopitem[index].criticalRate;
 
-            isOnBuff[itemNum] = false;
+            isOnBuff[_itemID] = false;
         }
     }
 
-    public int FindShopItemIndex(int itemNum)
+    public int FindShopItemIndex(int _itemID)
     {
         int findIndx = -1;
 
         for(int i = 0; i < shopitem.Length; i++)
         {
-            if (shopitem[i].itemID == itemNum)
+            if (shopitem[i].itemID == _itemID)
             {
                 findIndx = i;
                 break;
