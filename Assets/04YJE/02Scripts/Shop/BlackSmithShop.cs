@@ -169,7 +169,6 @@ public class BlackSmithShop : MonoBehaviour
                     break;
                 case 9:
                     passive._10Pitem();
-                    TickManager._regenT += GameManager.instance.LifeGen;
                     break;
                 case 10:
                     passive._11Pitem();

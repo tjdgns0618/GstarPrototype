@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public float _maxhp;
     public float _hp;
-    public int _gold;
+    public float _gold;
 
     public float _goldBonus;
 

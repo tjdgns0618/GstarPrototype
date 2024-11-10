@@ -4895,7 +4895,7 @@ MonoBehaviour:
   spawner: {fileID: 221857132}
   _player: {fileID: 1045723332}
   chainLightning: {fileID: 264058770}
-  _09item: {fileID: 0}
+  shieldController: {fileID: 0}
 --- !u!114 &264058770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11970,6 +11970,7 @@ MonoBehaviour:
   _maxhp: 5000
   _hp: 5000
   _gold: 0
+  _goldBonus: 0
   _damage: 80
   _changeCooldown: 3
   _attackspeed: 3
@@ -13164,6 +13165,10 @@ PrefabInstance:
       propertyPath: _slotToolTip
       value: 
       objectReference: {fileID: 8026415900358216779}
+    - target: {fileID: 8166216313099479410, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
+      propertyPath: passive
+      value: 
+      objectReference: {fileID: 904436008}
     - target: {fileID: 8166216313099479410, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: inventory
       value: 

@@ -89,7 +89,7 @@ public class PassiveItem : MonoBehaviour
     public void _17Pitem()
     {
         gm._maxhp -= ItemDataBase.instance.Variable(16);
-        //gm._goldbonus += 0.15f;
+        gm._goldBonus += ItemDataBase.instance.Variable2(16);
     }   
     public void _18Pitem()
     {

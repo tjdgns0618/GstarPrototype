@@ -267,7 +267,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void GoldRewardGet()
     {
-        GameManager.instance._gold += 15000;
+        GameManager.instance._gold += 15000 * GameManager.instance._goldBonus;
     }
 
 
