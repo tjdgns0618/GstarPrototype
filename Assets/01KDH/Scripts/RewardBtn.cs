@@ -240,7 +240,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 _rewardslot.ClearSlot();    // 다음 웨이브 보상 때 새로운 랜덤 보상으로 바꿔야 하기에 슬롯 초기화
             }
             rewardUI.SetActive(false);    // 보상 창을 닫고
-            DashState.CurrentDashCount = 0;
+            // DashState.CurrentDashCount = 0;
             waveStart.SendMessage("StartWave");   // StartWave 함수 실행
             Time.timeScale = 1;
             GameManager.instance.isPause = false;
