@@ -12,6 +12,9 @@ public class UIstats : MonoBehaviour
     public TextMeshProUGUI movespeedT;
     public TextMeshProUGUI critchanceT;
     public TextMeshProUGUI critdmgT;
+    public TextMeshProUGUI regenT;
+    public TextMeshProUGUI goldbonusT;
+    public TextMeshProUGUI killcountT;
 
     void Update()
     {
@@ -21,6 +24,9 @@ public class UIstats : MonoBehaviour
         attackspeedT.text = GameManager.instance._attackspeed.ToString();
         movespeedT.text = GameManager.instance._movespeed.ToString();
         critchanceT.text = GameManager.instance._critchance.ToString() + "%";
-        critdmgT.text = (GameManager.instance._critdmg*100f).ToString() + "%";
+        critdmgT.text = (GameManager.instance._critdmg*100).ToString() + "%";
+        regenT.text = GameManager.instance._lifegen.ToString();
+        goldbonusT.text = ((GameManager.instance._goldBonus*100)-100).ToString() + "%";
+        killcountT.text = GameManager.instance.killCount.ToString() + "¸¶¸®";
     }
 }

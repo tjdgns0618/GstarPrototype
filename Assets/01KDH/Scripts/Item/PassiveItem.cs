@@ -128,8 +128,7 @@ public class PassiveItem : MonoBehaviour
     }
     public void _26Pitem()
     {
-        // 처치시 최대 100
-        gm._maxhp = ItemDataBase.instance.Variable(25);
+        gm._maxhp += gm.killCount * ItemDataBase.instance.Variable(25);
     }    
     public void _27Pitem()
     {
@@ -137,8 +136,7 @@ public class PassiveItem : MonoBehaviour
     }    
     public void _28Pitem()
     {
-        // 처치시 최대100
-        gm._damage += ItemDataBase.instance.Variable(27);
+        gm._damage += gm.killCount * ItemDataBase.instance.Variable(27);
     }   
     public void _29Pitem()
     {

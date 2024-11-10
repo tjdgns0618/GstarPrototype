@@ -52,10 +52,13 @@ public class GameManager : MonoBehaviour
 
     public float _revivecount = 0;
 
+    public int killCount;
+
     public bool isHit = false;  // 플레이어가 피격했는지 확인하는 변수
     public bool isPause = false;
     public bool isDead = false;
     public bool isOnUI = false;
+
 
     private int _itemcount;
 
