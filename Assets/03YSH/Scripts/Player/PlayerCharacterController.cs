@@ -327,10 +327,10 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
             dashCoolTimer -= Time.deltaTime;
             dashCooltimerImage.fillAmount = dashCoolTimer / gameManager._dashCool;
 
-            string t = TimeSpan.FromSeconds(dashCoolTimer).ToString(@"ss");
-            dashTimer.text = string.Format("{0}", t);
+            // 소숫점 한자리까지 포맷팅
+            dashTimer.text = dashCoolTimer.ToString("F1");
 
-            if (dashTimer.text == "00")
+            if (dashCoolTimer <= 0.0f)
             {
                 dashTimer.text = "";
             }
