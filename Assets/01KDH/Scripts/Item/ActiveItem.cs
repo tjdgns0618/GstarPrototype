@@ -33,7 +33,7 @@ public class ActiveItem : MonoBehaviour
 
     #region 
     public ChainLightning chainLightning;
-    public Item_09 _09item;
+    public ShieldController shieldController;
     #endregion
 
     private void Start()
@@ -113,7 +113,7 @@ public class ActiveItem : MonoBehaviour
     }
     public void _09Item()   // 방패 공전
     {
-        _09item.UseItem();
+        shieldController.UseItem();
     }
     public void _10Item()   // 일정 시간마다 적이 있는 곳에 장판
     {
@@ -133,8 +133,9 @@ public class ActiveItem : MonoBehaviour
     {
 
     }
-    public void _12Item()   // 일정 시간마다 짧은 무적
+    public void _12Item()   // 초당 체력 재생
     {
+
     }
 
     public void _13Item()   // 공격 시 연쇄 번개

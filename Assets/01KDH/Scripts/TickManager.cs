@@ -9,7 +9,7 @@ public class TickManager : MonoBehaviour
     float _maneulTimer;
     float _shieldTimer;
     float _fireTimer;
-    float _godTimer;
+    float _regenTimer;
     float _freezeTimer;
     float _starTimer;
     float _shurikenTimer;
@@ -17,7 +17,7 @@ public class TickManager : MonoBehaviour
     float _tickManeul;
     float _tickShield;
     float _tickFire;
-    float _tickGod;
+    float _tickRegen;
     float _tickFreeze;
     float _tickStar;
     float _tickShuriken;
@@ -25,7 +25,7 @@ public class TickManager : MonoBehaviour
     public delegate void ManeulTick();
     public delegate void ShieldTick();
     public delegate void FireTick();
-    public delegate void GodTick();
+    public delegate void RegenTick();
     public delegate void FreezeTick();
     public delegate void StarTick();
     public delegate void ShurikenTick();
@@ -33,7 +33,7 @@ public class TickManager : MonoBehaviour
     public static ManeulTick _maneulT;
     public static ShieldTick _shieldT;
     public static FireTick _fireT;
-    public static GodTick _godT;
+    public static RegenTick _regenT;
     public static FreezeTick _freezeT;
     public static StarTick _starT;
     public static ShurikenTick _shurikenT;
@@ -45,7 +45,7 @@ public class TickManager : MonoBehaviour
         _tickManeul = ItemDataBase.instance.Variable(36);
         _tickShield = ItemDataBase.instance.Variable(37);
         _tickFire = ItemDataBase.instance.Variable(38);
-        _tickGod = ItemDataBase.instance.Variable(40);
+        _tickRegen = ItemDataBase.instance.Variable(40);
         _tickFreeze = ItemDataBase.instance.Variable(47);
         _tickStar = ItemDataBase.instance.Variable(48);
         _tickShuriken = ItemDataBase.instance.Variable(31);
@@ -56,7 +56,7 @@ public class TickManager : MonoBehaviour
         TickManeul();
         TickShield();
         TickFire();
-        TickGod();
+        TickRegen();
         TickFreeze();
         TickPopcorn();
         TickShuriken();
@@ -98,15 +98,15 @@ public class TickManager : MonoBehaviour
         }
     }
 
-    public void TickGod()
+    public void TickRegen()
     {
-        if (_godT == null) 
+        if (_regenT == null) 
             return;
-        _godTimer += Time.deltaTime;
-        if (_godTimer >= _tickGod)
+        _regenTimer += Time.deltaTime;
+        if (_regenTimer >= _tickRegen)
         {
-            _godTimer = 0;
-            _godT?.Invoke();
+            _regenTimer = 0;
+            _regenT?.Invoke();
         }
     }
 

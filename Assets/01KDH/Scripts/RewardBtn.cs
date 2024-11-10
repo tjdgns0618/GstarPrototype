@@ -78,6 +78,8 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             break;
                         case 9:
                             _passiveItem._10Pitem();
+                            if (TickManager._regenT == null || !TickManager._regenT.GetInvocationList().Contains((RegenTick)GameManager.instance.LifeGen))
+                                TickManager._regenT += GameManager.instance.LifeGen;
                             break;
                         case 10:
                             _passiveItem._11Pitem();
@@ -183,8 +185,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                                 TickManager._maneulT += _activeItem._08Item;
                             break;
                         case 37:
-                            if (TickManager._shieldT == null || !TickManager._shieldT.GetInvocationList().Contains((ShieldTick)_activeItem._09Item))
-                                TickManager._shieldT += _activeItem._09Item;
+                            _activeItem._09Item();
                             break;
                         case 38:
                             if (TickManager._fireT == null || !TickManager._fireT.GetInvocationList().Contains((FireTick)_activeItem._10Item))
@@ -194,7 +195,7 @@ public class RewardBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                             //GameManager.instance.timeactiveDelegate += _activeItem._11Item;
                             break;
                         case 40:
-                            TickManager._godT += _activeItem._12Item;
+                            //
                             break;
                         case 41:
                             if (GameManager.instance.playerattackDelegate == null
