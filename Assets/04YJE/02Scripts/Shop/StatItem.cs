@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StatItem : MonoBehaviour
@@ -9,6 +10,7 @@ public class StatItem : MonoBehaviour
     public int _itemID;
     public int cur_Level;
     public int max_Level;
+    public TMP_Text curLv_Txt;
 
     GameManager gm;
     private void Start()
@@ -21,6 +23,7 @@ public class StatItem : MonoBehaviour
     public void ApplyStat()
     {
         cur_Level++;
+        curLv_Txt.text = string.Format("Lv.{0}", cur_Level);
         gm._damage += shopitem.attackDamage;
         gm._critdmg += shopitem.criticalDamage;
         gm._critchance += shopitem.criticalRate;

@@ -18,7 +18,7 @@ public class Inn : BaseShop
             buffItemDic.Add(buffItems[i].shopitem, buffItems[i]);
         }
 
-        for (int j = 0; j < buffItems.Length; j++)
+        for (int j = 0; j < autoPotions.Length; j++)
         {
             potionDic.Add(autoPotions[j].shopitem, autoPotions[j]);
         }
