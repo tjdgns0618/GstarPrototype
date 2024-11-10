@@ -172,6 +172,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3571165893037508389}
     m_Modifications:
+    - target: {fileID: 2486657336274007294, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486657336274007294, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187166786231313293, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187166786231313293, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187166786231313293, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179758266078412392, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179758266078412392, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7042460137364554024, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -212,15 +240,67 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7042460137364554027, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042460137364554027, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042460137364554027, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: stopAction
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042460137364554027, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7042460137364555477, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: m_Name
       value: Wind (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7988277532639413394, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988277532639413394, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639625251591675583, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639625251591675583, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7042460137364555477, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 11201353571779783}
   m_SourcePrefab: {fileID: 100100000, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+--- !u!1 &1250035067996770810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7042460137364555477, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
+  m_PrefabInstance: {fileID: 8134306232472966959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &11201353571779783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250035067996770810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce996bfd8f48444ea7d4c5695c80b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1250035067996771847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7042460137364554024, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}

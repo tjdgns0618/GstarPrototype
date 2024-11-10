@@ -500,6 +500,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         gameManager.isDead = true;
         player.animator.SetTrigger("dead");
+        gameManager.uiManager.gameOverPanel.SetActive(true);
     }
 
     void GetMousePosition()
