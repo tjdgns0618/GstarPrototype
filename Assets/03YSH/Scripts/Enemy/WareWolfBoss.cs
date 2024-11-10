@@ -148,6 +148,7 @@ public class WareWolfBoss : Boss
     {
         if (_detectedPlayer != null && !isDead && canAttack)
         {
+            transform.LookAt(PlayerCharacter.Instance.transform.position);
             if (_firstCoolTime <= 0f && !isSting)
                 WarewolfFirstPattern();
             else if (_secondCoolTime <= 0f && !isSting)

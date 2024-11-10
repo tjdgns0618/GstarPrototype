@@ -94,8 +94,6 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if(gameManager.isOnUI)
-            return;
         Vector3 input = context.ReadValue<Vector3>();
         direction = new Vector3(input.x, 0f, input.z);
     }

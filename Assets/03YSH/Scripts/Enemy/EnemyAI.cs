@@ -184,13 +184,8 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     {
         if (_detectedPlayer != null && !isDead)
         {
-            if (enemyType == EnemyType.melee)
-                Attack();
-            else if (enemyType == EnemyType.range)
-            {
                 Rotate();
                 Attack();
-            }
             return INode.ENodeState.ENS_Success;
         }
 
