@@ -61,30 +61,32 @@ public class Totem : MonoBehaviour                                  // 토템에 상
         switch(rollNum)
         {
             case 1:
-                gm._damage -= 4f;
-                Debug.Log("무기의 날이 무뎌진 느낌이 든다.");
+                gm._damage -= 20f;
+                gm._attackspeed -= 0.4f;
+                gm._critchance -= 5f;
+                gm._critdmg -= 0.15f;
+                Debug.Log("무언가 잘못된 것 같다.");
                 return;
             case 2:
+                gm._damage -= 10f;
+                Debug.Log("칼날이 무뎌졌다.");
+                return;
+                case 3:
                 gm._attackspeed -= 0.2f;
                 gm._skillCooltimePercent -= 2f;
                 Debug.Log("몸이 둔해진 것 같다.");
-                 return;
-                case 3:
-                Debug.Log("아무 일도 일어나지 않았다.");
                 return;
             case 4:
-                gm._attackspeed += 0.3f;
-                gm._skillCooltimePercent += 4f;
-                Debug.Log("몸이 가벼워졌다.");
+                Debug.Log("아무 일도 일어나지 않았다.");
                 return;
             case 5:
-                gm._damage += 6f;
-                Debug.Log("힘이 강해졌다.");
+                gm._critchance += 10f;
+                Debug.Log("집중력이 상승했다.");
                 return;
             case 6:
-                gm._attackspeed += 0.5f;
-                gm._skillCooltimePercent += 6f;
-                gm._damage += 10f;
+                gm._attackspeed += 0.8f;
+                gm._skillCooltimePercent -= 0.08f;
+                gm._damage += 30f;
                 Debug.Log("신의 힘에 가까워진 기분이 든다.");
                 return;
             default:

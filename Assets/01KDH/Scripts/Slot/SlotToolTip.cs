@@ -21,8 +21,8 @@ public class SlotToolTip : MonoBehaviour
     public void ShowToolTip(Item _item, Vector3 _pos, int _count)
     {
         tBox.SetActive(true);
-        _pos += new Vector3(tBox.GetComponent<RectTransform>().rect.width * 0.65f,
-                           -tBox.GetComponent<RectTransform>().rect.height * 0.25f, 0);
+        _pos += new Vector3(tBox.GetComponent<RectTransform>().rect.width * 0.05f,
+                           -tBox.GetComponent<RectTransform>().rect.height * 0.57f, 0);
         tBox.transform.position = _pos;
         txt_Itemname.text = _item.itemName;
 

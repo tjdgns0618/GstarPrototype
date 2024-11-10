@@ -96,6 +96,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         isDead = false;
         gameObject.layer = 8;
         hitMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1];
+        DebuffReturn();
     }
 
     private void OnDisable()
@@ -352,6 +353,8 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         Invoke("InActiveEnemy", 3f);
         GameManager.instance.spawner.enemies.Remove(this.gameObject);
         GameManager.instance.spawner.enemyDead();           // 스포너에 적 사망시 호출 함수        
+
+        GameManager.instance.killCount++;
     }
 
     public void InActiveEnemy()
@@ -417,6 +420,17 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
             particle.transform.position = transform.position;
             particle.transform.SetParent(this.transform);
         }
+    }
+
+    public void DebuffReturn()
+    {
+        Transform childTransform = transform.Find("FreezeDeBuff(Clone)");  // 자식 오브젝트 찾기
+        if (childTransform != null)
+        {
+            childTransform.gameObject.SetActive(false);  // 자식 오브젝트 비활성화
+        }
+        else
+            return;
     }
 
     IEnumerator EnemySpeedReturn(float speed)
