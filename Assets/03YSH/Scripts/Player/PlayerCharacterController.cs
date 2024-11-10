@@ -500,6 +500,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
     {
         gameManager.isDead = true;
         player.animator.SetTrigger("dead");
+        Time.timeScale = 0;
         gameManager.uiManager.gameOverPanel.SetActive(true);
     }
 
