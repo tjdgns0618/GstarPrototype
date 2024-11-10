@@ -36,11 +36,11 @@ public class PassiveItem : MonoBehaviour
     }   
     public void _06Pitem()
     {
-
+        gm._critchance += ItemDataBase.instance.Variable(5);
     }
     public void _07Pitem()
     {
-
+        gm._critdmg += ItemDataBase.instance.Variable(6);
     } 
     public void _08Pitem()
     {
