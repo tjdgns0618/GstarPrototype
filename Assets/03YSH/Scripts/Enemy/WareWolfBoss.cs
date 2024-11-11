@@ -53,7 +53,7 @@ public class WareWolfBoss : Boss
     {
         slowT = new WaitForSeconds(slowDelay);
         
-        _hp = 8000f;
+        _hp = 5000f;
 
         GameManager.instance.spawner.bossHpSlider.maxValue = _hp;
         GameManager.instance.spawner.bossHpSlider.value = _hp;
@@ -63,7 +63,7 @@ public class WareWolfBoss : Boss
     {
         //GameManager.instance.dieDelegate += Test;
         
-        damage = 10;
+        damage = 100;
         maxHp = 40;
         currentHp = maxHp;
 

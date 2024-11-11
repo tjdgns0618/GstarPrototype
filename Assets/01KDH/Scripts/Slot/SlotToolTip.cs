@@ -22,7 +22,7 @@ public class SlotToolTip : MonoBehaviour
     {
         tBox.SetActive(true);
         _pos += new Vector3(tBox.GetComponent<RectTransform>().rect.width * 0.05f,
-                           -tBox.GetComponent<RectTransform>().rect.height * 0.57f, 0);
+                           -tBox.GetComponent<RectTransform>().rect.height * 0.65f, 0);
         tBox.transform.position = _pos;
         txt_Itemname.text = _item.itemName;
 

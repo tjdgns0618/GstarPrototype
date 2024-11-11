@@ -32,7 +32,7 @@ public class DragonBoss : Boss
         _patternCount = 0f;
         _isDead = false;
         _isAttacking = false;
-        _hp = 14000f;
+        _hp = 10000f;
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _audioSource = GetComponent<AudioSource>();
 
