@@ -24,7 +24,7 @@ public class WormBoss : Boss
         _movementSpeed = 0f;
         _isDead = false;
         _isAttacking = false;
-        _hp = 6000f;
+        _hp = 9000f;
         _BTRunner = new BehaviorTreeRunner(SettingBT()); 
         _audioSource = GetComponent<AudioSource>();
 

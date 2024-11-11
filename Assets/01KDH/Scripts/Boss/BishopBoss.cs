@@ -25,7 +25,7 @@ public class BishopBoss : Boss
         _movementSpeed = 5f;
         _isDead = false;
         _isAttacking = false;
-        _hp = 10000f;
+        _hp = 14000f;
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _audioSource = GetComponent<AudioSource>();
 
