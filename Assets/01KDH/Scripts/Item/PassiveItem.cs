@@ -132,7 +132,10 @@ public class PassiveItem : MonoBehaviour
     }
     public void _26Pitem()
     {
-        gm._maxhp += gm.killCount * ItemDataBase.instance.Variable(25);
+        if(gm.killCount <= 1000)
+            gm._maxhp += gm.killCount * ItemDataBase.instance.Variable(25);
+        else
+            gm._maxhp += 1000 * ItemDataBase.instance.Variable(25);
     }    
     public void _27Pitem()
     {
@@ -140,7 +143,10 @@ public class PassiveItem : MonoBehaviour
     }    
     public void _28Pitem()
     {
-        gm._damage += gm.killCount * ItemDataBase.instance.Variable(27);
+        if (gm.killCount <= 500)
+            gm._damage += gm.killCount * ItemDataBase.instance.Variable(27);
+        else
+            gm._damage += 500 * ItemDataBase.instance.Variable(27);
     }   
     public void _29Pitem()
     {
