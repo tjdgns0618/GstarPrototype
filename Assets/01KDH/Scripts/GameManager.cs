@@ -168,8 +168,8 @@ public class GameManager : MonoBehaviour
             _movespeed = 500f;
         if (_reInputTime >= 3f)
             _reInputTime = 3f;
-        if (_reInputTime <= 0.5f)
-            _reInputTime = 0.5f;
+        if (_reInputTime <= 0.1f)
+            _reInputTime = 0.1f;
         if (_critchance >= 100f)
             _critchance = 100f;
         if (_critchance <= 0f)
