@@ -31,10 +31,10 @@ public class BaseShop : MonoBehaviour
     {
         gold_Txt.text = gm._gold + " Gold";
 
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            TestGold();
-        }
+        //if (Input.GetKeyUp(KeyCode.UpArrow))
+        //{
+        //    TestGold();
+        //}
     }
 
     public void LoadShopItemData()
