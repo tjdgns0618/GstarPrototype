@@ -80,7 +80,7 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
         currentHp = maxHp;
 
         if (GameManager.instance.spawner.currentStage != 1)
-            currentHp = (maxHp * (GameManager.instance.spawner.currentStage + GameManager.instance.spawner.currentWave * 0.2f));
+            currentHp = (maxHp * (GameManager.instance.spawner.currentStage * 2 + GameManager.instance.spawner.currentWave * 0.2f));
         else
             currentHp = maxHp;
 
