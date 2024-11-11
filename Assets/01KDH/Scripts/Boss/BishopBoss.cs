@@ -25,7 +25,7 @@ public class BishopBoss : Boss
         _movementSpeed = 5f;
         _isDead = false;
         _isAttacking = false;
-        _hp = 7500f;
+        _hp = 10000f;
         _BTRunner = new BehaviorTreeRunner(SettingBT());
         _audioSource = GetComponent<AudioSource>();
 
@@ -83,12 +83,12 @@ public class BishopBoss : Boss
                     if (_normalCoolTime <= 0f)
                         return DoNormalAttack();
                 }
-                if(!IsInAttackRange(playerpos) && IsInPatternRange(playerpos))
+                if (!IsInAttackRange(playerpos) && IsInPatternRange(playerpos))
                 {
                     if (_firstCoolTime <= 0f)
                         return DoFirstPattern();
                 }
-                if(!IsInAttackRange(playerpos) && !IsInPatternRange(playerpos))
+                if (!IsInAttackRange(playerpos) && !IsInPatternRange(playerpos))
                 {
                     if (_secondCoolTime <= 0f)
                         return DoSecondPattern();
@@ -132,7 +132,6 @@ public class BishopBoss : Boss
         if (CanAttack())
         {
             FirstPatternAttack();
-            Fire();
             _isAttacking = true;
             _firstCoolTime = 10f;
             return INode.ENodeState.ENS_Success;
