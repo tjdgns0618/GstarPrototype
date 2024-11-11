@@ -32,11 +32,11 @@ public class WarriorSkillTriggerStay : MonoBehaviour
         if(other.CompareTag("Bullet"))
             Destroy(other.gameObject);
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && other.gameObject.layer != 7)
         {
             damageAble = other.GetComponent<IDamageAble<float>>();
             damageAble?.Damage(GameManager.instance._damage * 0.2f);
-            if(other.gameObject.layer != 13 || other.gameObject.layer != 7)
+            if(other.gameObject.layer != 13)
                 damageAble?.PlayKnockback(other.transform.position - PlayerCharacter.Instance.transform.position, 0.1f, 0.1f);
         }
     }
