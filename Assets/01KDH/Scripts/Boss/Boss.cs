@@ -295,7 +295,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         }
         if (_bossType == BossType.Bishop)
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 30; i++)
             {
                 GameObject particle = GameManager.instance.particlePoolManager.GetParticle("DarkRing");
                 if (particle != null)
