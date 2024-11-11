@@ -45,7 +45,7 @@ public class TickManager : MonoBehaviour
         _tickManeul = ItemDataBase.instance.Variable(36);
         _tickShield = ItemDataBase.instance.Variable(37);
         _tickFire = ItemDataBase.instance.Variable(38);
-        _tickRegen = ItemDataBase.instance.Variable(40);
+        _tickRegen = ItemDataBase.instance.Variable(9);
         _tickFreeze = ItemDataBase.instance.Variable(47);
         _tickStar = ItemDataBase.instance.Variable(48);
         _tickShuriken = ItemDataBase.instance.Variable(31);
