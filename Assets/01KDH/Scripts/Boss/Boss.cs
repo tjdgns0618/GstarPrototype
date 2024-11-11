@@ -187,6 +187,7 @@ public abstract class Boss : MonoBehaviour, IDamageAble<float>
         animator.SetTrigger(_Dead_AnimTriggerName);
         GameManager.instance.spawner.enemies.Remove(this.gameObject);
         GameManager.instance.spawner.enemyDead();
+        Destroy(this.gameObject, 3f);
     }
 
     public void UnBorrow()

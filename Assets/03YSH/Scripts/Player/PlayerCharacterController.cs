@@ -15,6 +15,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 using TMPro;
+using UnityEditor.Rendering;
 
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
@@ -302,7 +303,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
-        if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0 && !AttackState.IsAttack
+        if (context.performed && !gameManager.isPause && !gameManager.isDead && DashState.CurrentDashCount == 0 
             && !player.isPlaySkill && !gameManager.isOnUI)
         {
             if (!DashState.IsDash)
