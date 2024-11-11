@@ -121,8 +121,12 @@ public class PlayerAnimationEvents : MonoBehaviour
         playerInstance.changeArea.enabled = false;
     }
 
-    public void AttackColliderChange()
+    public void AttackColliderTrue()
     {
-        playerInstance.attackRange.enabled = !playerInstance.attackRange.enabled;
+        playerInstance.attackRange.enabled = true;
+    }
+    public void AttackColliderFalse()
+    {
+        playerInstance.attackRange.enabled = false;
     }
 }
