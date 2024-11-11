@@ -79,7 +79,7 @@ public class BlackSmithShop : MonoBehaviour
             else
             {
                 upgradePriceText.text = string.Format(" ");
-                upGradeText.text = string.Format("5 (MAX)");
+                upGradeText.text = string.Format("{0}", selectedSlot.itemCount);
             }
         }
     }
@@ -99,12 +99,18 @@ public class BlackSmithShop : MonoBehaviour
                 return;
             }
 
-            if (selectedSlot.itemCount >= 5 || !CheckItemUpgradeable(selectedSlot.item))
+            if (selectedSlot.itemCount >= 5)
             {
-                OpenMessageBox("더 이상 강화할 수 없습니다.");
+                OpenMessageBox("더 이상 강화할 수 없습니다.\n(5레벨 이상 강화 불가)");
                 return;
             }
-                
+
+            if(!CheckItemUpgradeable(selectedSlot.item))
+            {
+                OpenMessageBox("더 이상 강화할 수 없습니다.\n(능력치가 한계점에 도달)");
+                return;
+            }
+
             successRate = shopitemDB.entities3[selectedSlot.itemCount - 1].SuccessRate;
             gm._gold -= price;
 
