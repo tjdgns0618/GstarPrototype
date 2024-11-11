@@ -167,9 +167,8 @@ public class spawner1 : MonoBehaviour
             soundManager.PlayMusic(4);
             return;
         }
-        if(currentStage != 7 || currentStage != 8)
-            enemyPerSpawn = (firstWaveEnemy + currentStage * currentWave * 4) % 2 == 0 ?
-                (firstWaveEnemy + currentStage * currentWave * 4) : (firstWaveEnemy + currentStage * currentWave * 4) - 1; //웨이브마다 생성할 몬스터 수 증가 ex)firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
+        enemyPerSpawn = (firstWaveEnemy + currentStage * currentWave * 8) % 2 == 0 ?
+            (firstWaveEnemy + currentStage * currentWave * 8) : (firstWaveEnemy + currentStage * currentWave * 8) - 1; //웨이브마다 생성할 몬스터 수 증가 ex)firstWaveEnemy가 5인 경우 1스테이지 1웨이브 5마리(5*1*1)
         totalEnemiesInWave = enemyPerSpawn;
         spawnedCount = 0;
         enemiesLeft = totalEnemiesInWave;
