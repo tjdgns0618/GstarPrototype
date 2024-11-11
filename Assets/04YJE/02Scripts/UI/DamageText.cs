@@ -28,7 +28,7 @@ public class DamageText : MonoBehaviour
 
     public void Init(float damage, Vector3 pos, bool isCritical)
     {
-        damage_Text.text = damage.ToString("{0:F2}");
+        damage_Text.text = damage.ToString("F2");
         _transform.position = pos;
         animator.SetBool("IsCritical", isCritical);
     }
