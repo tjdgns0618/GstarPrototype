@@ -25,6 +25,7 @@ public class PassiveItem : MonoBehaviour
     public void _03Pitem()
     {
         gm._attackspeed += ItemDataBase.instance.Variable(2);
+        gm._reInputTime -= ItemDataBase.instance.Variable2(2);
     }  
     public void _04Pitem()
     {
@@ -48,6 +49,7 @@ public class PassiveItem : MonoBehaviour
         gm._attackspeed += ItemDataBase.instance.Variable2(7);
         gm._critchance += ItemDataBase.instance.Variable3(7);
         gm._maxhp += ItemDataBase.instance.Variable4(7);
+        gm._reInputTime -= ItemDataBase.instance.Variable2(7) / 3;
     } 
     public void _09Pitem()
     {
@@ -62,11 +64,13 @@ public class PassiveItem : MonoBehaviour
         gm._damage += ItemDataBase.instance.Variable(10);
         gm._attackspeed -= ItemDataBase.instance.Variable2(10);
         gm._skillCooltimePercent += ItemDataBase.instance.Variable3(10);
+        gm._reInputTime += ItemDataBase.instance.Variable2(10) / 3;
     }    
     public void _12Pitem()
     {
         gm._damage -= ItemDataBase.instance.Variable(11);
         gm._attackspeed += ItemDataBase.instance.Variable2(11);
+        gm._reInputTime -= ItemDataBase.instance.Variable3(11);
     }   
     public void _13Pitem()
     {
