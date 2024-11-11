@@ -233,8 +233,12 @@ public class BlackSmithShop : MonoBehaviour
             }
         }
 
+        else
+        {
             if (selectedSlot.item.itemID == 37)
                 shieldController.UseItem();
+        }
+
 
             OpenMessageBox("강화를 성공하였습니다!");
             successAnimator.SetTrigger("UpgradeSuccess");

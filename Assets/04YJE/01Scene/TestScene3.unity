@@ -12334,8 +12334,8 @@ MonoBehaviour:
   cooltimeManager: {fileID: 1868022135}
   spawner: {fileID: 221857132}
   txt_gold: {fileID: 7631177499464440033}
-  _maxhp: 5000
-  _hp: 5000
+  _maxhp: 3000
+  _hp: 3000
   _gold: 0
   _goldBonus: 1
   _damage: 80
@@ -13691,6 +13691,10 @@ PrefabInstance:
       propertyPath: successAnimator
       value: 
       objectReference: {fileID: 1777512725}
+    - target: {fileID: 8166216313099479410, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
+      propertyPath: shieldController
+      value: 
+      objectReference: {fileID: 264058773}
     - target: {fileID: 8332350516682924846, guid: 2c0f0dbecd8a48046a2256743f950856, type: 3}
       propertyPath: _inventory
       value: 
@@ -35427,7 +35431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -37.7}
+  m_AnchoredPosition: {x: 0, y: -37.69995}
   m_SizeDelta: {x: 2000, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2449290360121809734
