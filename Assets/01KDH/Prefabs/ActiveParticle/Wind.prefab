@@ -178,11 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2486657336274007294, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: lengthInSec
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2486657336274007294, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3187166786231313293, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: looping
@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3187166786231313293, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: InitialModule.startLifetime.minScalar
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4179758266078412392, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: looping
@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179758266078412392, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7042460137364554024, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7988277532639413394, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8639625251591675583, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: looping
@@ -298,10 +298,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8639625251591675583, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5412747301168815626, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7042460137364555477, guid: 717f263039d1b2e4292cb7993be6ee33, type: 3}

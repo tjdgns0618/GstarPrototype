@@ -7,20 +7,33 @@ using UnityEngine.UI;
 
 public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Inventory _inventory;
     public Item item;
     public Item[] items;
     public SlotToolTip _slotToolTip;
     public Image itemImage;
+    public Image countImage;
     public Text textCount;
+    public int slotValue;
 
     public int itemCount;
 
     public virtual void SetColor(float _alpha)                                  // 아이템 투명도 조절
     {
-        Color color = itemImage.color;
-        color.a = _alpha;
-        itemImage.color = color;
+        if(slotValue == 0)
+        {
+            Color color = itemImage.color;
+            color.a = _alpha;
+            itemImage.color = color;
+        }
+        if (slotValue == 1)
+        {
+            Color color = itemImage.color;
+            Color color2 = countImage.color; 
+            color.a = _alpha;
+            color2.a = _alpha;
+            itemImage.color = color;
+            countImage.color = color2;
+        }
     }
 
     public virtual void AddItem(Item _item, int _count = 1)         // 없던 아이템이 들어오는 경우

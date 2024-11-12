@@ -425,9 +425,11 @@ public class EnemyAI : MonoBehaviour, IDamageAble<float>
     public void DebuffReturn()
     {
         Transform childTransform = transform.Find("FreezeDeBuff(Clone)");  // 자식 오브젝트 찾기
-        if (childTransform != null)
+        Transform childTransform2 = transform.Find("FreezeDeBuff");
+        if (childTransform != null || childTransform2 != null)
         {
             childTransform.gameObject.SetActive(false);  // 자식 오브젝트 비활성화
+            childTransform2.gameObject.SetActive(false);
         }
         else
             return;
