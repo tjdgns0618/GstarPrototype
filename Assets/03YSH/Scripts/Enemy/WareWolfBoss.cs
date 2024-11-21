@@ -68,7 +68,7 @@ public class WareWolfBoss : Boss
         currentHp = maxHp;
 
         _attackRange = 2.75f;
-        _movementSpeed = 2f;
+        _movementSpeed = 2.75f;
 
         isDead = false;
         gameObject.layer = 8;

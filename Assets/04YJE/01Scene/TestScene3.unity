@@ -4944,13 +4944,13 @@ MonoBehaviour:
   waveInfoText: {fileID: 8335460949734507039}
   stageInfoText: {fileID: 3923033488069134938}
   waveCountText: {fileID: 6476767945889163270}
-  spawnRadius: 45
+  spawnRadius: 50
   minDistancefromPlayer: 25
-  firstWaveEnemy: 20
-  spawnInterval: 5
+  firstWaveEnemy: 30
+  spawnInterval: 2
   waveInterval: 1
   maxWaves: 5
-  currentWave: 0
+  currentWave: 5
   initialStage: 0
   currentStage: 0
   totalEnemiesInWave: 0
@@ -12147,7 +12147,7 @@ Transform:
   m_GameObject: {fileID: 782683781}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.83, y: 0.16, z: -1.56}
+  m_LocalPosition: {x: 0.83, y: 0.08, z: -1.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12571,15 +12571,15 @@ MonoBehaviour:
   - {fileID: 1537063632}
   - {fileID: 908917238}
   cooltimes:
-  - 5
-  - 8
+  - 10
+  - 12
   - 30
   - 10
-  - 6
+  - 12
   - 25
-  - 8
   - 10
-  - 30
+  - 12
+  - 60
   particlePoolManager: {fileID: 1494862214}
   uiManager: {fileID: 1235205384}
   cameraManager: {fileID: 2010012743}
@@ -12587,6 +12587,7 @@ MonoBehaviour:
   itempools: {fileID: 98979236}
   cooltimeManager: {fileID: 1868022135}
   spawner: {fileID: 221857132}
+  openSlotTooltip: {fileID: 0}
   txt_gold: {fileID: 7631177499464440033}
   _maxhp: 3000
   _hp: 3000

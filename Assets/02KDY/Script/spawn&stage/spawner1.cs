@@ -140,6 +140,15 @@ public class spawner1 : MonoBehaviour
             soundManager.PlayMusic(4);
             return;
         }
+        else if (currentStage == 3 && currentWave == maxWaves)
+        {
+            StartCoroutine(BossWave());
+            UpdateWaveInfoUI();
+            waveCountText.text = $"WAVE {currentWave}";
+            Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
+            soundManager.PlayMusic(4);
+            return;
+        }
         else if (currentStage == 4 && currentWave == maxWaves)
         {
             StartCoroutine(BossWave());
@@ -149,16 +158,7 @@ public class spawner1 : MonoBehaviour
             soundManager.PlayMusic(4);
             return;
         }
-        else if (currentStage == 6 && currentWave == maxWaves)
-        {
-            StartCoroutine(BossWave());
-            UpdateWaveInfoUI();
-            waveCountText.text = $"WAVE {currentWave}";
-            Debug.Log("보스 웨이브이므로 일반 몬스터 생성 안함.");
-            soundManager.PlayMusic(4);
-            return;
-        }
-        else if (currentStage == 8 && currentWave == maxWaves)
+        else if (currentStage == 5 && currentWave == maxWaves)
         {
             StartCoroutine(BossWave());
             UpdateWaveInfoUI();
@@ -183,19 +183,19 @@ public class spawner1 : MonoBehaviour
         {
             yield break;
         }
+        else if (currentStage == 3 && currentWave == maxWaves)
+        {
+            yield break;
+        }
         else if (currentStage == 4 && currentWave == maxWaves)
         {
             yield break;
         }
-        else if (currentStage == 6 && currentWave == maxWaves)
+        else if (currentStage == 5 && currentWave == maxWaves)
         {
             yield break;
         }
-        else if (currentStage == 8 && currentWave == maxWaves)
-        {
-            yield break;
-        }
-        if ((currentStage == 3 || currentStage == 5 || currentStage == 7) && currentWave == 1)
+        if ((currentStage == 3 || currentStage == 4 || currentStage == 5) && currentWave == 1)
         {
             soundManager.PlayMusic(2);
         }
@@ -244,7 +244,7 @@ public class spawner1 : MonoBehaviour
         yield return new WaitUntil(() => enemiesLeft == 0);
 
         Debug.Log("보스 처치 완료. 스테이지 클리어");
-        if (currentStage == 8 && currentWave == maxWaves)
+        if (currentStage == 5 && currentWave == maxWaves)
         {
             sceneChanger.LoadEndingCutScene();
         }
@@ -261,7 +261,7 @@ public class spawner1 : MonoBehaviour
             enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {randomPosition} 위치에 소환되었습니다!");
         }
-        else if (currentStage == 4 && currentWave == maxWaves) //4스테이지
+        else if (currentStage == 3 && currentWave == maxWaves) //4스테이지
         {
             Vector3 randomPosition = GetRandomPosition();
             bossHpSlider.transform.parent.gameObject.SetActive(true);
@@ -270,7 +270,7 @@ public class spawner1 : MonoBehaviour
             enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {randomPosition} 위치에 소환되었습니다!");
         }
-        else if (currentStage == 6 && currentWave == maxWaves) //6스테이지
+        else if (currentStage == 4 && currentWave == maxWaves) //6스테이지
         {
             Vector3 randomPosition = GetRandomPosition();
             bossHpSlider.transform.parent.gameObject.SetActive(true);
@@ -279,7 +279,7 @@ public class spawner1 : MonoBehaviour
             enemies.Add(boss);
             Debug.Log($"보스 몬스터가 {randomPosition} 위치에 소환되었습니다!");
         }
-        else if (currentStage == 8 && currentWave == maxWaves) //8스테이지
+        else if (currentStage == 5 && currentWave == maxWaves) //8스테이지
         {
             Vector3 randomPosition = GetRandomPosition();
             bossHpSlider.transform.parent.gameObject.SetActive(true);

@@ -170,6 +170,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 gameManager.uiManager.ChangeCharacterUI(1);
                 AttackState.IsAttack = false;
                 AttackState.IsBaseAttack = false;
+                player.attackRange.enabled = false;
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;
@@ -201,6 +202,7 @@ public class PlayerCharacterController : MonoBehaviour, IDamageAble<float>
                 gameManager.uiManager.ChangeCharacterUI(2);
                 AttackState.IsAttack = false;
                 AttackState.IsBaseAttack = false;
+                player.attackRange.enabled = false;
                 player.animator.Rebind();
                 player.animator.SetTrigger(hashIsChangeAnimation);
                 player.canChange = false;

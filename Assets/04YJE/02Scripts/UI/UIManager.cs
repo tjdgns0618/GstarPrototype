@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -112,11 +113,18 @@ public class UIManager : MonoBehaviour
     //UIÆË¾÷Ã¢ ´Ý±â
     public void ClosePopup(GameObject popup)
     {
+        if(popup.name == "Blacksmith_Window")
+        {
+            
+        }
+
         if (popup != null && openPopups.Contains(popup))
         {
             SetUIActive(popup, false);
             openPopups.Remove(popup);
             gameManager.isPause = false;
+            if (gameManager.openSlotTooltip != null)
+                gameManager.openSlotTooltip.HideToolTip();
         }
 
         if (popup == pauseWindow)

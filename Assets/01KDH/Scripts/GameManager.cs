@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public ItemPoolManager itempools;
     public CooltimeManager cooltimeManager;
     public spawner1 spawner;
+    public SlotToolTip openSlotTooltip;
 
     public TMP_Text txt_gold;
 
@@ -176,6 +177,8 @@ public class GameManager : MonoBehaviour
 
     public void LifeGen()
     {
+        if (spawner.enemies.Count == 0)
+            return;
         if (_maxhp > _hp)
             _hp += _lifegen;
         if (_hp > _maxhp)

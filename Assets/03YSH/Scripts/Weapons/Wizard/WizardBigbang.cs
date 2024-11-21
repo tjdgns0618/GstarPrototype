@@ -31,6 +31,7 @@ public class WizardBigbang : MonoBehaviour
             for (int i = 0; i < insideEnemies.Count; i++)
             {
                 Vector3 _dir = (transform.position - insideEnemies[i].transform.position).normalized;
+                if(insideEnemies[i].layer == 8)
                 insideEnemies[i]?.GetComponent<EnemyAI>().PlayKnockback(_dir, 0.2f, 2f);
             }
             knockbackTimer = 0;

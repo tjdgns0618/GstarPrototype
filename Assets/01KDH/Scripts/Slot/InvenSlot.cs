@@ -67,11 +67,14 @@ public class InvenSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (item != null)
+        {
             _slotToolTip.ShowToolTip(item, transform.position, itemCount);
+            GameManager.instance.openSlotTooltip = _slotToolTip;
+        }
     }
-
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         _slotToolTip.HideToolTip();
+        GameManager.instance.openSlotTooltip = null;
     }
 }
